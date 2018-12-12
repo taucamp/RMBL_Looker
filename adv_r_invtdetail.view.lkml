@@ -169,4 +169,9 @@ view: adv_r_invtdetail {
     type: count
     drill_fields: [id]
   }
+
+  # measure: total_suggested_retail {
+  #   type: sum
+  #   sql: ${suggretail} ;;
+  # }
 }

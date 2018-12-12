@@ -287,10 +287,31 @@ view: adv_r_salesdetail {
     drill_fields: [dealstatus,customer,total_cash_sale_price]
   }
 
+  measure: total_cash_sale_price_distribution {
+    type: sum
+    sql: ${cashsaleprice} ;;
+    filters: {
+      field: transaction_type
+      value: "Distribution"
+    }
+  }
+
+  measure: ratio {
+    label: "Pct Cash Sales from Distribution"
+    type: number
+    sql: ${total_cash_sale_price_distribution}*1.0 / nullif(${total_cash_sale_price},0) ;;
+    value_format_name: percent_2
+  }
+
   measure: total_vehicle_profit {
     type: sum
     sql: ${vehicle_profit} ;;
     value_format_name: usd
     drill_fields: [dealstatus,customer,total_cash_sale_price]
   }
+
+  # measure: pct_of_suggested_retail {
+  #   type: number
+  #   sql: ${total_cash_sale_price}*1.0 / nullif(${adv_r_invtdetail.total_suggested_retail},0) ;;
+  # }
 }
