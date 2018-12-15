@@ -310,8 +310,9 @@ view: adv_r_salesdetail {
     drill_fields: [dealstatus,customer,total_cash_sale_price]
   }
 
-  # measure: pct_of_suggested_retail {
-  #   type: number
-  #   sql: ${total_cash_sale_price}*1.0 / nullif(${adv_r_invtdetail.total_suggested_retail},0) ;;
-  # }
+
+  measure: pct_of_suggested_retail {
+    type: number
+    sql: ${total_cash_sale_price}*1.0 / nullif(${adv_r_invtdetail.total_suggested_retail},0) ;;
+   }
 }

@@ -84,6 +84,7 @@ view: adv_r_invtdetail {
     type: tier
     style: integer
     tiers: [0,5000,10000,15000,20000]
+    value_format_name: decimal_0
     sql: ${mileage} ;;
   }
 
@@ -145,6 +146,11 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.suggretail ;;
   }
 
+  dimension: suggestedretail {
+    type:number
+    sql: to_number(suggretail,'S9999999.99') ;;
+  }
+
   dimension: tradelinkeddeal {
     type: number
     sql: ${TABLE}.tradelinkeddeal ;;
@@ -170,8 +176,8 @@ view: adv_r_invtdetail {
     drill_fields: [id]
   }
 
-  # measure: total_suggested_retail {
-  #   type: sum
-  #   sql: ${suggretail} ;;
-  # }
+   measure: total_suggested_retail {
+     type: sum
+     sql: ${suggestedretail} ;;
+   }
 }
