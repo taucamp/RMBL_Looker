@@ -12,6 +12,7 @@ view: apr_appraisal_loan {
   }
 
   dimension: appraisal_loan_id {
+    primary_key:yes
     type: number
     sql: ${TABLE}.AppraisalLoanId ;;
   }

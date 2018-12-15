@@ -14,6 +14,7 @@ view: apr_appraisal {
   }
 
   dimension: appraisal_id {
+    primary_key:yes
     type: number
     sql: ${TABLE}.AppraisalId ;;
   }
