@@ -101,7 +101,10 @@ view: amex {
 
   dimension: transaction_type {
     type: string
-    sql: case when ${amount} < 0 then 'Return' else 'Charge' end ;;
+    sql: case
+          when ${amount} < 0 and ${doing_business_as} IS NULL then 'Payment'
+          when  ${amount} < 0 then 'Return'
+          else 'Charge' end ;;
   }
 
   measure: count {
