@@ -25,3 +25,5 @@ explore: amex{
     sql_on: right(${amex.account_number},5)=${amex_cards.cardnumber_last5} ;;
     }
   }
+
+  explore: vw_namely_pay_and_hours {}
