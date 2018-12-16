@@ -18,6 +18,9 @@ include: "*.view.lkml"                       # include all views in this project
 #   }
 # }
 
+explore: adv_r_invtdetail {
+}
+
 explore: adv_r_salesdetail {
   join: adv_r_invtdetail {
     type: left_outer
@@ -119,8 +122,6 @@ explore: apr_appraisal {
 
 }
 
-
-
 explore: inv_item {
   join: inv_item_status {
     type: left_outer
@@ -164,14 +165,6 @@ explore: inv_item {
 
 }
 
-explore: org_user {
-  join: org_user_type {
-    type: left_outer
-    sql_on: ${org_user_type.user_type_id}=${org_user.user_type_id} ;;
-  }
-
-}
-
 explore: inv_listing {
   join: inv_item {
     type: left_outer
@@ -194,4 +187,12 @@ explore: inv_listing {
     type: left_outer
     sql_on: ${org_user_updated_listing.user_id}=${inv_listing.updated_user_id} ;;
   }
+}
+
+explore: org_user {
+  join: org_user_type {
+    type: left_outer
+    sql_on: ${org_user_type.user_type_id}=${org_user.user_type_id} ;;
+  }
+
 }
