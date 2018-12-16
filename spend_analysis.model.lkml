@@ -18,10 +18,10 @@ include: "*.view.lkml"                       # include all views in this project
 #   }
 # }
 
-explore: amex_transactions{
+explore: amex{
   join: amex_cards{
     type:  left_outer
     relationship: many_to_one
-    sql_on: right(${amex_transactions.account_number},5)=${amex_cards.cardnumber_last5} ;;
+    sql_on: right(${amex.account_number},5)=${amex_cards.cardnumber_last5} ;;
     }
   }
