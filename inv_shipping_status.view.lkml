@@ -42,6 +42,7 @@ view: inv_shipping_status {
   }
 
   dimension: shipping_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ShippingStatusId ;;
   }

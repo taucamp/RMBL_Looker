@@ -37,6 +37,7 @@ view: apr_shipping_issue_type {
   }
 
   dimension: shipping_issue_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ShippingIssueTypeId ;;
   }

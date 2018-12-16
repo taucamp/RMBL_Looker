@@ -27,6 +27,7 @@ view: inv_generic_type {
   }
 
   dimension: generic_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.GenericTypeId ;;
   }

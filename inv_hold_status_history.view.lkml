@@ -54,6 +54,7 @@ view: inv_hold_status_history {
   }
 
   dimension: hold_status_history_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.HoldStatusHistoryId ;;
   }

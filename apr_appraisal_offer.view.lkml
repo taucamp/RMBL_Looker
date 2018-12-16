@@ -7,6 +7,7 @@ view: apr_appraisal_offer {
   }
 
   dimension: appraisal_offer_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.AppraisalOfferId ;;
   }

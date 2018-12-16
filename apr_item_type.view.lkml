@@ -32,6 +32,7 @@ view: apr_item_type {
   }
 
   dimension: item_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ItemTypeId ;;
   }

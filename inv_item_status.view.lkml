@@ -26,6 +26,7 @@ view: inv_item_status {
   }
 
   dimension: item_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ItemStatusId ;;
   }

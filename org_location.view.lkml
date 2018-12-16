@@ -101,6 +101,7 @@ view: org_location {
   }
 
   dimension: location_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.LocationId ;;
   }

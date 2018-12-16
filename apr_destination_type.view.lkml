@@ -16,6 +16,7 @@ view: apr_destination_type {
   }
 
   dimension: created_user_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.CreatedUserId ;;
   }

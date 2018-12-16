@@ -7,6 +7,7 @@ view: org_account {
   }
 
   dimension: account_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.AccountId ;;
   }

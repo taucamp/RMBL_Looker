@@ -8,6 +8,7 @@ view: inv_category {
   }
 
   dimension: category_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.CategoryId ;;
   }

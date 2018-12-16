@@ -8,6 +8,7 @@ view: org_account_status {
   }
 
   dimension: account_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.AccountStatusId ;;
   }

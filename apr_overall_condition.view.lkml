@@ -32,6 +32,7 @@ view: apr_overall_condition {
   }
 
   dimension: overall_condition_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.OverallConditionId ;;
   }

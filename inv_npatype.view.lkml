@@ -32,6 +32,7 @@ view: inv_npatype {
   }
 
   dimension: npatype_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.NPATypeId ;;
   }

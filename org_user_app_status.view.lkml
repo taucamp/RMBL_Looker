@@ -56,6 +56,7 @@ view: org_user_app_status {
   }
 
   dimension: user_app_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.UserAppStatusId ;;
   }

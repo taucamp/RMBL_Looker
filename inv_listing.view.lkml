@@ -31,6 +31,7 @@ view: inv_listing {
   }
 
   dimension: listing_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ListingId ;;
   }

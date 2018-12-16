@@ -21,6 +21,7 @@ view: org_role {
   }
 
   dimension: role_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.RoleId ;;
   }

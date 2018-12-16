@@ -37,6 +37,7 @@ view: apr_source_type {
   }
 
   dimension: source_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.SourceTypeId ;;
   }

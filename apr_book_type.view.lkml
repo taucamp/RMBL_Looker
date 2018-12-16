@@ -8,6 +8,7 @@ view: apr_book_type {
   }
 
   dimension: book_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.BookTypeId ;;
   }

@@ -7,6 +7,7 @@ view: inv_bucket {
   }
 
   dimension: bucket_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.BucketId ;;
   }

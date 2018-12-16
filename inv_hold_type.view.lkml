@@ -27,6 +27,7 @@ view: inv_hold_type {
   }
 
   dimension: hold_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.HoldTypeId ;;
   }

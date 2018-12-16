@@ -32,6 +32,7 @@ view: org_location_type {
   }
 
   dimension: location_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.LocationTypeId ;;
   }

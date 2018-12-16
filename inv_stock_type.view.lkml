@@ -37,6 +37,7 @@ view: inv_stock_type {
   }
 
   dimension: stock_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.StockTypeId ;;
   }

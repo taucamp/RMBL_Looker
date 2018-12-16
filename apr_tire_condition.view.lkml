@@ -37,6 +37,7 @@ view: apr_tire_condition {
   }
 
   dimension: tire_condition_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.TireConditionId ;;
   }

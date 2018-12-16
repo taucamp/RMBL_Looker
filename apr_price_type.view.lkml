@@ -32,6 +32,7 @@ view: apr_price_type {
   }
 
   dimension: price_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.PriceTypeId ;;
   }

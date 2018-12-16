@@ -37,6 +37,7 @@ view: inv_listing_status {
   }
 
   dimension: listing_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ListingStatusId ;;
   }

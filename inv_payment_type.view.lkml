@@ -21,6 +21,7 @@ view: inv_payment_type {
   }
 
   dimension: payment_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.PaymentTypeId ;;
   }

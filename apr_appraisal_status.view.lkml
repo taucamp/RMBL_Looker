@@ -8,6 +8,7 @@ view: apr_appraisal_status {
   }
 
   dimension: appraisal_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.AppraisalStatusId ;;
   }

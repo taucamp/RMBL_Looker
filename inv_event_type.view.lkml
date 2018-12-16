@@ -27,6 +27,7 @@ view: inv_event_type {
   }
 
   dimension: event_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.EventTypeId ;;
   }

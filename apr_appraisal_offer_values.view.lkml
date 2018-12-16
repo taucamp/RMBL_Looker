@@ -2,6 +2,7 @@ view: apr_appraisal_offer_values {
   sql_table_name: public.rumble_AprAppraisalOfferValues ;;
 
   dimension: appraisal_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.AppraisalId ;;
   }

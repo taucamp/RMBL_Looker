@@ -13,6 +13,7 @@ view: inv_auction_status {
   }
 
   dimension: auction_status_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.AuctionStatusId ;;
   }

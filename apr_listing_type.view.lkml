@@ -32,6 +32,7 @@ view: apr_listing_type {
   }
 
   dimension: listing_type_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.ListingTypeId ;;
   }

@@ -32,6 +32,7 @@ view: inv_crtype {
   }
 
   dimension: crtype_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.CRTypeId ;;
   }

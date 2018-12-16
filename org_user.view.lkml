@@ -200,6 +200,7 @@ view: org_user {
   }
 
   dimension: user_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.UserId ;;
   }
