@@ -99,6 +99,11 @@ view: amex {
     sql: ${TABLE}."street address" ;;
   }
 
+  dimension: transaction_type {
+    type: string
+    sql: case when ${amount} < 0 then 'Return' else 'Charge' end ;;
+  }
+
   measure: count {
     type: count
   }
