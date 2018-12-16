@@ -1,5 +1,5 @@
 view: amex {
-  sql_table_name: american_express.amex transactions ;;
+  sql_table_name: american_express."amex transactions" ;;
 
   dimension: account_number {
     type: string
