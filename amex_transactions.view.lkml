@@ -1,4 +1,4 @@
-view: amex_transactions {
+view: amex {
   sql_table_name: american_express.amex transactions ;;
 
   dimension: account_number {
