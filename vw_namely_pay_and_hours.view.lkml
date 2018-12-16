@@ -86,4 +86,9 @@ view: vw_namely_pay_and_hours {
     type: sum
     sql: ${TABLE}.amount ;;
   }
+
+  measure: persons_paid {
+    type: count_distinct
+    sql: ${TABLE}.employee ;;
+  }
 }
