@@ -315,4 +315,5 @@ view: adv_r_salesdetail {
     type: number
     sql: ${total_cash_sale_price}*1.0 / nullif(${adv_r_invtdetail.total_suggested_retail},0) ;;
    }
+
 }
