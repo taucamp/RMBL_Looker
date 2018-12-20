@@ -18,6 +18,11 @@ include: "*.view.lkml"                       # include all views in this project
 #   }
 # }
 
+
+explore: aaa_cdk_sales_detail {
+
+}
+
 explore: adv_r_invtdetail {
 }
 
