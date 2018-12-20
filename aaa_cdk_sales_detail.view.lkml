@@ -1193,6 +1193,30 @@ view: aaa_cdk_sales_detail {
     drill_fields: [detail*]
   }
 
+  measure: Total_Sales{
+    type: sum
+    sql: ${cash_price} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: front_gross{
+    type: sum
+    sql: ${gross__front_} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: back_gross{
+    type: sum
+    sql: ${gross__back_} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: total_gross{
+    type: sum
+    sql: ${total_gross} ;;
+    drill_fields: [detail*]
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
