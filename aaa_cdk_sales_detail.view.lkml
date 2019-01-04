@@ -1213,7 +1213,7 @@ view: aaa_cdk_sales_detail {
 
   measure: total_gross{
     type: sum
-    sql: ${total_gross} ;;
+    sql: ${gross__front}+${gross__back} ;;
     drill_fields: [detail*]
   }
 
