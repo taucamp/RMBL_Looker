@@ -1,6 +1,8 @@
 connection: "redshift"
 
-include: "*.view.lkml"                       # include all views in this project
+include: "*amex_transactions.view.lkml"
+include: "*amex_cards.view.lkml"
+# include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 # # Select the views that should be a part of this model,
@@ -25,5 +27,3 @@ explore: amex{
     sql_on: right(${amex.account_number},5)=${amex_cards.cardnumber_last5} ;;
     }
   }
-
-  explore: vw_namely_pay_and_hours {}
