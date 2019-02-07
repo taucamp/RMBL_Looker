@@ -1426,14 +1426,14 @@ view: apr_appraisal {
 
   measure: sum_of_miles {
     type: sum
-    sql: convert(int,case when ${mileage} > 100000 then 100000 else ${mileage} end);;
+    sql: convert(int,case when ${mileage} > 100000 then 100000 else ${mileage} end)*1.0;;
     value_format_name: decimal_0
 
   }
 
   measure: average_miles {
 
-    sql: ${sum_of_miles}/${count} ;;
+    sql: ${sum_of_miles}*1.0/${count}*1.0 ;;
     value_format_name: decimal_0
 
   }
