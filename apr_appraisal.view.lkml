@@ -936,7 +936,7 @@ view: apr_appraisal {
 
   dimension: physical_condition_id {
     type: number
-    sql: ${TABLE}.PhysicalConditionId ;;
+    sql: isnull(${TABLE}.PhysicalConditionId,0) ;;
   }
 
   dimension_group: picked_up {

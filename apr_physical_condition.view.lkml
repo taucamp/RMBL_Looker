@@ -32,9 +32,8 @@ view: apr_physical_condition {
   }
 
   dimension: physical_condition_id {
-
     type: number
-    sql: ${TABLE}.PhysicalConditionId ;;
+    sql: isnull(${TABLE}.PhysicalConditionId,0) ;;
   }
 
   dimension: rank {
