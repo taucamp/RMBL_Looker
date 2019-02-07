@@ -28,7 +28,7 @@ view: apr_physical_condition {
   dimension: physical_condition {
     type: string
     sql: ${TABLE}.PhysicalCondition ;;
-    order_by_field: rank
+
   }
 
   dimension: physical_condition_id {
