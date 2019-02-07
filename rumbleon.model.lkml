@@ -41,59 +41,59 @@ explore: apr_appraisal {
     sql_on: ${apr_appraisal_loan.appraisal_id}=${apr_appraisal.appraisal_id} ;;
   }
 
-  join: apr_appraisal_offer {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_appraisal_offer.appraisal_id}=${apr_appraisal.appraisal_id} ;;
-  }
-
-  join: apr_appraisal_offer_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id}=${apr_appraisal_offer_type.appraisal_offer_type_id} ;;
-  }
-
-  join: apr_appraisal_offer_values {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${apr_appraisal_offer_values.appraisal_id}=${apr_appraisal.appraisal_id} ;;
-  }
-
-  join: apr_appraisal_status {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_appraisal_status.appraisal_status_id}=${apr_appraisal.appraisal_status_id} ;;
-  }
-
-  join: apr_destination_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_destination_type.destination_type_id}=${apr_appraisal.destination_type_id} ;;
-  }
-
-  join: apr_item_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_item_type.item_type_id}=${apr_appraisal.item_type_id};;
-  }
-
-  join: apr_listing_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} ;;
-  }
-
-  join: apr_mechanical_condition {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_mechanical_condition.mechanical_condition_id}=${apr_appraisal.mechanical_condition_id} ;;
-  }
-
-  join: apr_payment_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_payment_type.payment_type_id}=${apr_appraisal.payment_type_id} ;;
-  }
+#   join: apr_appraisal_offer {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_appraisal_offer.appraisal_id}=${apr_appraisal.appraisal_id} ;;
+#   }
+#
+#   join: apr_appraisal_offer_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id}=${apr_appraisal_offer_type.appraisal_offer_type_id} ;;
+#   }
+#
+#   join: apr_appraisal_offer_values {
+#     type: left_outer
+#     relationship: one_to_one
+#     sql_on: ${apr_appraisal_offer_values.appraisal_id}=${apr_appraisal.appraisal_id} ;;
+#   }
+#
+#   join: apr_appraisal_status {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_appraisal_status.appraisal_status_id}=${apr_appraisal.appraisal_status_id} ;;
+#   }
+#
+#   join: apr_destination_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_destination_type.destination_type_id}=${apr_appraisal.destination_type_id} ;;
+#   }
+#
+#   join: apr_item_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_item_type.item_type_id}=${apr_appraisal.item_type_id};;
+#   }
+#
+#   join: apr_listing_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} ;;
+#   }
+#
+#   join: apr_mechanical_condition {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_mechanical_condition.mechanical_condition_id}=${apr_appraisal.mechanical_condition_id} ;;
+#   }
+#
+#   join: apr_payment_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_payment_type.payment_type_id}=${apr_appraisal.payment_type_id} ;;
+#   }
 
   join: apr_physical_condition {
     type: left_outer
@@ -101,17 +101,17 @@ explore: apr_appraisal {
     sql_on: ${apr_physical_condition.physical_condition_id}=${apr_appraisal.physical_condition_id} ;;
   }
 
-  join: apr_source_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_source_type.source_type_id}=${apr_appraisal.source_type_id} ;;
-  }
-
-  join: apr_tire_condition {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_tire_condition.tire_condition_id}=${apr_appraisal.tire_condition_id} ;;
-  }
+#   join: apr_source_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_source_type.source_type_id}=${apr_appraisal.source_type_id} ;;
+#   }
+#
+#   join: apr_tire_condition {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_tire_condition.tire_condition_id}=${apr_appraisal.tire_condition_id} ;;
+#   }
 #
 #   join: org_account{
 #     type: left_outer
