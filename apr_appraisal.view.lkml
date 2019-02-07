@@ -1433,7 +1433,7 @@ view: apr_appraisal {
 
   measure: average_miles {
     type: average
-    sql: ${mileage} ;;
+    sql: ${sum_of_miles}/${count} ;;
     value_format_name: decimal_0
 
   }
