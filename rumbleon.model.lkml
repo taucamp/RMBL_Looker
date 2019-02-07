@@ -112,32 +112,32 @@ explore: apr_appraisal {
     relationship: many_to_one
     sql_on: ${apr_tire_condition.tire_condition_id}=${apr_appraisal.tire_condition_id} ;;
   }
-
-  join: org_account{
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${org_account.account_id}=${apr_appraisal.account_id} ;;
-  }
-
-  join: org_user{
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${org_user.user_id}=${apr_appraisal.user_id} ;;
-  }
-
-  join: org_user_appraiser{
-    type: left_outer
-    relationship: many_to_one
-    from: org_user
-    sql_on: ${org_user_appraiser.user_id}=${apr_appraisal.appraiser_user_id} ;;
-  }
-
-  join: org_user_supervisor{
-    type: left_outer
-    relationship: many_to_one
-    from: org_user
-    sql_on: ${org_user_supervisor.user_id}=${apr_appraisal_offer.supervisor_user_id} ;;
-  }
+#
+#   join: org_account{
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${org_account.account_id}=${apr_appraisal.account_id} ;;
+#   }
+#
+#   join: org_user{
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${org_user.user_id}=${apr_appraisal.user_id} ;;
+#   }
+#
+#   join: org_user_appraiser{
+#     type: left_outer
+#     relationship: many_to_one
+#     from: org_user
+#     sql_on: ${org_user_appraiser.user_id}=${apr_appraisal.appraiser_user_id} ;;
+#   }
+#
+#   join: org_user_supervisor{
+#     type: left_outer
+#     relationship: many_to_one
+#     from: org_user
+#     sql_on: ${org_user_supervisor.user_id}=${apr_appraisal_offer.supervisor_user_id} ;;
+#   }
 
 
 }
