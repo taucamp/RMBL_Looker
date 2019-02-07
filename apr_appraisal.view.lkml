@@ -1426,7 +1426,7 @@ view: apr_appraisal {
 
   measure: sum_of_miles {
     type: sum
-    sql: case when ${mileage} > 100000 then 100000 else ${mileage} end;;
+    sql: convert(numeric(19,0),case when ${mileage} > 100000 then 100000 else ${mileage} end);;
     value_format_name: decimal_0
 
   }
