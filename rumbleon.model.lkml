@@ -77,11 +77,11 @@ explore: apr_appraisal {
     sql_on: ${apr_item_type.item_type_id}=${apr_appraisal.item_type_id};;
   }
 
-  join: apr_listing_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} ;;
-  }
+  # join: apr_listing_type {
+  #   type: left_outer
+  #   relationship: many_to_one
+  #   sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} ;;
+  # }
 
   join: apr_mechanical_condition {
     type: left_outer
