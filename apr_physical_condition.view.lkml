@@ -32,7 +32,7 @@ view: apr_physical_condition {
   }
 
   dimension: physical_condition_id {
-    primary_key: yes
+
     type: number
     sql: ${TABLE}.PhysicalConditionId ;;
   }
