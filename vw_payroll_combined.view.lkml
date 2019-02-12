@@ -87,4 +87,11 @@ view: Payroll {
     drill_fields: [branch_name,department_name,employee]
   }
 
+  measure: Employees_Paid{
+    type: count_distinct
+    sql: ${employee} ;;
+    drill_fields: [branch_name,department_name,employee]
+  }
+
+
 }
