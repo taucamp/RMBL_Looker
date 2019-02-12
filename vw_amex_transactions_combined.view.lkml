@@ -1,4 +1,4 @@
-view: vw_amex_transactions_combined {
+view: amex_transactions {
   sql_table_name: american_express.vw_amex_transactions_combined ;;
 
   dimension: account_number {
