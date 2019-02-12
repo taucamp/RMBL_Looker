@@ -77,14 +77,14 @@ view: Payroll {
       type: sum
       sql: ${overtime_pay} ;;
       value_format_name: usd
-      drill_fields: [branch_name,department_name,employee]
+      drill_fields: [branch_name,department_name,employee,total_OT]
   }
 
   measure: total_payroll {
     type: sum
     sql: ${total_gross_wages} ;;
     value_format_name: usd
-    drill_fields: [branch_name,department_name,employee]
+    drill_fields: [branch_name,department_name,employee,total_payroll]
   }
 
   measure: Employees_Paid{
