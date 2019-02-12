@@ -148,6 +148,7 @@ view: amex_transactions {
 
   measure: amount_charged{
     type: sum
+    value_format_name: usd_0
     sql: ${TABLE}.amount;;
   }
 }
