@@ -65,4 +65,26 @@ view: Payroll {
     type: count
     drill_fields: [division_name, branch_name, department_name]
   }
+
+  measure: total_regular_pay {
+    type: sum
+    sql: ${regular_pay} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee]
+   }
+
+  measure: total_OT {
+      type: sum
+      sql: ${overtime_pay} ;;
+      value_format_name: usd
+      drill_fields: [branch_name,department_name,employee]
+  }
+
+  measure: total_payroll {
+    type: sum
+    sql: ${total_gross_wages} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee]
+  }
+
 }
