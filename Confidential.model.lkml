@@ -24,3 +24,5 @@ explore: amex_transactions {
      sql_on: ${amex_transactions.cardnumber_last5} = ${amex_cards.cardnumber_last5} ;;
     }
 }
+
+explore: Payroll {}
