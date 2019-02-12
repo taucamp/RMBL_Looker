@@ -1,5 +1,5 @@
-view: vw_amex_transcations_combined {
-  sql_table_name: american_express.vw_amex_transcations_combined ;;
+view: vw_amex_transactions_combined {
+  sql_table_name: american_express.vw_amex_transactions_combined ;;
 
   dimension: account_number {
     type: string
@@ -106,7 +106,7 @@ view: vw_amex_transcations_combined {
     sql: ${TABLE}."street address" ;;
   }
 
-  dimension_group: transaction_date {
+  dimension_group: transaction {
     type: time
     timeframes: [
       raw,
@@ -146,10 +146,8 @@ view: vw_amex_transcations_combined {
     drill_fields: []
   }
 
-  measure: amount_spent {
+  measure: amount_charged{
     type: sum
-    sql: ${TABLE}.amount ;;
+    sql: ${TABLE}.amount;;
   }
-
-
 }
