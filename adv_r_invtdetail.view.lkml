@@ -60,9 +60,14 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.equipment3 ;;
   }
 
-  dimension: invtstatuscode {
+  dimension: inventory_status {
     type: string
-    sql: ${TABLE}.invtstatuscode ;;
+    sql: f_sql_inventory_status(${TABLE}.invtstatuscode) ;;
+  }
+
+  dimension: inventory_status_group {
+    type: string
+    sql: f_sql_inventory_status_group(${TABLE}.invtstatuscode) ;;
   }
 
   dimension: location {
@@ -139,16 +144,10 @@ view: adv_r_invtdetail {
     sql: ${TABLE}."run time" ;;
   }
 
-  dimension: status {
+  dimension: sold_status {
     type: string
-    sql: f_sql_inventory_status(${TABLE}.invtstatuscode) ;;
+    sql: ${TABLE}.status ;;
   }
-
-  dimension: status_group {
-    type: string
-    sql: f_sql_inventory_status_group(${TABLE}.invtstatuscode) ;;
-  }
-
 
   dimension: stocknum {
     type: string
