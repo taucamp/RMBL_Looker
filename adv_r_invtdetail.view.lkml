@@ -98,9 +98,17 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.orig ;;
   }
 
-  dimension: recdate {
-    type: string
-    sql: ${TABLE}.recdate ;;
+  dimension_group: recdate {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: isnull(${TABLE}.recdate,'2000-01-01') ;;
   }
 
   dimension_group: rsstatus {
@@ -114,7 +122,7 @@ view: adv_r_invtdetail {
       quarter,
       year
     ]
-    sql: ${TABLE}.rsstatus ;;
+    sql:${TABLE}.rsstatus ;;
   }
 
   dimension_group: run {
@@ -133,8 +141,14 @@ view: adv_r_invtdetail {
 
   dimension: status {
     type: string
-    sql: ${TABLE}.status ;;
+    sql: f_sql_inventory_status(${TABLE}.status) ;;
   }
+
+  dimension: status_group {
+    type: string
+    sql: f_sql_inventory_status_group(${TABLE}.status) ;;
+  }
+
 
   dimension: stocknum {
     type: string
