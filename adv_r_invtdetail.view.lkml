@@ -141,12 +141,12 @@ view: adv_r_invtdetail {
 
   dimension: status {
     type: string
-    sql: f_sql_inventory_status(${TABLE}.status) ;;
+    sql: f_sql_inventory_status(${TABLE}.invtstatusvode) ;;
   }
 
   dimension: status_group {
     type: string
-    sql: f_sql_inventory_status_group(${TABLE}.status) ;;
+    sql: f_sql_inventory_status_group(${TABLE}.invtstatuscode) ;;
   }
 
 
