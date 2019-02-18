@@ -105,6 +105,13 @@ view: Payroll {
     drill_fields: [branch_name,department_name,employee]
   }
 
+  measure: total_RSU {
+    type: sum
+    sql: ${rsu_pay} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee]
+  }
+
   measure: total_OT {
     type: sum
     sql: ${overtime_pay} ;;
