@@ -25,4 +25,4 @@ explore: amex_transactions {
     }
 }
 
-explore: Payroll {}
+# explore: Payroll {}
