@@ -83,6 +83,28 @@ view: Payroll {
     drill_fields: [branch_name,department_name,employee]
   }
 
+  measure: total_additional_wages {
+    type: sum
+    sql: ${additional_wages} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee]
+  }
+
+  measure: total_bonus {
+    type: sum
+    sql: ${bonus} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee]
+  }
+
+
+  measure: total_commissions {
+    type: sum
+    sql: ${commissions} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee]
+  }
+
   measure: total_OT {
     type: sum
     sql: ${overtime_pay} ;;
