@@ -23,4 +23,10 @@ explore: amex_transactions {
      relationship: many_to_one
      sql_on: ${amex_transactions.cardnumber_last5} = ${amex_cards.cardnumber_last5} ;;
     }
+
+}
+
+
+explore: Payroll {
+    view_name: vw_wholesale_payroll_detail
 }
