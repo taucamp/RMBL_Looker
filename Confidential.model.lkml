@@ -28,5 +28,5 @@ explore: amex_transactions {
 
 
 explore: Payroll {
-    view_name: vw_wholesale_payroll_detail
+
 }
