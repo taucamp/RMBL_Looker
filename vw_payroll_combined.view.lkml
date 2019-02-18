@@ -71,6 +71,12 @@ view: Payroll {
     sql: ${TABLE}."total gross wages" ;;
   }
 
+  dimension: normal_wages {
+    type: number
+    sql: ${TABLE}."normal wages" ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [division_name, branch_name, department_name]
@@ -119,7 +125,13 @@ view: Payroll {
     drill_fields: [branch_name,department_name,employee,total_OT]
   }
 
-  measure: total_payroll {
+  measure: total_normal_wages {
+    type: sum
+    sql: ${normal_wages} ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee,total_payroll]
+  }
+    measure: total_payroll {
     type: sum
     sql: ${total_gross_wages} ;;
     value_format_name: usd
@@ -131,6 +143,5 @@ view: Payroll {
     sql: ${employee} ;;
     drill_fields: [branch_name,department_name,employee]
   }
-
 
 }
