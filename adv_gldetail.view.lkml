@@ -63,6 +63,7 @@ set: GL_Drillthrough {
 
   dimension_group: accounting_date {
     type: time
+    label:"Accounting Date"
     description: "Date used in the financials"
     timeframes: [
       raw,
@@ -116,6 +117,7 @@ set: GL_Drillthrough {
 
   dimension_group: entry_timestamp {
     type: time
+    label:"Entered Date"
     description: "When the transaction was entered into the GL - not necessarily the actual accounting date"
     timeframes: [
       raw,
@@ -146,6 +148,7 @@ set: GL_Drillthrough {
 
   measure: count {
     type: count
+    label:"# of Rows"
     drill_fields: [id]
   }
 
