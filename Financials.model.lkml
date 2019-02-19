@@ -32,11 +32,11 @@ explore: Advent_GL_detail {
   }
 
   join: acct_locations {
-    sql_on: ${acct_locations.location_id} = f_sql_adv_acct_to_division(${Advent_Chart_of_Accounts.account_number});;
+    sql_on: ${acct_locations.location_id} = f_sql_adv_acct_to_location(${Advent_Chart_of_Accounts.account_number});;
   }
 
   join: acct_department {
-    sql_on: ${acct_department.department_id} = f_sql_adv_acct_to_division(${Advent_Chart_of_Accounts.account_number});;
+    sql_on: ${acct_department.department_id} = f_sql_adv_acct_to_department(${Advent_Chart_of_Accounts.account_number});;
   }
 
   join: adv_users {
