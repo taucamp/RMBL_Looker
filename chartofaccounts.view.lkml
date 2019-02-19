@@ -179,7 +179,7 @@ view: chartofaccounts {
   }
 
   dimension: major_group_rank {
-    type: string
+    type: number
     sql: ${TABLE}.majorgroup_rank ;;
   }
 
@@ -190,7 +190,7 @@ view: chartofaccounts {
   }
 
   dimension: minor_group_rank {
-    type: string
+    type: number
     sql: ${TABLE}.minorgroup_rank ;;
   }
 
