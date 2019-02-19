@@ -15,6 +15,7 @@ view: acct_division {
 
   dimension: division_name {
     type: string
+    order_by_field:division_rank
     sql: ${TABLE}.division_name ;;
   }
 

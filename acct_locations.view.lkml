@@ -36,6 +36,7 @@ view: acct_locations {
 
   dimension: location_name {
     type: string
+    order_by_field:location_rank
     sql: ${TABLE}.location_name ;;
   }
 

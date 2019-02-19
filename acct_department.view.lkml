@@ -15,6 +15,7 @@ view: acct_department {
 
   dimension: department_name {
     type: string
+    order_by_field:department_rank
     sql: ${TABLE}.department_name ;;
   }
 
