@@ -19,5 +19,7 @@ include: "*.view.lkml"                       # include all views in this project
 # }
 
 explore: Advent_GL_detail {
-
+    join: Advent_Chart_of_Accounts {
+      foreign_key: Advent_Chart_of_Accounts.id
+    }
 }
