@@ -24,6 +24,6 @@ explore: Advent_GL_detail {
     }
 
   join: chartofaccounts {
-    sql_on: ${chartofaccounts.account_number}=split_part(${Advent_Chart_of_Accounts.account_number}) ;;
+    sql_on: ${chartofaccounts.account_number}=split_part(${Advent_Chart_of_Accounts.account_number},'.',1) ;;
   }
 }
