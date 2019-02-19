@@ -174,12 +174,24 @@ view: chartofaccounts {
 
   dimension: major_group {
     type: string
+    order_by_field: major_group_rank
     sql: ${TABLE}.majorgroup ;;
+  }
+
+  dimension: major_group_rank {
+    type: string
+    sql: ${TABLE}.majorgroup_rank ;;
   }
 
   dimension: minor_group {
     type: string
+    order_by_field: minor_group_rank
     sql: ${TABLE}.minorgroup ;;
+  }
+
+  dimension: minor_group_rank {
+    type: string
+    sql: ${TABLE}.minorgroup_rank ;;
   }
 
   measure: count {
