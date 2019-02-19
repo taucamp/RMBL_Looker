@@ -22,4 +22,8 @@ explore: Advent_GL_detail {
     join: Advent_Chart_of_Accounts {
       sql_on: ${Advent_Chart_of_Accounts.account_number}=${Advent_GL_detail.account} ;;
     }
+
+  join: chartofaccounts {
+    sql_on: ${chartofaccounts.account_number}=split_part(${Advent_Chart_of_Accounts.account_number} ;;
+  }
 }
