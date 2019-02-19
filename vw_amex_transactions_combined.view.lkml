@@ -1,6 +1,10 @@
 view: amex_transactions {
   sql_table_name: american_express.vw_amex_transactions_combined ;;
 
+  set: amex_details_drillthrough {
+    fields: [weekended_week,expense_category, expense_subcategory, doing_business_as, amount_charged]
+  }
+
   dimension: account_number {
     type: string
     sql: ${TABLE}."account number" ;;
@@ -150,6 +154,6 @@ view: amex_transactions {
     type: sum
     value_format_name: usd_0
     sql: ${TABLE}.amount;;
-    drill_fields: [weekended_month,expense_category, expense_subcategory, doing_business_as, amount_charged]
+    drill_fields: [amex_details_drillthrough*]
   }
 }
