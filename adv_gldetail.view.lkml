@@ -159,6 +159,11 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
   }
 
+  measure: percent_of_total {
+    type: percent_of_total
+    sql: ${total_amount} ;;
+  }
+
   measure: unique_documents {
     type: count_distinct
     value_format_name:decimal_0
