@@ -150,5 +150,6 @@ view: amex_transactions {
     type: sum
     value_format_name: usd_0
     sql: ${TABLE}.amount;;
+    drill_fields: [weekended_month,expense_category, expense_subcategory, doing_business_as, amount_charged]
   }
 }
