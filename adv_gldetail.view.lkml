@@ -156,14 +156,14 @@ set: GL_Drillthrough {
     type: sum
     value_format_name:usd_0
     sql: ${amount} ;;
-    drill_fields: [id]
+    drill_fields: [GL_Drillthrough*]
   }
 
   measure: unique_documents {
     type: count_distinct
     value_format_name:decimal_0
     sql: ${document_number} ;;
-    drill_fields: [id]
+    drill_fields: [GL_Drillthrough*]
   }
 
 }
