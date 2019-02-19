@@ -79,6 +79,7 @@ set: GL_Drillthrough {
   dimension: amount {
     description: "Amount of the Debit (if positive) or Credit (if negative)"
     type: number
+    value_format_name:usd_2
     sql: ${TABLE}.amount ;;
   }
 
@@ -150,12 +151,14 @@ set: GL_Drillthrough {
 
   measure: total_amount {
     type: sum
+    value_format_name:usd_0
     sql: ${amount} ;;
     drill_fields: [id]
   }
 
   measure: unique_documents {
     type: count_distinct
+    value_format_name:decimal_0
     sql: ${document_number} ;;
     drill_fields: [id]
   }
