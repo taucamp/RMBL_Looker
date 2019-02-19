@@ -1,14 +1,16 @@
-view: adv_glchart {
+view: Advent_Chart_of_Accounts {
   sql_table_name: public.adv_glchart ;;
 
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: __senttime {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -23,6 +25,7 @@ view: adv_glchart {
 
   dimension_group: __updatetime {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -35,43 +38,47 @@ view: adv_glchart {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: accountnumber {
+  dimension: account_number {
     type: string
     sql: ${TABLE}.accountnumber ;;
   }
 
   dimension: accountsummary {
     type: string
+    hidden: yes
     sql: ${TABLE}.accountsummary ;;
   }
 
-  dimension: accounttitle {
+  dimension: account_name {
     type: string
     sql: ${TABLE}.accounttitle ;;
   }
 
-  dimension: accounttype {
+  dimension: account_type {
     type: string
     sql: ${TABLE}.accounttype ;;
   }
 
-  dimension: balancesheetflag {
+  dimension: is_balance_sheet_acct {
     type: string
     sql: ${TABLE}.balancesheetflag ;;
   }
 
   dimension: dealer_id {
     type: string
+    hidden: yes
     sql: ${TABLE}.dealer_id ;;
   }
 
   dimension: scheduledflag {
     type: string
+    hidden: yes
     sql: ${TABLE}.scheduledflag ;;
   }
 
   dimension: scheduletype {
     type: string
+    hidden: yes
     sql: ${TABLE}.scheduletype ;;
   }
 
