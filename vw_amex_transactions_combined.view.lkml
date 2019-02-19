@@ -2,7 +2,7 @@ view: amex_transactions {
   sql_table_name: american_express.vw_amex_transactions_combined ;;
 
   set: amex_details_drillthrough {
-    fields: [weekended_week,expense_category, expense_subcategory, doing_business_as, amount_charged]
+    fields: [expense_category, expense_subcategory, doing_business_as, amount_charged]
   }
 
   dimension: account_number {
