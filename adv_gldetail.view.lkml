@@ -58,7 +58,7 @@ set: GL_Drillthrough {
   dimension: account {
     type: string
     description: "GL Account"
-    sql: ${TABLE}.accountnumbner ;;
+    sql: ${TABLE}.accountnumber ;;
   }
 
   dimension_group: accounting_date {
