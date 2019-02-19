@@ -161,6 +161,7 @@ set: GL_Drillthrough {
 
   measure: percent_of_total {
     type: percent_of_total
+    value_format_name: percent_1
     sql: ${total_amount} ;;
   }
 
