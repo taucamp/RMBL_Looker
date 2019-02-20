@@ -182,7 +182,7 @@ set: GL_Drillthrough {
     type: sum
     value_format_name:usd_0
     sql: CASE
-      WHEN CAST(${accounting_date_date} AS DATE) <=CAST(${accounting_date_filter} AS DATE) then ${amount}
+      WHEN CAST(${accounting_date_date} AS MONTH) <=CAST(${accounting_date_filter} AS MONTH) then ${amount}
       else 0
       end;;
     drill_fields: [GL_Drillthrough*]
