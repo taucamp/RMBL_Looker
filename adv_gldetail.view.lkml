@@ -188,6 +188,17 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
   }
 
+  measure: life_to_date_amount3 {
+    type: sum
+    value_format_name:usd_0
+    filters: {
+      field: accounting_date_month
+      value: "before today"
+    }
+    sql:${total_amount}
+    drill_fields: [GL_Drillthrough*]
+  }
+
 
   measure: percent_of_total {
     type: percent_of_total
