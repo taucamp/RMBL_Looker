@@ -78,7 +78,9 @@ set: GL_Drillthrough {
   }
 
   filter: accounting_date_filter {
-    type: date
+    type:date
+
+
   }
 
   dimension: all_dates {
@@ -180,8 +182,9 @@ set: GL_Drillthrough {
     type: sum
     value_format_name:usd_0
     sql: CASE
-      WHEN ${accounting_date_date} <= ${accounting_date_filter} then ${amount}
-      else 0 end;;
+      WHEN CAST(${accounting_date_date} AS DATE) <=CAST(${accounting_date_filter} AS DATE) then ${amount}
+      else 0
+      end;;
     drill_fields: [GL_Drillthrough*]
   }
 
