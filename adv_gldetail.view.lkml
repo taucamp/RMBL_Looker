@@ -77,6 +77,15 @@ set: GL_Drillthrough {
     sql: ${TABLE}.accounting_date ;;
   }
 
+  filter: accounting_date_filter {
+    type: date
+  }
+
+  dimension: all_dates {
+    type: string
+    sql: CASE WHEN {% condition accounting_date_filter %} ${accounting_date_month} {% endcondition %} THEN ${accounting_date_month} ELSE 'prior_period' END;;
+  }
+
   dimension: amount {
     description: "Amount of the Debit (if positive) or Credit (if negative)"
     type: number
@@ -145,6 +154,7 @@ set: GL_Drillthrough {
     type: string
     sql: f_sql_unknown_for_blank(${TABLE}."user" );;
   }
+
 
   measure: count {
     type: count
