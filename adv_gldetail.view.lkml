@@ -176,6 +176,15 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
   }
 
+  measure: life_to_date_amount2 {
+    type: sum
+    value_format_name:usd_0
+    sql: CASE
+      WHEN ${accounting_date_date} <= ${accounting_date_filter} then ${amount}
+      else 0 end;;
+    drill_fields: [GL_Drillthrough*]
+  }
+
 
   measure: percent_of_total {
     type: percent_of_total
