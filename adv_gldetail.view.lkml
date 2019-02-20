@@ -221,7 +221,7 @@ set: GL_Drillthrough {
   dimension: satisfies_filter {
   type: yesno
   hidden: yes
-  sql: {% condition filter_to_apply_to_the_month %} ${accounting_date_date} {% endcondition %} ;;
+  sql: {% condition filter_to_apply_to_the_month %} ${accounting_date_month} {% endcondition %} ;;
 }
 
   measure: months_date {
