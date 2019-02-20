@@ -225,7 +225,7 @@ set: GL_Drillthrough {
 }
 
   measure: months_date {
-    type: running_total
+    type: sum
     filters: {
       field: satisfies_filter
       value: "yes"
