@@ -77,6 +77,9 @@ set: GL_Drillthrough {
     sql: ${TABLE}.accounting_date ;;
   }
 
+
+
+
   filter: accounting_date_filter {
     type:date
   }
@@ -210,5 +213,25 @@ set: GL_Drillthrough {
     sql: ${document_number} ;;
     drill_fields: [GL_Drillthrough*]
   }
+
+  filter: filter_to_apply_to_the_month{
+    type: string
+  }
+
+  dimension: satisfies_filter {
+  type: yesno
+  hidden: yes
+  sql: {% condition filter_to_apply_to_the_month %} ${accounting_date_date} {% endcondition %} ;;
+}
+
+  measure: months_date {
+    type: running_total
+    filters: {
+      field: satisfies_filter
+      value: "yes"
+    }
+    sql:  sql:${amount} ;;
+  }
+
 
 }
