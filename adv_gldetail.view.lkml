@@ -162,7 +162,7 @@ set: GL_Drillthrough {
   measure: life_to_date_amount {
     type: running_total
     value_format_name:usd_0
-    sql: ${amount} ;;
+    sql: ${total_amount} ;;
     drill_fields: [GL_Drillthrough*]
   }
 
