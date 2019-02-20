@@ -230,7 +230,7 @@ set: GL_Drillthrough {
       field: satisfies_filter
       value: "yes"
     }
-    sql:  sql:${amount} ;;
+    sql:${amount} ;;
   }
 
 
