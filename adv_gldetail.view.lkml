@@ -79,8 +79,6 @@ set: GL_Drillthrough {
 
   filter: accounting_date_filter {
     type:date
-
-
   }
 
   dimension: all_dates {
@@ -192,7 +190,7 @@ set: GL_Drillthrough {
     type: sum
     value_format_name:usd_0
     filters: {
-      field: accounting_date_filter
+      field: accounting_date_month
       value: "before today"
     }
     sql:${amount}
