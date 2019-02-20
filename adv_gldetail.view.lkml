@@ -215,7 +215,7 @@ set: GL_Drillthrough {
   }
 
   filter: filter_to_apply_to_the_month{
-    type: string
+    type: date
   }
 
   dimension: satisfies_filter {
