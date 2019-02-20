@@ -195,7 +195,7 @@ set: GL_Drillthrough {
       field: accounting_date_filter
       value: "before today"
     }
-    sql:${total_amount}
+    sql:${amount}
     drill_fields: [GL_Drillthrough*]
   }
 
