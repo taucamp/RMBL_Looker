@@ -185,7 +185,7 @@ set: GL_Drillthrough {
     sql: CASE
       WHEN CAST(${accounting_date_date} AS MONTH) <=CAST(${accounting_date_filter} AS MONTH) then ${amount}
       else 0
-      end;;
+      end*1;;
     drill_fields: [GL_Drillthrough*]
   }
 
