@@ -47,7 +47,8 @@ explore: Advent_GL_detail {
 
 
 explore: ref_dimdate {
-    join: Advent_GL_detail {
+    join: Advent_GL_detail{
+     relationship: many_to_one
       sql_on: ${Advent_GL_detail.accounting_date_month}<=${ref_dimdate.date_month} ;;
     }
 
