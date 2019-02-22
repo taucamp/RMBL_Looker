@@ -44,3 +44,34 @@ explore: Advent_GL_detail {
   }
 
 }
+
+
+explore: ref_dimdate {
+    join: Advent_GL_detail {
+      sql_on: ${Advent_GL_detail.accounting_date_month}<=${ref_dimdate.date_month} ;;
+    }
+
+  join: Advent_Chart_of_Accounts {
+    sql_on: ${Advent_Chart_of_Accounts.account_number}=${Advent_GL_detail.account} ;;
+  }
+
+  join: chartofaccounts {
+    sql_on: ${chartofaccounts.account_number}=split_part(${Advent_Chart_of_Accounts.account_number},'.',1) ;;
+  }
+
+  join: acct_division {
+    sql_on: ${acct_division.division_id} = f_sql_adv_acct_to_division(${Advent_Chart_of_Accounts.account_number});;
+  }
+
+  join: acct_locations {
+    sql_on: ${acct_locations.location_id} = f_sql_adv_acct_to_location(${Advent_Chart_of_Accounts.account_number});;
+  }
+
+  join: acct_department {
+    sql_on: ${acct_department.department_id} = f_sql_adv_acct_to_department(${Advent_Chart_of_Accounts.account_number});;
+  }
+
+  join: adv_users {
+    sql_on: ${adv_users.user} = @${Advent_GL_detail.user_who_entered};;
+  }
+}
