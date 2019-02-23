@@ -233,7 +233,7 @@ set: GL_Drillthrough {
     }
     filters: {
       field: accounting_date_month
-      value: "-NULL"
+      value: "NULL"
     }
     sql:${amount} ;;
   }
