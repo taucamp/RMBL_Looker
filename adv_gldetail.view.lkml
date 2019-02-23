@@ -250,7 +250,7 @@ set: GL_Drillthrough {
   }
 
   measure: months_date_is_not_null {
-    type: sum
+    type: count
     filters: {
       field: satisfies_filter
       value: "yes"
