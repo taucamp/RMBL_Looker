@@ -231,12 +231,32 @@ set: GL_Drillthrough {
       field: satisfies_filter
       value: "yes"
     }
-    filters: {
-      field: accounting_date_month
-      value: "NULL"
-    }
+
     sql:${amount} ;;
   }
 
+
+
+
+#THIS IT TO CONFIRM THERE IS ACTUALLY DATA IN THE TABLE
+  filter: filter_month_is_not_null{
+    type: date
+  }
+
+  dimension: satisfies_month_is_not_null_Filter {
+    type: yesno
+    hidden: yes
+    sql: {% condition filter_month_is_not_null %} ${accounting_date_month} {% endcondition %} ;;
+  }
+
+  measure: months_date_is_not_null {
+    type: sum
+    filters: {
+      field: satisfies_filter
+      value: "yes"
+    }
+
+    sql:${amount} ;;
+  }
 
 }
