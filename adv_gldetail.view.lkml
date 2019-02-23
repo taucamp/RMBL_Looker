@@ -165,10 +165,11 @@ set: GL_Drillthrough {
     drill_fields: [id]
   }
 
-  measure: total_amount {
+
+   measure: total_amount {
     type: sum
     value_format_name:usd_0
-    sql: ${amount} ;;
+    sql: ${amount}*1 ;;
     drill_fields: [GL_Drillthrough*]
   }
 
@@ -229,6 +230,10 @@ set: GL_Drillthrough {
     filters: {
       field: satisfies_filter
       value: "yes"
+    }
+    filters: {
+      field: accounting_date_month
+      value: "-NULL"
     }
     sql:${amount} ;;
   }
