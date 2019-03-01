@@ -1,7 +1,7 @@
 view: adv_r_invtdetail {
   sql_table_name: public.adv_r_invtdetail ;;
 
-  set: GL_Drillthrough {
+  set: Inventory_Drillthrough {
     fields: [inventory_status,
       inventory_status_group,
       stock_number,
@@ -13,7 +13,7 @@ view: adv_r_invtdetail {
       mileage,
       received_date_date,
       sold_status,
-      stocknum,
+      stock_number,
       suggested_retail,
       cost,
 
@@ -212,7 +212,7 @@ view: adv_r_invtdetail {
 
   measure: count {
     type: count
-    drill_fields: [id]
+    drill_fields: [Inventory_Drillthrough*]
   }
 
    measure: total_suggested_retail {
