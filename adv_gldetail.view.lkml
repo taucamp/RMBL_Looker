@@ -91,7 +91,7 @@ set: GL_Drillthrough {
   dimension: amount {
     description: "Amount of the Debit (if positive) or Credit (if negative)"
     type: number
-    value_format_name:usd_2
+    value_format_name:usd_0
     sql: ${TABLE}.amount ;;
   }
 
@@ -190,16 +190,16 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
   }
 
-  measure: life_to_date_amount3 {
-    type: sum
-    value_format_name:usd_0
-    filters: {
-      field: accounting_date_month
-      value: "before today"
-    }
-    sql:${amount}
-    drill_fields: [GL_Drillthrough*]
-  }
+#   measure: life_to_date_amount3 {
+#     type: sum
+#     value_format_name:usd_0
+#     filters: {
+#       field: accounting_date_month
+#       value: "before today"
+#     }
+#     sql:${amount}
+#     drill_fields: [GL_Drillthrough*]
+#   }
 
 
   measure: percent_of_total {
