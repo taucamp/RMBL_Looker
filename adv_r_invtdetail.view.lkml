@@ -142,6 +142,13 @@ view: adv_r_invtdetail {
     sql: f_sql_days_in_inventory(${TABLE}.recdate) ;;
   }
 
+  dimension: days_in_inventory_group {
+    style: integer
+    tiers: [0,15,30,45,60]
+    value_format_name: decimal_0
+    sql: f_sql_days_in_inventory(${TABLE}.recdate) ;;
+  }
+
   dimension_group: rsstatus {
     type: time
     timeframes: [
