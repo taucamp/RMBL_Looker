@@ -1,7 +1,27 @@
 view: adv_r_invtdetail {
   sql_table_name: public.adv_r_invtdetail ;;
 
-  dimension: id {
+  set: GL_Drillthrough {
+    fields: [inventory_status,
+      inventory_status_group,
+      location,
+      vin,
+      year,
+      make,
+      model,
+      mileage,
+      received_date_date,
+      sold_status,
+      stocknum,
+      suggested_retail,
+      cost,
+
+
+
+    ]
+  }
+
+    dimension: id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -35,7 +55,7 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: color1 {
+  dimension: color {
     type: string
     sql: ${TABLE}.color1 ;;
   }
@@ -45,12 +65,12 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.cost ;;
   }
 
-  dimension: equipment1 {
+  dimension: transit {
     type: string
     sql: ${TABLE}.equipment1 ;;
   }
 
-  dimension: equipment2 {
+  dimension: title {
     type: string
     sql: ${TABLE}.equipment2 ;;
   }
@@ -103,7 +123,7 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.orig ;;
   }
 
-  dimension_group: recdate {
+  dimension_group: received_date {
     type: time
     timeframes: [
       raw,
@@ -164,7 +184,7 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.suggretail ;;
   }
 
-  dimension: suggestedretail {
+  dimension: suggested_retail {
     type:number
     sql: to_number(suggretail,'S9999999.99') ;;
   }
@@ -196,7 +216,7 @@ view: adv_r_invtdetail {
 
    measure: total_suggested_retail {
      type: sum
-     sql: ${suggestedretail} ;;
+     sql: ${suggested_retail} ;;
    }
 
   measure: average_mileage {
