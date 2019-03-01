@@ -46,6 +46,26 @@ explore: Advent_GL_detail {
 }
 
 
+
+explore: Schedules {
+  label: "Schedules"
+  from: Advent_GL_detail
+  join: Advent_Chart_of_Accounts {
+    sql_on: ${Advent_Chart_of_Accounts.account_number}=${Schedules.account} ;;
+  }
+
+  join: adv_schedule_accts {
+    sql_on: ${Schedules.account}=${adv_schedule_accts.account_number} ;;
+  }
+
+  join: adv_schedules {
+    sql_on: ${adv_schedule_accts.schedulenum}=${adv_schedules.schedulenum} ;;
+  }
+}
+
+
+
+
 explore: ref_dimdate {
     join: Advent_GL_detail{
      relationship: many_to_one
