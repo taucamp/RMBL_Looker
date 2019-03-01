@@ -8,46 +8,46 @@ view: Advent_Chart_of_Accounts {
     sql: ${TABLE}.id ;;
   }
 
-  dimension_group: __senttime {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.__senttime ;;
-  }
+#   dimension_group: __senttime {
+#     type: time
+#     hidden: yes
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.__senttime ;;
+#   }
 
-  dimension_group: __updatetime {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.__updatetime ;;
-  }
+#   dimension_group: __updatetime {
+#     type: time
+#     hidden: yes
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.__updatetime ;;
+#   }
 
   dimension: account_number {
     type: string
     sql: ${TABLE}.accountnumber ;;
   }
 
-  dimension: accountsummary {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.accountsummary ;;
-  }
+#   dimension: accountsummary {
+#     type: string
+#     hidden: yes
+#     sql: ${TABLE}.accountsummary ;;
+#   }
 
   dimension: account_name {
     type: string
@@ -70,17 +70,17 @@ view: Advent_Chart_of_Accounts {
     sql: ${TABLE}.dealer_id ;;
   }
 
-  dimension: scheduledflag {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.scheduledflag ;;
-  }
+#   dimension: scheduledflag {
+#     type: string
+#     hidden: yes
+#     sql: ${TABLE}.scheduledflag ;;
+#   }
 
-  dimension: scheduletype {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.scheduletype ;;
-  }
+#   dimension: scheduletype {
+#     type: string
+#     hidden: yes
+#     sql: ${TABLE}.scheduletype ;;
+#   }
 
   measure: count {
     type: count

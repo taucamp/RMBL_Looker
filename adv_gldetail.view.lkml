@@ -57,6 +57,7 @@ set: GL_Drillthrough {
 
   dimension: account {
     type: string
+    label: "GL Account"
     description: "GL Account"
     sql: ${TABLE}.accountnumber ;;
   }
@@ -80,9 +81,7 @@ set: GL_Drillthrough {
 
 
 
-  filter: accounting_date_filter {
-    type:date
-  }
+
 
   dimension: all_dates {
     type: string
@@ -173,6 +172,7 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
   }
 
+
   measure: life_to_date_amount {
     type: running_total
     value_format_name:usd_0
@@ -215,6 +215,9 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
   }
 
+  filter: accounting_date_filter {
+    type: date
+  }
   filter: filter_to_apply_to_the_month{
     type: date
   }
