@@ -4,7 +4,7 @@ view: adv_r_invtdetail {
   set: GL_Drillthrough {
     fields: [inventory_status,
       inventory_status_group,
-#       stock_number,
+      stock_number,
       location,
       vin,
       year,
