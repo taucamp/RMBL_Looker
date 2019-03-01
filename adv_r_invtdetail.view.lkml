@@ -116,6 +116,11 @@ view: adv_r_invtdetail {
     sql: isnull(${TABLE}.recdate,'2000-01-01') ;;
   }
 
+  dimension: days_in_inventory {
+    type: number
+    sql: f_sql_days_in_inventory(${TABLE}.recdate) ;;
+  }
+
   dimension_group: rsstatus {
     type: time
     timeframes: [
@@ -193,4 +198,21 @@ view: adv_r_invtdetail {
      type: sum
      sql: ${suggestedretail} ;;
    }
+
+  measure: average_mileage {
+    type: average
+    sql:{$mileage};;
+  }
+
+  measure: average_model_year {
+    type: average
+    sql:{$year};;
+  }
+
+  measure: average_days_in_inventory {
+    type:average
+    sql:{$days_in_inventory};;
+  }
+
+
 }
