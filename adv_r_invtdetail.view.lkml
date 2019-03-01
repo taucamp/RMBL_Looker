@@ -4,6 +4,7 @@ view: adv_r_invtdetail {
   set: GL_Drillthrough {
     fields: [inventory_status,
       inventory_status_group,
+#       stock_number,
       location,
       vin,
       year,
@@ -27,33 +28,33 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.id ;;
   }
 
-  dimension_group: __senttime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.__senttime ;;
-  }
-
-  dimension_group: __updatetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.__updatetime ;;
-  }
+#   dimension_group: __senttime {
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.__senttime ;;
+#   }
+#
+#   dimension_group: __updatetime {
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.__updatetime ;;
+#   }
 
   dimension: color {
     type: string
@@ -174,7 +175,7 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.status ;;
   }
 
-  dimension: stocknum {
+  dimension: stock_number {
     type: string
     sql: ${TABLE}.stocknum ;;
   }
