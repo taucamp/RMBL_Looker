@@ -46,7 +46,7 @@ view: adv_r_salesdetail {
 
   dimension: has_accessory_profit {
     type: string
-    sql: CASE ${TABLE}.accessorprofit WHEN <> 0 THEN 'YES' ELSE 'NO' END;;
+    sql: CASE WHEN ${TABLE}.accessorprofit <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
 
@@ -60,7 +60,7 @@ view: adv_r_salesdetail {
 
   dimension: has_financing {
     type: string
-    sql: CASE ${TABLE}.amountfinanced WHEN <> 0 THEN 'YES' ELSE 'NO' END;;
+    sql: CASE WHEN ${TABLE}.amountfinanced  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
   dimension: amount_financed_tier {
@@ -82,7 +82,7 @@ view: adv_r_salesdetail {
 
   dimension: has_cash_deposit {
     type: string
-    sql: CASE ${TABLE}.cashdeposit WHEN <> 0 THEN 'YES' ELSE 'NO' END;;
+    sql: CASE WHEN ${TABLE}.cashdeposit  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
   dimension: cash_deposit_tier {
@@ -99,7 +99,7 @@ view: adv_r_salesdetail {
   dimension: cash_or_financed {
     hidden: yes
     type: string
-    sql: CASE ${TABLE}.cashfinanced WEHN 'C' THEN 'CASH' WHEN 'F' THEN 'FINANCED' ELSE 'UNKNOWN';;
+    sql: CASE WHEN ${TABLE}.cashfinanced  'C' THEN 'CASH' WHEN 'F' THEN 'FINANCED' ELSE 'UNKNOWN' END;;
   }
 
 
@@ -145,7 +145,7 @@ view: adv_r_salesdetail {
 
   dimension: has_commission {
     type: string
-    sql: CASE ${TABLE}.commission WHEN <> 0 THEN 'YES' ELSE 'NO' END;;
+    sql: CASE WHEN ${TABLE}.commission  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
 
@@ -201,7 +201,7 @@ view: adv_r_salesdetail {
 
   dimension: has_dealer_pack{
     type: string
-    sql: CASE ${TABLE}.dealer_pack WHEN <> 0 THEN 'YES' ELSE 'NO' END;;
+    sql: CASE WHEN ${TABLE}.dealer_pack  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
 
@@ -214,7 +214,7 @@ view: adv_r_salesdetail {
 
   dimension: has_financial_adds {
     type: string
-    sql: CASE ${TABLE}.amountfinanced WHEN <> 0 THEN 'YES' ELSE 'NO' END;;
+    sql: CASE WHEN ${TABLE}.amountfinanced  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
   dimension: financial_adds_tier {
