@@ -259,7 +259,7 @@ set: GL_Drillthrough {
       value: "yes"
     }
 
-    sql:${amount} ;;
+
   }
 
 }

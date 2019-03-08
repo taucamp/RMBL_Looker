@@ -89,7 +89,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
-    sql: ${cashdeposit} ;;
+    sql: ${cashdeposit}::int ;;
   }
 
 
@@ -604,14 +604,14 @@ view: adv_r_salesdetail {
 
   measure: total_cash_sale_price {
     type: sum
-    value_format_name: usd_o
+    value_format_name: usd_0
     sql: ${cashsaleprice} ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
 
   measure: total_cash_sale_price_distribution {
     type: sum
-    value_format_name: usd_o
+    value_format_name: usd_0
     sql: ${cashsaleprice} ;;
     filters: {
       field: transaction_type
@@ -629,8 +629,8 @@ view: adv_r_salesdetail {
 
   measure: total_vehicle_profit {
     type: sum
-    value_format_name: usd_o
-    sql: ${vehicle_profit} ;;
+    value_format_name: usd_0
+    sql: ${vehicleprofit} ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
 
