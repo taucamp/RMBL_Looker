@@ -30,7 +30,7 @@ explore: adv_r_salesdetail {
   join: adv_r_invtdetail {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${adv_r_salesdetail.stocknumber} = ${adv_r_invtdetail.stocknum} ;;
+    sql_on: ${adv_r_salesdetail.stocknumber} = ${adv_r_invtdetail.stock_number} ;;
   }
 }
 
