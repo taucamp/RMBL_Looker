@@ -86,7 +86,7 @@ view: adv_r_salesdetail {
   }
 
   dimension: cash_deposit_tier {
-    style: integer
+    type: tier
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
     sql: ${cashdeposit}::int ;;

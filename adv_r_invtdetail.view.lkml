@@ -143,7 +143,7 @@ view: adv_r_invtdetail {
   }
 
   dimension: days_in_inventory_group {
-    style: integer
+    type: tier
     tiers: [0,15,30,45,60]
     value_format_name: decimal_0
     sql: f_sql_days_in_inventory(${TABLE}.recdate::timestamp):int ;;
