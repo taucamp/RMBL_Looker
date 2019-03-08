@@ -213,7 +213,7 @@ view: adv_r_salesdetail {
   }
 
   dimension: has_financial_adds {
-    type: string
+    type: number
     sql: CASE WHEN ${TABLE}.amountfinanced  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
