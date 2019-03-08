@@ -449,155 +449,155 @@ view: adv_r_salesdetail {
 
 
 
-  measure: accessory_profit {
-    type: sum
-    value_format_name: usd_0
-    sql: ${accessorprofit} ;;
-  }
-
-  measure: amount_financed {
-    type: sum
-    value_format_name: usd_0
-    sql: ${amountfinanced} ;;
-  }
-
-  measure: cash_deposit {
-    type: sum
-    value_format_name: usd_0
-    sql: ${cashdeposit} ;;
-  }
-
-   measure: cash_sale_price{
-    type: sum
-    value_format_name: usd_0
-    sql: ${cashsaleprice} ;;
-  }
-
-  measure: commission_amt {
-    type: sum
-    value_format_name: usd_0
-    sql: ${commission} ;;
-  }
-
-  measure: dealer_pack {
-    type: sum
-    value_format_name: usd_0
-    sql: ${dealerpack} ;;
-  }
-
-  measure: financial_adds{
-    type: sum
-    value_format_name: usd_0
-    sql: ${finadds} ;;
-  }
-
-  measure: incentive_amt {
-    type: sum
-    value_format_name: usd_0
-    sql: ${incentive} ;;
-  }
-
-  measure: LAH_Profit {
-    type: sum
-    value_format_name: usd_0
-    sql: ${lahprofit} ;;
-  }
-
-  measure: net_profit {
-    type: sum
-    value_format_name: usd_0
-    sql: ${netprofit} ;;
-  }
-
-  measure: non_taxable_accessories {
-    type: sum
-    value_format_name: usd_0
-    sql: ${nontaxableacc} ;;
-  }
-
-  measure: reserve_profit {
-    type: sum
-    value_format_name: usd_0
-    sql: ${reserveprofit} ;;
-  }
-
-  measure: sell_price {
-    type: sum
-    value_format_name: usd_0
-    sql: ${sellprice} ;;
-  }
-
-  measure: service_contract_cost {
-    type: sum
-    value_format_name: usd_0
-    sql: ${servicecontractcost} ;;
-  }
-
-  measure: total_sale {
-    type: sum
-    value_format_name: usd_0
-    sql: ${totalsale} ;;
-  }
-
-  measure: trade1_acv{
-    type: sum
-    value_format_name: usd_0
-    sql: ${trade1acv} ;;
-  }
-
-  measure: trade1_gross {
-    type: sum
-    value_format_name: usd_0
-    sql: ${trade1gross} ;;
-  }
-
-  measure: trade1_payoff {
-    type: sum
-    value_format_name: usd_0
-    sql: ${trade1payoff} ;;
-  }
-
-  measure: trade2_acv{
-    type: sum
-    value_format_name: usd_0
-    sql: ${trade2acv} ;;
-  }
-
-  measure: trade2_gross {
-    type: sum
-    value_format_name: usd_0
-    sql: ${trade2gross} ;;
-  }
-
-  measure: trade2_payoff {
-    type: sum
-    value_format_name: usd_0
-    sql: ${trade2payoff} ;;
-  }
-
-  measure: vehicle_cost {
-    type: sum
-    value_format_name: usd_0
-    sql: ${vehiclecost} ;;
-  }
-
-  measure: vehicle_profit{
-    type: sum
-    value_format_name: usd_0
-    sql: ${vehicleprofit} ;;
-  }
-
-  measure: vehicle_insurance {
-    type: sum
-    value_format_name: usd_0
-    sql: ${vehinsurance} ;;
-  }
-
-  measure: warranty_profit {
-    type: sum
-    value_format_name: usd_0
-    sql: ${warrantyprofit} ;;
-  }
+#   measure: accessory_profit {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${accessorprofit} ;;
+#   }
+#
+#   measure: amount_financed {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${amountfinanced} ;;
+#   }
+#
+#   measure: cash_deposit {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${cashdeposit} ;;
+#   }
+#
+#    measure: cash_sale_price{
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${cashsaleprice} ;;
+#   }
+#
+#   measure: commission_amt {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${commission} ;;
+#   }
+#
+#   measure: dealer_pack {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${dealerpack} ;;
+#   }
+#
+#   measure: financial_adds{
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${finadds} ;;
+#   }
+#
+#   measure: incentive_amt {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${incentive} ;;
+#   }
+#
+#   measure: LAH_Profit {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${lahprofit} ;;
+#   }
+#
+#   measure: net_profit {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${netprofit} ;;
+#   }
+#
+#   measure: non_taxable_accessories {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${nontaxableacc} ;;
+#   }
+#
+#   measure: reserve_profit {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${reserveprofit} ;;
+#   }
+#
+#   measure: sell_price {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${sellprice} ;;
+#   }
+#
+#   measure: service_contract_cost {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${servicecontractcost} ;;
+#   }
+#
+#   measure: total_sale {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${totalsale} ;;
+#   }
+#
+#   measure: trade1_acv{
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${trade1acv} ;;
+#   }
+#
+#   measure: trade1_gross {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${trade1gross} ;;
+#   }
+#
+#   measure: trade1_payoff {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${trade1payoff} ;;
+#   }
+#
+#   measure: trade2_acv{
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${trade2acv} ;;
+#   }
+#
+#   measure: trade2_gross {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${trade2gross} ;;
+#   }
+#
+#   measure: trade2_payoff {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${trade2payoff} ;;
+#   }
+#
+#   measure: vehicle_cost {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${vehiclecost} ;;
+#   }
+#
+#   measure: vehicle_profit{
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${vehicleprofit} ;;
+#   }
+#
+#   measure: vehicle_insurance {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${vehinsurance} ;;
+#   }
+#
+#   measure: warranty_profit {
+#     type: sum
+#     value_format_name: usd_0
+#     sql: ${warrantyprofit} ;;
+#   }
 
 
 
