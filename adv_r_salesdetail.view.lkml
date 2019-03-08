@@ -486,12 +486,12 @@ view: adv_r_salesdetail {
 #     sql: ${dealerpack} ;;
 #   }
 #
-#   measure: financial_adds{
-#     type: sum
-#     value_format_name: usd_0
-#     sql: ${finadds} ;;
-#   }
-#
+  measure: financial_adds{
+    type: sum
+    value_format_name: usd_0
+    sql: ${finadds} ;;
+  }
+
 #   measure: incentive_amt {
 #     type: sum
 #     value_format_name: usd_0
