@@ -107,7 +107,7 @@ view: adv_r_salesdetail {
 
   dimension: dealstatus {
     type: string
-    sql: ${TABLE}.dealstatus ;;
+    sql: CASE WHEN ${TABLE}.dealstatus = 'CLSD' THEN 'CLOSED' ELSE  ${TABLE}.dealstatus END ;;
   }
 
   dimension: dlrpack {
@@ -152,7 +152,7 @@ view: adv_r_salesdetail {
 
   dimension: reserve_profit {
     type: number
-    sql: ${TABLE}."reserve profit" ;;
+    sql: ${TABLE}.reserveprofit ;;
   }
 
   dimension_group: runtime {
@@ -246,7 +246,7 @@ view: adv_r_salesdetail {
 
   dimension: type {
     type: string
-    sql: ${TABLE}.type ;;
+    sql: CASE ${TABLE}.type WHEN '1 RT' THEN 'Retail' WHEN '4 TR' THEN 'Trade' WHEN '6 WH' THEN 'Wholesale' ELSE 'Unknown' END;;
   }
 
   dimension: vehiclecost {
