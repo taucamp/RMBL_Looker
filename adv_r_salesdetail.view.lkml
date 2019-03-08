@@ -107,7 +107,7 @@ view: adv_r_salesdetail {
 
   dimension: dealstatus {
     type: string
-    sql: CASE WHEN ${TABLE}.dealstatus = 'CLSD' THEN 'CLOSED' ELSE  ${TABLE}.dealstatus END ;;
+    sql: CASE WHEN ${TABLE}.dealstatus = 'CLSD' THEN 'Closed' ELSE  ${TABLE}.dealstatus END ;;
   }
 
   dimension: dlrpack {

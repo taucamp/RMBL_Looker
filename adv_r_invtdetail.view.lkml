@@ -121,7 +121,7 @@ view: adv_r_invtdetail {
 
   dimension: orig {
     type: string
-    sql: ${TABLE}.orig ;;
+    sql: CASE ${TABLE}.orig WHEN '07' THEN 'Auction' WHEN '08' THEN 'Classifieds' WHEN '03' THEN 'Consumer' WHEN '09' THEN 'Dealer' ELSE 'Unknown' END;;
   }
 
   dimension_group: received_date {
