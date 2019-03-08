@@ -54,7 +54,7 @@ view: adv_r_salesdetail {
 # Amount Finaned
   dimension: amountfinanced {
     hidden: yes
-    type: string
+    type: number
     sql: ${TABLE}.amountfinanced ;;
   }
 
@@ -68,7 +68,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
-    sql: ${amount_financed} ;;
+    sql: ${amountfinanced} ;;
   }
 
 
@@ -89,7 +89,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
-    sql: ${cash_deposit} ;;
+    sql: ${cashdeposit} ;;
   }
 
 
@@ -115,7 +115,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000, 30000,40000,50000,75000,100000,150000,1000000]
     value_format_name: usd_0
-    sql: ${cash_sale_price} ;;
+    sql: ${cashsaleprice} ;;
   }
 
 
@@ -581,11 +581,11 @@ view: adv_r_salesdetail {
 #     sql: ${vehiclecost} ;;
 #   }
 #
-#   measure: vehicle_profit{
-#     type: sum
-#     value_format_name: usd_0
-#     sql: ${vehicleprofit} ;;
-#   }
+  measure: vehicle_profit{
+    type: sum
+    value_format_name: usd_0
+    sql: ${vehicleprofit} ;;
+  }
 #
 #   measure: vehicle_insurance {
 #     type: sum
