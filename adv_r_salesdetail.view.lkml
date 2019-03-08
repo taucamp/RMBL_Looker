@@ -209,12 +209,17 @@ view: adv_r_salesdetail {
   dimension: finadds {
     hidden: yes
     type: number
-    sql: ${TABLE}.finadds ;;
+    sql: CAST(${TABLE}.finadds as numeric(19,2)) ;;
   }
 
   dimension: has_financial_adds {
-    type: number
-    sql: CASE WHEN ${TABLE}.amountfinanced  <> 0 THEN 'YES' ELSE 'NO' END;;
+    type: string
+    sql: CASE WHEN ${TABLE}.amountfinanced <> 0 THEN 'YES' ELSE 'NO' END;;
+  }
+
+  dimension: has_financial_addsYesNo {
+    type: yesno
+    sql: ${finadds} <> 0 ;;
   }
 
   dimension: financial_adds_tier {
