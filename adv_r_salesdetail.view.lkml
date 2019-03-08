@@ -246,7 +246,7 @@ view: adv_r_salesdetail {
 
   dimension: type {
     type: string
-    sql: CASE ${TABLE}.type WHEN '1 RT' THEN 'Retail' WHEN '4 TR' THEN 'Trade' WHEN '6 WH' THEN 'Wholesale' ELSE 'Unknown' END;;
+    sql: CASE ${TABLE}.type WHEN '1 RT' THEN 'RETAIL' WHEN '4 TR' THEN 'TRADE' WHEN '6 WH' THEN 'WHOLESALE' ELSE 'UNKNOWN' END;;
   }
 
   dimension: vehiclecost {
@@ -272,7 +272,7 @@ view: adv_r_salesdetail {
 
   dimension: transaction_type {
     type: string
-    sql: CASE WHEN ${cashsaleprice} = 0 AND ${trade1gross} > 0 THEN 'Acquisition' ELSE 'Distribution' END ;;
+    sql: CASE WHEN ${cashsaleprice} = 0 AND ${trade1gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
   }
 
   measure: count_transactions {
@@ -292,7 +292,7 @@ view: adv_r_salesdetail {
     sql: ${cashsaleprice} ;;
     filters: {
       field: transaction_type
-      value: "Distribution"
+      value: "DISTRIBUTION"
     }
   }
 
