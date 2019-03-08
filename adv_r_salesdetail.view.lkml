@@ -512,7 +512,7 @@ view: adv_r_salesdetail {
   measure: non_taxable_accessories {
     type: sum
     value_format_name: usd_0
-    sql: ${non_taxable_accessories} ;;
+    sql: ${nontaxableacc} ;;
   }
 
   measure: reserve_profit {
