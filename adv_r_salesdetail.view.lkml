@@ -41,12 +41,12 @@ view: adv_r_salesdetail {
  dimension: accessorprofit {
     hidden: yes
     type: number
-    sql: ${TABLE}.accessorprofit ;;
+    sql: CAST(${TABLE}.accessorprofit AS NUMERIC(19,2)) ;;
   }
 
   dimension: has_accessory_profit {
-    type: string
-    sql: CASE WHEN ${TABLE}.accessorprofit <> 0 THEN 'YES' ELSE 'NO' END;;
+    type: yesno
+    sql: ${accessorprofit} <> 0;;
   }
 
 
@@ -196,12 +196,12 @@ view: adv_r_salesdetail {
   dimension: dealerpack {
     hidden: yes
     type: number
-    sql: ${TABLE}.dlrpack ;;
+    sql: cast(${TABLE}.dlrpack as numeric(19,2)) ;;
   }
 
   dimension: has_dealer_pack{
-    type: string
-    sql: CASE WHEN ${TABLE}.dealer_pack  <> 0 THEN 'YES' ELSE 'NO' END;;
+    type: yesno
+    sql: ${dealerpack} <> 0;;
   }
 
 
@@ -213,14 +213,10 @@ view: adv_r_salesdetail {
   }
 
   dimension: has_financial_adds {
-    type: string
-    sql: CASE WHEN ${TABLE}.amountfinanced <> 0 THEN 'YES' ELSE 'NO' END;;
+   type: yesno
+    sql: ${finadds} <> 0;;
   }
 
-  dimension: has_financial_addsYesNo {
-    type: yesno
-    sql: ${finadds} <> 0 ;;
-  }
 
   dimension: financial_adds_tier {
     type: tier
