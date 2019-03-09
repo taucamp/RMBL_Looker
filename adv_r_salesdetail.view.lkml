@@ -582,13 +582,13 @@ view: adv_r_salesdetail {
 #     value_format_name: usd_0
 #     sql: ${servicecontractcost} ;;
 #   }
-#
-#   measure: total_sale {
-#     type: sum
-#     value_format_name: usd_0
-#     sql: ${totalsale} ;;
-#   }
-#
+
+  measure: total_sale {
+    type: sum
+    value_format_name: usd_0
+    sql: translate(${totalsale}'$,','') ;;
+  }
+
 #   measure: trade1_acv{
 #     type: sum
 #     value_format_name: usd_0
