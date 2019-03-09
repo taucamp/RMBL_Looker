@@ -258,6 +258,14 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.netprofit ;;
   }
 
+  dimension: net_profit_tier {
+    type: tier
+    style: integer
+    tiers: [-1000,-500,0,250,500,1000,2500]
+    value_format_name: decimal_0
+    sql: ${netprofit} ;;
+  }
+
 
 # Non Taxable Accessories
   dimension: nontaxableacc {
@@ -282,6 +290,11 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.reserveprofit ;;
   }
 
+  dimension: has_reserve_profit {
+    type: string
+    sql: CASE WHEN ${TABLE}.reserveprofit  <> 0 THEN 'YES' ELSE 'NO' END;;
+  }
+
 
 # Run Time
   dimension_group: runtime {
@@ -299,7 +312,7 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.runtime ;;
   }
 
-# Sale Datet
+# Sale Date
   dimension_group: sale {
     type: time
     timeframes: [
@@ -322,11 +335,25 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.sellprice ;;
   }
 
+  dimension: sell_price_tier {
+    type: tier
+    style: integer
+    tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
+    value_format_name: decimal_0
+    sql: ${sellprice} ;;
+  }
+
+
 # Service Contracl Cost
   dimension: servicecontractcost {
     hidden: yes
     type: number
     sql: ${TABLE}.servicecontractcost ;;
+  }
+
+  dimension: has_service_contrac {
+    type: string
+    sql: CASE WHEN ${TABLE}.servicecontractcost  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
 # Stock Number
@@ -342,6 +369,14 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.totalsale ;;
   }
 
+  dimension: total_sale_tier {
+    type: tier
+    style: integer
+    tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
+    value_format_name: decimal_0
+    sql: ${sellprice} ;;
+  }
+
 # Trade 1 ACV
   dimension: trade1acv {
     hidden: yes
@@ -349,11 +384,18 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.trade1acv ;;
   }
 
+
+
 # Trade 1 Gross
   dimension: trade1gross {
     hidden: yes
     type: number
     sql: ${TABLE}.trade1gross ;;
+  }
+
+  dimension: has_trade {
+    type: string
+    sql: CASE WHEN ${TABLE}.trade1gross  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
 
@@ -370,11 +412,17 @@ view: adv_r_salesdetail {
     sql: ${TABLE}.trade1stocknum ;;
   }
 
+
 # Trade 2 ACV
   dimension: trade2acv {
     hidden: yes
     type: number
     sql: ${TABLE}.trade2acv ;;
+  }
+
+  dimension: has_trades_multiple{
+    type: string
+    sql: CASE WHEN ${TABLE}.trade1gross  <> 0  AND ${TABLE}.trade2gross  <> 0 THEN 'YES' ELSE 'NO' END;;
   }
 
 # Trade 2 Gross
