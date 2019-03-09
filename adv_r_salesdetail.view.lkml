@@ -586,7 +586,7 @@ view: adv_r_salesdetail {
   measure: total_sale {
     type: sum
     value_format_name: usd_0
-    sql: translate(${totalsale}'$,','') ;;
+    sql: translate(${totalsale},'$,','') ;;
   }
 
 #   measure: trade1_acv{
