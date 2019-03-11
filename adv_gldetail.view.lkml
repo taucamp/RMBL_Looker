@@ -167,7 +167,7 @@ set: GL_Drillthrough {
   measure: count {
     type: count
     label:"# of Rows"
-    drill_fields: [id]
+    drill_fields: [GL_Drillthrough*]
   }
 
 
