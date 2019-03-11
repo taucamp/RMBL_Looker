@@ -158,6 +158,12 @@ set: GL_Drillthrough {
   }
 
 
+  dimension: is_balance_forward {
+    type: yesno
+    sql: case when ${document_info} ilike('AUTOMATIC BALFWD%') and ${comment} ilike('AUTOMTIC%') and ${control_number} ilike ('NOT APPLICABLE%') and ${status} is null then 1 else o end );;
+  }
+
+
   measure: count {
     type: count
     label:"# of Rows"
