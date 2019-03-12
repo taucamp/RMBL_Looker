@@ -27,7 +27,7 @@ view: chartofaccounts {
     type: string
     order_by_field: major_group_rank
     sql: ${TABLE}.majorgroup
-    drill:${major_group};;
+    drill_fields: [minor_group];;
   }
 
   dimension: major_group_rank {
@@ -40,7 +40,7 @@ view: chartofaccounts {
     type: string
     order_by_field: minor_group_rank
     sql: ${TABLE}.minorgroup
-    drill:${account_number};;
+    drill_fields:[account_number];;
   }
 
   dimension: minor_group_rank {
