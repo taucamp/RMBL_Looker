@@ -618,11 +618,11 @@ view: adv_r_salesdetail {
 #     sql: ${lahprofit} ;;
 #   }
 #
-#   measure: net_profit {
-#     type: sum
-#     value_format_name: usd_0
-#     sql: ${netprofit} ;;
-#   }
+  measure: net_profit {
+    type: sum
+    value_format_name: usd_0
+    sql: ${netprofit} ;;
+  }
 #
 #   measure: non_taxable_accessories {
 #     type: sum
