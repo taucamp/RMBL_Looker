@@ -47,7 +47,7 @@ view: adv_r_salesdetail {
 
   dimension: has_accessory_profit {
     type: yesno
-    sql: ${accessorprofit} <> 0;;
+    sql: ${accessorprofit} > 0;;
   }
 
 
@@ -274,7 +274,7 @@ view: adv_r_salesdetail {
 
   dimension: has_net_profit {
     type: yesno
-    sql: ${netprofit}<> 0;;
+    sql: ${netprofit}> 0;;
   }
 
   dimension: net_profit_tier {
