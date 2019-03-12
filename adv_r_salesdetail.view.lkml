@@ -269,12 +269,12 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql:translate(${netprofit},'$ ,','') ;;
+    sql:translate(${TABLE}.netprofit,'$ ,','') ;;
   }
 
   dimension: has_net_profit {
     type: yesno
-    sql: translate(${netprofit},'$ ,','') <> 0;;
+    sql: ${netprofit}<> 0;;
   }
 
   dimension: net_profit_tier {
