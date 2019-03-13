@@ -57,12 +57,12 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.amountfinanced ;;
+    sql: translate${TABLE}.amountfinanced,'$ ,','') ;;
   }
 
   dimension: has_financing {
     type: yesno
-    sql: translate(${amountfinanced},'$ ,','') <>0;;
+    sql: ${amountfinanced}<>0;;
   }
 
   dimension: amount_financed_tier {
@@ -70,7 +70,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
-    sql: translate(${amountfinanced},'$ ,','') ;;
+    sql: ${amountfinanced} ;;
   }
 
 
