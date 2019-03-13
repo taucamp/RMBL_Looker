@@ -84,8 +84,8 @@ view: adv_r_salesdetail {
   }
 
   dimension: has_cash_deposit {
-    type: string
-    sql: CASE WHEN ${TABLE}.cashdeposit  <> 0 THEN 'YES' ELSE 'NO' END;;
+     type: yesno
+    sql: ${cashdeposit}<>0;;
   }
 
   dimension: cash_deposit_tier {
@@ -145,12 +145,12 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.commission ;;
+    sql: f_sql_char_to_numeric(${TABLE}.commission) ;;
   }
 
   dimension: has_commission {
-    type: string
-    sql: CASE WHEN ${TABLE}.commission  <> 0 THEN 'YES' ELSE 'NO' END;;
+     type: yesno
+    sql: ${commission}<>0;;
   }
 
 
@@ -245,13 +245,14 @@ view: adv_r_salesdetail {
 # Incentive
   dimension: incentive {
     hidden: yes
-    type: string
-    sql: ${TABLE}.incentive ;;
+    type: number
+    value_format_name: usd_0
+    sql: f_sql_char_to_numeric(${TABLE}.incentive) ;;
   }
 
   dimension: has_incentive {
     type: yesno
-    sql: translate(${incentive},'$ ,','') <> 0;;
+    sql: ${incentive} <> 0;;
   }
 
 
@@ -269,7 +270,7 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql:translate(${TABLE}.netprofit,'$ ,','') ;;
+    sql:f_sql_char_to_numeric(${TABLE}.netprofit) ;;
   }
 
   dimension: has_net_profit {
@@ -354,7 +355,7 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.sellprice ;;
+    sql: f_sql_char_to_numeric(${TABLE}.sellprice) ;;
   }
 
   dimension: sell_price_tier {
@@ -362,7 +363,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
     value_format_name: decimal_0
-    sql: translate(${sellprice},'$ ,','') ;;
+    sql: ${sellprice};;
   }
 
 
@@ -390,7 +391,7 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.totalsale ;;
+    sql: f_sql_char_to_numeric(${TABLE}.totalsale) ;;
   }
 
   dimension: total_sale_tier {
@@ -398,7 +399,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
     value_format_name: decimal_0
-    sql: translate(${totalsale},'$ ,','') ;;
+    sql: ${totalsale} ;;
   }
 
 # Trade 1 ACV
@@ -486,7 +487,7 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.vehiclecost ;;
+    sql: f_sql_char_to_numeric(${TABLE}.vehiclecost) ;;
   }
 
   # Vehicle Profit
@@ -495,7 +496,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
     value_format_name: usd_0
-    sql: translate(${vehiclecost},'$ ,','') ;;
+    sql: ${vehiclecost} ;;
   }
 
 # Vehicle Profit
@@ -512,7 +513,7 @@ view: adv_r_salesdetail {
     style: integer
     tiers: [-10000,-5000,-2000,-1000,0,1000,2000,5000,10000]
     value_format_name: usd_0
-    sql: translate(${vehicleprofit},'$ ,','') ;;
+    sql: ${vehicleprofit} ;;
 }
 
 
@@ -573,7 +574,7 @@ view: adv_r_salesdetail {
   measure: amount_financed {
     type: sum
     value_format_name: usd_0
-    sql: translate(${amountfinanced},'$ ,','') ;;
+    sql: ${amountfinanced} ;;
   }
 #
 #   measure: cash_deposit {
@@ -591,7 +592,7 @@ view: adv_r_salesdetail {
   # measure: commission_amt {
   #   type: sum
   #   value_format_name: usd_0
-  #   sql: translate(${commission},'$ ,','') ;;
+  #   sql: ${commission} ;;
   # }
 #
 #   measure: dealer_pack {
@@ -609,7 +610,7 @@ view: adv_r_salesdetail {
   # measure: incentive_amt {
   #   type: sum
   #   value_format_name: usd_0
-  #   sql: translate(${incentive},'$ ,','') ;;
+  #   sql: ${incentive};;
   # }
 #
 #   measure: LAH_Profit {
@@ -639,7 +640,7 @@ view: adv_r_salesdetail {
   measure: sell_price {
     type: sum
     value_format_name: usd_0
-    sql: translate(${sellprice},'$ ,','') ;;
+    sql: ${sellprice};;
   }
 #
 #   measure: service_contract_cost {
@@ -651,7 +652,7 @@ view: adv_r_salesdetail {
   measure: total_sale {
     type: sum
     value_format_name: usd_0
-    sql: translate(${totalsale},'$ ,','') ;;
+    sql: ${totalsale};;
   }
 
 #   measure: trade1_acv{
@@ -693,7 +694,7 @@ view: adv_r_salesdetail {
   measure: vehicle_cost {
     type: sum
     value_format_name: usd_0
-    sql: translate(${vehiclecost},'$ ,','');;
+    sql: ${vehiclecost};;
   }
 
   measure: vehicle_profit{
