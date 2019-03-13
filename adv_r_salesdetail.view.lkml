@@ -57,7 +57,7 @@ view: adv_r_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: translate(${TABLE}.amountfinanced,'$ ,','') ;;
+    sql: f_sql_char_to_numeric(${TABLE}.amountfinanced) ;;
   }
 
   dimension: has_financing {
