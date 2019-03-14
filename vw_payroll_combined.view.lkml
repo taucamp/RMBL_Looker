@@ -133,7 +133,14 @@ view: Payroll {
   }
     measure: total_payroll {
     type: sum
-    sql: ${total_gross_wages} ;;
+    sql: ${total_gross_wages};;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee,total_payroll]
+  }
+
+  measure: total_payroll_and_bonus_ex_RSU {
+    type: sum
+    sql: ${total_gross_wages} - ${rsu_pay};;
     value_format_name: usd
     drill_fields: [branch_name,department_name,employee,total_payroll]
   }
