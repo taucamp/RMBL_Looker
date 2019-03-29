@@ -139,7 +139,7 @@ view: adv_r_invtdetail {
 
   dimension: days_in_inventory {
     type: number
-    sql: f_sql_days_in_inventory(${TABLE}.recdate) ;;
+    sql: f_sql_days_in_inventory_char(${TABLE}.recdate) ;;
   }
 
   dimension: days_in_inventory_group {
