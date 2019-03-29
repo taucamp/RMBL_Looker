@@ -27,6 +27,10 @@ explore: adv_r_invtdetail {
 }
 
 explore: adv_r_salesdetail {
+  # access_filter: {
+    # field:adv_r_invtdetail.region;
+    # user_attribut:regions
+  # }
   join: adv_r_invtdetail {
     type: left_outer
     relationship: many_to_one

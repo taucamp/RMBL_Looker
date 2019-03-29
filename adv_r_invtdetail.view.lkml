@@ -235,12 +235,12 @@ view: adv_r_invtdetail {
 
   measure: average_model_year {
     type: average
-    sql:{$year};;
+    sql:${year};;
   }
 
   measure: average_days_in_inventory {
     type:average
-    sql:{$days_in_inventory};;
+    sql:${}days_in_inventory};;
   }
 
 

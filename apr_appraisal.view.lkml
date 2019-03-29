@@ -1432,6 +1432,8 @@ view: apr_appraisal {
   }
 
   measure: average_miles {
+#     dcl test
+    type: number
     sql: ${sum_of_miles}*1.0/${count}*1.0 ;;
     value_format_name: decimal_0
 

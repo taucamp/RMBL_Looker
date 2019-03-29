@@ -4,10 +4,10 @@ view: pv {
       p.anonymous_id as pv_aid,p.event_text as pv_evt, p.received_at as pv_time,
       p.context_page_referrer as pv_ref, p.context_page_url as pv_url, p.context_campaign_source as pv_src,
       regexp_replace(REGEXP_SUBSTR(pv_ref, '[^/]+\\.[^/:]+'), 'www.|.com', '') as Ref ,
-      CASE WHEN pv_src IS NULL THEN pv_ref ELSE pv_src END AS CampaignSrc,
+      CASE WHEN pv_src IS NULL THEN Ref ELSE pv_src END AS CampaignSrc,
       c.anonymous_id as c_aid,c.event_text as c_evt, c.received_at as c_time, c.appraisal_ref as c_apr
       FROM rumbleon.page_viewed AS p
-      JOIN rumbleon.cash_offer_completed AS c ON p.anonymous_id  = c.anonymous_id;
+      JOIN rumbleon.cash_offer_completed AS c ON p.anonymous_id  = c.anonymous_id
        ;;
   }
 
