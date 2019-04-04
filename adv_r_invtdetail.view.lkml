@@ -263,7 +263,7 @@ view: adv_r_invtdetail {
 
   dimension: is_floorable_mileage {
     type: yesno
-    sql: ${mileage} < 150000 ;;
+    sql: cast(${mileage} as bigint) < 150000 ;;
   }
 
 
