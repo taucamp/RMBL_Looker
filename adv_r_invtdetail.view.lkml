@@ -68,7 +68,7 @@ view: adv_r_invtdetail {
 
   dimension: cost {
     type: number
-    sql: to_number(${TABLE}.cost) ;;
+    sql: f_sql_char_to_numeric(${TABLE}.cost) ;;
   }
 
   dimension: cost_test {
