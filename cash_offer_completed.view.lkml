@@ -1,4 +1,4 @@
-view: cash_offer_completed {
+view: seg_cash_offer_completed {
   sql_table_name: rumbleon.cash_offer_completed ;;
 
   dimension: id {

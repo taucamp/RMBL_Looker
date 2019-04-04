@@ -290,13 +290,17 @@ view: adv_r_invtdetail {
   }
 
   measure: total_cost {
+    description:"Total Cost Paid for all Units"
     type: sum
+    value_format_name: usd_0
     sql: ${cost} ;;
   }
 
   measure: total_suggested_retail {
-     type: sum
-     sql: ${suggested_retail} ;;
+    description:"Total Suggested Retail Price"
+    type: sum
+    value_format_name: usd_0
+    sql: ${suggested_retail} ;;
    }
 
   measure: average_mileage {

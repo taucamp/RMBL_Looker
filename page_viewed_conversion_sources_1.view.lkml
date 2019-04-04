@@ -1,4 +1,4 @@
-view: page_viewed_conversion_sources_1 {
+view: seg_page_viewed_conversion_sources_1 {
   derived_table: {
     sql: SELECT
       p.anonymous_id as pv_aid,p.event_text as pv_evt, p.received_at as pv_time,

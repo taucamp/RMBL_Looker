@@ -1,4 +1,4 @@
-view: vw_namely_pay_and_hours {
+view: hr_namely_pay_and_hours {
   sql_table_name: hr_payroll.vw_namely_pay_and_hours ;;
 
   dimension: amount {

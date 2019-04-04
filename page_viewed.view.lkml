@@ -1,4 +1,4 @@
-view: page_viewed {
+view: seg_page_viewed {
   sql_table_name: rumbleon.page_viewed ;;
 
   dimension: id {
