@@ -68,7 +68,7 @@ view: adv_r_invtdetail {
 
   dimension: cost {
     type: number
-    sql: f_sql_char_to_numeric(${TABLE}.cost) ;;
+    sql: to_number(${TABLE}.cost) ;;
   }
 
   dimension: cost_test {
@@ -289,7 +289,12 @@ view: adv_r_invtdetail {
     drill_fields: [Inventory_Drillthrough*]
   }
 
-   measure: total_suggested_retail {
+  measure: total_cost {
+    type: sum
+    sql: ${cost} ;;
+  }
+
+  measure: total_suggested_retail {
      type: sum
      sql: ${suggested_retail} ;;
    }
