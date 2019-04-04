@@ -158,17 +158,14 @@ view: adv_r_invtdetail {
     timeframes: [
       raw,
       date,
+      day_of_week,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
     sql: isnull(${TABLE}.recdate,'2000-01-01') ;;
-  }
-
-  dimension: days_in_inventory_old {
-    type: number
-    sql: f_sql_days_in_inventory_char(${TABLE}.recdate) ;;
   }
 
   dimension_group: days_in_inventory {
@@ -192,8 +189,10 @@ view: adv_r_invtdetail {
       raw,
       time,
       date,
+      day_of_week,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -307,7 +306,7 @@ view: adv_r_invtdetail {
 
   measure: average_days_in_inventory {
     type:average
-    sql:${days_in_inventory};;
+    sql:${days_days_in_inventory};;
   }
 
 
