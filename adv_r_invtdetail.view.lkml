@@ -132,7 +132,7 @@ view: adv_r_invtdetail {
 
   dimension: mileage {
     type: number
-    sql: to_number(${TABLE}.mileage) ;;
+    sql: ${TABLE}.mileage ;;
   }
 
   dimension: mileage_tier {
@@ -245,7 +245,7 @@ view: adv_r_invtdetail {
   dimension: model_year {
     type: number
     value_format_name: id
-    sql: to_number(${TABLE}.year) ;;
+    sql: ${TABLE}.year ;;
   }
 
   dimension: model_year_bucket {
@@ -263,7 +263,7 @@ view: adv_r_invtdetail {
 
   dimension: is_floorable_mileage {
     type: yesno
-    sql: cast(${mileage} as bigint) < 150000 ;;
+    sql:${mileage} < 150000 ;;
   }
 
 
