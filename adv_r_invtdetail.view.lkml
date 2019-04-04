@@ -175,7 +175,7 @@ view: adv_r_invtdetail {
     type: duration
     intervals: [day]
     sql_start: ${TABLE}.recdate ;;
-    sql_end: CURRENT_TIMESTAMP();;
+    sql_end: getdate();;
   }
 
   dimension: days_in_inventory_bucket {
@@ -183,7 +183,7 @@ view: adv_r_invtdetail {
     style: integer
     tiers: [0,15,30,45,60]
     value_format_name: decimal_0
-    sql: f_sql_days_in_inventory(${TABLE}.recdate::timestamp):int ;;
+    sql: ${days_days_in_inventory} ;;
   }
 
   dimension_group: date_rs_status {
