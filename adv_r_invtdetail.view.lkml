@@ -256,18 +256,29 @@ view: adv_r_invtdetail {
     sql: ${model_year} ;;
   }
 
-  dimension: is_floorable_model_year {
-    type: yesno
-    sql: ${model_year} > date_part(year,getdate())-10 ;;
-  }
-
   dimension: is_floorable_mileage {
     type: yesno
     sql:${mileage} < 150000 ;;
   }
 
+  dimension: is_floorable_model_year {
+    type: yesno
+    sql: ${model_year} > date_part(year,getdate())-10 ;;
+  }
 
-  measure: count {
+  dimension: is_floorable_status {
+    type: yesno
+    sql:${sold_status} = 'Current' ;;
+  }
+
+  dimension: is_floorable {
+    type: yesno
+    sql:${is_floorable_mileage} and  ${is_floorable_model_year} and ${is_floorable_status}  ;;
+  }
+
+
+
+    measure: count {
     type: count
     drill_fields: [Inventory_Drillthrough*]
   }
