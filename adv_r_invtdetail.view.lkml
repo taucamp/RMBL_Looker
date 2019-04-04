@@ -150,7 +150,7 @@ view: adv_r_invtdetail {
 
   dimension: orig {
     type: string
-    sql: CASE ${TABLE}.orig WHEN '07' THEN 'AUCTION' WHEN '08' THEN 'CLASSIFIEDS' WHEN '03' THEN 'CONSUMER' WHEN '09' THEN 'DEALER' ELSE 'UNKNOWN' END;;
+    sql: f_sql_inventory_origin(${TABLE}.orig);;
   }
 
   dimension_group: date_received {
