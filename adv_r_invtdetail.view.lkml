@@ -148,7 +148,7 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.model ;;
   }
 
-  dimension: orig {
+  dimension: inventory_source {
     type: string
     sql: f_sql_inventory_origin(${TABLE}.orig);;
   }
@@ -166,9 +166,16 @@ view: adv_r_invtdetail {
     sql: isnull(${TABLE}.recdate,'2000-01-01') ;;
   }
 
-  dimension: days_in_inventory {
+  dimension: days_in_inventory_old {
     type: number
     sql: f_sql_days_in_inventory_char(${TABLE}.recdate) ;;
+  }
+
+  dimension_group: days_in_inventory {
+    type: duration
+    intervals: [day]
+    sql_start: ${TABLE}.recdate ;;
+    sql_end: CURRENT_TIMESTAMP();;
   }
 
   dimension: days_in_inventory_bucket {
