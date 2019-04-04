@@ -1,4 +1,4 @@
-view: aaa_cdk_sales_detail {
+view: cdk_sales_detail {
   sql_table_name: public.aaa_cdk_sales_detail ;;
 
   dimension: appraisal__acquisition_source {

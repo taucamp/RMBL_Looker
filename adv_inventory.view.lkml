@@ -1,4 +1,4 @@
-view: adv_r_invtdetail {
+view: adv_inventory {
   sql_table_name: public.adv_r_invtdetail ;;
 
   set: Inventory_Drillthrough {

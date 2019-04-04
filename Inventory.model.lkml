@@ -7,5 +7,5 @@ include: "*.view.lkml"                       # include all views in this project
 # and define the joins that connect them together.
 
 explore: Inventory {
-  from: adv_r_invtdetail
+  from: adv_inventory
   }

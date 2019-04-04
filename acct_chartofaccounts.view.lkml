@@ -1,4 +1,4 @@
-view: chartofaccounts {
+view: acct_chart_of_accounts {
   sql_table_name: tomtest.chartofaccounts ;;
 
   dimension: account {

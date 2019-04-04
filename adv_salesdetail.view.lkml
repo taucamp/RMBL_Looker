@@ -1,4 +1,4 @@
-view: adv_r_salesdetail {
+view: adv_salesdetail {
   sql_table_name: public.adv_r_salesdetail ;;
 
   dimension: id {
@@ -754,7 +754,7 @@ view: adv_r_salesdetail {
   measure: pct_of_suggested_retail {
     type: number
     value_format_name: percent_2
-    sql: ${total_cash_sale_price}*1.0 / nullif(${adv_r_invtdetail.total_suggested_retail},0) ;;
+    sql: ${total_cash_sale_price}*1.0 / nullif(${adv_inventory.total_suggested_retail},0) ;;
    }
 
 }

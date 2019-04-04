@@ -19,22 +19,22 @@ include: "*.view.lkml"                       # include all views in this project
 # }
 
 
-explore: aaa_cdk_sales_detail {
+explore: cdk_sales_detail {
 
 }
 
-explore: adv_r_invtdetail {
+explore: adv_inventory {
 }
 
-explore: adv_r_salesdetail {
+explore: adv_salesdetail {
   # access_filter: {
     # field:adv_r_invtdetail.region;
     # user_attribut:regions
   # }
-  join: adv_r_invtdetail {
+  join: adv_inventory {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${adv_r_salesdetail.stocknumber} = ${adv_r_invtdetail.stock_number} ;;
+    sql_on: ${adv_salesdetail.stocknumber} = ${adv_inventory.stock_number} ;;
   }
 }
 
