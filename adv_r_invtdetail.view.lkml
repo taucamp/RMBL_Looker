@@ -7,15 +7,15 @@ view: adv_r_invtdetail {
       stock_number,
       location,
       vin,
-      year,
+      model_year,
       make,
       model,
       mileage,
-      received_date_date,
+      date_received_date,
       sold_status,
       stock_number,
       suggested_retail,
-      cost,
+      cost
 
 
 
@@ -61,19 +61,48 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.color1 ;;
   }
 
-  dimension: cost {
+  dimension: color2 {
     type: string
-    sql: ${TABLE}.cost ;;
+    sql: ${TABLE}.color2 ;;
   }
+
+  dimension: cost {
+    type: number
+    sql: f_sql_char_to_numeric(${TABLE}.cost) ;;
+  }
+
+  dimension: cost_test {
+    type: number
+    sql: to_number(${TABLE}.cost) ;;
+  }
+
+  dimension: cost_bucket {
+    type: tier
+    style: integer
+    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    value_format_name: usd_0
+    sql: ${cost} ;;
+  }
+
 
   dimension: transit {
     type: string
     sql: ${TABLE}.equipment1 ;;
   }
 
-  dimension: title {
+    dimension: title_info {
     type: string
     sql: ${TABLE}.equipment2 ;;
+  }
+
+  dimension: title_state {
+    type: string
+    sql: f_sql_parse_inv_equipment2_state(${TABLE}.equipment2) ;;
+  }
+
+  dimension: title_date_received {
+    type: string
+    sql: f_sql_parse_inv_equipment2_date(${TABLE}.equipment2) ;;
   }
 
   dimension: equipment3 {
@@ -103,7 +132,7 @@ view: adv_r_invtdetail {
 
   dimension: mileage {
     type: number
-    sql: ${TABLE}.mileage ;;
+    sql: to_number(${TABLE}.mileage) ;;
   }
 
   dimension: mileage_tier {
@@ -124,7 +153,7 @@ view: adv_r_invtdetail {
     sql: CASE ${TABLE}.orig WHEN '07' THEN 'AUCTION' WHEN '08' THEN 'CLASSIFIEDS' WHEN '03' THEN 'CONSUMER' WHEN '09' THEN 'DEALER' ELSE 'UNKNOWN' END;;
   }
 
-  dimension_group: received_date {
+  dimension_group: date_received {
     type: time
     timeframes: [
       raw,
@@ -142,7 +171,7 @@ view: adv_r_invtdetail {
     sql: f_sql_days_in_inventory_char(${TABLE}.recdate) ;;
   }
 
-  dimension: days_in_inventory_group {
+  dimension: days_in_inventory_bucket {
     type: tier
     style: integer
     tiers: [0,15,30,45,60]
@@ -150,7 +179,7 @@ view: adv_r_invtdetail {
     sql: f_sql_days_in_inventory(${TABLE}.recdate::timestamp):int ;;
   }
 
-  dimension_group: rsstatus {
+  dimension_group: date_rs_status {
     type: time
     timeframes: [
       raw,
@@ -164,7 +193,7 @@ view: adv_r_invtdetail {
     sql:${TABLE}.rsstatus ;;
   }
 
-  dimension_group: run {
+  dimension_group: date_advent_runtime {
     type: time
     timeframes: [
       raw,
@@ -213,10 +242,30 @@ view: adv_r_invtdetail {
     sql: ${TABLE}.vin ;;
   }
 
-  dimension: year {
+  dimension: model_year {
     type: number
-    sql: ${TABLE}.year ;;
+    value_format_name: id
+    sql: to_number(${TABLE}.year) ;;
   }
+
+  dimension: model_year_bucket {
+  type: tier
+    style: integer
+    tiers: [0,2000,2005,2010,2015,2017,2020]
+    value_format_name: decimal_0
+    sql: ${model_year} ;;
+  }
+
+  dimension: is_floorable_model_year {
+    type: yesno
+    sql: ${model_year} > date_part(year,getdate())-10 ;;
+  }
+
+  dimension: is_floorable_mileage {
+    type: yesno
+    sql: ${mileage} < 150000 ;;
+  }
+
 
   measure: count {
     type: count
@@ -235,7 +284,7 @@ view: adv_r_invtdetail {
 
   measure: average_model_year {
     type: average
-    sql:${year};;
+    sql:${model_year};;
   }
 
   measure: average_days_in_inventory {
