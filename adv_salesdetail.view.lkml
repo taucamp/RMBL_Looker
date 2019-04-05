@@ -42,7 +42,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.accessorprofit ;;
+    sql: f_sql_char_to_numeric(${TABLE}.accessorprofit) ;;
   }
 
   dimension: has_accessory_profit {
@@ -80,7 +80,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.cashdeposit ;;
+    sql: f_sql_char_to_numeric(${TABLE}.cashdeposit) ;;
   }
 
   dimension: has_cash_deposit {
@@ -112,7 +112,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.cashsaleprice ;;
+    sql: f_sql_char_to_numeric(${TABLE}.cashsaleprice) ;;
   }
 
   dimension: cash_sale_price_tier {
@@ -202,7 +202,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.dlrpack ;;
+    sql: f_sql_char_to_numeric(${TABLE}.dlrpack) ;;
   }
 
   dimension: has_dealer_pack{
@@ -216,7 +216,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.finadds ;;
+    sql: f_sql_char_to_numeric(${TABLE}.finadds) ;;
   }
 
   dimension: has_financial_adds {
@@ -261,7 +261,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.lahprofit ;;
+    sql: f_sql_char_to_numeric(${TABLE}.lahprofit) ;;
   }
 
 
@@ -292,7 +292,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.nontaxableacc ;;
+    sql: f_sql_char_to_numeric(${TABLE}.nontaxableacc) ;;
   }
 
 
@@ -309,7 +309,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.reserveprofit ;;
+    sql: f_sql_char_to_numeric(${TABLE}.reserveprofit) ;;
   }
 
   dimension: has_reserve_profit {
@@ -372,7 +372,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.servicecontractcost ;;
+    sql: f_sql_char_to_numeric(${TABLE}.servicecontractcost) ;;
   }
 
   dimension: has_service_contract {
@@ -417,7 +417,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.trade1gross ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade1gross) ;;
   }
 
   dimension: has_trade {
@@ -431,7 +431,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.trade1payoff ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade1payoff) ;;
   }
 
 # Trade 1 Stock number
@@ -446,7 +446,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.trade2acv ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade2acv) ;;
   }
 
   dimension: has_trades_multiple{
@@ -459,7 +459,7 @@ view: adv_salesdetail {
     hidden: yes
    type: number
     value_format_name: usd_0
-    sql: ${TABLE}.trade2gross ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade2gross) ;;
   }
 
 # Trade 2 Payoff
@@ -467,7 +467,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.trade2payoff ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade2payoff) ;;
   }
 
 # Trade 2 Stock Number
@@ -504,7 +504,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.vehicleprofit ;;
+    sql: f_sql_char_to_numeric(${TABLE}.vehicleprofit) ;;
   }
 
  # Vehicle Profit Tier
@@ -521,7 +521,7 @@ view: adv_salesdetail {
   dimension: vehinsurance {
     hidden: yes
     type: number
-    sql: ${TABLE}.vehinsurance ;;
+    sql: f_sql_char_to_numeric(${TABLE}.vehinsurance) ;;
   }
 
 # Has Vehicle Insurance
@@ -535,7 +535,7 @@ view: adv_salesdetail {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.warrantyprofit ;;
+    sql: f_sql_char_to_numeric(${TABLE}.warrantyprofit) ;;
   }
 
 # Has Warranty
