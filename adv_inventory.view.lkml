@@ -238,6 +238,11 @@ view: adv_inventory {
     sql: ${TABLE}.tradelinkeddeal ;;
   }
 
+  dimension: has_trade_linked_deal {
+    type: yesno
+    sql: (${tradelinkeddeal} = '') IS NOT FALSE ;;
+  }
+
   dimension: type {
     type: string
     sql: ${TABLE}.type ;;
