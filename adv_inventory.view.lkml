@@ -240,7 +240,7 @@ view: adv_inventory {
 
   dimension: has_trade_linked_deal {
     type: yesno
-    sql: (${tradelinkeddeal} = '') IS NOT FALSE ;;
+    sql: ${tradelinkeddeal} IS NOT NULL ;;
   }
 
   dimension: type {
