@@ -12,25 +12,28 @@ view: cls_title_status {
     sql: ${TABLE}.titlestatusid ;;
   }
 
-  dimension: title_status {
+  dimension: titlestatus {
     type: string
+    label: "Title Status"
+    view_label: "Classified Summary Info"
+    order_by_field: titlestatusid
     sql: ${TABLE}.titlestatus ;;
   }
 
   dimension: isactive {
     hidden:yes
     type: yesno
-    sql: ${TABLE}.isactive ;;
+    sql: ${TABLE}.isactive = 1 ;;
   }
 
   dimension: isbranded {
     type: yesno
-    sql: ${TABLE}.isbranded ;;
+    sql: ${TABLE}.isbranded = 1 ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [title_status]
+    drill_fields: [titlestatus]
   }
 
 

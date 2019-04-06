@@ -13,20 +13,23 @@ view: cls_transmission_type {
     sql: ${TABLE}.transmissiontypeid ;;
   }
 
-  dimension: transmission_type {
+  dimension: transmissiontypename {
     type: string
+    label: "Transmission Type"
+    view_label: "Classified Summary Info"
+    order_by_field: transmissiontypeid
     sql: ${TABLE}.transmissiontypename ;;
   }
 
   dimension: isactive {
     hidden:yes
-    type: number
-    sql: ${TABLE}.isactive ;;
+    type: yesno
+    sql: ${TABLE}.isactive = 1 ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [transmission_type]
+    drill_fields: [transmissiontypename]
   }
 
 

@@ -23,7 +23,7 @@ view: cls_overall_condition {
   dimension: isactive {
     hidden:yes
     type: number
-    sql: ${TABLE}.isactive ;;
+    sql: ${TABLE}.isactive = 1;;
   }
 
   dimension: rank {

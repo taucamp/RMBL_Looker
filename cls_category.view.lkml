@@ -2,6 +2,7 @@ view: cls_category {
   sql_table_name: public.rumble_clscategory ;;
 
 
+
 # Make sure to us ISACTIVE in teh SQL_ALWAYS_WHERE of any EXPLORE
 
   dimension: categoryid {
@@ -12,16 +13,18 @@ view: cls_category {
     sql: ${TABLE}.categoryid ;;
   }
 
-  dimension: classified_category {
+  dimension: category {
     type: string
+    label: "Vehicle Category"
+    view_label: "Classified Summary Info"
     order_by_field: rank
     sql: ${TABLE}.category ;;
   }
 
   dimension: isactive {
     hidden:yes
-    type: number
-    sql: ${TABLE}.isactive ;;
+    type: yesno
+    sql: ${TABLE}.isactive = 1 ;;
   }
 
   dimension: rank {
@@ -33,7 +36,7 @@ view: cls_category {
   measure: count {
     hidden:yes
     type: count
-    drill_fields: [classified_category]
+    drill_fields: [category]
   }
 
 

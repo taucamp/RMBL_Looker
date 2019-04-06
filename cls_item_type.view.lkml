@@ -12,27 +12,29 @@ view: cls_item_type {
     sql: ${TABLE}.itemtypeid ;;
   }
 
-    dimension: classified_item_type {
+    dimension: itemtype {
     type: string
+    label: "Item Type"
+    view_label: "Classified Summary Info"
     order_by_field: rank
     sql: ${TABLE}.itemtype ;;
   }
 
   dimension: isactive {
-    type: number
     hidden:yes
-    sql: ${TABLE}.isactive ;;
+    type: yesno
+    sql: ${TABLE}.isactive = 1 ;;
   }
 
   dimension: rank {
-    type: number
     hidden:yes
+    type: number
     sql: ${TABLE}.rank ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [classified_item_type]
+    drill_fields: [itemtype]
   }
 
 

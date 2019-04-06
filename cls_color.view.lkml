@@ -3,6 +3,40 @@ view: cls_color {
 
 # Make sure to us ISACTIVE in teh SQL_ALWAYS_WHERE of any EXPLORE
 
+
+  dimension: colorid {
+    primary_key: yes
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.colorid ;;
+  }
+
+  dimension: colorname {
+    type: string
+    label: "Color"
+    view_label: "Classified Summary Info"
+    sql: ${TABLE}.colorname ;;
+  }
+
+  dimension: isactive {
+    hidden:yes
+    type: yesno
+    sql: ${TABLE}.isactive = 1 ;;
+  }
+
+  measure: count {
+    hidden:yes
+    type: count
+    drill_fields: [colorname]
+  }
+
+
+
+
+# BALANCE OF FIELDS ARE NOT USED
+
+
   dimension: id {
     hidden:yes
     type: string
@@ -51,18 +85,6 @@ view: cls_color {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: colorid {
-    primary_key: yes
-    hidden:yes
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.colorid ;;
-  }
-
-  dimension: colorname {
-    type: string
-    sql: ${TABLE}.colorname ;;
-  }
 
   dimension_group: createddate {
     hidden:yes
@@ -86,14 +108,4 @@ view: cls_color {
     sql: ${TABLE}.createduserid ;;
   }
 
-  dimension: isactive {
-    type: number
-    sql: ${TABLE}.isactive ;;
   }
-
-  measure: count {
-    hidden:yes
-    type: count
-    drill_fields: [id, colorname, __tablename, __schemaname]
-  }
-}

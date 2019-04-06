@@ -1,18 +1,66 @@
 view: rumble_clslistingstatus {
   sql_table_name: public.rumble_clslistingstatus ;;
 
-  dimension: id {
+# Make sure to us ISACTIVE in teh SQL_ALWAYS_WHERE of any EXPLORE
+
+
+  dimension: listingstatusid {
     primary_key: yes
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.listingstatusid ;;
+  }
+
+  dimension: listingstatus {
+    type: string
+    label: "Listing Status"
+    view_label: "Classified Summary Info"
+    order_by_field: rank
+    sql: ${TABLE}.listingstatus ;;
+  }
+
+  dimension: listingdescription {
+    hidden:yes
+    type: string
+    sql: ${TABLE}.listingdescription ;;
+  }
+
+  dimension: isactive {
+    hidden:yes
+    type: number
+    sql: ${TABLE}.isactive = 1 ;;
+  }
+
+  dimension: rank {
+    hidden:yes
+    type: number
+    sql: ${TABLE}.rank ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: [listingstatus, listingdescription]
+  }
+
+
+
+# BALANCE OF FIELDS ARE NOT USED
+
+dimension: id {
+    hidden:yes
     type: string
     sql: ${TABLE}.id ;;
   }
 
   dimension: __schemaname {
+    hidden:yes
     type: string
     sql: ${TABLE}.__schemaname ;;
   }
 
   dimension_group: __senttime {
+    hidden:yes
     type: time
     timeframes: [
       raw,
@@ -27,11 +75,13 @@ view: rumble_clslistingstatus {
   }
 
   dimension: __tablename {
+    hidden:yes
     type: string
     sql: ${TABLE}.__tablename ;;
   }
 
   dimension_group: __updatetime {
+    hidden:yes
     type: time
     timeframes: [
       raw,
@@ -46,6 +96,7 @@ view: rumble_clslistingstatus {
   }
 
   dimension_group: createddate {
+    hidden:yes
     type: time
     timeframes: [
       raw,
@@ -60,38 +111,16 @@ view: rumble_clslistingstatus {
   }
 
   dimension: createduserid {
+    hidden:yes
     type: number
     value_format_name: id
     sql: ${TABLE}.createduserid ;;
   }
 
-  dimension: isactive {
-    type: number
-    sql: ${TABLE}.isactive ;;
-  }
 
-  dimension: listingdescription {
-    type: string
-    sql: ${TABLE}.listingdescription ;;
-  }
-
-  dimension: listingstatus {
-    type: string
-    sql: ${TABLE}.listingstatus ;;
-  }
-
-  dimension: listingstatusid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.listingstatusid ;;
-  }
-
-  dimension: rank {
-    type: number
-    sql: ${TABLE}.rank ;;
-  }
 
   dimension_group: updateddate {
+    hidden:yes
     type: time
     timeframes: [
       raw,
@@ -106,13 +135,11 @@ view: rumble_clslistingstatus {
   }
 
   dimension: updateduserid {
+    hidden:yes
     type: number
     value_format_name: id
     sql: ${TABLE}.updateduserid ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [id, __tablename, __schemaname]
-  }
+
 }
