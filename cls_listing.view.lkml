@@ -7,6 +7,8 @@ view: cls_listing {
 
 
 
+# IDs AND JOIN IDENTIFIERS
+
   dimension: listingid {
     primary_key: yes
     label: "Listing ID"
@@ -29,6 +31,12 @@ view: cls_listing {
     type: number
     value_format_name: id
     sql: ${TABLE}.categoryid ;;
+  }
+
+  dimension: currentstep {
+    hidden:yes
+    type: number
+    sql: ${TABLE}.currentstep ;;
   }
 
   dimension: itemtypeid {
@@ -66,9 +74,23 @@ view: cls_listing {
     sql: ${TABLE}.secondarycolorid ;;
   }
 
+  dimension: updateduserid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.updateduserid ;;
+  }
+
+  dimension: userid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.userid ;;
+  }
 
 
 
+# DATE INFORMATION
 
   dimension_group: createddate {
     label: "Created Date"
@@ -127,7 +149,7 @@ view: cls_listing {
 
 
 
-
+# LISTING INFORMATION
 
   dimension: appraisalprice {
     label: "Appraisal Price"
@@ -137,11 +159,6 @@ view: cls_listing {
     sql: ${TABLE}.appraisalprice ;;
   }
 
-  dimension: currentstep {
-    hidden:yes
-    type: number
-    sql: ${TABLE}.currentstep ;;
-  }
 
   dimension: ismileageunknown {
     label: "Is Mileage Unknown"
@@ -202,21 +219,7 @@ view: cls_listing {
     sql: ${TABLE}.price ;;
   }
 
-  dimension: updateduserid {
-    hidden:yes
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.updateduserid ;;
-  }
-
-  dimension: userid {
-    hidden:yes
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.userid ;;
-  }
-
-  dimension: vin {
+   dimension: vin {
     type: string
     sql: ${TABLE}.vin ;;
   }
