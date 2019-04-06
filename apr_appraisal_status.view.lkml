@@ -3,7 +3,7 @@ view: apr_appraisal_status {
 
   dimension: appraisal_status {
     type: string
-    sql: cast(appraisal_status_id as varchar)+' - '${TABLE}.AppraisalStatus ;;
+    sql: cast(appraisal_status_id as varchar)+' - '+${TABLE}.AppraisalStatus ;;
     order_by_field: rank
   }
 
