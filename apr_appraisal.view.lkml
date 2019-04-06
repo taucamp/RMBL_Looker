@@ -32,7 +32,6 @@ view: apr_appraisal {
 
   dimension: appraisal_status_id {
     type: number
-    hidden: yes
     sql: ${TABLE}.AppraisalStatusId ;;
   }
 
