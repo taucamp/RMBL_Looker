@@ -1,5 +1,7 @@
-view: cls_category {
-  sql_table_name: public.rumble_clscategory ;;
+view: cls_color {
+  sql_table_name: public.rumble_clscolor ;;
+
+# Make sure to us ISACTIVE in teh SQL_ALWAYS_WHERE of any EXPLORE
 
   dimension: id {
     hidden:yes
@@ -49,18 +51,17 @@ view: cls_category {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: classified_category {
-    type: string
-    order_by_field: rank
-    sql: ${TABLE}.category ;;
-  }
-
-  dimension: categoryid {
-    hidden:yes
+  dimension: colorid {
     primary_key: yes
+    hidden:yes
     type: number
     value_format_name: id
-    sql: ${TABLE}.categoryid ;;
+    sql: ${TABLE}.colorid ;;
+  }
+
+  dimension: colorname {
+    type: string
+    sql: ${TABLE}.colorname ;;
   }
 
   dimension_group: createddate {
@@ -78,21 +79,21 @@ view: cls_category {
     sql: ${TABLE}.createddate ;;
   }
 
-  dimension: isactive {
+  dimension: createduserid {
     hidden:yes
     type: number
-    sql: ${TABLE}.isactive ;;
+    value_format_name: id
+    sql: ${TABLE}.createduserid ;;
   }
 
-  dimension: rank {
-    hidden:yes
+  dimension: isactive {
     type: number
-    sql: ${TABLE}.rank ;;
+    sql: ${TABLE}.isactive ;;
   }
 
   measure: count {
     hidden:yes
     type: count
-    drill_fields: [id, __tablename, __schemaname]
+    drill_fields: [id, colorname, __tablename, __schemaname]
   }
 }
