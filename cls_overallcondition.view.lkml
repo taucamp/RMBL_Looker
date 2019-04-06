@@ -12,7 +12,10 @@ view: cls_overall_condition {
     sql: ${TABLE}.overallconditionid ;;
   }
 
-    dimension: overall_condition {
+    dimension: overallcondition {
+    label: "Overall Condition"
+    view_label: "Classified Summary Info"
+    order_by_field: rank
     type: string
     sql: ${TABLE}.overallcondition ;;
   }
@@ -31,7 +34,7 @@ view: cls_overall_condition {
 
   measure: count {
     type: count
-    drill_fields: [overall_condition]
+    drill_fields: [overallcondition]
   }
 
 
