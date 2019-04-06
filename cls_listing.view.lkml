@@ -2,7 +2,7 @@ view: cls_listing {
   sql_table_name: public.rumble_clslisting ;;
 
  set:classified_listing_drillthru {
-    fields: [appraisalprice]
+    fields: [listingid, listingname, make, model, listingyear, mileage, price, vin]
     }
 
 
@@ -12,15 +12,15 @@ view: cls_listing {
   dimension: listingid {
     primary_key: yes
     label: "Listing ID"
-    view_label: "Classified Detail"
+    hidden:yes
     type: number
     value_format_name: id
     sql: ${TABLE}.listingid ;;
   }
 
   dimension: appraisalid {
+    hidden:yes
     label: "Appraisal ID"
-    view_label: "Classified Detail"
     type: number
     value_format_name: id
     sql: ${TABLE}.appraisalid ;;
@@ -97,7 +97,6 @@ view: cls_listing {
     view_label: "Classified Detail"
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -111,6 +110,7 @@ view: cls_listing {
   dimension_group: startdate {
     type: time
     timeframes: [
+      raw,
       date,
       week,
       month,
@@ -119,6 +119,24 @@ view: cls_listing {
     ]
     sql: ${TABLE}.startdate ;;
   }
+
+  dimension_group: days_listed {
+    type: duration
+    intervals: [day]
+    sql_start: ${startdate.raw} ;;
+    sql_end: GETDATE();;
+  }
+
+  dimension: days_listed_bucket {
+    type: tier
+    style: integer
+    tiers: [0,15,30,45,60]
+    value_format_name: decimal_0
+    sql: ${days_days_listed} ;;
+  }
+
+
+
 
   dimension_group: stopdate {
     type: time
@@ -130,6 +148,21 @@ view: cls_listing {
       year
     ]
     sql: ${TABLE}.stopdate ;;
+  }
+
+  dimension_group: days_remaining {
+    type: duration
+    intervals: [day]
+    sql_start:  GETDATE() ;;
+    sql_end: ${stopdate.raw};;
+  }
+
+  dimension: days_remaining_bucket {
+    type: tier
+    style: integer
+    tiers: [0,15,30,45,60]
+    value_format_name: decimal_0
+    sql: ${days_days_remaining} ;;
   }
 
   dimension_group: updateddate {
@@ -158,7 +191,6 @@ view: cls_listing {
     value_format_name: usd_0
     sql: ${TABLE}.appraisalprice ;;
   }
-
 
   dimension: ismileageunknown {
     label: "Is Mileage Unknown"
@@ -193,6 +225,14 @@ view: cls_listing {
     sql: ${TABLE}.listingyear ;;
   }
 
+  dimension: model_year_bucket {
+    type: tier
+    style: integer
+    tiers: [0,2000,2005,2010,2015,2017,2020]
+    value_format_name: decimal_0
+    sql: ${listingyear} ;;
+    }
+
   dimension: make {
     view_label: "Classified Detail"
     type: string
@@ -206,7 +246,15 @@ view: cls_listing {
     sql: ${TABLE}.mileage ;;
   }
 
-  dimension: model {
+  dimension: mileage_bucket {
+    type: tier
+    style: integer
+    tiers: [0,5000,10000,15000,20000]
+    value_format_name: decimal_0
+    sql: ${mileage} ;;
+  }
+
+    dimension: model {
     view_label: "Classified Detail"
     type: string
     sql: ${TABLE}.model ;;
@@ -217,6 +265,14 @@ view: cls_listing {
     type: number
     value_format_name: usd_0
     sql: ${TABLE}.price ;;
+  }
+
+  dimension: price_bucket {
+    type: tier
+    style: integer
+    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    value_format_name: usd_0
+    sql: ${price} ;;
   }
 
    dimension: vin {

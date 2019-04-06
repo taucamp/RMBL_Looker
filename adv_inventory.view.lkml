@@ -135,7 +135,7 @@ view: adv_inventory {
     sql: ${TABLE}.mileage ;;
   }
 
-  dimension: mileage_tier {
+  dimension: mileage_bucket {
     type: tier
     style: integer
     tiers: [0,5000,10000,15000,20000]
