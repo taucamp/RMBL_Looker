@@ -1,4 +1,4 @@
-view: hr_employeewalk {
+view: employee_walk {
   sql_table_name: hr_payroll.vw_employeewalk ;;
 
   dimension: company_email {
