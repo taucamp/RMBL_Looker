@@ -1027,6 +1027,11 @@ view: apr_appraisal {
     sql: ${TABLE}.PickupZip ;;
   }
 
+  dimension: preferred_contact_method {
+    type: string
+    sql: ${TABLE}.preferredcontactmethod ;;
+  }
+
   dimension: promo_code {
     type: string
     sql: ${TABLE}.PromoCode ;;
