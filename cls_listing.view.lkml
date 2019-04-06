@@ -1,68 +1,78 @@
 view: cls_listing {
   sql_table_name: public.rumble_clslisting ;;
 
-  dimension: id {
+ set:classified_listing_drillthru {
+    fields: [appraisalprice]
+    }
+
+
+
+  dimension: listingid {
     primary_key: yes
-    type: string
-    sql: ${TABLE}.id ;;
-  }
-
-  dimension: __schemaname {
-    type: string
-    sql: ${TABLE}.__schemaname ;;
-  }
-
-  dimension_group: __senttime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.__senttime ;;
-  }
-
-  dimension: __tablename {
-    type: string
-    sql: ${TABLE}.__tablename ;;
-  }
-
-  dimension_group: __updatetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.__updatetime ;;
+    label: "Listing ID"
+    view_label: "Classified Detail"
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.listingid ;;
   }
 
   dimension: appraisalid {
+    label: "Appraisal ID"
+    view_label: "Classified Detail"
     type: number
     value_format_name: id
     sql: ${TABLE}.appraisalid ;;
   }
 
-  dimension: appraisalprice {
-    type: number
-    sql: ${TABLE}.appraisalprice ;;
-  }
-
   dimension: categoryid {
+    hidden:yes
     type: number
     value_format_name: id
     sql: ${TABLE}.categoryid ;;
   }
 
+  dimension: itemtypeid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.itemtypeid ;;
+  }
+
+  dimension: listingstatusid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.listingstatusid ;;
+  }
+
+  dimension: nadamodelid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.nadamodelid ;;
+  }
+
+  dimension: primarycolorid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.primarycolorid ;;
+  }
+
+  dimension: secondarycolorid {
+    hidden:yes
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.secondarycolorid ;;
+  }
+
+
+
+
+
   dimension_group: createddate {
+    label: "Created Date"
+    view_label: "Classified Detail"
     type: time
     timeframes: [
       raw,
@@ -76,97 +86,9 @@ view: cls_listing {
     sql: ${TABLE}.createddate ;;
   }
 
-  dimension: currentstep {
-    type: number
-    sql: ${TABLE}.currentstep ;;
-  }
-
-  dimension: ismileageunknown {
-    type: number
-    sql: ${TABLE}.ismileageunknown ;;
-  }
-
-  dimension: itemguid {
-    type: string
-    sql: ${TABLE}.itemguid ;;
-  }
-
-  dimension: itemtypeid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.itemtypeid ;;
-  }
-
-  dimension: listingid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.listingid ;;
-  }
-
-  dimension: listingname {
-    type: string
-    sql: ${TABLE}.listingname ;;
-  }
-
-  dimension: listingrefno {
-    type: string
-    sql: ${TABLE}.listingrefno ;;
-  }
-
-  dimension: listingstatusid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.listingstatusid ;;
-  }
-
-  dimension: listingyear {
-    type: number
-    sql: ${TABLE}.listingyear ;;
-  }
-
-  dimension: make {
-    type: string
-    sql: ${TABLE}.make ;;
-  }
-
-  dimension: mileage {
-    type: number
-    sql: ${TABLE}.mileage ;;
-  }
-
-  dimension: model {
-    type: string
-    sql: ${TABLE}.model ;;
-  }
-
-  dimension: nadamodelid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.nadamodelid ;;
-  }
-
-  dimension: price {
-    type: number
-    sql: ${TABLE}.price ;;
-  }
-
-  dimension: primarycolorid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.primarycolorid ;;
-  }
-
-  dimension: secondarycolorid {
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.secondarycolorid ;;
-  }
-
   dimension_group: startdate {
     type: time
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,
@@ -179,8 +101,6 @@ view: cls_listing {
   dimension_group: stopdate {
     type: time
     timeframes: [
-      raw,
-      time,
       date,
       week,
       month,
@@ -193,7 +113,6 @@ view: cls_listing {
   dimension_group: updateddate {
     type: time
     timeframes: [
-      raw,
       time,
       date,
       week,
@@ -204,13 +123,94 @@ view: cls_listing {
     sql: ${TABLE}.updateddate ;;
   }
 
+
+
+
+
+
+
+  dimension: appraisalprice {
+    label: "Appraisal Price"
+    view_label: "Classified Detail"
+    type: number
+    value_format_name: usd_0
+    sql: ${TABLE}.appraisalprice ;;
+  }
+
+  dimension: currentstep {
+    hidden:yes
+    type: number
+    sql: ${TABLE}.currentstep ;;
+  }
+
+  dimension: ismileageunknown {
+    label: "Is Mileage Unknown"
+    view_label: "Classified Detail"
+    type: yesno
+    sql: ${TABLE}.ismileageunknown = 1 ;;
+  }
+
+  dimension: itemguid {
+    hidden:yes
+    type: string
+    sql: ${TABLE}.itemguid ;;
+  }
+
+  dimension: listingname {
+    label: "Listing Name"
+    view_label: "Classified Detail"
+    type: string
+    sql: ${TABLE}.listingname ;;
+  }
+
+  dimension: listingrefno {
+    hidden:yes
+    type: string
+    sql: ${TABLE}.listingrefno ;;
+  }
+
+  dimension: listingyear {
+    label: "Model Year"
+    view_label: "Classified Detail"
+    type: number
+    sql: ${TABLE}.listingyear ;;
+  }
+
+  dimension: make {
+    view_label: "Classified Detail"
+    type: string
+    sql: ${TABLE}.make ;;
+  }
+
+  dimension: mileage {
+    view_label: "Classified Detail"
+    type: number
+    value_format_name: decimal_0
+    sql: ${TABLE}.mileage ;;
+  }
+
+  dimension: model {
+    view_label: "Classified Detail"
+    type: string
+    sql: ${TABLE}.model ;;
+  }
+
+  dimension: price {
+    hidden:yes
+    type: number
+    value_format_name: usd_0
+    sql: ${TABLE}.price ;;
+  }
+
   dimension: updateduserid {
+    hidden:yes
     type: number
     value_format_name: id
     sql: ${TABLE}.updateduserid ;;
   }
 
   dimension: userid {
+    hidden:yes
     type: number
     value_format_name: id
     sql: ${TABLE}.userid ;;
@@ -226,8 +226,56 @@ view: cls_listing {
     sql: ${TABLE}.zip ;;
   }
 
+#   dimension: id {
+#     hidden:yes
+#     type: string
+#     sql: ${TABLE}.id ;;
+#   }
+#
+#   dimension: __schemaname {
+#     hidden:yes
+#     type: string
+#     sql: ${TABLE}.__schemaname ;;
+#   }
+#
+#   dimension_group: __senttime {
+#     hidden:yes
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.__senttime ;;
+#   }
+#
+#   dimension: __tablename {
+#     hidden:yes
+#     type: string
+#     sql: ${TABLE}.__tablename ;;
+#   }
+#
+#   dimension_group: __updatetime {
+#     hidden:yes
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.__updatetime ;;
+#   }
+
   measure: count {
     type: count
-    drill_fields: [id, listingname, __tablename, __schemaname]
+   drill_fields: [classified_listing_drillthru*]
   }
 }
