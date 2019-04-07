@@ -33,6 +33,7 @@ view: cls_overallcondition {
   }
 
   measure: count {
+    hidden:yes
     type: count
     drill_fields: [overallcondition]
   }

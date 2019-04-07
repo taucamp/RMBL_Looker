@@ -39,6 +39,7 @@ view: cls_listingstatus {
   }
 
   measure: count {
+    hidden:yes
     type: count
     drill_fields: [listingstatus, listingdescription]
   }

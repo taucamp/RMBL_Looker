@@ -32,6 +32,7 @@ view: cls_titlestatus {
   }
 
   measure: count {
+    hidden:yes
     type: count
     drill_fields: [titlestatus]
   }

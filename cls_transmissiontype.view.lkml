@@ -28,6 +28,7 @@ view: cls_transmissiontype {
   }
 
   measure: count {
+    hidden:yes
     type: count
     drill_fields: [transmissiontypename]
   }

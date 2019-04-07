@@ -33,6 +33,7 @@ view: cls_itemtype {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [itemtype]
   }
