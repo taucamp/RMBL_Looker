@@ -1,4 +1,4 @@
-view: rumble_clslistingextended {
+view: cls_listingextended {
   sql_table_name: public.rumble_clslistingextended ;;
 
 
