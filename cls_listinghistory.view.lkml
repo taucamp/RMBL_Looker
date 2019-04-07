@@ -1,4 +1,4 @@
-view: rumble_clslistinghistory {
+view: cls_listinghistory {
   sql_table_name: public.rumble_clslistinghistory ;;
 
   dimension: id {

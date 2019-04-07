@@ -1,4 +1,4 @@
-view: cls_transmission_type {
+view: cls_transmissiontype {
   sql_table_name: public.rumble_clstransmissiontype ;;
 
 

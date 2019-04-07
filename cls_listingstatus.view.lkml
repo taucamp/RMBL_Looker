@@ -1,4 +1,4 @@
-view: rumble_clslistingstatus {
+view: cls_listingstatus {
   sql_table_name: public.rumble_clslistingstatus ;;
 
 # Make sure to us ISACTIVE in teh SQL_ALWAYS_WHERE of any EXPLORE

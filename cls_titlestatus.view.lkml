@@ -1,4 +1,4 @@
-view: cls_title_status {
+view: cls_titlestatus {
   sql_table_name: public.rumble_clstitlestatus ;;
 
 

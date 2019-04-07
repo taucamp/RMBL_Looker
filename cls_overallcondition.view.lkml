@@ -1,4 +1,4 @@
-view: cls_overall_condition {
+view: cls_overallcondition {
   sql_table_name: public.rumble_clsoverallcondition ;;
 
 

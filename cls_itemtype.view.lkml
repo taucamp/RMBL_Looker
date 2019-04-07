@@ -1,4 +1,4 @@
-view: cls_item_type {
+view: cls_itemtype {
   sql_table_name: public.rumble_clsitemtype ;;
 
 
