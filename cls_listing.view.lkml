@@ -123,7 +123,7 @@ view: cls_listing {
   dimension_group: days_listed {
     type: duration
     intervals: [day]
-    sql_start: ${cls_listing.startdate.date} ;;
+    sql_start: ${cls_listing.startdate_date} ;;
     sql_end: GETDATE();;
   }
 
@@ -154,7 +154,7 @@ view: cls_listing {
     type: duration
     intervals: [day]
     sql_start:  GETDATE() ;;
-    sql_end: ${cls_listing.stopdate.date};;
+    sql_end: ${cls_listing.stopdate_date};;
   }
 
   dimension: days_remaining_bucket {
