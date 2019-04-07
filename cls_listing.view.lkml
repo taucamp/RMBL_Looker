@@ -1,7 +1,7 @@
 view: cls_listing {
   sql_table_name: public.rumble_clslisting ;;
 
- set:classified_listing_drillthru {
+ set:classified_listing_detail {
     fields: [listingid, listingname, make, model, listingyear, mileage, price, vin]
     }
 
@@ -184,22 +184,7 @@ view: cls_listing {
 
 # LISTING INFORMATION
 
-  dimension: appraisalprice {
-    label: "Appraisal Price"
-    view_label: "Classified Detail"
-    type: number
-    value_format_name: usd_0
-    sql: ${TABLE}.appraisalprice ;;
-  }
-
-  dimension: ismileageunknown {
-    label: "Is Mileage Unknown"
-    view_label: "Classified Detail"
-    type: yesno
-    sql: ${TABLE}.ismileageunknown = 1 ;;
-  }
-
-  dimension: itemguid {
+     dimension: itemguid {
     hidden:yes
     type: string
     sql: ${TABLE}.itemguid ;;
@@ -246,6 +231,13 @@ view: cls_listing {
     sql: ${TABLE}.mileage ;;
   }
 
+  dimension: ismileageunknown {
+    label: "Is Mileage Unknown"
+    view_label: "Classified Detail"
+    type: yesno
+    sql: ${TABLE}.ismileageunknown = 1 ;;
+  }
+
   dimension: mileage_bucket {
     type: tier
     style: integer
@@ -260,6 +252,28 @@ view: cls_listing {
     sql: ${TABLE}.model ;;
   }
 
+   dimension: vin {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
+  dimension: zip {
+    type: zipcode
+    sql: ${TABLE}.zip ;;
+  }
+
+
+
+# Price Information
+
+  dimension: appraisalprice {
+    label: "Appraisal Price"
+    view_label: "Classified Detail"
+    type: number
+    value_format_name: usd_0
+    sql: ${TABLE}.appraisalprice ;;
+  }
+
   dimension: price {
     hidden:yes
     type: number
@@ -270,19 +284,32 @@ view: cls_listing {
   dimension: price_bucket {
     type: tier
     style: integer
-    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
-    value_format_name: usd_0
+    tiers: [0,5000,10000,15000,20000]
+    value_format_name: decimal_0
     sql: ${price} ;;
   }
 
-   dimension: vin {
-    type: string
-    sql: ${TABLE}.vin ;;
+  dimension: listing_price_over_appraisal {
+    hidden:yes
+    type: number
+    value_format_name: usd_0
+    sql: ${price} - ${appraisalprice} ;;
   }
 
-  dimension: zip {
-    type: zipcode
-    sql: ${TABLE}.zip ;;
+  dimension: listing_price_over_appraisal_pct {
+    hidden:yes
+    type: number
+    value_format_name: usd_0
+    sql: (${price} - ${appraisalprice})/${appraisalprice}) ;;
+  }
+
+
+  dimension: listing_price_bucket {
+    type: tier
+    style: integer
+    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    value_format_name: usd_0
+    sql: ${price} ;;
   }
 
 #   dimension: id {
@@ -333,8 +360,43 @@ view: cls_listing {
 #     sql: ${TABLE}.__updatetime ;;
 #   }
 
+
   measure: count {
     type: count
-   drill_fields: [classified_listing_drillthru*]
+   drill_fields: [classified_listing_detail*]
   }
+
+  measure: average_price {
+    label: "Avg Listing Price"
+    type: average
+    value_format_name: usd_0
+    sql:${price};;
+    drill_fields: [classified_listing_detail*]
+  }
+
+  measure: total_price {
+    label: "Total Listing Price"
+    type: sum
+    value_format_name: usd_0
+    sql:${price};;
+    drill_fields: [classified_listing_detail*]
+  }
+
+  measure: avgerage_price_over_appraisal {
+    label: "Avg Listing Price vs Appraisal"
+    type: average
+    value_format_name: usd_0
+    sql:${listing_price_over_appraisal};;
+    drill_fields: [classified_listing_detail*]
+  }
+
+
+  measure: pct_price_greater_than_appraisal {
+    label: "Avg Listing Price vs Appraisal"
+    type: average
+    value_format_name: usd_0
+    sql:${listing_price_over_appraisal};;
+    drill_fields: [classified_listing_detail*]
+  }
+
 }
