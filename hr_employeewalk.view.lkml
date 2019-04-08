@@ -177,7 +177,7 @@ view: employee_walk {
 
   measure: total_pay {
     type: running_total
-    sql: ${current_salary} ;;
+    sql: ${pay_change} ;;
   }
 
 }
