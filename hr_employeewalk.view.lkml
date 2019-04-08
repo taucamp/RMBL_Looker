@@ -1,7 +1,9 @@
 view: employee_walk {
   sql_table_name: hr_payroll.vw_employeewalk ;;
 
-
+  set: Employee_Drillthrough {
+    fields: [full_name,start_date.date,departure_date.date,job_title,current_salary]
+  }
 
   dimension: current_salary {
     hidden: yes
@@ -122,21 +124,23 @@ view: employee_walk {
 
   measure: count {
     type: count
-    drill_fields: [full_name,start_date.date,departure_date.date,job_title,current_salary]
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure:  headcount_change{
     type: sum
     sql: ${employeecountchange} ;;
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure:  hires{
     type: sum
-    sql:  ${employeecountchange};;
+        sql:  ${employeecountchange};;
     filters:{
       field: statuschange
       value: "Hire"
       }
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure:  departures{
@@ -146,16 +150,19 @@ view: employee_walk {
       field: statuschange
       value: "Termination"
       }
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure: total_headcount {
     type: running_total
     sql: ${headcount_change} ;;
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure:  pay_change{
     type: sum
-    sql: ${current_salary} ;;
+    sql: ${current_salary};;
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure:  hires_pay{
@@ -166,6 +173,7 @@ view: employee_walk {
       field: statuschange
       value: "Hire"
     }
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure:  departures_pay{
@@ -176,12 +184,14 @@ view: employee_walk {
       field: statuschange
       value: "Termination"
     }
+    drill_fields: [Employee_Drillthrough*]
   }
 
   measure: total_pay {
     type: running_total
     value_format_name: usd_0
     sql: ${pay_change} ;;
+    drill_fields: [Employee_Drillthrough*]
   }
 
 }
