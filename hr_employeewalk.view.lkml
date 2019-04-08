@@ -126,12 +126,12 @@ view: employee_walk {
 
   measure:  headcount_change{
     type: sum
-    sql: ${TABLE}.employeecountchange ;;
+    sql: ${employeecountchange} ;;
   }
 
   measure:  hires{
     type: sum
-    sql: ${TABLE}.employeecountchange;;
+    sql:  ${employeecountchange};;
     filters:{
       field: statuschange
       value: "Hire"
@@ -140,16 +140,44 @@ view: employee_walk {
 
   measure:  departures{
     type: sum
-    sql: ${TABLE}.employeecountchange ;;
+    sql:  ${employeecountchange} ;;
     filters:{
       field: statuschange
       value: "Termination"
       }
   }
 
-
   measure: total_headcount {
     type: running_total
     sql: ${headcount_change} ;;
   }
+
+  measure:  pay_change{
+    type: sum
+    sql: ${current_salary} ;;
+  }
+
+  measure:  hires_pay{
+    type: sum
+    sql:  ${current_salary};;
+    filters:{
+      field: statuschange
+      value: "Hire"
+    }
+  }
+
+  measure:  departures_pay{
+    type: sum
+    sql:  ${current_salary} ;;
+    filters:{
+      field: statuschange
+      value: "Termination"
+    }
+  }
+
+  measure: total_pay {
+    type: running_total
+    sql: ${current_salary} ;;
+  }
+
 }
