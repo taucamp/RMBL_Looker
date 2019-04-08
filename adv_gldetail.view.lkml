@@ -182,7 +182,7 @@ set: GL_Drillthrough {
   measure: reporting_amount {
     type: sum
     value_format_name:usd_0
-    sql: case when left(${account},4) between '2000' and '4999' then -1 else 1 end * ${amount} ;;
+    sql: case when left(${account},4) >= '2000' then -1 else 1 end * ${amount} ;;
     drill_fields: [GL_Drillthrough*]
   }
 
