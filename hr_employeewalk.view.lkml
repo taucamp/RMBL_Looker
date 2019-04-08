@@ -35,6 +35,7 @@ view: employee_walk {
   }
 
 
+
   dimension_group: departure {
     hidden: yes
     type: time
@@ -49,6 +50,13 @@ view: employee_walk {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.departure_date ;;
+  }
+
+
+
+  dimension: division {
+    type: string
+    sql: ${TABLE}.division ;;
   }
 
  dimension: employee_type {
