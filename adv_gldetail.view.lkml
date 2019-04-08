@@ -181,7 +181,7 @@ set: GL_Drillthrough {
   measure: absolute_value {
     type: sum
     value_format_name:usd_0
-    sql: abs(${amount}*1} ;;
+    sql: abs(${amount})*1 ;;
     drill_fields: [GL_Drillthrough*]
   }
 
