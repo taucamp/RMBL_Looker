@@ -4,14 +4,15 @@ view: employee_walk {
 
 
   dimension: current_salary {
-    type: number
     hidden: yes
+    type: number
+    value_format_name: usd_0
     sql: ${TABLE}.current_salary ;;
   }
 
    dimension: current_salary_is_exempt {
-    type: string
     hidden: yes
+    type: string
     sql: ${TABLE}.current_salary_is_exempt ;;
   }
 
@@ -159,6 +160,7 @@ view: employee_walk {
 
   measure:  hires_pay{
     type: sum
+    value_format_name: usd_0
     sql:  ${current_salary};;
     filters:{
       field: statuschange
@@ -168,6 +170,7 @@ view: employee_walk {
 
   measure:  departures_pay{
     type: sum
+    value_format_name: usd_0
     sql:  ${current_salary} ;;
     filters:{
       field: statuschange
@@ -177,6 +180,7 @@ view: employee_walk {
 
   measure: total_pay {
     type: running_total
+    value_format_name: usd_0
     sql: ${pay_change} ;;
   }
 
