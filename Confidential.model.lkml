@@ -30,3 +30,7 @@ explore: amex_transactions {
 explore: Payroll {
 
 }
+
+
+explore:employee_walk {
+  }

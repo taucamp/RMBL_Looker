@@ -128,4 +128,9 @@ view: employee_walk {
     type: sum
     sql: ${TABLE}.employeecountchange ;;
   }
+
+  measure: total_headcount {
+    type: running_total
+    sql: ${headcount_change} ;;
+  }
 }
