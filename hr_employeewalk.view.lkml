@@ -129,6 +129,25 @@ view: employee_walk {
     sql: ${TABLE}.employeecountchange ;;
   }
 
+  measure:  hires{
+    type: sum
+    sql: ${TABLE}.employeecountchange;;
+    filters:{
+      field: statuschange
+      value: "Hire"
+      }
+  }
+
+  measure:  departures{
+    type: sum
+    sql: ${TABLE}.employeecountchange ;;
+    filters:{
+      field: statuschange
+      value: "Termination"
+      }
+  }
+
+
   measure: total_headcount {
     type: running_total
     sql: ${headcount_change} ;;
