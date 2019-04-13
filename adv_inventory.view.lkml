@@ -309,6 +309,13 @@ view: adv_inventory {
     sql: ${cost} ;;
   }
 
+  measure: total_cost_test {
+    description:"Total Cost Paid for all Units"
+    type: sum
+    value_format_name: usd_0
+    sql: ${cost_test} ;;
+  }
+
   measure: total_suggested_retail {
     description:"Total Suggested Retail Price"
     type: sum
