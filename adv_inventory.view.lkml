@@ -82,9 +82,14 @@ view: adv_inventory {
  dimension: blue_book {
     type: number
     value_format_name: usd_0
-    sql:  f_sql_char_to_numeric(${TABLE}."blue book");;
+    sql:  f_sql_char_to_numeric(ISNULL(${TABLE}."blue book",0);;
   }
 
+  dimension: has_blue_book {
+    type: yesno
+    value_format_name: usd_0
+    sql:  ${TABLE}."blue book" IS NOT NULL;;
+  }
   dimension: blue_book_tier {
     type: tier
     style: integer
