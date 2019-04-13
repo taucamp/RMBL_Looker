@@ -84,6 +84,14 @@ view: adv_inventory {
     sql: ${cost} ;;
   }
 
+ dimension: blue_book {
+    type: number
+    sql: to_number(${TABLE}.${blue_book},'S9999999.99') ;;
+  }
+  dimension: dealer {
+    type: string
+    sql: ${TABLE}.dealername ;;
+  }
 
   dimension: transit {
     type: string
@@ -323,5 +331,9 @@ view: adv_inventory {
     sql:${days_days_in_inventory};;
   }
 
+  measure: total_blue_book {
+    type: sum
+    sql: to_number(${blue_book},'S9999999.99') ;;
+  }
 
 }

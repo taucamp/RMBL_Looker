@@ -210,6 +210,11 @@ view: adv_salesdetail {
     sql: ${dealerpack} <> 0;;
   }
 
+  dimension: department{
+    type: string
+    sql: ${TABLE}.dept ;;
+  }
+
 
 # Financial Adds
   dimension: finadds {
