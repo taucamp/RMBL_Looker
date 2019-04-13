@@ -146,7 +146,7 @@ view: adv_inventory {
   dimension: mileage {
     type: number
     value_format_name: id
-    sql: f_sql_char_to_numeric(${TABLE}.mileage) ;;
+    sql: ${TABLE}.mileage ;;
   }
 
   dimension: mileage_bucket {
