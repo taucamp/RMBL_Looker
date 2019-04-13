@@ -71,12 +71,7 @@ view: adv_inventory {
     sql: f_sql_char_to_numeric(${TABLE}.cost) ;;
   }
 
-  dimension: cost_test {
-    type: number
-    sql: to_number(${TABLE}.cost) ;;
-  }
-
-  dimension: cost_bucket {
+   dimension: cost_bucket {
     type: tier
     style: integer
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
@@ -86,8 +81,18 @@ view: adv_inventory {
 
  dimension: blue_book {
     type: number
-    sql: to_number(${TABLE}.${blue_book},'S9999999.99') ;;
+    value_format_name: usd_0
+    sql:  f_sql_char_to_numeric(${TABLE}.${blue_book});;
   }
+
+  dimension: blue_book_tier {
+    type: tier
+    style: integer
+    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    value_format_name: usd_0
+    sql:  ${blue_book}) ;;
+  }
+
   dimension: dealer {
     type: string
     sql: ${TABLE}.dealername ;;
@@ -140,7 +145,8 @@ view: adv_inventory {
 
   dimension: mileage {
     type: number
-    sql: ${TABLE}.mileage ;;
+    value_format_name: id
+    sql: f_sql_char_to_numeric(${TABLE}.mileage) ;;
   }
 
   dimension: mileage_bucket {
@@ -231,15 +237,21 @@ view: adv_inventory {
     sql: ${TABLE}.stocknum ;;
   }
 
-  dimension: suggretail {
-    type: string
-    sql: ${TABLE}.suggretail ;;
+   dimension: suggested_retail {
+    type:number
+    value_format_name: usd_0
+    sql: f_sql_char_to_numeric(${TABLE}.suggretail) ;;
   }
 
-  dimension: suggested_retail {
+  dimension: suggested_retail_tiers {
     type:number
-    sql: to_number(suggretail,'S9999999.99') ;;
+    style: integer
+    tiers: [0,5000,15000,20000,25000,35000,50600]
+    value_format_name: usd_0
+    sql: ${suggested_retail} ;;
   }
+
+
 
   dimension: tradelinkeddeal {
     type: number
@@ -299,6 +311,7 @@ view: adv_inventory {
 
     measure: count {
     type: count
+    value_format_name: decimal_0
     drill_fields: [Inventory_Drillthrough*]
   }
 
@@ -309,12 +322,6 @@ view: adv_inventory {
     sql: ${cost} ;;
   }
 
-  measure: total_cost_test {
-    description:"Total Cost Paid for all Units"
-    type: sum
-    value_format_name: usd_0
-    sql: ${cost_test} ;;
-  }
 
   measure: total_suggested_retail {
     description:"Total Suggested Retail Price"
@@ -325,22 +332,26 @@ view: adv_inventory {
 
   measure: average_mileage {
     type: average
+    value_format_name: decimal_0
     sql:{$mileage};;
   }
 
   measure: average_model_year {
     type: average
+    value_format_name: id
     sql:${model_year};;
   }
 
   measure: average_days_in_inventory {
     type:average
+    value_format_name: decimal_0
     sql:${days_days_in_inventory};;
   }
 
   measure: total_blue_book {
     type: sum
-    sql: to_number(${blue_book},'S9999999.99') ;;
+    value_format_name: usd_0
+    sql: ${blue_book} ;;
   }
 
 }
