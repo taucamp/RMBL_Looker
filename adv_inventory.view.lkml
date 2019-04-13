@@ -333,7 +333,7 @@ view: adv_inventory {
   measure: average_mileage {
     type: average
     value_format_name: decimal_0
-    sql:{$mileage};;
+    sql:${mileage};;
   }
 
   measure: average_model_year {
