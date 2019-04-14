@@ -87,7 +87,7 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
   dimension: financials_multiplier {
     type: number
-    sql: ${TABLE}.location ;;
+    sql: ${TABLE}.financials_multiplier ;;
   }
 
   dimension_group: accounting_month {
@@ -109,7 +109,7 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
   dimension: period_amount {
     type: number
-    sql: ${TABLE}.account_name ;;
+    sql: ${TABLE}.period_amount ;;
   }
 
   dimension: life_to_date_amount {
