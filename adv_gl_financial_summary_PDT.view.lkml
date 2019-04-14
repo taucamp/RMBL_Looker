@@ -49,7 +49,7 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
   dimension: minor_group {
     type: string
     order_by_field: minor_group_rank
-    sql: ${TABLE}.minor_groupk ;;
+    sql: ${TABLE}.minor_group ;;
   }
 
   dimension: minor_group_rank {
