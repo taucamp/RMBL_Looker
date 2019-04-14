@@ -70,6 +70,9 @@ explore: Schedules {
 }
 
 
+explore: Financials {
+    from: adv_gl_financial_summary_pdt
+}
 
 
 explore: ref_dimdate {
