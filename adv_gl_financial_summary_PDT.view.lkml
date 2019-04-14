@@ -29,6 +29,7 @@ LEFT JOIN tomtest.chartofaccounts  AS acct_chart_of_accounts ON acct_chart_of_ac
 GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
     datagroup_trigger: financial_datagroup
+    distribution_style: all
 
   }
 
