@@ -253,7 +253,7 @@ view: adv_inventory {
     style: integer
     tiers: [0,5000,15000,20000,25000,35000,50600]
     value_format_name: usd_0
-    sql: ${suggested_retail} ;;
+    sql: f_sql_char_to_numeric(${TABLE}.suggretail) ;;
   }
 
 
