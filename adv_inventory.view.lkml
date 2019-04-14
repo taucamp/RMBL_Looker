@@ -73,8 +73,8 @@ view: adv_inventory {
 
    dimension: cost_bucket {
     type: tier
-    style: relational
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    style: relational
     value_format_name: usd_0
     sql: ${cost} ;;
   }
@@ -92,8 +92,8 @@ view: adv_inventory {
   }
   dimension: blue_book_tier {
     type: tier
-    style: relational
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    style: relational
     value_format_name: usd_0
     sql:  nvl(f_sql_char_to_numeric(${TABLE}."blue book"),0) ;;
   }
@@ -156,8 +156,8 @@ view: adv_inventory {
 
   dimension: mileage_bucket {
     type: tier
-    style: integer
     tiers: [0,5000,10000,15000,20000]
+    style: integer
     value_format_name: decimal_0
     sql: ${mileage} ;;
   }
@@ -196,8 +196,8 @@ view: adv_inventory {
 
   dimension: days_in_inventory_bucket {
     type: tier
-    style: integer
     tiers: [0,15,30,45,60]
+    style: integer
     value_format_name: decimal_0
     sql: ${days_days_in_inventory} ;;
   }
@@ -249,9 +249,9 @@ view: adv_inventory {
   }
 
   dimension: suggested_retail_tiers {
-    type:number
-    style: relational
+    type:tier
     tiers: [0,5000,15000,20000,25000,35000,50600]
+    style: relational
     value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.suggretail),0) ;;
   }
@@ -291,8 +291,8 @@ view: adv_inventory {
 
   dimension: model_year_bucket {
   type: tier
-    style: integer
     tiers: [0,2000,2005,2010,2015,2017,2020]
+    style: integer
     value_format_name: id
     sql: ${model_year} ;;
   }
