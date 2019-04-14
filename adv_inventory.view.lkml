@@ -82,7 +82,7 @@ view: adv_inventory {
  dimension: blue_book {
     type: number
     value_format_name: usd_0
-    sql:  f_sql_char_to_numeric(ISNULL(${TABLE}."blue book",0));;
+    sql:  f_sql_char_to_numeric(nvl(${TABLE}."blue book",0));;
   }
 
   dimension: has_blue_book {
@@ -184,7 +184,7 @@ view: adv_inventory {
       quarter,
       year
     ]
-    sql: isnull(${TABLE}.recdate,'2000-01-01') ;;
+    sql: nvl(${TABLE}.recdate,'2000-01-01') ;;
   }
 
   dimension_group: days_in_inventory {
