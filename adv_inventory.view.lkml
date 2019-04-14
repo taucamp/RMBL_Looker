@@ -250,7 +250,7 @@ view: adv_inventory {
 
   dimension: suggested_retail_tiers {
     type:number
-    style: interval
+    style: relational
     tiers: [0,5000,15000,20000,25000,35000,50600]
     value_format_name: usd_0
     sql: f_sql_char_to_numeric(${TABLE}.suggretail) ;;
