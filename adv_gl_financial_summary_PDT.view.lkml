@@ -34,18 +34,26 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
   }
 
 
+  dimension: major_group {
+    type: string
+    order_by_field: major_group_rank
+    sql: ${TABLE}.major_group ;;
+  }
+
   dimension: major_group_rank {
+    hidden: yes
     type: number
     sql: ${TABLE}.major_group_rank ;;
   }
 
-  dimension: major_group {
+  dimension: minor_group {
     type: string
     order_by_field: minor_group_rank
-    sql: ${TABLE}.major_group_rank ;;
+    sql: ${TABLE}.minor_groupk ;;
   }
 
   dimension: minor_group_rank {
+    hidden: yes
     type: number
     sql: ${TABLE}.minor_group_rank ;;
   }
