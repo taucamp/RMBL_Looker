@@ -273,6 +273,11 @@ view: adv_inventory {
     sql: ${TABLE}.type ;;
   }
 
+  dimension: vehicle_type {
+    type: string
+    sql: ${TABLE}."veh type" ;;
+  }
+
   dimension: vin {
     type: string
     sql: ${TABLE}.vin ;;
@@ -288,7 +293,7 @@ view: adv_inventory {
   type: tier
     style: integer
     tiers: [0,2000,2005,2010,2015,2017,2020]
-    value_format_name: decimal_0
+    value_format_name: id
     sql: ${model_year} ;;
   }
 
