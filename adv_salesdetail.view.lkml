@@ -367,7 +367,7 @@ view: adv_salesdetail {
     type: tier
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
-    value_format_name: decimal_0
+    value_format_name: usd_0
     sql: ${sellprice};;
   }
 
@@ -403,7 +403,7 @@ view: adv_salesdetail {
     type: tier
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
-    value_format_name: decimal_0
+    value_format_name: usd_0
     sql: ${totalsale} ;;
   }
 
