@@ -18,6 +18,11 @@ include: "*.view.lkml"                       # include all views in this project
 #   }
 # }
 
+datagroup: financial_datagroup {
+  sql_trigger: select max("__updatetime")from adv_gldetail ;;
+  max_cache_age: "24 hours"
+}
+
 explore: Advent_GL_detail {
     join: Advent_Chart_of_Accounts {
       sql_on: ${Advent_Chart_of_Accounts.account_number}=${Advent_GL_detail.account} ;;
