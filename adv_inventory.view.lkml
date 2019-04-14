@@ -245,7 +245,7 @@ view: adv_inventory {
    dimension: suggested_retail {
     type:number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.suggretail) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.suggretail),0) ;;
   }
 
   dimension: suggested_retail_tiers {
@@ -253,7 +253,7 @@ view: adv_inventory {
     style: relational
     tiers: [0,5000,15000,20000,25000,35000,50600]
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.suggretail) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.suggretail),0) ;;
   }
 
 
