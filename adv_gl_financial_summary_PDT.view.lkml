@@ -28,7 +28,7 @@ LEFT JOIN tomtest.chartofaccounts  AS acct_chart_of_accounts ON acct_chart_of_ac
 -- WHERE red_dimdate.firstdayofmonth1 > '2017-12-31'
 GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
-    sql_trigger_value: select dateadd(h,-9,getdate())::date ;;
+    datagroup_trigger: financial_datagroup
 
   }
 
