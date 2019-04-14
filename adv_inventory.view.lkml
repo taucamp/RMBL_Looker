@@ -95,7 +95,7 @@ view: adv_inventory {
     style: integer
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
     value_format_name: usd_0
-    sql:  ${blue_book}) ;;
+    sql:  nvl(f_sql_char_to_numeric(${TABLE}."blue book"),0) ;;
   }
 
   dimension: dealer {
