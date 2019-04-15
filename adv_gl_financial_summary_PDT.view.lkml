@@ -18,13 +18,16 @@ view: adv_gl_financial_summary_pdt {
   --f_sql_date_to_first_day_of_month(Advent_GL_detail.accounting_date) AS "advent_gl_detail.accounting_date_month_1",
   is_bal_sheet_acct,
   SUM(CASE WHEN f_sql_date_to_first_day_of_month(Advent_GL_detail.accounting_date::date) = a.firstdayofmonth1 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "period_amount",
-  SUM(Advent_GL_detail.amount*1)::decimal(19,2) as "ltd_amount"
+  SUM(CASE WHEN f_sql_date_to_first_day_of_month(Advent_GL_detail.accounting_date::date) = a.firstdayofmonth1 THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * financials_multiplier as "period_amount_fin",
+  SUM(Advent_GL_detail.amount*1)::decimal(19,2) as "ltd_amount",
+  SUM(Advent_GL_detail.amount*1)::decimal(19,2) * financials_multiplier as "ltd_amount_fin"
 FROM
   (select distinct firstdayofmonth1 from ref_dimdate where firstdayofmonth1 > '2017-12-31') a
 LEFT JOIN public.adv_gldetail  AS Advent_GL_detail ON a.firstdayofmonth1 >= f_sql_date_to_first_day_of_month(Advent_GL_detail.accounting_date::date)
 LEFT JOIN public.adv_glchart  AS Advent_Chart_of_Accounts ON Advent_Chart_of_Accounts.accountnumber=Advent_GL_detail.accountnumber
 LEFT JOIN tomtest.chartofaccounts  AS acct_chart_of_accounts ON acct_chart_of_accounts.accountnumber=split_part(Advent_Chart_of_Accounts.accountnumber,'.',1)
 
+WHERE (document_info <> 'AUTOMATIC BALFWD' and control <> 'NOT APPLICABLE')
 -- WHERE red_dimdate.firstdayofmonth1 > '2017-12-31'
 GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
