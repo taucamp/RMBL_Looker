@@ -191,7 +191,7 @@ view: adv_inventory {
     type: duration
     intervals: [day]
     sql_start: ${TABLE}.recdate ;;
-    sql_end: getdate();;
+    sql_end: case when status ilike 'sold' then rsstatus else getdate() end;;
   }
 
   dimension: days_in_inventory_bucket {
