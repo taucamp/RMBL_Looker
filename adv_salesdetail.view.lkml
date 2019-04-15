@@ -564,11 +564,7 @@ view: adv_salesdetail {
   }
 
 
-#  Vehicle Type
-  dimension: vehicle_type {
-    type: yesno
-    sql: (${TABLE}."veh type"};;
-  }
+
 
 # MEASURES
 # MEASURES
