@@ -139,6 +139,13 @@ view: adv_salesdetail {
     sql: ${TABLE}.closedate ;;
   }
 
+  dimension_group: days_to_post_deal {
+    type: duration
+    intervals: [day, week]
+    sql_start: ${sale_date} ;;
+    sql_end: ${close_date_date} ;;
+  }
+
 
 # Commission
   dimension: commission {
