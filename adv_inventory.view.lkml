@@ -100,9 +100,10 @@ view: adv_inventory {
 
   dimension: dealer {
     type: string
-    sql: CASE WHEN ${TABLE}.dealername ilike 'RUMB140' THEN 'AUTOSPORT'
-            WHEN ${TABLE}.dealername ilike 'RMBL MO' THEN 'RMBL MISSOURI'
-            WHEN ${TABLE}.dealername ilike 'WHSL' THEN 'WHOLESALE INC'
+    sql: CASE ${TABLE}.dealername
+            WHEN ilike 'RUMB140' THEN 'AUTOSPORT'
+            WHEN ilike 'RMBL MO' THEN 'RMBL MISSOURI'
+            WHEN ilike 'WHSL' THEN 'WHOLESALE INC'
         ELSE 'UNKNOWN' END ;;
   }
 

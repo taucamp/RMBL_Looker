@@ -200,7 +200,7 @@ view: adv_salesdetail {
 # Deal Status
   dimension: deal_status {
     type: string
-    sql: CASE WHEN ${TABLE}.dealstatus = 'CLSD' THEN 'CLOSED' ELSE  ${TABLE}.dealstatus END ;;
+    sql: CASE WHEN ${TABLE}.dealstatus ilike 'CLSD' THEN 'CLOSED' ELSE  ${TABLE}.dealstatus END ;;
   }
 
 
