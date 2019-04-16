@@ -270,12 +270,12 @@ view: adv_inventory {
 
   dimension: type {
     type: string
-    sql: ${TABLE}.type ;;
+    sql: UPPER(${TABLE}.type);;
   }
 
   dimension: vehicle_type {
     type: string
-    sql: ${TABLE}."veh type" ;;
+    sql: nvl(f_sql_adv_inventory_vehicle_type(${TABLE}."veh type"),'UNKNOWN') ;;
   }
 
   dimension: vin {
