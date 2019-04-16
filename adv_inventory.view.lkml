@@ -100,11 +100,7 @@ view: adv_inventory {
 
   dimension: dealer {
     type: string
-    sql: CASE ${TABLE}.dealername
-            WHEN = 'RUMB140' THEN 'AUTOSPORT'
-            WHEN = 'RMBL MO' THEN 'RMBL MISSOURI'
-            WHEN = 'WHSL' THEN 'WHOLESALE INC'
-        ELSE 'UNKNOWN' END ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') ;;
   }
 
   dimension: transit {
