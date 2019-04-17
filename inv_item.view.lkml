@@ -51,9 +51,9 @@ view: inv_item {
     sql: ${TABLE}.BodyStyle ;;
   }
 
-  dimension: book_data {
+  dimension: clean_book {
     type: string
-    sql: ${TABLE}.BookData ;;
+    sql: f_sql_parse_bookdata_clean(${TABLE}.BookData) ;;
   }
 
   dimension_group: book {
@@ -986,6 +986,10 @@ view: inv_item {
     sql: ${TABLE}.Stroke ;;
   }
 
+  dimension: title_attached {
+    type: yesno
+    sql: ${TABLE}.titleattached ;;
+  }
   dimension: transmission {
     type: string
     sql: ${TABLE}.Transmission ;;

@@ -25,7 +25,14 @@ explore: Inventory {
     relationship: many_to_one
     sql_on: ${inv_item.shipping_status_id} = ${inv_shipping_status.shipping_status_id};;
   }
+
+  join: org_location {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${inv_item.location_id} = ${org_location.location_id};;
   }
+
+}
 
 
 explore: Inventory_Advent_Only {
