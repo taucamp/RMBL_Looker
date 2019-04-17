@@ -8,4 +8,26 @@ include: "*.view.lkml"                       # include all views in this project
 
 explore: Inventory {
   from: adv_inventory
+  join: inv_item {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${Inventory.stock_number} = ${inv_item.advent_stock_number} and ${inv_item.is_active} = 1;;
   }
+
+  join: inv_item_status {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${inv_item.item_status_id} = ${inv_item_status.item_status_id} ;;
+  }
+
+  join: inv_shipping_status {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${inv_item.shipping_status_id} = ${inv_shipping_status.shipping_status_id};;
+  }
+  }
+
+
+explore: Inventory_Advent_Only {
+   from: adv_inventory
+}
