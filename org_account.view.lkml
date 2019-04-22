@@ -112,7 +112,7 @@ view: org_account {
   }
 
   dimension: license_state {
-    type: string
+    type: location
     sql: ${TABLE}.LicenseState ;;
   }
 
