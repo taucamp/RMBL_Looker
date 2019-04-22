@@ -39,11 +39,11 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
   dimension: major_group {
     type: string
-    order_by_field: major_group_rank
+    order_by_field: major_group_rank_pdt
     sql: ${TABLE}.major_group ;;
   }
 
-  dimension: major_group_rank {
+  dimension: major_group_rank_pdt {
     hidden: no
     type: number
     sql: ${TABLE}.major_group_rank ;;
@@ -51,11 +51,11 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
 
   dimension: minor_group {
     type: string
-    order_by_field: minor_group_rank
+    order_by_field: minor_group_rank_pdt
     sql: ${TABLE}.minor_group ;;
   }
 
-  dimension: minor_group_rank {
+  dimension: minor_group_rank_pdt {
     hidden: no
     type: number
     sql: ${TABLE}.minor_group_rank ;;
