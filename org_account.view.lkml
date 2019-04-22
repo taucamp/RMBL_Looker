@@ -133,7 +133,7 @@ view: org_account {
 
   dimension: state {
     type: location
-    sql: ${TABLE}.State ;;
+    sql: ${TABLE}.state ;;
   }
 
   dimension: state_sales_tax_img_uri {
