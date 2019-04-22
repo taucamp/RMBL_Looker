@@ -132,7 +132,7 @@ view: org_account {
   }
 
   dimension: state {
-    type: string
+    type: location
     sql: ${TABLE}.State ;;
   }
 
