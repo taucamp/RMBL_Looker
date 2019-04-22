@@ -782,7 +782,7 @@ view: inv_item {
   }
 
   dimension: pickup_state {
-    type: string
+    type: location
     sql: ${TABLE}.PickupState ;;
   }
 
