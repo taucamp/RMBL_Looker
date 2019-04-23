@@ -56,6 +56,13 @@ view: Payroll {
     sql: ${TABLE}."overtime pay" ;;
   }
 
+  dimension: Has_OT_Pay {
+    type: yesno
+    sql:  ${overtime_pay} > 0 ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee,total_OT]
+  }
+
   dimension: regular_pay {
     type: number
     sql: ${TABLE}."regular pay" ;;
@@ -75,6 +82,7 @@ view: Payroll {
     type: number
     sql: ${TABLE}."normal wages" ;;
   }
+
 
 
   measure: count {
@@ -125,12 +133,7 @@ view: Payroll {
     drill_fields: [branch_name,department_name,employee,total_OT]
   }
 
-  measure: Has_OT_Pay {
-    type: yesno
-    sql:  ${overtime_pay} > 0 ;;
-    value_format_name: usd
-    drill_fields: [branch_name,department_name,employee,total_OT]
-  }
+
 
 
   measure: total_normal_wages {
@@ -162,7 +165,7 @@ view: Payroll {
   measure: Employees_Paid_OT{
     type: sum
     sql: case when ${overtime_pay} > 0 then 1 else 0 end ;;
-    drill_fields: [branch_name,department_name,employee]
+    drill_fields: [branch_name,department_name,employee,total_OT]
   }
 
 }
