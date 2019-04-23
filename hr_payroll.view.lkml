@@ -125,6 +125,14 @@ view: Payroll {
     drill_fields: [branch_name,department_name,employee,total_OT]
   }
 
+  measure: Has_OT_Pay {
+    type: yesno
+    sql:  ${overtime_pay} > 0 ;;
+    value_format_name: usd
+    drill_fields: [branch_name,department_name,employee,total_OT]
+  }
+
+
   measure: total_normal_wages {
     type: sum
     sql: ${normal_wages} ;;
@@ -148,6 +156,12 @@ view: Payroll {
   measure: Employees_Paid{
     type: count_distinct
     sql: ${employee} ;;
+    drill_fields: [branch_name,department_name,employee]
+  }
+
+  measure: Employees_Paid_OT{
+    type: sum
+    sql: case when ${overtime_pay} > 0 then 1 else 0 end ;;
     drill_fields: [branch_name,department_name,employee]
   }
 
