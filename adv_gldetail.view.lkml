@@ -178,7 +178,7 @@ set: GL_Drillthrough {
     drill_fields: [GL_Drillthrough*]
     link: {
       label: "Go to Minor Group and Same time Frame"
-      url: "https://rumbleon.looker.com/dashboards/8?Date%20Passed={{ accounting_date_month._value }}&Major%20Group%20Passed={{ major_group._value }}"
+      url: "https://rumbleon.looker.com/dashboards/8?Date%20Passed={{ accounting_date_month._value }}&Major%20Group%20Passed={{ acct_chart_of_accounts.major_group._value }}"
       icon_url: "https://looker.com/favicon.ico"
     }
   }
