@@ -176,6 +176,11 @@ set: GL_Drillthrough {
     value_format_name:usd_0
     sql: ${amount}*1 ;;
     drill_fields: [GL_Drillthrough*]
+    link: {
+      label: "Go to Minor Group and Same time Frame"
+      url: "https://rumbleon.looker.com/dashboards/8?Date%20Passed={{ accounting_date_month._value }}&Major%20Group%20Passed={{ major_group._value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
   measure: absolute_value {
