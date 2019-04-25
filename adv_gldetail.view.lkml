@@ -181,6 +181,7 @@ set: GL_Drillthrough {
       url: "https://rumbleon.looker.com/dashboards/8?Date%20Passed={{ accounting_date_month._value }}&Major%20Group%20Passed={{ acct_chart_of_accounts.major_group._value }}"
       icon_url: "https://looker.com/favicon.ico"
     }
+    html:"<a href="https://rumbleon.looker.com/dashboards/8?Date%20Passed={{ accounting_date_month._value }}&Major%20Group%20Passed={{ acct_chart_of_accounts.major_group._value }}"</a>"  ;;
   }
 
   measure: absolute_value {
