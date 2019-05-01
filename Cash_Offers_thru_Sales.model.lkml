@@ -23,6 +23,11 @@ explore: cdk_sales_detail {
 
 }
 
+explore: adv_sales_adds {
+
+}
+
+
 explore: adv_inventory {
 }
 
