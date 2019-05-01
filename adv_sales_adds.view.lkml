@@ -58,21 +58,22 @@ view: adv_sales_adds {
 
   dimension: add_type {
     type: string
-    label: "sales_add_type"
+    label: "Sales Add Type"
     description: "The Type of Sales Add - Accessory, Inventory, Fees"
     sql: nvl(${TABLE}."add type",'Unknown') ;;
   }
 
   dimension: sales_add_item_code {
     type: string
-    label: "sales_add_item code"
+    label: "Sales Add Item Code"
     description: "The Item Code of the Sales Add"
     sql: nvl(${TABLE}.code,'Unknown') ;;
   }
 
   dimension: cost {
+    hidden:yes
     type: number
-    label: "sales_add_cost"
+    label: "Sales Add Cost"
     description: "The Cost of the Sales Add"
     value_format_name: usd
     sql: ${TABLE}.cost ;;
@@ -104,6 +105,12 @@ view: adv_sales_adds {
     sql: ${TABLE}."deal number" ;;
   }
 
+  dimension: sales_add_item {
+    type: string
+    description: "The Detailed Item Description"
+    sql: nvl(${TABLE}.code,'Unk')+'-'+nvl(${TABLE}.description,'Unknown') ;;
+  }
+
   dimension: item_description {
     type: string
     description: "The Detailed Item Description"
@@ -111,32 +118,35 @@ view: adv_sales_adds {
   }
 
   dimension: due_bill {
-    type: string
-    sql: nvl(${TABLE}."due bill",'Unknown') ;;
+    type: yesno
+    label:"Is Due On Bill"
+    sql: case when ${TABLE}."due bill" = 'No' then 0 else 1 end ;;
   }
 
   dimension: is_financed {
     type: yesno
     description: "Was the Sales Add Financed"
-    sql: nvl(${TABLE}.financed,'No') ;;
+    sql: case when ${TABLE}.financed = 'Yes' then 1 else 0 end ;;
   }
 
   dimension: sales_add_profit_category{
     type: string
-    label:"sales_add_profit_category"
+    label:"Sales Add Profit Category"
     description: "What part of the deal revenue and profit does it fall"
     sql: nvl(${TABLE}."profit where",'Unknown') ;;
   }
 
   dimension: residual {
+    hidden:yes
     type: number
-    label:"sales_add_profit_category"
+    label:"residual_amount"
     description: "Residual Part of the Sales Add"
     value_format_name: usd
     sql: nvl(${TABLE}.residual,0) ;;
   }
 
   dimension: retail {
+    hidden:yes
     type: number
     description: "Retail value of the Sales Add"
     value_format_name: usd
@@ -145,11 +155,77 @@ view: adv_sales_adds {
 
   dimension: is_taxable {
     type: yesno
-    sql: nvl(${TABLE}.taxable,'No') ;;
+    sql: case when ${TABLE}.financed = 'Yes' then 1 else 0 end ;;
   }
 
-  measure: count {
+  measure: count_of_adds {
     type: count
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_any_adds {
+    type: count_distinct
+    sql: ${deal_number};;
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_auction_fees {
+    type: count_distinct
+    sql: ${deal_number};;
+    filters: {
+      field: sales_add_item_code
+      value: "FEES"
+    }
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_gap {
+    type: count_distinct
+    sql: ${deal_number};;
+    filters: {
+      field: sales_add_item_code
+      value: "GAP"
+    }
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_inbound_freight {
+    type: count_distinct
+    sql: ${deal_number};;
+    filters: {
+      field: sales_add_item_code
+      value: "IBFRG"
+    }
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_recon {
+    type: count_distinct
+    sql: ${deal_number};;
+    filters: {
+      field: sales_add_item_code
+      value: "RECON"
+    }
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_tire {
+    type: count_distinct
+    sql: ${deal_number};;
+    filters: {
+      field: sales_add_item_code
+      value: "TIRE"
+    }
+    drill_fields: [Sales_Adds*]
+  }
+
+  measure: deals_with_90_warranty{
+    type: count_distinct
+    sql: ${deal_number};;
+    filters: {
+      field: sales_add_item_code
+      value: "90W"
+      }
     drill_fields: [Sales_Adds*]
   }
 
