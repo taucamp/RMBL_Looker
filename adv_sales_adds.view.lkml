@@ -91,11 +91,16 @@ view: adv_sales_adds {
     timeframes: [
       raw,
       time,
+      hour_of_day,
       date,
       week,
+      day_of_week,
       month,
+      day_of_month,
       quarter,
-      year
+      quarter_of_year,
+      year,
+      day_of_year
     ]
     sql: ${TABLE}.createtimestamp ;;
   }
@@ -150,7 +155,7 @@ view: adv_sales_adds {
     type: number
     description: "Retail value of the Sales Add"
     value_format_name: usd
-    sql: nvl${TABLE}.retail,0) ;;
+    sql: nvl(${TABLE}.retail,0) ;;
   }
 
   dimension: is_taxable {

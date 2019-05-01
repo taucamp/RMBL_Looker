@@ -112,7 +112,7 @@ view: org_account {
   }
 
   dimension: license_state {
-    type: location
+    type: string
     sql: ${TABLE}.LicenseState ;;
   }
 
@@ -132,7 +132,7 @@ view: org_account {
   }
 
   dimension: state {
-    type: location
+    type: string
     sql: ${TABLE}.state ;;
   }
 
