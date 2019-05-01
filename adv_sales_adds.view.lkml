@@ -6,8 +6,8 @@ view: adv_sales_adds {
     fields: [
       deal_number,
       add_type,
-      code,
-      description,
+      sales_add_item_code,
+      item_description,
       cost,
       retail,
       residual
