@@ -39,7 +39,7 @@ LEFT JOIN tomtest.acct_department as Dept on f_sql_adv_acct_to_department(Advent
 
 WHERE (document_info <> 'AUTOMATIC BALFWD' and control <> 'NOT APPLICABLE')
 -- WHERE red_dimdate.firstdayofmonth1 > '2017-12-31'
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21
 
     ;;
 
