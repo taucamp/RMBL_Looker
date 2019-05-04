@@ -79,7 +79,15 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21
     sql: ${TABLE}.accountnumber ;;
   }
 
+  dimension: full_account_title {
+    type: string
+    sql: ${TABLE}.accounttitle ;;
+  }
 
+  dimension: full_account_num_and_title {
+    type: string
+    sql: ${TABLE}.accountnumber + ' - ' +${TABLE}.accounttitle ;;
+  }
 
   dimension: division {
     type: string
@@ -129,15 +137,21 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21
     sql: ${TABLE}.department_rank ;;
   }
 
-  dimension: account {
+  dimension: account_first_segment {
     type: number
     sql: ${TABLE}.account ;;
   }
 
   dimension: account_name {
     type: string
-    order_by_field: account
+    order_by_field: account_first_segment
     sql: ${TABLE}.account_name ;;
+  }
+
+  dimension: account_and_desc {
+    type: string
+    order_by_field: account_first_segment
+    sql: ${account_first_segment}+' - '+account_name ;;
   }
 
 
