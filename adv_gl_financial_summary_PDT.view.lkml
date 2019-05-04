@@ -184,30 +184,36 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21
 
   dimension: period_amount {
     type: number
+    value_format_name: usd
     sql: ${TABLE}.period_amount ;;
   }
 
   dimension: life_to_date_amount {
     type: number
+    value_format_name: usd
     sql: ${TABLE}.ltd_amount ;;
   }
 
   measure: total_period_amount {
     type: sum
+    value_format_name: usd
     sql: ${period_amount} ;;
   }
 
   measure:LTD_Amount {
     type: sum
+    value_format_name: usd
     sql: ${life_to_date_amount} ;;
   }
   measure: total_period_amount_fin {
     type: sum
+    value_format_name: usd
     sql: ${period_amount}*${financials_multiplier} ;;
   }
 
   measure:LTD_Amount_fin {
     type: sum
+    value_format_name: usd
     sql: ${life_to_date_amount}*${financials_multiplier} ;;
   }
 
