@@ -7,6 +7,7 @@ view: adv_gl_financial_summary_pdt {
   acct_chart_of_accounts.minorgroup_rank  AS "minor_group_rank",
   acct_chart_of_accounts.minorgroup AS "minor_group",
   Advent_GL_detail.accountnumber,
+  Advent_Chart_of_Accounts.accounttitle,
   f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) as "division",
   nvl(div.division_name,'UNKNOWN') as Division_Name,
   nvl(div.division_rank,99) as Division_rank,
@@ -73,18 +74,42 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
     sql: ${TABLE}.minor_group_rank ;;
   }
 
-  dimension: account_number {
+  dimension: full_account_number {
     type: string
     sql: ${TABLE}.accountnumber ;;
   }
+
+
 
   dimension: division {
     type: string
     sql: ${TABLE}.division ;;
   }
 
+  dimension: division_name {
+    type: string
+    order_by_field: division_rank
+    sql: ${TABLE}.division_name ;;
+  }
+
+  dimension: division_rank {
+    type: number
+    sql: ${TABLE}.division_rank ;;
+  }
+
   dimension: location {
     type: string
+    sql: ${TABLE}.location ;;
+  }
+
+  dimension: location_name {
+    type: string
+    order_by_field: location_rank
+    sql: ${TABLE}.location_name ;;
+  }
+
+  dimension: location_rank {
+    type: number
     sql: ${TABLE}.location ;;
   }
 
@@ -93,8 +118,19 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
     sql: ${TABLE}.department ;;
   }
 
-  dimension: account {
+  dimension: department_name {
     type: string
+    order_by_field: department_rank
+    sql: ${TABLE}.department_name ;;
+  }
+
+  dimension: department_rank {
+    type: number
+    sql: ${TABLE}.department_rank ;;
+  }
+
+  dimension: account {
+    type: number
     sql: ${TABLE}.account ;;
   }
 
@@ -103,6 +139,7 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
     order_by_field: account
     sql: ${TABLE}.account_name ;;
   }
+
 
   dimension: typical_balance {
     type: string
