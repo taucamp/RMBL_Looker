@@ -8,8 +8,14 @@ view: adv_gl_financial_summary_pdt {
   acct_chart_of_accounts.minorgroup AS "minor_group",
   Advent_GL_detail.accountnumber,
   f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) as "division",
+  nvl(div.division_name,'UNKNOWN') as Division_Name,
+  nvl(div.division_rank,99) as Division_rank,
   f_sql_adv_acct_to_location(Advent_GL_detail.accountnumber) as "location",
+  nvl(loc.location_name, 'Unknown') as location_name,
+  nvl(loc.location_rank,99) as location_rank,
   f_sql_adv_acct_to_department(Advent_GL_detail.accountnumber) as "department",
+  nvl(dept.department_name,'Unknown') as department_name,
+  nvl(dept.department_rank,99) as department_rank,
   acct_chart_of_accounts.accountnumber  AS "account",
   acct_chart_of_accounts.account  AS "account_name",
   typical_balance,
@@ -26,10 +32,15 @@ FROM
 LEFT JOIN public.adv_gldetail  AS Advent_GL_detail ON a.firstdayofmonth1 >= f_sql_date_to_first_day_of_month(Advent_GL_detail.accounting_date::date)
 LEFT JOIN public.adv_glchart  AS Advent_Chart_of_Accounts ON Advent_Chart_of_Accounts.accountnumber=Advent_GL_detail.accountnumber
 LEFT JOIN tomtest.chartofaccounts  AS acct_chart_of_accounts ON acct_chart_of_accounts.accountnumber=split_part(Advent_Chart_of_Accounts.accountnumber,'.',1)
+LEFT JOIN tomtest.acct_division as Div on f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) = div.division_id
+LEFT JOIN tomtest.acct_locations as Loc on f_sql_adv_acct_to_location(Advent_GL_detail.accountnumber) = loc.location_id
+LEFT JOIN tomtest.acct_department as Dept on f_sql_adv_acct_to_department(Advent_GL_detail.accountnumber) = dept.department_id
 
 WHERE (document_info <> 'AUTOMATIC BALFWD' and control <> 'NOT APPLICABLE')
 -- WHERE red_dimdate.firstdayofmonth1 > '2017-12-31'
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14    ;;
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+
+    ;;
 
     datagroup_trigger: financial_datagroup
     distribution_style: all
