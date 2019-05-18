@@ -211,7 +211,7 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure: total_pay_per {
+  measure: cumulative_pay_per_periods{
     type: running_total
     value_format_name: usd_0
     sql: ${pay_per_period} ;;
