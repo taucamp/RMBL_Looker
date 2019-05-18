@@ -167,9 +167,25 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure:  pay_change{
+  measure:  pay_per_period{
     type: sum
+    value_format_name: usd_0
     sql: ${current_salary};;
+    drill_fields: [Employee_Drillthrough*]
+  }
+
+  measure:  net_pay_change{
+    type: sum
+    value_format_name: usd_0
+    sql: ${current_salary};;
+    filters:{
+      field: statuschange
+      value: "Hire"
+    }
+    filters:{
+      field: statuschange
+      value: "Terminiation"
+    }
     drill_fields: [Employee_Drillthrough*]
   }
 
@@ -195,10 +211,10 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure: total_pay {
+  measure: total_pay_per {
     type: running_total
     value_format_name: usd_0
-    sql: ${pay_change} ;;
+    sql: ${pay_per_period} ;;
     drill_fields: [Employee_Drillthrough*]
   }
 
