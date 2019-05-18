@@ -167,14 +167,14 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure:  pay_per_period{
+  measure:  total_salary{
     type: sum
     value_format_name: usd_0
     sql: ${current_salary};;
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure:  net_pay_change{
+  measure:  net_change_in_salary{
     type: sum
     value_format_name: usd_0
     sql: ${current_salary};;
@@ -189,7 +189,7 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure:  hires_pay{
+  measure:  hires_salary{
     type: sum
     value_format_name: usd_0
     sql:  ${current_salary};;
@@ -200,7 +200,7 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure:  departures_pay{
+  measure:  departures_salary{
     type: sum
     value_format_name: usd_0
     sql:  ${current_salary} ;;
@@ -211,11 +211,6 @@ view: employee_walk {
     drill_fields: [Employee_Drillthrough*]
   }
 
-  measure: cumulative_pay_per_periods{
-    type: running_total
-    value_format_name: usd_0
-    sql: ${pay_per_period} ;;
-    drill_fields: [Employee_Drillthrough*]
-  }
+
 
 }
