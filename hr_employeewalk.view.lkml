@@ -225,7 +225,7 @@ view: employee_walk {
 
 
   measure: total_life_to_date_headcount {
-    type: number  #this should technically be runningtotal
+    type: running_total  #this should technically be runningtotal
     filters: {
       field: satisfies_life_to_date_filter_month
       value: "yes"
