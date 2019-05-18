@@ -213,4 +213,30 @@ view: employee_walk {
 
 
 
+  filter: life_to_date_filter_month{
+    type: date
+  }
+
+  dimension: satisfies_life_to_date_filter_month {
+    type: yesno
+    hidden: yes
+    sql: {% condition life_to_date_filter_month %} ${datechange_month} {% endcondition %} ;;
+  }
+
+
+  measure: total_life_to_date_headcount {
+    type: running_total
+    filters: {
+      field: satisfies_life_to_date_filter_month
+      value: "yes"
+    }
+    sql: ${headcount_change} ;;
+    drill_fields: [Employee_Drillthrough*]
+  }
+
+
+#   NOT (${employee_walk.total_life_to_date_headcount}=0 OR is_null(${employee_walk.headcount_change}))
+
+#   NOT (${Advent_GL_detail.months_date}=0 OR is_null(${Advent_GL_detail.total_amount}))
+
 }
