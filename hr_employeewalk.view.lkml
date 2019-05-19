@@ -229,7 +229,7 @@ view: employee_walk {
       field: satisfies_life_to_date_filter_month
       value: "yes"
     }
-    sql:'1' ;;
+    sql:1 ;;
   }
 
 }
