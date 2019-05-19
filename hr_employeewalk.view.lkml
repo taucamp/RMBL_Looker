@@ -223,7 +223,7 @@ view: employee_walk {
     sql: {% condition life_to_date_filter_month %} ${datechange_month} {% endcondition %} ;;
   }
 
-  measure: months_date_statisfies_filter {
+  measure: months_date_satisfies_filter {
     type: sum
     filters: {
       field: satisfies_life_to_date_filter_month
