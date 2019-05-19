@@ -232,7 +232,7 @@ view: employee_walk {
       field: satisfies_life_to_date_filter_month
       value: "yes"
     }
-    sql:${employeecountchange} ;;
+    sql:1 ;;
   }
 
 }
