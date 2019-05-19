@@ -223,20 +223,13 @@ view: employee_walk {
     sql: {% condition life_to_date_filter_month %} ${datechange_month} {% endcondition %} ;;
   }
 
-
-  measure: total_life_to_date_headcount {
-    type: running_total  #this should technically be runningtotal
+  measure: months_date_statisfies_life_to_date_filter {
+    type: sum
     filters: {
       field: satisfies_life_to_date_filter_month
       value: "yes"
     }
-    sql: ${headcount_change} ;;
-    drill_fields: [Employee_Drillthrough*]
+    sql:'1' ;;
   }
-
-
-#   NOT (${employee_walk.total_life_to_date_headcount}=0 OR is_null(${employee_walk.headcount_change}))
-
-#   NOT (${Advent_GL_detail.months_date}=0 OR is_null(${Advent_GL_detail.total_amount}))
 
 }
