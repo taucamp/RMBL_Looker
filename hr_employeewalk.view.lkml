@@ -31,7 +31,7 @@ view: employee_walk {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.datechange ;;
+    sql: case when ${TABLE}.datechange < '2017-04-01' then '2017-04-01' else ${TABLE}.datechange end ;;
   }
 
 
@@ -49,7 +49,7 @@ view: employee_walk {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.departure_date ;;
+    sql: case when ${TABLE}.departure_date < '2017-04-01' then '2017-04-01' else ${TABLE}.departure_date end ;;
   }
 
 
@@ -110,7 +110,7 @@ view: employee_walk {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.start_date ;;
+    sql: case when ${TABLE}.start_date < '2017-04-01' then '2017-04-01' else ${TABLE}.start_date end ;;
   }
 
   dimension: statuschange {
