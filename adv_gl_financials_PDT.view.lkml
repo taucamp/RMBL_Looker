@@ -87,7 +87,6 @@ order by accounting_month desc
       type: string
       sql: ${TABLE}.minor_group ;;
       order_by_field: minor_group_rank_pdt
-
     }
 
     dimension: minor_group_rank_pdt {
@@ -187,7 +186,27 @@ order by accounting_month desc
       sql: ${TABLE}.financials_multiplier ;;
     }
 
-    dimension_group: accounting_month {
+  dimension: is_balance_sheet_acct {
+    type: string
+    sql: ${TABLE}.is_bal_sheet_acct ;;
+  }
+
+  dimension: accounting_year {
+    type: number
+    sql: ${TABLE}.accounting_year ;;
+  }
+
+  dimension: quarter_of_year {
+    type: number
+    sql: ${TABLE}.qtr_of_year ;;
+  }
+
+  dimension: month_of_year {
+    type: number
+    sql: ${TABLE}.month_of_year ;;
+  }
+
+  dimension_group: accounting_month {
       type: time
       hidden: no
       timeframes: [
@@ -199,56 +218,133 @@ order by accounting_month desc
       sql: ${TABLE}.accounting_month ;;
     }
 
-    dimension_group: accounting_year   {
-      type: time
-      hidden: no
-      timeframes: [
-        date,
-        month,
-        quarter,
-        year
-      ]
-      sql: ${TABLE}.accounting_year ;;
-    }
-    dimension: is_balance_sheet_acct {
-      type: string
-      sql: ${TABLE}.is_bal_sheet_acct ;;
-    }
 
-    dimension: period_amount {
-      type: number
+
+    #   Monthly information
+    measure: current_month_amount {
+      type: sum
       value_format_name: usd
-      sql: ${TABLE}.period_amount ;;
+      sql: ${TABLE}.current_month_amount ;;
     }
 
-    # dimension: life_to_date_amount {
-    #   type: number
-    #   value_format_name: usd
-    #   sql: ${TABLE}.ltd_amount ;;
-    # }
+  measure: current_month_debit {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_month_debit ;;
+  }
 
-#     measure: total_period_amount {
-#       type: count
-#       value_format_name: usd
-#       sql: ${period_amount} ;;
-#     }
+  measure: current_month_credit {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_month_credit ;;
+  }
 
-    # measure:LTD_Amount {
-    #   type: sum
-    #   value_format_name: usd
-    #   sql: ${life_to_date_amount} ;;
-    # }
+  measure: current_month_financials_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_month_financials_amount ;;
+  }
 
-#     measure: total_period_amount_fin {
-#       type: sum
-#       value_format_name: usd
-#       sql: ${period_amount}*${financials_multiplier} ;;
-#     }
 
-    # measure:LTD_Amount_fin {
-    #   type: sum
-    #   value_format_name: usd
-    #   sql: ${life_to_date_amount}*${financials_multiplier} ;;
-    # }
+
+#   Qtrly information
+  measure: current_qtr_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_qtr_amount ;;
+  }
+
+  measure: current_qtr_debit {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_qtr_debit ;;
+  }
+
+  measure: current_qtr_credit {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_qtr_credit ;;
+  }
+
+  measure: current_qtr_financials_amount {
+    type: number
+    value_format_name: usd
+    sql: ${TABLE}.current_qtr_financials_amount ;;
+  }
+
+
+
+  #   Qtrly information
+  measure: current_year_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_year_amount ;;
+  }
+
+  measure: current_year_debit {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_year_debit ;;
+  }
+
+  measure: current_year_credit {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_year_credit ;;
+  }
+
+  measure: current_year_financials_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_year_financials_amount ;;
+  }
+
+
+
+#   MTD Measures
+  measure: current_MTD_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_MTD_amount ;;
+  }
+
+  measure: current_MTD_financials_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_MTD_financials_amount ;;
+  }
+
+
+
+#   QTD Measures
+  measure: current_QTD_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_QTD_amount ;;
+  }
+
+  measure: current_QTD_financials_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_QTD_financials_amount ;;
+  }
+
+
+
+
+#   YTD Measures
+  measure: current_YTD_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_YTD_amount ;;
+  }
+
+  measure: current_YTD_financials_amount {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.current_YTD_financials_amount ;;
+  }
+
+
 
   }
