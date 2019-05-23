@@ -74,6 +74,10 @@ explore: Financials {
     from: adv_gl_financial_summary_pdt
 }
 
+explore: Financials_LTD {
+  from: adv_gl_financials_pdt
+}
+
 
 explore: ref_dimdate {
     join: Advent_GL_detail{
