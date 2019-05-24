@@ -1,28 +1,14 @@
 connection: "redshift"
 
-include: "*.view.lkml"                       # include all views in this project
+include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
 
 datagroup: financial_datagroup {
 #   sql_trigger: SELECT DATE_PART('hour', GETDATE()) ;;
-  sql_trigger: select max("__updatetime")from adv_gldetail ;;
+  sql_trigger: SELECT max("__updatetime") FROM adv_gldetail ;;
   max_cache_age: "24 hours"
 }
+
 
 explore: Advent_GL_detail {
     join: Advent_Chart_of_Accounts {
@@ -48,9 +34,7 @@ explore: Advent_GL_detail {
   join: adv_users {
     sql_on: ${adv_users.user} = @${Advent_GL_detail.user_who_entered};;
   }
-
 }
-
 
 
 explore: Schedules {
@@ -80,9 +64,8 @@ explore: Financials_LTD {
 
 
 explore: ref_dimdate {
-    join: Advent_GL_detail{
-     relationship: many_to_one
+    join: Advent_GL_detail {
+      relationship: many_to_one
       sql_on: ${Advent_GL_detail.accounting_date_month}<=${ref_dimdate.date_month} ;;
     }
-
 }

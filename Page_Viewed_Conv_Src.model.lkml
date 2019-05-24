@@ -1,22 +1,7 @@
 connection: "redshift"
 
-include: "*.view.lkml"                       # include all views in this project
+include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
 
 
 view: sql_runner_query {
@@ -28,8 +13,7 @@ view: sql_runner_query {
       CASE WHEN pv_src IS NULL THEN pv_ref ELSE pv_src END AS CampaignSrc,
       c.anonymous_id as c_aid,c.event_text as c_evt, c.received_at as c_time, c.appraisal_ref as c_apr
       FROM rumbleon.page_viewed AS p
-      JOIN rumbleon.cash_offer_completed AS c ON p.anonymous_id  = c.anonymous_id;
-       ;;
+      JOIN rumbleon.cash_offer_completed AS c ON p.anonymous_id  = c.anonymous_id ;;
   }
 
   measure: count {

@@ -1,6 +1,12 @@
 view: apr_appraisal {
   sql_table_name: public.rumble_AprAppraisal ;;
 
+  dimension: appraisal_id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.AppraisalId ;;
+  }
+
   dimension: account_id {
     type: number
     hidden: yes
@@ -11,12 +17,6 @@ view: apr_appraisal {
     type: string
     hidden: yes
     sql: ${TABLE}.AdventOpportunityGuid ;;
-  }
-
-  dimension: appraisal_id {
-    primary_key:yes
-    type: number
-    sql: ${TABLE}.AppraisalId ;;
   }
 
   dimension: appraisal_offer_id {
@@ -723,6 +723,16 @@ view: apr_appraisal {
     sql: ${TABLE}.Owner2Address1 ;;
   }
 
+  dimension: owner2_address {
+    hidden: yes
+    type: string
+    sql:  CASE
+            WHEN ${owner2_address2} IS NOT NULL
+              THEN ${owner_address1} || ' ' || ${owner_address2}
+            ELSE ${owner2_address1}
+          END ;;
+  }
+
   dimension: owner2_address2 {
     type: string
     sql: ${TABLE}.Owner2Address2 ;;
@@ -731,11 +741,13 @@ view: apr_appraisal {
   dimension: owner2_city {
     type: string
     sql: ${TABLE}.Owner2City ;;
+    drill_fields: [owner2_zip, owner2_address]
   }
 
   dimension: owner2_country {
     type: string
     sql: ${TABLE}.Owner2Country ;;
+    drill_fields: [owner2_state, owner2_city, owner2_zip, owner2_address]
   }
 
   dimension: owner2_email {
@@ -766,11 +778,13 @@ view: apr_appraisal {
   dimension: owner2_state {
     type: string
     sql: ${TABLE}.Owner2State ;;
+    drill_fields: [owner2_city, owner2_zip, owner2_address]
   }
 
   dimension: owner2_zip {
     type: string
     sql: ${TABLE}.Owner2Zip ;;
+    drill_fields: [owner2_address]
   }
 
   dimension: owner_address1 {
@@ -783,14 +797,26 @@ view: apr_appraisal {
     sql: ${TABLE}.OwnerAddress2 ;;
   }
 
+  dimension: owner_address {
+    hidden: yes
+    type: string
+    sql:  CASE
+            WHEN ${owner_address2} IS NOT NULL
+              THEN ${owner_address1} || ' ' || ${owner_address2}
+            ELSE ${owner_address1}
+          END ;;
+  }
+
   dimension: owner_city {
     type: string
     sql: ${TABLE}.OwnerCity ;;
+    drill_fields: [owner_zip, owner_address]
   }
 
   dimension: owner_country {
     type: string
     sql: ${TABLE}.OwnerCountry ;;
+    drill_fields: [owner_state, owner_city, owner_zip, owner_address]
   }
 
   dimension: owner_email {
@@ -821,11 +847,13 @@ view: apr_appraisal {
   dimension: owner_state {
     type: string
     sql: ${TABLE}.OwnerState ;;
+    drill_fields: [owner_city, owner_zip, owner_address]
   }
 
   dimension: owner_zip {
     type: string
     sql: ${TABLE}.OwnerZip ;;
+    drill_fields: [owner_address]
   }
 
   dimension: payment_amount {
@@ -972,6 +1000,16 @@ view: apr_appraisal {
     sql: ${TABLE}.PickupAddress2 ;;
   }
 
+  dimension: pickup_address {
+    hidden: yes
+    type: string
+    sql:  CASE
+            WHEN ${pickup_address1} IS NOT NULL
+              THEN ${pickup_address1} || ' ' || ${pickup_address2}
+            ELSE ${pickup_address1}
+          END ;;
+  }
+
   dimension: pickup_address_different {
     type: string
     sql: ${TABLE}.PickupAddressDifferent ;;
@@ -980,6 +1018,7 @@ view: apr_appraisal {
   dimension: pickup_city {
     type: string
     sql: ${TABLE}.PickupCity ;;
+    drill_fields: [pickup_zip, pickup_address]
   }
 
   dimension: pickup_contact {
@@ -995,6 +1034,7 @@ view: apr_appraisal {
   dimension: pickup_country {
     type: string
     sql: ${TABLE}.PickupCountry ;;
+    drill_fields: [pickup_state, pickup_city, pickup_zip, pickup_address]
   }
 
   dimension: pickup_email {
@@ -1020,11 +1060,13 @@ view: apr_appraisal {
   dimension: pickup_state {
     type: string
     sql: ${TABLE}.PickupState ;;
+    drill_fields: [pickup_city, pickup_zip, pickup_address]
   }
 
   dimension: pickup_zip {
     type: string
     sql: ${TABLE}.PickupZip ;;
+    drill_fields: [pickup_address]
   }
 
   dimension: preferred_contact_method {
