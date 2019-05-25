@@ -1,10 +1,6 @@
 view: inv_item {
   sql_table_name: public.rumble_InvItem ;;
 
-  dimension: accessories {
-    type: string
-    sql: ${TABLE}.Accessories ;;
-  }
 
   dimension: account_id {
     type: number
@@ -26,24 +22,25 @@ view: inv_item {
     sql: ${TABLE}.AppraisalId ;;
   }
 
-  dimension: auction_buy_now_price {
+    dimension: auction_buy_now_price {
     type: number
     sql: ${TABLE}.AuctionBuyNowPrice ;;
   }
 
-  dimension: availability {
+  dimension: auction_sale_fee {
     type: number
-    sql: ${TABLE}.Availability ;;
+    sql: ${TABLE}.auctionsalefee ;;
   }
+
 
   dimension: avl_status {
     type: number
     sql: ${TABLE}.AvlStatus ;;
   }
 
-  dimension: base64_image {
+  dimension: blue_book_bmodelid {
     type: string
-    sql: ${TABLE}.Base64Image ;;
+    sql: ${TABLE}.bbmodelid ;;
   }
 
   dimension: body_style {
@@ -71,15 +68,15 @@ view: inv_item {
     sql: ${TABLE}.BookDate ;;
   }
 
-  dimension: bore {
-    type: string
-    sql: ${TABLE}.Bore ;;
-  }
-
-  dimension: bucket_code {
-    type: string
-    sql: ${TABLE}.BucketCode ;;
-  }
+#   dimension: bore {
+#     type: string
+#     sql: ${TABLE}.Bore ;;
+#   }
+#
+#   dimension: bucket_code {
+#     type: string
+#     sql: ${TABLE}.BucketCode ;;
+#   }
 
   dimension: bucket_id {
     type: number
