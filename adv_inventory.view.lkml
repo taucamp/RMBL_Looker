@@ -135,7 +135,7 @@ view: adv_inventory {
 
   dimension: gl_account {
     type: string
-    sql: ${TABLE}${gl_account} ;;
+    sql: ${TABLE}.gl_account ;;
   }
 
   dimension: gl_account_location {
