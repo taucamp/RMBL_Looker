@@ -56,6 +56,10 @@ view: adv_inventory {
 #     sql: ${TABLE}.__updatetime ;;
 #   }
 
+  dimension: appraisal_id {
+    type: string
+    sql: ${TABLE}.appraisalid ;;
+  }
   dimension: color {
     type: string
     sql: ${TABLE}.color1 ;;
@@ -123,10 +127,28 @@ view: adv_inventory {
     sql: f_sql_parse_inv_equipment2_date(${TABLE}.equipment2) ;;
   }
 
-  dimension: equipment3 {
+  dimension: floorplan_info {
     type: string
     sql: ${TABLE}.equipment3 ;;
   }
+
+
+  dimension: gl_account {
+    type: string
+    sql: ${gl_account} ;;
+  }
+
+  dimension: gl_account_location {
+    type: string
+    sql: right(left(${gl_account},7)2) ;;
+  }
+
+
+  dimension: grade {
+    type: string
+    sql: ${TABLE}.grade ;;
+  }
+
 
   dimension: inventory_status {
     type: string
@@ -171,6 +193,18 @@ view: adv_inventory {
     type: string
     sql: f_sql_inventory_origin(${TABLE}.orig);;
   }
+
+  dimension: payoff_to {
+    type: string
+    sql: ${payoff_to};;
+  }
+
+
+  dimension: received_from {
+    type: string
+    sql: ${received_from};;
+  }
+
 
   dimension_group: date_received {
     type: time
@@ -230,6 +264,11 @@ view: adv_inventory {
       year
     ]
     sql: ${TABLE}."run time" ;;
+  }
+
+  dimension: ship {
+    type: string
+    sql: ${TABLE}.ship ;;
   }
 
   dimension: sold_status {
