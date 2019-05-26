@@ -48,11 +48,6 @@ explore: Inventory {
       sql_on: ${inv_stock_type.stock_type_id} = ${}inv_item.stock_type_id} ;;
     }
 
-  join: apr_item_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${item_type_id} = ${apr_item_type.item_type_id} ;;
-  }
 
     join: org_location {
     type: left_outer

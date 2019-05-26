@@ -38,7 +38,7 @@ view: inv_item {
     sql: ${TABLE}.AvlStatus ;;
   }
 
-  dimension: blue_book_bmodelid {
+  dimension: blue_book_modelid {
     type: string
     sql: ${TABLE}.bbmodelid ;;
   }
@@ -741,7 +741,7 @@ view: inv_item {
 
   dimension: picked_up_user_id {
     type: number
-    sql: ${TABLE}.PickedUpUserId ;;
+    sql: ${TABLE}.PickedpUserId ;;
   }
 
   dimension: pickup_address1 {
@@ -812,6 +812,12 @@ view: inv_item {
     type: string
     sql: ${TABLE}.PulledBookValues ;;
   }
+
+  dimension: purchase_type {
+    type: string
+    sql: ${TABLE}.purchasetype ;;
+  }
+
 
   dimension: rake_trail {
     type: string
