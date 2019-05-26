@@ -590,6 +590,11 @@ view: inv_item {
     sql: ${TABLE}.ItemStatusId ;;
   }
 
+  dimension: item_type_id {
+    type: number
+    sql: ${TABLE}.invitemtypeid ;;
+  }
+
   dimension: item_year {
     type: number
     sql: ${TABLE}.ItemYear ;;
