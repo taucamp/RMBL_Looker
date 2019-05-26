@@ -54,8 +54,7 @@ explore: Inventory {
     sql_on: ${item_type_id} = ${apr_item_type.item_type_id} ;;
   }
 
-
-  join: org_location {
+    join: org_location {
     type: left_outer
     relationship: many_to_one
     sql_on: ${inv_item.location_id} = ${org_location.location_id};;
