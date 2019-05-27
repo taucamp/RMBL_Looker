@@ -1,14 +1,16 @@
-view: rumble_invitem_bookdata_times {
+view: inv_item_bookdata_times {
   sql_table_name: public.rumble_invitem_bookdata_times ;;
 
   dimension: id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: __senttime {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -23,6 +25,7 @@ view: rumble_invitem_bookdata_times {
 
   dimension_group: __updatetime {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -35,68 +38,68 @@ view: rumble_invitem_bookdata_times {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: avgmileshours {
+  dimension: avg_miles_hours {
     type: number
     sql: ${TABLE}.avgmileshours ;;
   }
 
-  dimension: avgsale {
+  dimension: avg_sale {
     type: number
     sql: ${TABLE}.avgsale ;;
   }
 
-  dimension: avgscore {
+  dimension: avg_score {
     type: number
     sql: ${TABLE}.avgscore ;;
   }
 
-  dimension: maxmileshours {
+  dimension: max_mile_shours {
     type: number
     sql: ${TABLE}.maxmileshours ;;
   }
 
-  dimension: maxsale {
+  dimension: max_sale {
     type: number
     sql: ${TABLE}.maxsale ;;
   }
 
-  dimension: maxscore {
+  dimension: max_score {
     type: number
     sql: ${TABLE}.maxscore ;;
   }
 
-  dimension: minmileshours {
+  dimension: min_miles_hours {
     type: number
     sql: ${TABLE}.minmileshours ;;
   }
 
-  dimension: minsale {
+  dimension: min_sale {
     type: number
     sql: ${TABLE}.minsale ;;
   }
 
-  dimension: minscore {
+  dimension: min_score {
     type: number
     sql: ${TABLE}.minscore ;;
   }
 
-  dimension: numunits {
+  dimension: num_units {
     type: number
     sql: ${TABLE}.numunits ;;
   }
 
   dimension: rumble_invitem_bookdata_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.rumble_invitem_bookdata_id ;;
   }
 
-  dimension: salemonth {
+  dimension: sale_month {
     type: number
     sql: ${TABLE}.salemonth ;;
   }
 
-  dimension: saleyear {
+  dimension: sale_year {
     type: number
     sql: ${TABLE}.saleyear ;;
   }
