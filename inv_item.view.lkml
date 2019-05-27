@@ -556,7 +556,7 @@ view: inv_item {
 
   dimension: is_decoded {
     type: yesno
-    sql: ${TABLE}.IsDecoded ;;
+    sql: nvl(${TABLE}.IsDecoded,0) ;;
   }
 
   dimension: is_location_set_manually {
