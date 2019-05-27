@@ -1,4 +1,4 @@
-view: pages {
+view: seg_pages {
   sql_table_name: rumbleonv3.pages ;;
 
   dimension: id {

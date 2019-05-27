@@ -1,4 +1,4 @@
-view: application_opened {
+view: seg_application_opened {
   sql_table_name: rumbleonv3.application_opened ;;
 
   dimension: id {

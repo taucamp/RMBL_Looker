@@ -1,4 +1,4 @@
-view: buy_trade_started {
+view: seg_buy_trade_started {
   sql_table_name: rumbleonv3.buy_trade_started ;;
 
   dimension: id {

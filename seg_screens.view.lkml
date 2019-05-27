@@ -1,4 +1,4 @@
-view: screens {
+view: seg_screens {
   sql_table_name: rumbleonv3.screens ;;
 
   dimension: id {

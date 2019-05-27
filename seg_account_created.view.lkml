@@ -1,4 +1,4 @@
-view: account_created {
+view: seg_account_created {
   sql_table_name: rumbleonv3.account_created ;;
 
   dimension: id {

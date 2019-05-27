@@ -1,4 +1,4 @@
-view: sell_vin_decode_confirmed {
+view: seg_sell_vin_decode_confirmed {
   sql_table_name: rumbleonv3.sell_vin_decode_confirmed ;;
 
   dimension: id {

@@ -1,4 +1,4 @@
-view: sell_cash_offer_completed {
+view: seg_sell_cash_offer_completed {
   sql_table_name: rumbleonv3.sell_cash_offer_completed ;;
 
   dimension: id {

@@ -1,4 +1,4 @@
-view: sell_vin_decode_failed {
+view: seg_sell_vin_decode_failed {
   sql_table_name: rumbleonv3.sell_vin_decode_failed ;;
 
   dimension: id {

@@ -1,4 +1,4 @@
-view: buy_payment_intiated {
+view: seg_buy_payment_intiated {
   sql_table_name: rumbleonv3.buy_payment_intiated ;;
 
   dimension: id {

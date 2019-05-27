@@ -1,4 +1,4 @@
-view: buy_vehicle_viewed {
+view: seg_buy_vehicle_viewed {
   sql_table_name: rumbleonv3.buy_vehicle_viewed ;;
 
   dimension: id {

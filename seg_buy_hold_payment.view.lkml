@@ -1,4 +1,4 @@
-view: buy_hold_payment {
+view: seg_buy_hold_payment {
   sql_table_name: rumbleonv3.buy_hold_payment ;;
 
   dimension: id {

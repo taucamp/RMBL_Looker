@@ -1,4 +1,4 @@
-view: buy_vehicle_added_to_favorites {
+view: seg_buy_vehicle_added_to_favorites {
   sql_table_name: rumbleonv3.buy_vehicle_added_to_favorites ;;
 
   dimension: id {

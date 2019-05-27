@@ -1,4 +1,4 @@
-view: sell_vehicle_photos_submitted {
+view: seg_sell_vehicle_photos_submitted {
   sql_table_name: rumbleonv3.sell_vehicle_photos_submitted ;;
 
   dimension: id {

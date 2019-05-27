@@ -1,4 +1,4 @@
-view: buy_hold_continue {
+view: seg_buy_hold_continue {
   sql_table_name: rumbleonv3.buy_hold_continue ;;
 
   dimension: id {

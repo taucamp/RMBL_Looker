@@ -1,4 +1,4 @@
-view: identifies {
+view: seg_identifies {
   sql_table_name: rumbleonv3.identifies ;;
 
   dimension: id {
