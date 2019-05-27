@@ -534,8 +534,15 @@ view: inv_item {
     sql: ${TABLE}.IsActive ;;
   }
 
-  dimension: is_book_value_pulled {
+  dimension: is_auction_photo_sent {
     type: yesno
+    hidden: yes
+    sql: ${TABLE}.IsAuctionPhotoSent ;;
+  }
+
+    dimension: is_book_value_pulled {
+    type: yesno
+    hidden: yes
     sql: ${TABLE}.IsBookValuePulled ;;
   }
 
@@ -556,7 +563,8 @@ view: inv_item {
 
   dimension: is_decoded {
     type: yesno
-    sql: nvl(${TABLE}.IsDecoded,0) ;;
+    hidden:yes
+    sql: ${TABLE}.IsDecoded ;;
   }
 
   dimension: is_location_set_manually {
