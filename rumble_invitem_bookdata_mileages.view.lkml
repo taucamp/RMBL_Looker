@@ -1,9 +1,10 @@
-view: rumble_invitem_bookdata_mileages {
+view: inv_item_bookdata_mileages {
   sql_table_name: public.rumble_invitem_bookdata_mileages ;;
 
   dimension: id {
     primary_key: yes
     type: string
+    hidden:yes
     sql: ${TABLE}.id ;;
   }
 
@@ -23,6 +24,7 @@ view: rumble_invitem_bookdata_mileages {
 
   dimension_group: __updatetime {
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -72,7 +74,7 @@ view: rumble_invitem_bookdata_mileages {
 
   dimension: rumble_invitem_bookdata_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.rumble_invitem_bookdata_id ;;
   }
 
