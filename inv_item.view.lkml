@@ -530,47 +530,47 @@ view: inv_item {
   }
 
   dimension: is_active {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsActive ;;
   }
 
   dimension: is_book_value_pulled {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsBookValuePulled ;;
   }
 
   dimension: is_certified_photos {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsCertifiedPhotos ;;
   }
 
   dimension: is_checked_out {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsCheckedOut ;;
   }
 
   dimension: is_consignment {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsConsignment ;;
   }
 
   dimension: is_decoded {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsDecoded ;;
   }
 
   dimension: is_location_set_manually {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsLocationSetManually ;;
   }
 
   dimension: is_pay_pal {
-    type: number
+    type: yesno
     sql: ${TABLE}.IsPayPal ;;
   }
 
   dimension: is_processed {
-    type: string
+    type: yesno
     sql: ${TABLE}.IsProcessed ;;
   }
 
