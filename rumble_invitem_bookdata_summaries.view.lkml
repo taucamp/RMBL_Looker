@@ -1,4 +1,4 @@
-view: rumble_invitem_bookdata_summaries {
+view: inv_item_bookdata_summaries {
   sql_table_name: public.rumble_invitem_bookdata_summaries ;;
 
   dimension: id {

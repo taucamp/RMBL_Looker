@@ -60,7 +60,7 @@ view: inv_item_bookdata {
 
     dimension: vf_avg_score {
     type: number
-    sql: ${TABLE}.vfavgscore ;;
+    sql: nvl(${TABLE}.vfavgscore,0) ;;
   }
 
   dimension: vf_avg_score_is_not_null {
@@ -70,7 +70,7 @@ view: inv_item_bookdata {
 
     dimension: vf_avg_value {
     type: number
-    sql: ${TABLE}.vfavgvalue ;;
+    sql: nvl(${TABLE}.vfavgvalue,0) ;;
   }
 
   dimension: vf_avg_value_is_not_null {
@@ -80,7 +80,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_avg_retail {
     type: number
-    sql: ${TABLE}.vfbb_avgretail ;;
+    sql: nvl(${TABLE}.vfbb_avgretail,0) ;;
   }
 
   dimension: vfbb_avgretail_is_not_null {
@@ -90,7 +90,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_avg_wholesale {
     type: number
-    sql: ${TABLE}.vfbb_avgwholesale ;;
+    sql: nvl(${TABLE}.vfbb_avgwholesale,0) ;;
   }
 
   dimension: vfbb_avg_wholesale_is_not_null {
@@ -100,7 +100,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_clean_wholesale {
     type: number
-    sql: ${TABLE}.vfbb_cleanwholesale ;;
+    sql: nvl(${TABLE}.vfbb_cleanwholesale,0 ;;
   }
 
   dimension: vfbb_clean_wholesale_is_not_null {
@@ -110,7 +110,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_equipped_retail {
     type: number
-    sql: ${TABLE}.vfbb_equippedretail ;;
+    sql: nvl(${TABLE}.vfbb_equippedretail,0) ;;
   }
 
   dimension: vfbb_equipped_retail_is_not_null {
@@ -120,7 +120,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_msrp {
     type: number
-    sql: ${TABLE}.vfbb_msrp ;;
+    sql: nvl(${TABLE}.vfbb_msrp,0);;
   }
 
   dimension: vfbb_msrp_is_not_null {
@@ -130,7 +130,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_roughwholesale {
     type: number
-    sql: ${TABLE}.vfbb_roughwholesale ;;
+    sql: nvl(${TABLE}.vfbb_roughwholesale,0) ;;
   }
 
   dimension: vfbb_roughwholesale_is_not_null {
@@ -140,7 +140,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_trade_in_clean {
     type: number
-    sql: ${TABLE}.vfbb_tradeinclean ;;
+    sql: nvl(${TABLE}.vfbb_tradeinclean,0) ;;
   }
 
   dimension: vfbb_trade_in_clean_is_not_null {
@@ -150,7 +150,7 @@ view: inv_item_bookdata {
 
   dimension: vfbb_trade_in_fair {
     type: number
-    sql: ${TABLE}.vfbb_tradeinfair ;;
+    sql: nvl(${TABLE}.vfbb_tradeinfair,0) ;;
   }
 
   dimension: vfbb_trade_in_fair_is_not_null {
@@ -160,7 +160,7 @@ view: inv_item_bookdata {
 
   dimension: vfkbb_list_price {
     type: number
-    sql: ${TABLE}.vfkbb_listprice ;;
+    sql: nvl(${TABLE}.vfkbb_listprice,0) ;;
   }
 
   dimension: vfkbb_list_price_is_not_null {
@@ -170,7 +170,7 @@ view: inv_item_bookdata {
 
   dimension: vfkbb_suggested_retail {
     type: number
-    sql: ${TABLE}.vfkbb_suggestedretail ;;
+    sql: nvl(${TABLE}.vfkbb_suggestedretail,0) ;;
   }
 
   dimension: vfkbb_suggested_retail_is_not_null {
@@ -180,7 +180,7 @@ view: inv_item_bookdata {
 
   dimension: vfkbb_wholesale_avg {
     type: number
-    sql: ${TABLE}.vfkbb_wholesaleavg ;;
+    sql: nvl(${TABLE}.vfkbb_wholesaleavg,0) ;;
   }
 
   dimension: vfkbb_wholesale_avg_is_not_null {
@@ -190,7 +190,7 @@ view: inv_item_bookdata {
 
   dimension: vfmanheim_retail_above {
     type: number
-    sql: ${TABLE}.vfmanheim_retail_above ;;
+    sql: nvl(${TABLE}.vfmanheim_retail_above,0) ;;
   }
 
   dimension: vfmanheim_retail_above_is_not_null {
@@ -200,7 +200,7 @@ view: inv_item_bookdata {
 
   dimension: vfmanheim_retail_average {
     type: number
-    sql: ${TABLE}.vfmanheim_retail_average ;;
+    sql: nvl(${TABLE}.vfmanheim_retail_average,0) ;;
   }
 
   dimension: vfmanheim_retail_average_is_not_null {
@@ -210,7 +210,7 @@ view: inv_item_bookdata {
 
   dimension: vfmanheim_retail_below {
     type: number
-    sql: ${TABLE}.vfmanheim_retail_below ;;
+    sql: nvl(${TABLE}.vfmanheim_retail_below,0) ;;
   }
 
   dimension: vfmanheim_retail_below_is_not_null {
@@ -220,7 +220,7 @@ view: inv_item_bookdata {
 
   dimension: vfmanheim_wholesale_above {
     type: number
-    sql: ${TABLE}.vfmanheim_wholesale_above ;;
+    sql: nvl(${TABLE}.vfmanheim_wholesale_above,0) ;;
   }
 
   dimension: vfmanheim_wholesale_above_is_not_null {
@@ -230,7 +230,7 @@ view: inv_item_bookdata {
 
   dimension: vfmanheim_wholesale_average {
     type: number
-    sql: ${TABLE}.vfmanheim_wholesale_average ;;
+    sql: nvl(${TABLE}.vfmanheim_wholesale_average,0 ;;
   }
 
   dimension: vfmanheim_wholesale_average_is_not_null {
@@ -240,7 +240,7 @@ view: inv_item_bookdata {
 
   dimension: vfmanheim_wholesale_below {
     type: number
-    sql: ${TABLE}.vfmanheim_wholesale_below ;;
+    sql: nvl(${TABLE}.vfmanheim_wholesale_below,0) ;;
   }
 
   dimension: vfmanheim_wholesale_below_is_not_null {
@@ -250,7 +250,7 @@ view: inv_item_bookdata {
 
   dimension: vfnada_avg_retail {
     type: number
-    sql: ${TABLE}.vfnada_avgretail ;;
+    sql: nvl(${TABLE}.vfnada_avgretail,0) ;;
   }
 
   dimension: vfnada_avg_is_not_null {
@@ -260,53 +260,53 @@ view: inv_item_bookdata {
 
   dimension: vfnada_categorytype {
     type: string
-    sql: ${TABLE}.vfnada_categorytype ;;
+    sql: nvl(${TABLE}.vfnada_categorytype,'Unknown') ;;
   }
 
   dimension: vfnada_clean {
     type: number
-    sql: ${TABLE}.vfnada_clean ;;
+    sql: nvl(${TABLE}.vfnada_clean,0) ;;
   }
 
   dimension: vfnada_cleanretail {
     type: number
-    sql: ${TABLE}.vfnada_cleanretail ;;
+    sql: nvl(${TABLE}.vfnada_cleanretail,0) ;;
   }
 
   dimension: vfnada_estinvoice {
     type: number
-    sql: ${TABLE}.vfnada_estinvoice ;;
+    sql: nvl(${TABLE}.vfnada_estinvoice,0) ;;
   }
 
   dimension: vfnada_msrp {
     type: number
-    sql: ${TABLE}.vfnada_msrp ;;
+    sql: nvl(${TABLE}.vfnada_msrp,0) ;;
   }
 
   dimension: vfnada_rough {
     type: number
-    sql: ${TABLE}.vfnada_rough ;;
+    sql: nvl(${TABLE}.vfnada_rough,0) ;;
   }
 
   dimension: vfsummary_avgmileage {
     type: number
-    sql: ${TABLE}.vfsummary_avgmileage ;;
+    sql: nvl(${TABLE}.vfsummary_avgmileage,0) ;;
   }
 
   dimension: vfunits {
     type: number
-    sql: ${TABLE}.vfunits ;;
+    sql: nvl(${TABLE}.vfunits,0) ;;
   }
 
   dimension: vfvalueguide {
     type: string
     hidden:yes
-    sql: ${TABLE}.vfvalueguide ;;
+    sql: nvl(${TABLE}.vfvalueguide,'Unknown') ;;
   }
 
   dimension: vfvintagemodel {
     type: string
-    sql: ${TABLE}.vfvintagemodel ;;
+    sql: nvl(${TABLE}.vfvintagemodel,'Unknown') ;;
   }
 
   measure: count {
