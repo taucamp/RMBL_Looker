@@ -1,8 +1,16 @@
 view: inv_item_status {
   sql_table_name: public.rumble_InvItemStatus ;;
 
+  dimension: item_status_id {
+    primary_key: yes
+    type: number
+    hidden:yes
+    sql: ${TABLE}.ItemStatusId ;;
+  }
+
   dimension_group: created {
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -17,18 +25,14 @@ view: inv_item_status {
 
   dimension: created_user_id {
     type: number
+    hidden:yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
   dimension: is_active {
     type: string
+    hidden:yes
     sql: ${TABLE}.IsActive ;;
-  }
-
-  dimension: item_status_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.ItemStatusId ;;
   }
 
   dimension: listing_status_id {
@@ -38,6 +42,7 @@ view: inv_item_status {
 
   dimension: rank {
     type: number
+    hidden:yes
     sql: ${TABLE}.Rank ;;
   }
 
@@ -49,6 +54,7 @@ view: inv_item_status {
 
   dimension_group: updated {
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -63,6 +69,7 @@ view: inv_item_status {
 
   dimension: updated_user_id {
     type: number
+    hidden:yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 

@@ -1,6 +1,14 @@
 view: inv_hold_status_history {
   sql_table_name: public.rumble_InvHoldStatusHistory ;;
 
+
+  dimension: hold_status_history_id {
+    primary_key: yes
+    type: number
+    hidden: yes
+    sql: ${TABLE}.HoldStatusHistoryId ;;
+  }
+
   dimension: advent_opportunity_guid {
     type: string
     sql: ${TABLE}.AdventOpportunityGuid ;;
@@ -8,6 +16,7 @@ view: inv_hold_status_history {
 
   dimension_group: created {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -22,6 +31,7 @@ view: inv_hold_status_history {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
@@ -53,11 +63,6 @@ view: inv_hold_status_history {
     sql: ${TABLE}.HoldExpiryDate ;;
   }
 
-  dimension: hold_status_history_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.HoldStatusHistoryId ;;
-  }
 
   dimension: hold_user_id {
     type: number
@@ -71,8 +76,16 @@ view: inv_hold_status_history {
 
   dimension: is_active {
     type: string
+    hidden: yes
     sql: ${TABLE}.IsActive ;;
   }
+
+
+  dimension: is_properly_refunded {
+    type: yesno
+    sql: ${TABLE}.isproperlyrefunded ;;
+  }
+
 
   dimension: item_id {
     type: number
@@ -81,7 +94,13 @@ view: inv_hold_status_history {
 
   dimension: payment_type_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.PaymentTypeId ;;
+  }
+
+  dimension: paid_hold {
+    type: yesno
+    sql: ${TABLE}.paidhold ;;
   }
 
   dimension_group: released {
@@ -115,6 +134,7 @@ view: inv_hold_status_history {
 
   dimension_group: updated {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -129,6 +149,7 @@ view: inv_hold_status_history {
 
   dimension: updated_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 

@@ -1,6 +1,13 @@
 view: inv_crtype {
   sql_table_name: public.rumble_InvCRType ;;
 
+  dimension: crtype_id {
+    primary_key: yes
+    type: number
+    hidden: yes
+    sql: ${TABLE}.CRTypeId ;;
+  }
+
   dimension: authority_name {
     type: string
     sql: ${TABLE}.AuthorityName ;;
@@ -8,6 +15,7 @@ view: inv_crtype {
 
   dimension_group: created {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -22,6 +30,7 @@ view: inv_crtype {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
@@ -31,24 +40,23 @@ view: inv_crtype {
     order_by_field: rank
   }
 
-  dimension: crtype_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.CRTypeId ;;
-  }
+
 
   dimension: is_active {
     type: number
+    hidden: yes
     sql: ${TABLE}.IsActive ;;
   }
 
   dimension: rank {
     type: number
+    hidden: yes
     sql: ${TABLE}.Rank ;;
   }
 
   dimension_group: updated {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -63,6 +71,7 @@ view: inv_crtype {
 
   dimension: updated_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 

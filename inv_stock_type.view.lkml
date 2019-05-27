@@ -9,6 +9,7 @@ view: inv_stock_type {
 
   dimension_group: created {
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -23,11 +24,13 @@ view: inv_stock_type {
 
   dimension: created_user_id {
     type: number
+    hidden:yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
   dimension: is_active {
     type: string
+    hidden:yes
     sql: ${TABLE}.IsActive ;;
   }
 
@@ -45,7 +48,8 @@ view: inv_stock_type {
 
  dimension_group: updated {
     type: time
-    timeframes: [
+  hidden:yes
+  timeframes: [
       raw,
       time,
       date,
@@ -59,6 +63,7 @@ view: inv_stock_type {
 
   dimension: updated_user_id {
     type: number
+    hidden:yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 
