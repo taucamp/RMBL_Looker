@@ -1,5 +1,5 @@
-view: page_viewed {
-  sql_table_name: rumbleonv3.page_viewed ;;
+view: buy_vehicle_viewed {
+  sql_table_name: rumbleonv3.buy_vehicle_viewed ;;
 
   dimension: id {
     primary_key: yes
@@ -7,14 +7,14 @@ view: page_viewed {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: _uuid {
-    type: string
-    sql: ${TABLE}._uuid ;;
-  }
-
   dimension: anonymous_id {
     type: string
     sql: ${TABLE}.anonymous_id ;;
+  }
+
+  dimension: color {
+    type: string
+    sql: ${TABLE}.color ;;
   }
 
   dimension: context_campaign_content {
@@ -87,11 +87,6 @@ view: page_viewed {
     sql: ${TABLE}.context_user_agent ;;
   }
 
-  dimension: device {
-    type: string
-    sql: ${TABLE}.device ;;
-  }
-
   dimension: event {
     type: string
     sql: ${TABLE}.event ;;
@@ -100,6 +95,21 @@ view: page_viewed {
   dimension: event_text {
     type: string
     sql: ${TABLE}.event_text ;;
+  }
+
+  dimension: make {
+    type: string
+    sql: ${TABLE}.make ;;
+  }
+
+  dimension: miles {
+    type: number
+    sql: ${TABLE}.miles ;;
+  }
+
+  dimension: model {
+    type: string
+    sql: ${TABLE}.model ;;
   }
 
   dimension_group: original_timestamp {
@@ -116,9 +126,14 @@ view: page_viewed {
     sql: ${TABLE}.original_timestamp ;;
   }
 
-  dimension: path {
-    type: string
-    sql: ${TABLE}.path ;;
+  dimension: position {
+    type: number
+    sql: ${TABLE}.position ;;
+  }
+
+  dimension: price {
+    type: number
+    sql: ${TABLE}.price ;;
   }
 
   dimension_group: received {
@@ -135,11 +150,6 @@ view: page_viewed {
     sql: ${TABLE}.received_at ;;
   }
 
-  dimension: referrer {
-    type: string
-    sql: ${TABLE}.referrer ;;
-  }
-
   dimension_group: sent {
     type: time
     timeframes: [
@@ -152,6 +162,11 @@ view: page_viewed {
       year
     ]
     sql: ${TABLE}.sent_at ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
   }
 
   dimension_group: timestamp {
@@ -168,35 +183,10 @@ view: page_viewed {
     sql: ${TABLE}.timestamp ;;
   }
 
-  dimension: title {
-    type: string
-    sql: ${TABLE}.title ;;
-  }
-
-  dimension: url {
-    type: string
-    sql: ${TABLE}.url ;;
-  }
-
   dimension: user_id {
     type: string
     # hidden: yes
     sql: ${TABLE}.user_id ;;
-  }
-
-  dimension: utm_campaign {
-    type: string
-    sql: ${TABLE}.utm_campaign ;;
-  }
-
-  dimension: utm_medium {
-    type: string
-    sql: ${TABLE}.utm_medium ;;
-  }
-
-  dimension: utm_source {
-    type: string
-    sql: ${TABLE}.utm_source ;;
   }
 
   dimension: uuid {
@@ -217,6 +207,21 @@ view: page_viewed {
       year
     ]
     sql: ${TABLE}.uuid_ts ;;
+  }
+
+  dimension: vehicle_type {
+    type: string
+    sql: ${TABLE}.vehicle_type ;;
+  }
+
+  dimension: vin {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
+  dimension: year {
+    type: number
+    sql: ${TABLE}.year ;;
   }
 
   measure: count {

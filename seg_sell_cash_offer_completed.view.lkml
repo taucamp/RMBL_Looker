@@ -1,5 +1,5 @@
-view: page_viewed {
-  sql_table_name: rumbleonv3.page_viewed ;;
+view: sell_cash_offer_completed {
+  sql_table_name: rumbleonv3.sell_cash_offer_completed ;;
 
   dimension: id {
     primary_key: yes
@@ -7,14 +7,34 @@ view: page_viewed {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: _uuid {
-    type: string
-    sql: ${TABLE}._uuid ;;
-  }
-
   dimension: anonymous_id {
     type: string
     sql: ${TABLE}.anonymous_id ;;
+  }
+
+  dimension: appraisal_ref_no {
+    type: string
+    sql: ${TABLE}.appraisal_ref_no ;;
+  }
+
+  dimension: context_app_build {
+    type: string
+    sql: ${TABLE}.context_app_build ;;
+  }
+
+  dimension: context_app_name {
+    type: string
+    sql: ${TABLE}.context_app_name ;;
+  }
+
+  dimension: context_app_namespace {
+    type: string
+    sql: ${TABLE}.context_app_namespace ;;
+  }
+
+  dimension: context_app_version {
+    type: string
+    sql: ${TABLE}.context_app_version ;;
   }
 
   dimension: context_campaign_content {
@@ -42,6 +62,26 @@ view: page_viewed {
     sql: ${TABLE}.context_campaign_term ;;
   }
 
+  dimension: context_device_ad_tracking_enabled {
+    type: yesno
+    sql: ${TABLE}.context_device_ad_tracking_enabled ;;
+  }
+
+  dimension: context_device_id {
+    type: string
+    sql: ${TABLE}.context_device_id ;;
+  }
+
+  dimension: context_device_manufacturer {
+    type: string
+    sql: ${TABLE}.context_device_manufacturer ;;
+  }
+
+  dimension: context_device_model {
+    type: string
+    sql: ${TABLE}.context_device_model ;;
+  }
+
   dimension: context_ip {
     type: string
     sql: ${TABLE}.context_ip ;;
@@ -55,6 +95,31 @@ view: page_viewed {
   dimension: context_library_version {
     type: string
     sql: ${TABLE}.context_library_version ;;
+  }
+
+  dimension: context_locale {
+    type: string
+    sql: ${TABLE}.context_locale ;;
+  }
+
+  dimension: context_network_cellular {
+    type: yesno
+    sql: ${TABLE}.context_network_cellular ;;
+  }
+
+  dimension: context_network_wifi {
+    type: yesno
+    sql: ${TABLE}.context_network_wifi ;;
+  }
+
+  dimension: context_os_name {
+    type: string
+    sql: ${TABLE}.context_os_name ;;
+  }
+
+  dimension: context_os_version {
+    type: string
+    sql: ${TABLE}.context_os_version ;;
   }
 
   dimension: context_page_path {
@@ -82,14 +147,34 @@ view: page_viewed {
     sql: ${TABLE}.context_page_url ;;
   }
 
+  dimension: context_protocols_violations {
+    type: string
+    sql: ${TABLE}.context_protocols_violations ;;
+  }
+
+  dimension: context_screen_height {
+    type: number
+    sql: ${TABLE}.context_screen_height ;;
+  }
+
+  dimension: context_screen_width {
+    type: number
+    sql: ${TABLE}.context_screen_width ;;
+  }
+
+  dimension: context_timezone {
+    type: string
+    sql: ${TABLE}.context_timezone ;;
+  }
+
   dimension: context_user_agent {
     type: string
     sql: ${TABLE}.context_user_agent ;;
   }
 
-  dimension: device {
+  dimension: email {
     type: string
-    sql: ${TABLE}.device ;;
+    sql: ${TABLE}.email ;;
   }
 
   dimension: event {
@@ -100,6 +185,16 @@ view: page_viewed {
   dimension: event_text {
     type: string
     sql: ${TABLE}.event_text ;;
+  }
+
+  dimension: first_name {
+    type: string
+    sql: ${TABLE}.first_name ;;
+  }
+
+  dimension: last_name {
+    type: string
+    sql: ${TABLE}.last_name ;;
   }
 
   dimension_group: original_timestamp {
@@ -116,9 +211,9 @@ view: page_viewed {
     sql: ${TABLE}.original_timestamp ;;
   }
 
-  dimension: path {
+  dimension: phone_number {
     type: string
-    sql: ${TABLE}.path ;;
+    sql: ${TABLE}.phone_number ;;
   }
 
   dimension_group: received {
@@ -133,11 +228,6 @@ view: page_viewed {
       year
     ]
     sql: ${TABLE}.received_at ;;
-  }
-
-  dimension: referrer {
-    type: string
-    sql: ${TABLE}.referrer ;;
   }
 
   dimension_group: sent {
@@ -168,35 +258,10 @@ view: page_viewed {
     sql: ${TABLE}.timestamp ;;
   }
 
-  dimension: title {
-    type: string
-    sql: ${TABLE}.title ;;
-  }
-
-  dimension: url {
-    type: string
-    sql: ${TABLE}.url ;;
-  }
-
   dimension: user_id {
     type: string
     # hidden: yes
     sql: ${TABLE}.user_id ;;
-  }
-
-  dimension: utm_campaign {
-    type: string
-    sql: ${TABLE}.utm_campaign ;;
-  }
-
-  dimension: utm_medium {
-    type: string
-    sql: ${TABLE}.utm_medium ;;
-  }
-
-  dimension: utm_source {
-    type: string
-    sql: ${TABLE}.utm_source ;;
   }
 
   dimension: uuid {
@@ -219,6 +284,16 @@ view: page_viewed {
     sql: ${TABLE}.uuid_ts ;;
   }
 
+  dimension: vehicle_type {
+    type: string
+    sql: ${TABLE}.vehicle_type ;;
+  }
+
+  dimension: vin {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -228,8 +303,12 @@ view: page_viewed {
   set: detail {
     fields: [
       id,
-      context_campaign_name,
+      last_name,
+      first_name,
+      context_app_name,
+      context_os_name,
       context_library_name,
+      context_campaign_name,
       users.id,
       users.display_name,
       users.context_library_name,

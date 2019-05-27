@@ -1,15 +1,10 @@
-view: page_viewed {
-  sql_table_name: rumbleonv3.page_viewed ;;
+view: sell_vin_decode_incorrect {
+  sql_table_name: rumbleonv3.sell_vin_decode_incorrect ;;
 
   dimension: id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
-  }
-
-  dimension: _uuid {
-    type: string
-    sql: ${TABLE}._uuid ;;
   }
 
   dimension: anonymous_id {
@@ -82,14 +77,14 @@ view: page_viewed {
     sql: ${TABLE}.context_page_url ;;
   }
 
+  dimension: context_protocols_violations {
+    type: string
+    sql: ${TABLE}.context_protocols_violations ;;
+  }
+
   dimension: context_user_agent {
     type: string
     sql: ${TABLE}.context_user_agent ;;
-  }
-
-  dimension: device {
-    type: string
-    sql: ${TABLE}.device ;;
   }
 
   dimension: event {
@@ -116,11 +111,6 @@ view: page_viewed {
     sql: ${TABLE}.original_timestamp ;;
   }
 
-  dimension: path {
-    type: string
-    sql: ${TABLE}.path ;;
-  }
-
   dimension_group: received {
     type: time
     timeframes: [
@@ -133,11 +123,6 @@ view: page_viewed {
       year
     ]
     sql: ${TABLE}.received_at ;;
-  }
-
-  dimension: referrer {
-    type: string
-    sql: ${TABLE}.referrer ;;
   }
 
   dimension_group: sent {
@@ -168,35 +153,10 @@ view: page_viewed {
     sql: ${TABLE}.timestamp ;;
   }
 
-  dimension: title {
-    type: string
-    sql: ${TABLE}.title ;;
-  }
-
-  dimension: url {
-    type: string
-    sql: ${TABLE}.url ;;
-  }
-
   dimension: user_id {
     type: string
     # hidden: yes
     sql: ${TABLE}.user_id ;;
-  }
-
-  dimension: utm_campaign {
-    type: string
-    sql: ${TABLE}.utm_campaign ;;
-  }
-
-  dimension: utm_medium {
-    type: string
-    sql: ${TABLE}.utm_medium ;;
-  }
-
-  dimension: utm_source {
-    type: string
-    sql: ${TABLE}.utm_source ;;
   }
 
   dimension: uuid {
@@ -219,6 +179,11 @@ view: page_viewed {
     sql: ${TABLE}.uuid_ts ;;
   }
 
+  dimension: vin {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -228,8 +193,8 @@ view: page_viewed {
   set: detail {
     fields: [
       id,
-      context_campaign_name,
       context_library_name,
+      context_campaign_name,
       users.id,
       users.display_name,
       users.context_library_name,

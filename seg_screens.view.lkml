@@ -1,5 +1,5 @@
-view: pages {
-  sql_table_name: rumbleonv3.pages ;;
+view: screens {
+  sql_table_name: rumbleonv3.screens ;;
 
   dimension: id {
     primary_key: yes
@@ -12,29 +12,49 @@ view: pages {
     sql: ${TABLE}.anonymous_id ;;
   }
 
-  dimension: context_campaign_content {
+  dimension: context_app_build {
     type: string
-    sql: ${TABLE}.context_campaign_content ;;
+    sql: ${TABLE}.context_app_build ;;
   }
 
-  dimension: context_campaign_medium {
+  dimension: context_app_name {
     type: string
-    sql: ${TABLE}.context_campaign_medium ;;
+    sql: ${TABLE}.context_app_name ;;
   }
 
-  dimension: context_campaign_name {
+  dimension: context_app_namespace {
     type: string
-    sql: ${TABLE}.context_campaign_name ;;
+    sql: ${TABLE}.context_app_namespace ;;
   }
 
-  dimension: context_campaign_source {
+  dimension: context_app_version {
     type: string
-    sql: ${TABLE}.context_campaign_source ;;
+    sql: ${TABLE}.context_app_version ;;
   }
 
-  dimension: context_campaign_term {
+  dimension: context_device_ad_tracking_enabled {
+    type: yesno
+    sql: ${TABLE}.context_device_ad_tracking_enabled ;;
+  }
+
+  dimension: context_device_id {
     type: string
-    sql: ${TABLE}.context_campaign_term ;;
+    sql: ${TABLE}.context_device_id ;;
+  }
+
+  dimension: context_device_manufacturer {
+    type: string
+    sql: ${TABLE}.context_device_manufacturer ;;
+  }
+
+  dimension: context_device_model {
+    type: string
+    sql: ${TABLE}.context_device_model ;;
+  }
+
+  dimension: context_device_type {
+    type: string
+    sql: ${TABLE}.context_device_type ;;
   }
 
   dimension: context_ip {
@@ -52,34 +72,49 @@ view: pages {
     sql: ${TABLE}.context_library_version ;;
   }
 
-  dimension: context_page_path {
+  dimension: context_locale {
     type: string
-    sql: ${TABLE}.context_page_path ;;
+    sql: ${TABLE}.context_locale ;;
   }
 
-  dimension: context_page_referrer {
-    type: string
-    sql: ${TABLE}.context_page_referrer ;;
+  dimension: context_network_cellular {
+    type: yesno
+    sql: ${TABLE}.context_network_cellular ;;
   }
 
-  dimension: context_page_search {
-    type: string
-    sql: ${TABLE}.context_page_search ;;
+  dimension: context_network_wifi {
+    type: yesno
+    sql: ${TABLE}.context_network_wifi ;;
   }
 
-  dimension: context_page_title {
+  dimension: context_os_name {
     type: string
-    sql: ${TABLE}.context_page_title ;;
+    sql: ${TABLE}.context_os_name ;;
   }
 
-  dimension: context_page_url {
+  dimension: context_os_version {
     type: string
-    sql: ${TABLE}.context_page_url ;;
+    sql: ${TABLE}.context_os_version ;;
   }
 
-  dimension: context_user_agent {
+  dimension: context_screen_height {
+    type: number
+    sql: ${TABLE}.context_screen_height ;;
+  }
+
+  dimension: context_screen_width {
+    type: number
+    sql: ${TABLE}.context_screen_width ;;
+  }
+
+  dimension: context_timezone {
     type: string
-    sql: ${TABLE}.context_user_agent ;;
+    sql: ${TABLE}.context_timezone ;;
+  }
+
+  dimension: name {
+    type: string
+    sql: ${TABLE}.name ;;
   }
 
   dimension_group: original_timestamp {
@@ -96,11 +131,6 @@ view: pages {
     sql: ${TABLE}.original_timestamp ;;
   }
 
-  dimension: path {
-    type: string
-    sql: ${TABLE}.path ;;
-  }
-
   dimension_group: received {
     type: time
     timeframes: [
@@ -113,16 +143,6 @@ view: pages {
       year
     ]
     sql: ${TABLE}.received_at ;;
-  }
-
-  dimension: referrer {
-    type: string
-    sql: ${TABLE}.referrer ;;
-  }
-
-  dimension: search {
-    type: string
-    sql: ${TABLE}.search ;;
   }
 
   dimension_group: sent {
@@ -153,22 +173,6 @@ view: pages {
     sql: ${TABLE}.timestamp ;;
   }
 
-  dimension: title {
-    type: string
-    sql: ${TABLE}.title ;;
-  }
-
-  dimension: url {
-    type: string
-    sql: ${TABLE}.url ;;
-  }
-
-  dimension: user_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.user_id ;;
-  }
-
   dimension: uuid {
     type: number
     value_format_name: id
@@ -191,21 +195,6 @@ view: pages {
 
   measure: count {
     type: count
-    drill_fields: [detail*]
-  }
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      context_campaign_name,
-      context_library_name,
-      users.id,
-      users.display_name,
-      users.context_library_name,
-      users.first_name,
-      users.last_name,
-      users.context_campaign_name
-    ]
+    drill_fields: [id, context_app_name, context_library_name, name, context_os_name]
   }
 }

@@ -1,5 +1,5 @@
-view: seg_tracks {
-  sql_table_name: rumbleonv3.tracks ;;
+view: application_installed {
+  sql_table_name: rumbleonv3.application_installed ;;
 
   dimension: id {
     primary_key: yes
@@ -10,6 +10,11 @@ view: seg_tracks {
   dimension: anonymous_id {
     type: string
     sql: ${TABLE}.anonymous_id ;;
+  }
+
+  dimension: build {
+    type: string
+    sql: ${TABLE}.build ;;
   }
 
   dimension: context_app_build {
@@ -30,31 +35,6 @@ view: seg_tracks {
   dimension: context_app_version {
     type: string
     sql: ${TABLE}.context_app_version ;;
-  }
-
-  dimension: context_campaign_content {
-    type: string
-    sql: ${TABLE}.context_campaign_content ;;
-  }
-
-  dimension: context_campaign_medium {
-    type: string
-    sql: ${TABLE}.context_campaign_medium ;;
-  }
-
-  dimension: context_campaign_name {
-    type: string
-    sql: ${TABLE}.context_campaign_name ;;
-  }
-
-  dimension: context_campaign_source {
-    type: string
-    sql: ${TABLE}.context_campaign_source ;;
-  }
-
-  dimension: context_campaign_term {
-    type: string
-    sql: ${TABLE}.context_campaign_term ;;
   }
 
   dimension: context_device_ad_tracking_enabled {
@@ -122,36 +102,6 @@ view: seg_tracks {
     sql: ${TABLE}.context_os_version ;;
   }
 
-  dimension: context_page_path {
-    type: string
-    sql: ${TABLE}.context_page_path ;;
-  }
-
-  dimension: context_page_referrer {
-    type: string
-    sql: ${TABLE}.context_page_referrer ;;
-  }
-
-  dimension: context_page_search {
-    type: string
-    sql: ${TABLE}.context_page_search ;;
-  }
-
-  dimension: context_page_title {
-    type: string
-    sql: ${TABLE}.context_page_title ;;
-  }
-
-  dimension: context_page_url {
-    type: string
-    sql: ${TABLE}.context_page_url ;;
-  }
-
-  dimension: context_protocols_violations {
-    type: string
-    sql: ${TABLE}.context_protocols_violations ;;
-  }
-
   dimension: context_screen_height {
     type: number
     sql: ${TABLE}.context_screen_height ;;
@@ -165,11 +115,6 @@ view: seg_tracks {
   dimension: context_timezone {
     type: string
     sql: ${TABLE}.context_timezone ;;
-  }
-
-  dimension: context_user_agent {
-    type: string
-    sql: ${TABLE}.context_user_agent ;;
   }
 
   dimension: event {
@@ -238,12 +183,6 @@ view: seg_tracks {
     sql: ${TABLE}.timestamp ;;
   }
 
-  dimension: user_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.user_id ;;
-  }
-
   dimension: uuid {
     type: number
     value_format_name: id
@@ -264,25 +203,13 @@ view: seg_tracks {
     sql: ${TABLE}.uuid_ts ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
+  dimension: version {
+    type: string
+    sql: ${TABLE}.version ;;
   }
 
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      context_campaign_name,
-      context_app_name,
-      context_os_name,
-      context_library_name,
-      users.id,
-      users.display_name,
-      users.context_library_name,
-      users.first_name,
-      users.last_name,
-      users.context_campaign_name
-    ]
+  measure: count {
+    type: count
+    drill_fields: [id, context_app_name, context_library_name, context_os_name]
   }
 }

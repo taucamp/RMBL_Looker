@@ -1,5 +1,5 @@
-view: seg_cash_offer_completed {
-  sql_table_name: rumbleon.cash_offer_completed ;;
+view: buy_vehicle_added_to_favorites {
+  sql_table_name: rumbleonv3.buy_vehicle_added_to_favorites ;;
 
   dimension: id {
     primary_key: yes
@@ -12,9 +12,9 @@ view: seg_cash_offer_completed {
     sql: ${TABLE}.anonymous_id ;;
   }
 
-  dimension: appraisal_ref {
+  dimension: color {
     type: string
-    sql: ${TABLE}.appraisal_ref ;;
+    sql: ${TABLE}.color ;;
   }
 
   dimension: context_campaign_content {
@@ -97,6 +97,21 @@ view: seg_cash_offer_completed {
     sql: ${TABLE}.event_text ;;
   }
 
+  dimension: make {
+    type: string
+    sql: ${TABLE}.make ;;
+  }
+
+  dimension: miles {
+    type: number
+    sql: ${TABLE}.miles ;;
+  }
+
+  dimension: model {
+    type: string
+    sql: ${TABLE}.model ;;
+  }
+
   dimension_group: original_timestamp {
     type: time
     timeframes: [
@@ -109,6 +124,16 @@ view: seg_cash_offer_completed {
       year
     ]
     sql: ${TABLE}.original_timestamp ;;
+  }
+
+  dimension: position {
+    type: number
+    sql: ${TABLE}.position ;;
+  }
+
+  dimension: price {
+    type: number
+    sql: ${TABLE}.price ;;
   }
 
   dimension_group: received {
@@ -139,6 +164,11 @@ view: seg_cash_offer_completed {
     sql: ${TABLE}.sent_at ;;
   }
 
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
+  }
+
   dimension_group: timestamp {
     type: time
     timeframes: [
@@ -155,6 +185,7 @@ view: seg_cash_offer_completed {
 
   dimension: user_id {
     type: string
+    # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
@@ -178,8 +209,38 @@ view: seg_cash_offer_completed {
     sql: ${TABLE}.uuid_ts ;;
   }
 
+  dimension: vehicle_type {
+    type: string
+    sql: ${TABLE}.vehicle_type ;;
+  }
+
+  dimension: vin {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
+  dimension: year {
+    type: number
+    sql: ${TABLE}.year ;;
+  }
+
   measure: count {
     type: count
-    drill_fields: [id, context_campaign_name, context_library_name]
+    drill_fields: [detail*]
+  }
+
+  # ----- Sets of fields for drilling ------
+  set: detail {
+    fields: [
+      id,
+      context_library_name,
+      context_campaign_name,
+      users.id,
+      users.display_name,
+      users.context_library_name,
+      users.first_name,
+      users.last_name,
+      users.context_campaign_name
+    ]
   }
 }

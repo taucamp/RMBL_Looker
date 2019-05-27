@@ -1,5 +1,5 @@
-view: users {
-  sql_table_name: rumbleon.users ;;
+view: seg_users {
+  sql_table_name: rumbleonv3.users ;;
 
   dimension: id {
     primary_key: yes
@@ -107,11 +107,6 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
-  dimension: name {
-    type: string
-    sql: ${TABLE}.name ;;
-  }
-
   dimension: phone {
     type: string
     sql: ${TABLE}.phone ;;
@@ -151,11 +146,6 @@ view: users {
     sql: ${TABLE}.uuid_ts ;;
   }
 
-  dimension: vin {
-    type: string
-    sql: ${TABLE}.vin ;;
-  }
-
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -166,13 +156,31 @@ view: users {
     fields: [
       id,
       display_name,
-      last_name,
-      first_name,
-      name,
       context_library_name,
+      first_name,
+      last_name,
       context_campaign_name,
+      account_created.count,
+      buy_hold_continue.count,
+      buy_hold_payment.count,
+      buy_payment_intiated.count,
+      buy_trade_started.count,
+      buy_vehicle_added_to_favorites.count,
+      buy_vehicle_removed_from_favorites.count,
+      buy_vehicle_viewed.count,
+      cash_offer_thank_you.count,
       identifies.count,
+      page_viewed.count,
       pages.count,
+      sell_cash_offer_completed.count,
+      sell_vehicle_details_submitted.count,
+      sell_vehicle_photos_submitted.count,
+      sell_vin_decode_confirmed.count,
+      sell_vin_decode_failed.count,
+      sell_vin_decode_incorrect.count,
+      sell_vin_decode_success.count,
+      signed_in.count,
+      signed_out.count,
       tracks.count
     ]
   }

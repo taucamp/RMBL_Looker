@@ -1,5 +1,5 @@
 view: identifies {
-  sql_table_name: rumbleon.identifies ;;
+  sql_table_name: rumbleonv3.identifies ;;
 
   dimension: id {
     primary_key: yes
@@ -112,11 +112,6 @@ view: identifies {
     sql: ${TABLE}.last_name ;;
   }
 
-  dimension: name {
-    type: string
-    sql: ${TABLE}.name ;;
-  }
-
   dimension_group: original_timestamp {
     type: time
     timeframes: [
@@ -204,11 +199,6 @@ view: identifies {
     sql: ${TABLE}.uuid_ts ;;
   }
 
-  dimension: vin {
-    type: string
-    sql: ${TABLE}.vin ;;
-  }
-
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -218,19 +208,17 @@ view: identifies {
   set: detail {
     fields: [
       id,
-      last_name,
-      first_name,
-      display_name,
-      name,
-      context_campaign_name,
       context_library_name,
+      display_name,
+      context_campaign_name,
+      first_name,
+      last_name,
+      users.id,
       users.display_name,
-      users.last_name,
-      users.first_name,
-      users.name,
       users.context_library_name,
-      users.context_campaign_name,
-      users.id
+      users.first_name,
+      users.last_name,
+      users.context_campaign_name
     ]
   }
 }

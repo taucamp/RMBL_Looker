@@ -1,5 +1,5 @@
-view: page_viewed {
-  sql_table_name: rumbleonv3.page_viewed ;;
+view: cash_offer_thank_you {
+  sql_table_name: rumbleonv3.cash_offer_thank_you ;;
 
   dimension: id {
     primary_key: yes
@@ -7,39 +7,9 @@ view: page_viewed {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: _uuid {
-    type: string
-    sql: ${TABLE}._uuid ;;
-  }
-
   dimension: anonymous_id {
     type: string
     sql: ${TABLE}.anonymous_id ;;
-  }
-
-  dimension: context_campaign_content {
-    type: string
-    sql: ${TABLE}.context_campaign_content ;;
-  }
-
-  dimension: context_campaign_medium {
-    type: string
-    sql: ${TABLE}.context_campaign_medium ;;
-  }
-
-  dimension: context_campaign_name {
-    type: string
-    sql: ${TABLE}.context_campaign_name ;;
-  }
-
-  dimension: context_campaign_source {
-    type: string
-    sql: ${TABLE}.context_campaign_source ;;
-  }
-
-  dimension: context_campaign_term {
-    type: string
-    sql: ${TABLE}.context_campaign_term ;;
   }
 
   dimension: context_ip {
@@ -67,11 +37,6 @@ view: page_viewed {
     sql: ${TABLE}.context_page_referrer ;;
   }
 
-  dimension: context_page_search {
-    type: string
-    sql: ${TABLE}.context_page_search ;;
-  }
-
   dimension: context_page_title {
     type: string
     sql: ${TABLE}.context_page_title ;;
@@ -85,11 +50,6 @@ view: page_viewed {
   dimension: context_user_agent {
     type: string
     sql: ${TABLE}.context_user_agent ;;
-  }
-
-  dimension: device {
-    type: string
-    sql: ${TABLE}.device ;;
   }
 
   dimension: event {
@@ -135,11 +95,6 @@ view: page_viewed {
     sql: ${TABLE}.received_at ;;
   }
 
-  dimension: referrer {
-    type: string
-    sql: ${TABLE}.referrer ;;
-  }
-
   dimension_group: sent {
     type: time
     timeframes: [
@@ -166,16 +121,6 @@ view: page_viewed {
       year
     ]
     sql: ${TABLE}.timestamp ;;
-  }
-
-  dimension: title {
-    type: string
-    sql: ${TABLE}.title ;;
-  }
-
-  dimension: url {
-    type: string
-    sql: ${TABLE}.url ;;
   }
 
   dimension: user_id {
@@ -219,6 +164,11 @@ view: page_viewed {
     sql: ${TABLE}.uuid_ts ;;
   }
 
+  dimension: vin {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -228,7 +178,6 @@ view: page_viewed {
   set: detail {
     fields: [
       id,
-      context_campaign_name,
       context_library_name,
       users.id,
       users.display_name,
