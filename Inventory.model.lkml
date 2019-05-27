@@ -9,7 +9,7 @@ explore: Inventory {
   join: inv_item {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${Inventory.stock_number} = ${inv_item.advent_stock_number} and ${inv_item.is_active} = 1;;
+    sql_on: ${Inventory.stock_number} = ${inv_item.advent_stock_number} and ${Inventory.vin} = ${inv_item.vin} and ${inv_item.is_active} = 1;;
   }
 
   join: inv_item_status {
@@ -45,7 +45,7 @@ explore: Inventory {
     join: inv_stock_type {
       type: left_outer
       relationship: many_to_one
-      sql_on: ${inv_stock_type.stock_type_id} = ${}inv_item.stock_type_id} ;;
+      sql_on: ${inv_stock_type.stock_type_id} = ${inv_item.stock_type_id} ;;
     }
 
 

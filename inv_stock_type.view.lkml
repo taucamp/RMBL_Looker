@@ -1,6 +1,12 @@
 view: inv_stock_type {
   sql_table_name: public.rumble_InvStockType ;;
 
+  dimension: stock_type_id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.StockTypeId ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
@@ -27,6 +33,7 @@ view: inv_stock_type {
 
   dimension: rank {
     type: number
+    hidden:yes
     sql: ${TABLE}.Rank ;;
   }
 
@@ -36,13 +43,7 @@ view: inv_stock_type {
     order_by_field: rank
   }
 
-  dimension: stock_type_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.StockTypeId ;;
-  }
-
-  dimension_group: updated {
+ dimension_group: updated {
     type: time
     timeframes: [
       raw,
