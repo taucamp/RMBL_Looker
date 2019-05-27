@@ -48,10 +48,10 @@ view: inv_item {
     sql: ${TABLE}.BodyStyle ;;
   }
 
-  dimension: clean_book {
-    type: string
-    sql: f_sql_parse_bookdata_clean(${TABLE}.BookData) ;;
-  }
+  # dimension: clean_book {
+  #   type: string
+  #   sql: f_sql_parse_bookdata_clean(${TABLE}.BookData) ;;
+  # }
 
   dimension_group: book {
     type: time
