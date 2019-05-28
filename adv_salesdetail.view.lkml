@@ -186,7 +186,7 @@ view: adv_salesdetail {
 # Dealer Name
   dimension: dealer_name {
     type: string
-    sql: ${TABLE}.dealername ;;
+    sql: f_sql_adv_dealername(${TABLE}.dealername) ;;
   }
 
 
