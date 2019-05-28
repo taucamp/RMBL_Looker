@@ -362,6 +362,24 @@ view: adv_salesdetail {
     sql: ${TABLE}.saledate ;;
   }
 
+
+#SalespersonID
+
+  dimension: salesperson_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.salespersonid ;;
+  }
+
+  #Salesperson
+  dimension: Salesperson {
+    type: string
+    value_format_name: usd_0
+    sql: nvl(${TABLE}.salesperson1fullnameid,'Unknown');;
+    }
+
+
+
 # Sell Price
   dimension: sellprice {
     hidden: yes
@@ -563,7 +581,28 @@ view: adv_salesdetail {
     sql: CASE WHEN ${cashsaleprice} = 0 AND ${trade1gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
   }
 
+# UnwindDate
+  dimension_group: unwind {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      day_of_month,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.unwinddate ;;
+  }
 
+
+# UnwindDate
+  dimension: Is_an_unwind {
+    type: yesno
+    sql: nvl2(${TABLE}.unwinddate,0,1);;
+  }
 
 
 # MEASURES
