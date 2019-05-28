@@ -1,8 +1,16 @@
 view: apr_tire_condition {
   sql_table_name: public.rumble_AprTireCondition ;;
 
+  dimension: tire_condition_id {
+    primary_key: yes
+    type: number
+    hidden: yes
+    sql: ${TABLE}.TireConditionId ;;
+  }
+
   dimension_group: created {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -17,16 +25,19 @@ view: apr_tire_condition {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
   dimension: is_active {
     type: number
+    hidden: yes
     sql: ${TABLE}.IsActive ;;
   }
 
   dimension: rank {
     type: number
+    hidden: yes
     sql: ${TABLE}.Rank ;;
   }
 
@@ -36,14 +47,9 @@ view: apr_tire_condition {
     order_by_field: rank
   }
 
-  dimension: tire_condition_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.TireConditionId ;;
-  }
-
-  dimension_group: updated {
+    dimension_group: updated {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -58,6 +64,7 @@ view: apr_tire_condition {
 
   dimension: updated_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 

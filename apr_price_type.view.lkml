@@ -1,8 +1,15 @@
 view: apr_price_type {
   sql_table_name: public.rumble_AprPriceType ;;
 
+  dimension: price_type_id {
+    primary_key: yes
+    type: number
+    sql: ${TABLE}.PriceTypeId ;;
+  }
+
   dimension_group: created {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -17,11 +24,13 @@ view: apr_price_type {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
   dimension: is_active {
     type: string
+    hidden: yes
     sql: ${TABLE}.IsActive ;;
   }
 
@@ -31,19 +40,15 @@ view: apr_price_type {
     order_by_field: rank
   }
 
-  dimension: price_type_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.PriceTypeId ;;
-  }
-
   dimension: rank {
     type: number
+    hidden: yes
     sql: ${TABLE}.Rank ;;
   }
 
   dimension_group: updated {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -58,6 +63,7 @@ view: apr_price_type {
 
   dimension: updated_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 

@@ -1,7 +1,15 @@
 view: apr_listing_type {
   sql_table_name: public.rumble_AprListingType ;;
 
+  dimension: listing_type_id {
+    primary_key: yes
+    hidden:yes
+    type: number
+    sql: ${TABLE}.ListingTypeId ;;
+  }
+
   dimension_group: created {
+    hidden:yes
     type: time
     timeframes: [
       raw,
@@ -16,11 +24,13 @@ view: apr_listing_type {
   }
 
   dimension: created_user_id {
+    hidden:yes
     type: number
     sql: ${TABLE}.CreatedUserId ;;
   }
 
   dimension: is_active {
+    hidden:yes
     type: number
     sql: ${TABLE}.IsActive ;;
   }
@@ -31,18 +41,16 @@ view: apr_listing_type {
     order_by_field: rank
   }
 
-  dimension: listing_type_id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.ListingTypeId ;;
-  }
+
 
   dimension: rank {
+    hidden:yes
     type: number
     sql: ${TABLE}.Rank ;;
   }
 
   dimension_group: updated {
+    hidden:yes
     type: time
     timeframes: [
       raw,
@@ -57,6 +65,7 @@ view: apr_listing_type {
   }
 
   dimension: updated_user_id {
+    hidden:yes
     type: number
     sql: ${TABLE}.UpdatedUserId ;;
   }
