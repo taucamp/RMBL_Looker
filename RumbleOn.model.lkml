@@ -407,6 +407,13 @@ explore: apr_appraisal {
     sql_on: ${org_user.user_id} = ${apr_appraisal.user_id} ;;
   }
 
+
+  join: org_user_type{
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${org_user.user_type_id} = ${org_user_type.user_type_id} and ${org_user_type.is_active} = 1 ;;
+  }
+
   join: org_user_appraiser{
     type: left_outer
     relationship: many_to_one
@@ -425,6 +432,8 @@ explore: apr_appraisal {
 
 
 
+
+# Inventory Information
 explore: inv_item {
   join: inv_item_status {
     type: left_outer
@@ -468,6 +477,9 @@ explore: inv_item {
 }
 
 
+
+
+# Website Listings
 explore: inv_listing {
   join: inv_item {
     type: left_outer

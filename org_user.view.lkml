@@ -1,15 +1,23 @@
 view: org_user {
   sql_table_name: public.rumble_OrgUser ;;
 
-  dimension: aarep_id {
+    dimension: user_id {
+    primary_key: yes
     hidden:yes
+    type: number
+    sql: ${TABLE}.UserId ;;
+  }
+
+
+  dimension: aarep_id {
     type: string
+    hidden:yes
     sql: ${TABLE}.AARepId ;;
   }
 
   dimension_group: aaverified {
-    hidden:yes
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -23,8 +31,8 @@ view: org_user {
   }
 
   dimension_group: active_after {
-    hidden:yes
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -38,51 +46,48 @@ view: org_user {
   }
 
   dimension: address1 {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.Address1 ;;
   }
 
   dimension: address2 {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.Address2 ;;
   }
 
   dimension: advent_client_id {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.AdventClientId ;;
   }
 
   dimension: app_name {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.AppName ;;
   }
 
   dimension: city {
-    hidden:yes
     type: string
     sql: ${TABLE}.City ;;
   }
 
   dimension: company_name {
-    hidden:yes
     type: string
     sql: ${TABLE}.CompanyName ;;
   }
 
   dimension: country {
-    hidden:yes
     type: string
     map_layer_name: countries
     sql: ${TABLE}.Country ;;
   }
 
   dimension_group: created {
-    hidden:yes
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -96,123 +101,122 @@ view: org_user {
   }
 
   dimension: created_user_id {
-    hidden:yes
     type: number
+    hidden:yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
   dimension: display_name {
-    hidden:no
     type: string
     sql: ${TABLE}.DisplayName ;;
   }
 
   dimension: email {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.Email ;;
   }
 
   dimension: email2 {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.Email2 ;;
   }
 
   dimension: email_verified {
-    hidden:yes
     type: yesno
+    hidden:yes
     sql: ${TABLE}.EmailVerified <> 0  ;;
   }
 
   dimension: first_name {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.FirstName ;;
   }
 
   dimension: home_phone {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.HomePhone ;;
   }
 
   dimension: hub_spot_vid {
-    hidden:yes
     type: number
+    hidden:yes
     value_format_name: id
     sql: ${TABLE}.HubSpotVId ;;
   }
 
   dimension: is_active {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.IsActive ;;
   }
 
   dimension: last_name {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.LastName ;;
   }
 
   dimension: middle_name {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.MiddleName ;;
   }
 
   dimension: mobile {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.Mobile ;;
   }
 
   dimension: mobile_verified {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.MobileVerified ;;
   }
 
   dimension: office_phone {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.OfficePhone ;;
   }
 
   dimension: optin_marketing_email {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.OptinMarketingEmail ;;
   }
 
   dimension: password_hash {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.PasswordHash ;;
   }
 
   dimension: password_salt {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.PasswordSalt ;;
   }
 
   dimension: source {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.Source ;;
   }
 
   dimension: state {
-    hidden:no
     type: string
+    hidden:yes
     sql: ${TABLE}.State ;;
   }
 
   dimension_group: updated {
-    hidden:yes
     type: time
+    hidden:yes
     timeframes: [
       raw,
       time,
@@ -226,56 +230,51 @@ view: org_user {
   }
 
   dimension: updated_user_id {
-    hidden:yes
     type: number
+    hidden:yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 
-  dimension: user_id {
-    primary_key: yes
-    hidden:yes
-    type: number
-    sql: ${TABLE}.UserId ;;
-  }
 
   dimension: user_image {
-    hidden:yes
     type: string
+    hidden:yes
     sql: ${TABLE}.UserImage ;;
   }
 
   dimension: user_status_id {
     type: number
+    hidden:yes
     sql: ${TABLE}.UserStatusId ;;
   }
 
   dimension: user_type_id {
-    hidden:yes
     type: number
+    hidden:no
     sql: ${TABLE}.UserTypeId ;;
   }
 
   dimension: username {
-    hidden:yes
     type: string
+    hidden:no
     sql: ${TABLE}.Username ;;
   }
 
   dimension: uuid {
-    hidden:yes
     type: string
+    hidden:no
     sql: ${TABLE}.Uuid ;;
   }
 
   dimension: verfication_ref_id {
-    hidden:yes
     type: string
+    hidden:no
     sql: ${TABLE}.VerficationRefId ;;
   }
 
   dimension: zip {
-    hidden:no
     type: zipcode
+    hidden:no
     sql: ${TABLE}.Zip ;;
   }
 
