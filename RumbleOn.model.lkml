@@ -293,11 +293,19 @@ explore: adv_salesdetail {
   # field:adv_r_invtdetail.region;
   # user_attribut:regions
   # }
+  join:  adv_sales_adds{
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${adv_sales_adds.dealer_name} = ${adv_salesdetail.dealer_name}  and ${adv_sales_adds.deal_number} = ${adv_salesdetail.deal_number};;
+  }
+
   join: adv_inventory {
     type: left_outer
     relationship: many_to_one
     sql_on: ${adv_salesdetail.stocknumber} = ${adv_inventory.stock_number} ;;
   }
+
+
 }
 
 
