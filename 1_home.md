@@ -1,5 +1,5 @@
 <div style="width: 100%; text-align: center;">
-<h1 style="padding: 30px 0 15px; font-weight:500; text-transform: uppercase; margin-bottom: 0; font-weight: 600;">WELCOME TO YOUR LOOKER TRIAL</h1>
+<h1 style="padding: 30px 0 15px; font-weight:500; text-transform: uppercase; margin-bottom: 0; font-weight: 600;">WELCOME TO THE RUMBLEON LOOKER REPORTING PLATFORM</h1>
 
 
 <div style="width: 50%; padding: 30px; padding-bottom: 40px; float: left; ">
