@@ -307,13 +307,13 @@ explore: apr_appraisal {
   join: apr_appraisal_offer {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_appraisal_offer.appraisal_id} = ${apr_appraisal.appraisal_id} ;;
+    sql_on: ${apr_appraisal_offer.appraisal_id} = ${apr_appraisal.appraisal_id} and ${apr_appraisal_offer.is_active} = 1 ;;
   }
 
   join: apr_appraisal_offer_type {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer_type.appraisal_offer_type_id} ;;
+    sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer_type.appraisal_offer_type_id} and ${apr_appraisal_offer_type.is_active} = 1  ;;
   }
 
   join: apr_appraisal_offer_values {
@@ -325,7 +325,7 @@ explore: apr_appraisal {
   join: apr_appraisal_status {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_appraisal_status.appraisal_status_id} = ${apr_appraisal.appraisal_status_id} ;;
+    sql_on: ${apr_appraisal_status.appraisal_status_id} = ${apr_appraisal.appraisal_status_id} and ${apr_appraisal_status.is_active} = 1;;
   }
 
   join: apr_destination_type {
