@@ -32,7 +32,7 @@ view: apr_appraisal {
 
   dimension: appraisal_status_id {
     type: number
-    sql: ${TABLE}.AppraisalStatusId ;;
+    sql: nvl(${TABLE}.AppraisalStatusId,0) ;;
   }
 
   dimension: appraised_amount {
@@ -62,7 +62,7 @@ view: apr_appraisal {
 
   dimension: appraiser_user_id {
     type: number
-    sql: ${TABLE}.AppraiserUserId ;;
+    sql: nvl(${TABLE}.AppraiserUserId,0) ;;
   }
 
   dimension_group: assigned_to {
@@ -87,7 +87,7 @@ view: apr_appraisal {
 
   dimension: assigned_to_user_id {
     type: number
-    sql: ${TABLE}.AssignedToUserId ;;
+    sql: nvl(${TABLE}.AssignedToUserId,0) ;;
   }
 
   dimension: book_data {
@@ -143,17 +143,18 @@ view: apr_appraisal {
 
   dimension: created_user_id {
     type: number
-    sql: ${TABLE}.CreatedUserId ;;
+    sql: nvl(${TABLE}.CreatedUserId,0) ;;
   }
 
   dimension: current_step {
     type: string
+    hidden: yes
     sql: ${TABLE}.CurrentStep ;;
   }
 
   dimension: current_step_no {
     type: number
-    sql: ${TABLE}.CurrentStepNo ;;
+    sql: nvl(${TABLE}.CurrentStepNo,0) ;;
   }
 
   dimension_group: customer_contacted {
@@ -178,12 +179,12 @@ view: apr_appraisal {
 
   dimension: customer_contacted_user_id {
     type: number
-    sql: ${TABLE}.CustomerContactedUserId ;;
+    sql: nvl(${TABLE}.CustomerContactedUserId,0) ;;
   }
 
   dimension: customer_id {
     type: number
-    sql: ${TABLE}.CustomerId ;;
+    sql: nvl(${TABLE}.CustomerId,0) ;;
   }
 
   dimension: customer_notes {
@@ -215,7 +216,7 @@ view: apr_appraisal {
   dimension: customer_notified_user_id {
     type: number
     hidden: yes
-    sql: ${TABLE}.CustomerNotifiedUserId ;;
+    sql: nvl(${TABLE}.CustomerNotifiedUserId,0) ;;
   }
 
   dimension_group: customer_submitted {
@@ -284,7 +285,7 @@ view: apr_appraisal {
 
   dimension: delivered_user_id {
     type: number
-    sql: ${TABLE}.DeliveredUserId ;;
+    sql: nvl(${TABLE}.DeliveredUserId,0) ;;
   }
 
   dimension_group: destination_location {
@@ -309,7 +310,7 @@ view: apr_appraisal {
 
   dimension: destination_location_user_id {
     type: number
-    sql: ${TABLE}.DestinationLocationUserId ;;
+    sql: nvl(${TABLE}.DestinationLocationUserId,0) ;;
   }
 
   dimension_group: destination_type {
@@ -339,7 +340,7 @@ view: apr_appraisal {
 
   dimension: destination_type_user_id {
     type: number
-    sql: ${TABLE}.DestinationTypeUserId ;;
+    sql: nvl(${TABLE}.DestinationTypeUserId,0) ;;
   }
 
   dimension_group: doc_in {
@@ -411,12 +412,12 @@ view: apr_appraisal {
 
   dimension: documents_issue_user_id {
     type: number
-    sql: ${TABLE}.DocumentsIssueUserId ;;
+    sql: nvl(${TABLE}.DocumentsIssueUserId,0) ;;
   }
 
   dimension: documents_returned_courier_type_id {
     type: number
-    sql: ${TABLE}.DocumentsReturnedCourierTypeId ;;
+    sql: nvl(${TABLE}.DocumentsReturnedCourierTypeId,0) ;;
   }
 
   dimension_group: documents_returned {
@@ -447,12 +448,12 @@ view: apr_appraisal {
 
   dimension: documents_returned_user_id {
     type: number
-    sql: ${TABLE}.DocumentsReturnedUserId ;;
+    sql: nvl(${TABLE}.DocumentsReturnedUserId,0 ;;
   }
 
   dimension: documents_sent_courier_type_id {
     type: number
-    sql: ${TABLE}.DocumentsSentCourierTypeId ;;
+    sql: nvl(${TABLE}.DocumentsSentCourierTypeId,0) ;;
   }
 
   dimension_group: documents_sent {
@@ -482,12 +483,12 @@ view: apr_appraisal {
 
   dimension: documents_sent_user_id {
     type: number
-    sql: ${TABLE}.DocumentsSentUserId ;;
+    sql: nvl(${TABLE}.DocumentsSentUserId,0) ;;
   }
 
   dimension: documents_specialist_user_id {
     type: number
-    sql: ${TABLE}.DocumentsSpecialistUserId ;;
+    sql: nvl(${TABLE}.DocumentsSpecialistUserId,0) ;;
   }
 
   dimension_group: documents_verified {
@@ -512,7 +513,7 @@ view: apr_appraisal {
 
   dimension: documents_verified_user_id {
     type: number
-    sql: ${TABLE}.DocumentsVerifiedUserId ;;
+    sql: nvl(${TABLE}.DocumentsVerifiedUserId,0) ;;
   }
 
   dimension: equipment_notes {
@@ -616,7 +617,7 @@ view: apr_appraisal {
 
   dimension: item_type_id {
     type: number
-    sql: ${TABLE}.ItemTypeId ;;
+    sql: nvl(${TABLE}.ItemTypeId,0) ;;
   }
 
   dimension: item_year {
@@ -626,12 +627,12 @@ view: apr_appraisal {
 
   dimension: listing_type_id {
     type: number
-    sql: ${TABLE}.ListingTypeId ;;
+    sql: nvl(${TABLE}.ListingTypeId,0) ;;
   }
 
   dimension: location_id {
     type: number
-    sql: ${TABLE}.LocationId ;;
+    sql: nvl(${TABLE}.LocationId,0) ;;
   }
 
   dimension_group: locked {
@@ -655,7 +656,7 @@ view: apr_appraisal {
 
   dimension: locked_user_id {
     type: number
-    sql: ${TABLE}.LockedUserId ;;
+    sql: nvl(${TABLE}.LockedUserId,0) ;;
   }
 
   dimension: make {
@@ -665,7 +666,7 @@ view: apr_appraisal {
 
   dimension: mechanical_condition_id {
     type: number
-    sql: ${TABLE}.MechanicalConditionId ;;
+    sql: nvl(${TABLE}.MechanicalConditionId,0) ;;
   }
 
   dimension: mileage {
@@ -715,7 +716,7 @@ view: apr_appraisal {
 
   dimension: overall_condition_id {
     type: number
-    sql: ${TABLE}.OverallConditionId ;;
+    sql: nvl(${TABLE}.OverallConditionId,0) ;;
   }
 
   dimension: owner2_address1 {
@@ -896,12 +897,12 @@ view: apr_appraisal {
 
   dimension: payment_issue_type_id {
     type: number
-    sql: ${TABLE}.PaymentIssueTypeId ;;
+    sql: nvl(${TABLE}.PaymentIssueTypeId,0) ;;
   }
 
   dimension: payment_issue_user_id {
     type: number
-    sql: ${TABLE}.PaymentIssueUserId ;;
+    sql: nvl(${TABLE}.PaymentIssueUserId,0) ;;
   }
 
   dimension: payment_notes {
@@ -916,7 +917,7 @@ view: apr_appraisal {
 
   dimension: payment_user_id {
     type: number
-    sql: ${TABLE}.PaymentUserId ;;
+    sql: nvl(${TABLE}.PaymentUserId,0) ;;
   }
 
   dimension_group: photo_confirmed {
@@ -987,7 +988,7 @@ view: apr_appraisal {
 
   dimension: picked_up_user_id {
     type: number
-    sql: ${TABLE}.PickedUpUserId ;;
+    sql: nvl(${TABLE}.PickedUpUserId,0) ;;
   }
 
   dimension: pickup_address1 {
@@ -1100,7 +1101,7 @@ view: apr_appraisal {
 
   dimension: receipt_confirmed_user_id {
     type: number
-    sql: ${TABLE}.ReceiptConfirmedUserId ;;
+    sql: nvl(${TABLE}.ReceiptConfirmedUserId,0) ;;
   }
 
   dimension: reserve_price {
@@ -1129,7 +1130,7 @@ view: apr_appraisal {
 
   dimension: save_adeal_user_id {
     type: number
-    sql: ${TABLE}.SaveADealUserId ;;
+    sql: nvl(${TABLE}.SaveADealUserId,0) ;;
   }
 
   dimension_group: second_contact {
@@ -1177,7 +1178,7 @@ view: apr_appraisal {
 
   dimension: shipping_booked_user_id {
     type: number
-    sql: ${TABLE}.ShippingBookedUserId ;;
+    sql: nvl(${TABLE}.ShippingBookedUserId,0) ;;
   }
 
   dimension_group: shipping_issue {
@@ -1201,17 +1202,17 @@ view: apr_appraisal {
 
   dimension: shipping_issue_type_id {
     type: number
-    sql: ${TABLE}.ShippingIssueTypeId ;;
+    sql: nvl(${TABLE}.ShippingIssueTypeId,0) ;;
   }
 
   dimension: shipping_issue_user_id {
     type: number
-    sql: ${TABLE}.ShippingIssueUserId ;;
+    sql: nvl(${TABLE}.ShippingIssueUserId,0) ;;
   }
 
   dimension: source_type_id {
     type: number
-    sql: ${TABLE}.SourceTypeId ;;
+    sql: nvl(${TABLE}.SourceTypeId,0) ;;
   }
 
   dimension: sub_source1 {
@@ -1250,7 +1251,7 @@ view: apr_appraisal {
 
   dimension: supervisor_user_id {
     type: number
-    sql: ${TABLE}.SupervisorUserId ;;
+    sql: nvl(${TABLE}.SupervisorUserId,0) ;;
   }
 
   dimension_group: terminated {
@@ -1269,7 +1270,7 @@ view: apr_appraisal {
 
   dimension: terminated_user_id {
     type: number
-    sql: ${TABLE}.TerminatedUserId ;;
+    sql: nvl(${TABLE}.TerminatedUserId,0) ;;
   }
 
   dimension: termination_notes {
@@ -1293,7 +1294,7 @@ view: apr_appraisal {
 
   dimension: tire_condition_id {
     type: number
-    sql: ${TABLE}.TireConditionId ;;
+    sql: nvl(${TABLE}.TireConditionId,0) ;;
   }
 
   dimension_group: title_in {
@@ -1317,7 +1318,7 @@ view: apr_appraisal {
 
   dimension: title_in_user_id {
     type: number
-    sql: ${TABLE}.TitleInUserId ;;
+    sql: nvl(${TABLE}.TitleInUserId,0) ;;
   }
 
   dimension_group: title_issue {
@@ -1341,12 +1342,12 @@ view: apr_appraisal {
 
   dimension: title_issue_type_id {
     type: number
-    sql: ${TABLE}.TitleIssueTypeId ;;
+    sql: nvl(${TABLE}.TitleIssueTypeId,0) ;;
   }
 
   dimension: title_issue_user_id {
     type: number
-    sql: ${TABLE}.TitleIssueUserId ;;
+    sql: nvl(${TABLE}.TitleIssueUserId,0) ;;
   }
 
   dimension_group: title_verified {
@@ -1370,7 +1371,7 @@ view: apr_appraisal {
 
   dimension: title_verified_user_id {
     type: number
-    sql: ${TABLE}.TitleVerifiedUserId ;;
+    sql: nvl(${TABLE}.TitleVerifiedUserId,0) ;;
   }
 
   dimension: tmu {
@@ -1404,7 +1405,7 @@ view: apr_appraisal {
 
   dimension: updated_user_id {
     type: number
-    sql: ${TABLE}.UpdatedUserId ;;
+    sql: nvl(${TABLE}.UpdatedUserId,0) ;;
   }
 
   dimension: user_id {
@@ -1417,29 +1418,29 @@ view: apr_appraisal {
     sql: ${TABLE}.Vin ;;
   }
 
-  dimension: wire_to_account_name {
-    type: string
-    sql: ${TABLE}.WireToAccountName ;;
-  }
+#   dimension: wire_to_account_name {
+#     type: string
+#     sql: ${TABLE}.WireToAccountName ;;
+#   }
+#
+#   dimension: wire_to_account_no {
+#     type: string
+#     sql: ${TABLE}.WireToAccountNo ;;
+#   }
 
-  dimension: wire_to_account_no {
-    type: string
-    sql: ${TABLE}.WireToAccountNo ;;
-  }
-
-  dimension: wire_to_bank_name {
-    type: string
-    sql: ${TABLE}.WireToBankName ;;
-  }
-
-  dimension: wire_to_routing_no {
-    type: string
-    sql: ${TABLE}.WireToRoutingNo ;;
-  }
+#   dimension: wire_to_bank_name {
+#     type: string
+#     sql: ${TABLE}.WireToBankName ;;
+#   }
+#
+#   dimension: wire_to_routing_no {
+#     type: string
+#     sql: ${TABLE}.WireToRoutingNo ;;
+#   }
 
   measure: count {
     type: count
-    drill_fields: [item_name, owner_legal_name, owner2_legal_name, wire_to_bank_name, wire_to_account_name]
+    drill_fields: [item_name, owner_legal_name, owner2_legal_name]
   }
 
   measure: total_internet_price {

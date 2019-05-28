@@ -307,23 +307,28 @@ explore: apr_appraisal {
     sql_on: ${apr_appraisal_loan.appraisal_id} = ${apr_appraisal.appraisal_id} ;;
   }
 
-# Appraisal Offer and Offer Type
+# Appraisal Offer and Offer Type as well Offer Type Status
   join: apr_appraisal_offer {
     type: left_outer
-    relationship: many_to_one
+    relationship: one_to_one
     sql_on: ${apr_appraisal_offer.appraisal_id} = ${apr_appraisal.appraisal_id} and ${apr_appraisal_offer.is_active} = 1 ;;
   }
 
-  join: apr_appraisal_offer_type {
+  join: apr_appraisal_offer_status {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_appraisal_offer.offer_status_id} = ${apr_appraisal_status.appraisal_status_id} ;;
+  }
+
+    join: apr_appraisal_offer_type {
     type: left_outer
     relationship: many_to_one
     sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer.offer_type_id} and ${apr_appraisal_offer_type.is_active} = 1  ;;
   }
 
-# Appraisal Value
   join: apr_appraisal_offer_values {
     type: left_outer
-    relationship: one_to_one
+    relationship: many_to_one
     sql_on: ${apr_appraisal_offer_values.appraisal_id} = ${apr_appraisal.appraisal_id} ;;
   }
 

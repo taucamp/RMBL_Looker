@@ -14,7 +14,7 @@ view: apr_appraisal_offer {
 
   dimension: appraiser_user_id {
     type: number
-    sql: ${TABLE}.AppraiserUserId ;;
+    sql: nvl(${TABLE}.AppraiserUserId,0) ;;
   }
 
   dimension: book_data {
@@ -24,7 +24,7 @@ view: apr_appraisal_offer {
 
   dimension: campaign_id {
     type: number
-    sql: ${TABLE}.CampaignId ;;
+    sql: nvl(${TABLE}.CampaignId,0) ;;
   }
 
   dimension: consignment_price {
@@ -48,7 +48,7 @@ view: apr_appraisal_offer {
 
   dimension: created_user_id {
     type: number
-    sql: ${TABLE}.CreatedUserId ;;
+    sql: nvl(${TABLE}.CreatedUserId,0 ;;
   }
 
   dimension: extended_count {
@@ -115,7 +115,7 @@ view: apr_appraisal_offer {
 
   dimension: offer_status_id {
     type: number
-    sql: ${TABLE}.OfferStatusId ;;
+    sql: nvl(${TABLE}.OfferStatusId,0) ;;
   }
 
   dimension: offer_type_id {
@@ -125,17 +125,17 @@ view: apr_appraisal_offer {
 
   dimension: offered_to_user_id {
     type: number
-    sql: ${TABLE}.OfferedToUserId ;;
+    sql: nvl(${TABLE}.OfferedToUserId,0) ;;
   }
 
   dimension: purchase_id {
     type: number
-    sql: ${TABLE}.PurchaseId ;;
+    sql: nvl(${TABLE}.PurchaseId,0) ;;
   }
 
   dimension: supervisor_user_id {
     type: number
-    sql: ${TABLE}.SupervisorUserId ;;
+    sql: nvl${TABLE}.SupervisorUserId,0) ;;
   }
 
   dimension_group: updated {
@@ -154,7 +154,7 @@ view: apr_appraisal_offer {
 
   dimension: updated_user_id {
     type: number
-    sql: ${TABLE}.UpdatedUserId ;;
+    sql: nvl(${TABLE}.UpdatedUserId,0) ;;
   }
 
   measure: count {
