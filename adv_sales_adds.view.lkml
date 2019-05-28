@@ -79,11 +79,25 @@ view: adv_sales_adds {
     sql: ${TABLE}.cost ;;
   }
 
+  dimension: dealer_name {
+    type: number
+#     label:
+    description: "The Employee who created the Sales Add"
+    sql: f_sql_adv_dealername(${TABLE}.store) ;;
+  }
+
   dimension: employee_who_created {
     type: number
 #     label:
     description: "The Employee who created the Sales Add"
     sql: nvl(${TABLE}.createempno,0) ;;
+  }
+
+  dimension: employee_who_modified {
+    type: number
+#     label:
+    description: "The Employee who modified the Sales Add"
+    sql: nvl(${TABLE}.modifiedemp,0) ;;
   }
 
   dimension_group: createtimestamp {
@@ -103,6 +117,25 @@ view: adv_sales_adds {
       day_of_year
     ]
     sql: ${TABLE}.createtimestamp ;;
+  }
+
+  dimension_group: modifiedtimestamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      hour_of_day,
+      date,
+      week,
+      day_of_week,
+      month,
+      day_of_month,
+      quarter,
+      quarter_of_year,
+      year,
+      day_of_year
+    ]
+    sql: ${TABLE}.modifiedtimestamp ;;
   }
 
   dimension: deal_number {
