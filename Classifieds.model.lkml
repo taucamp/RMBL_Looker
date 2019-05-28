@@ -4,7 +4,28 @@ include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
+explore: amex_transactions {
+  group_label: "Spending"
+  join: amex_cards {
+    relationship: many_to_one
+    sql_on: ${amex_transactions.cardnumber_last5} = ${amex_cards.cardnumber_last5} ;;
+  }
+}
+
+
+explore: Payroll {
+  group_label: "HR Item"
+}
+
+
+explore:employee_walk {
+  group_label: "HR Item"
+}
+
+
+
 explore: cls_listing {
+  group_label: "Classifieds"
 
   join: cls_listingextended {
     relationship: many_to_one
