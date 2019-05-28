@@ -297,6 +297,9 @@ explore: adv_salesdetail {
 }
 
 
+
+# APPRAISAL DETAIL
+# full join against majority of information
 explore: apr_appraisal {
   join: apr_appraisal_loan {
     type: left_outer
@@ -304,6 +307,7 @@ explore: apr_appraisal {
     sql_on: ${apr_appraisal_loan.appraisal_id} = ${apr_appraisal.appraisal_id} ;;
   }
 
+# Appraisal Offer and Offer Type
   join: apr_appraisal_offer {
     type: left_outer
     relationship: many_to_one
@@ -313,38 +317,50 @@ explore: apr_appraisal {
   join: apr_appraisal_offer_type {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer_type.appraisal_offer_type_id} and ${apr_appraisal_offer_type.is_active} = 1  ;;
+    sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer.offer_type_id} and ${apr_appraisal_offer_type.is_active} = 1  ;;
   }
 
+# Appraisal Value
   join: apr_appraisal_offer_values {
     type: left_outer
     relationship: one_to_one
     sql_on: ${apr_appraisal_offer_values.appraisal_id} = ${apr_appraisal.appraisal_id} ;;
   }
 
+# Appraisal Status
   join: apr_appraisal_status {
     type: left_outer
     relationship: many_to_one
     sql_on: ${apr_appraisal_status.appraisal_status_id} = ${apr_appraisal.appraisal_status_id} and ${apr_appraisal_status.is_active} = 1;;
   }
 
+# Appraisal Destination Type
   join: apr_destination_type {
     type: left_outer
     relationship: many_to_one
     sql_on: ${apr_destination_type.destination_type_id} = ${apr_appraisal.destination_type_id} and ${apr_destination_type.is_active} = 1 ;;
   }
 
+# Source of the Appraisal
+  join: apr_source_type {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_source_type.source_type_id} = ${apr_appraisal.source_type_id}  and ${apr_source_type.is_active} = 1 ;;
+  }
+
+
+# Appraisal Vehicle Information and Attributes
   join: apr_item_type {
     type: left_outer
     relationship: many_to_one
     sql_on: ${apr_item_type.item_type_id} = ${apr_appraisal.item_type_id}  and ${apr_item_type.is_active} = 1;;
   }
 
-  join: apr_listing_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} and ${apr_listing_type.is_active} = 1 ;;
-  }
+#   join: apr_listing_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} and ${apr_listing_type.is_active} = 1 ;;
+#   }
 
 
   join: apr_mechanical_condition {
@@ -359,11 +375,6 @@ explore: apr_appraisal {
     sql_on: ${apr_overall_condition.overall_condition_id} = ${apr_appraisal.overall_condition_id}  and ${apr_overall_condition.is_active} = 1 ;;
   }
 
-  join: apr_payment_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_payment_type.payment_type_id} = ${apr_appraisal.payment_type_id} ;;
-  }
 
   join: apr_physical_condition {
     type: left_outer
@@ -377,16 +388,17 @@ explore: apr_appraisal {
     sql_on: ${apr_shipping_issue_type.shipping_issue_type_id} = ${apr_appraisal.shipping_issue_type_id}   and ${apr_shipping_issue_type.is_active} = 1;;
   }
 
-  join: apr_source_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_source_type.source_type_id} = ${apr_appraisal.source_type_id}  and ${apr_source_type.is_active} = 1 ;;
-  }
-
   join: apr_tire_condition {
     type: left_outer
     relationship: many_to_one
     sql_on: ${apr_tire_condition.tire_condition_id} = ${apr_appraisal.tire_condition_id}  and ${apr_tire_condition.is_active} = 1 ;;
+  }
+
+#   Deal Specific Information
+  join: apr_payment_type {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_payment_type.payment_type_id} = ${apr_appraisal.payment_type_id} ;;
   }
 
   join: apr_title_issue_type {
@@ -395,6 +407,8 @@ explore: apr_appraisal {
     sql_on: ${apr_title_issue_type.title_issue_type_id} = ${apr_appraisal.title_issue_type_id}  and ${apr_title_issue_type.is_active} = 1 ;;
   }
 
+
+# Detail about Account that submitted
   join: org_account{
     type: left_outer
     relationship: many_to_one
@@ -407,13 +421,13 @@ explore: apr_appraisal {
     sql_on: ${org_user.user_id} = ${apr_appraisal.user_id} ;;
   }
 
-
   join: org_user_type{
     type: left_outer
     relationship: many_to_one
     sql_on: ${org_user.user_type_id} = ${org_user_type.user_type_id} and ${org_user_type.is_active} = 1 ;;
   }
 
+# Detail about Appraiser
   join: org_user_appraiser{
     type: left_outer
     relationship: many_to_one
@@ -421,6 +435,7 @@ explore: apr_appraisal {
     sql_on: ${org_user_appraiser.user_id} = ${apr_appraisal.appraiser_user_id} ;;
   }
 
+# Detail about Supervisor
   join: org_user_supervisor{
     type: left_outer
     relationship: many_to_one
