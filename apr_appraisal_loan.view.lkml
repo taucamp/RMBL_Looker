@@ -1,20 +1,22 @@
 view: apr_appraisal_loan {
   sql_table_name: public.rumble_AprAppraisalLoan ;;
 
+  dimension: appraisal_loan_id {
+    primary_key:yes
+    type: number
+    hidden: yes
+    sql: ${TABLE}.AppraisalLoanId ;;
+  }
+
   dimension: account_number {
     type: string
+    hidden: yes
     sql: ${TABLE}.AccountNumber ;;
   }
 
   dimension: appraisal_id {
     type: number
     sql: ${TABLE}.AppraisalId ;;
-  }
-
-  dimension: appraisal_loan_id {
-    primary_key:yes
-    type: number
-    sql: ${TABLE}.AppraisalLoanId ;;
   }
 
   dimension: bank_name {
@@ -24,6 +26,7 @@ view: apr_appraisal_loan {
 
   dimension_group: created {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -38,6 +41,7 @@ view: apr_appraisal_loan {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.CreatedUserId ;;
   }
 
@@ -67,6 +71,7 @@ view: apr_appraisal_loan {
 
   dimension: payment_notes {
     type: string
+    hidden: yes
     sql: ${TABLE}.PaymentNotes ;;
   }
 
@@ -96,6 +101,7 @@ view: apr_appraisal_loan {
 
   dimension: receipt_confirmed_notes {
     type: string
+    hidden: yes
     sql: ${TABLE}.ReceiptConfirmedNotes ;;
   }
 
@@ -111,6 +117,7 @@ view: apr_appraisal_loan {
 
   dimension_group: updated {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -125,6 +132,7 @@ view: apr_appraisal_loan {
 
   dimension: updated_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.UpdatedUserId ;;
   }
 

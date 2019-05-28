@@ -331,25 +331,32 @@ explore: apr_appraisal {
   join: apr_destination_type {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_destination_type.destination_type_id} = ${apr_appraisal.destination_type_id} ;;
+    sql_on: ${apr_destination_type.destination_type_id} = ${apr_appraisal.destination_type_id} and ${apr_destination_type.is_active} = 1 ;;
   }
 
   join: apr_item_type {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_item_type.item_type_id} = ${apr_appraisal.item_type_id};;
+    sql_on: ${apr_item_type.item_type_id} = ${apr_appraisal.item_type_id}  and ${apr_item_type.is_active} = 1;;
   }
 
-  # join: apr_listing_type {
-  #   type: left_outer
-  #   relationship: many_to_one
-  #   sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} ;;
-  # }
+  join: apr_listing_type {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_listing_type.listing_type_id}=${apr_appraisal.listing_type_id} and ${apr_listing_type.is_active} = 1 ;;
+  }
+
 
   join: apr_mechanical_condition {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_mechanical_condition.mechanical_condition_id} = ${apr_appraisal.mechanical_condition_id} ;;
+    sql_on: ${apr_mechanical_condition.mechanical_condition_id} = ${apr_appraisal.mechanical_condition_id}  and ${apr_mechanical_condition.is_active} = 1 ;;
+  }
+
+  join: apr_overall_condition {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_overall_condition.overall_condition_id} = ${apr_appraisal.overall_condition_id}  and ${apr_overall_condition.is_active} = 1 ;;
   }
 
   join: apr_payment_type {
@@ -361,19 +368,31 @@ explore: apr_appraisal {
   join: apr_physical_condition {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_physical_condition.physical_condition_id} = ${apr_appraisal.physical_condition_id} ;;
+    sql_on: ${apr_physical_condition.physical_condition_id} = ${apr_appraisal.physical_condition_id}   and ${apr_physical_condition.is_active} = 1;;
+  }
+
+  join: apr_shipping_issue_type {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_shipping_issue_type.shipping_issue_type_id} = ${apr_appraisal.shipping_issue_type_id}   and ${apr_shipping_issue_type.is_active} = 1;;
   }
 
   join: apr_source_type {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_source_type.source_type_id} = ${apr_appraisal.source_type_id} ;;
+    sql_on: ${apr_source_type.source_type_id} = ${apr_appraisal.source_type_id}  and ${apr_source_type.is_active} = 1 ;;
   }
 
   join: apr_tire_condition {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${apr_tire_condition.tire_condition_id} = ${apr_appraisal.tire_condition_id} ;;
+    sql_on: ${apr_tire_condition.tire_condition_id} = ${apr_appraisal.tire_condition_id}  and ${apr_tire_condition.is_active} = 1 ;;
+  }
+
+  join: apr_title_issue_type {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${apr_title_issue_type.title_issue_type_id} = ${apr_appraisal.title_issue_type_id}  and ${apr_title_issue_type.is_active} = 1 ;;
   }
 
   join: org_account{
@@ -402,6 +421,8 @@ explore: apr_appraisal {
     sql_on: ${org_user_supervisor.user_id} = ${apr_appraisal_offer.supervisor_user_id} ;;
   }
 }
+
+
 
 
 explore: inv_item {
