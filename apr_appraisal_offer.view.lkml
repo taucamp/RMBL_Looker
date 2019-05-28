@@ -135,7 +135,7 @@ view: apr_appraisal_offer {
 
   dimension: supervisor_user_id {
     type: number
-    sql: nvl${TABLE}.SupervisorUserId,0) ;;
+    sql: nvl(${TABLE}.SupervisorUserId,0) ;;
   }
 
   dimension_group: updated {
