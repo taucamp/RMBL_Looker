@@ -4,6 +4,7 @@ view: org_user_type {
   dimension: user_type_id {
     primary_key: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.UserTypeId ;;
   }
 

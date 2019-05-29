@@ -250,7 +250,7 @@ view: org_user {
 
   dimension: user_type_id {
     type: number
-    hidden:no
+    hidden:yes
     sql: ${TABLE}.UserTypeId ;;
   }
 

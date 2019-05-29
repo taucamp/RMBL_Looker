@@ -4,6 +4,7 @@ view: apr_mechanical_condition {
   dimension: mechanical_condition_id {
     primary_key: yes
     type: number
+    hidden:yes
     sql: ${TABLE}.MechanicalConditionId ;;
   }
 

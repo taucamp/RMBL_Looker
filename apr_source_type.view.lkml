@@ -4,6 +4,7 @@ view: apr_source_type {
   dimension: source_type_id {
     primary_key: yes
     type: number
+    hidden:yes
     sql: ${TABLE}.SourceTypeId ;;
   }
 
