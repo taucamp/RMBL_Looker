@@ -95,11 +95,13 @@ view: apr_appraisal_loan {
 
   dimension: payment_type_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.PaymentTypeId ;;
   }
 
   dimension: payment_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.PaymentUserId ;;
   }
 
@@ -125,11 +127,20 @@ view: apr_appraisal_loan {
 
   dimension: receipt_confirmed_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.ReceiptConfirmedUserId ;;
   }
 
   dimension: remaining_loan_amount {
     type: number
+    sql: ${TABLE}.RemainingLoanAmount ;;
+  }
+
+  dimension: remaining_loan_amount_bucket {
+  type: tier
+  tiers: [0,2500,5000,7500,10000,15000,20000,25000,30000,40000,50000]
+  style: relational
+  value_format_name: usd_0
     sql: ${TABLE}.RemainingLoanAmount ;;
   }
 

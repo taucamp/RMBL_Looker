@@ -1,6 +1,19 @@
 view: apr_appraisal {
   sql_table_name: public.rumble_AprAppraisal ;;
 
+  set: appraisal_drillthrough {
+    fields: [appraisal_ref_no,
+      appraisal_id,
+      vin,
+      appraised_date,
+      make,
+      model,
+      mileage,
+      appraised_amount,
+      nada_clean_value
+
+    ]
+  }
   dimension: appraisal_id {
     primary_key: yes
     type: number
@@ -1550,34 +1563,35 @@ view: apr_appraisal {
 
   measure: count {
     type: count
-    drill_fields: [item_name, owner_legal_name, owner2_legal_name]
+    drill_fields:[appraisal_drillthrough*]
   }
 
   measure: total_internet_price {
     type: sum
     sql: ${internet_price} ;;
     value_format_name: usd
-
+    drill_fields:[appraisal_drillthrough*]
   }
 
   measure: total_nada_clean {
     type: sum
     sql: ${nada_clean_value} ;;
     value_format_name: usd
-
+    drill_fields:[appraisal_drillthrough*]
   }
 
   measure: total_appraised_amount {
     type: sum
     sql: ${appraised_amount} ;;
     value_format_name: usd
-
+    drill_fields:[appraisal_drillthrough*]
   }
 
   measure: total_est_freight {
     type: sum
     sql: ${est_freight} ;;
     value_format_name: usd
+    drill_fields:[appraisal_drillthrough*]
 
   }
 
@@ -1585,6 +1599,7 @@ view: apr_appraisal {
     type: sum
     sql: convert(int,case when ${mileage} > 100000 then 100000 else ${mileage} end)*1.0;;
     value_format_name: decimal_0
+    drill_fields:[appraisal_drillthrough*]
 
   }
 
@@ -1593,6 +1608,7 @@ view: apr_appraisal {
     type: number
     sql: ${sum_of_miles}*1.0/${count}*1.0 ;;
     value_format_name: decimal_0
+    drill_fields:[appraisal_drillthrough*]
 
   }
 
