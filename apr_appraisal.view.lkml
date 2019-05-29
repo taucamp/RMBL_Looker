@@ -60,7 +60,7 @@ view: apr_appraisal {
   dimension: appraiser_notes {
     type: string
     hidden: yes
-    sql: ${TABLE}.AppraiserNotes ;;
+    sql: nvl(${TABLE}.AppraiserNotes,'Unknown') ;;
   }
 
   dimension: appraiser_user_id {
@@ -86,7 +86,7 @@ view: apr_appraisal {
   dimension: assigned_to_notes {
     type: string
     hidden: yes
-    sql: ${TABLE}.AssignedToNotes ;;
+    sql: nvl(${TABLE}.AssignedToNotes,'Unknown')  ;;
   }
 
   dimension: assigned_to_user_id {
@@ -118,18 +118,18 @@ view: apr_appraisal {
   dimension: client_ipaddress {
     type: string
     hidden: yes
-    sql: ${TABLE}.ClientIPAddress ;;
+    sql: nvl(${TABLE}.ClientIPAddress,'Unknown') ;;
   }
 
   dimension: client_user_agent {
     type: string
     hidden: yes
-    sql: ${TABLE}.ClientUserAgent ;;
+    sql: nvl(${TABLE}.ClientUserAgent,'Unknown') ;;
   }
 
   dimension: color {
     type: string
-    sql: ${TABLE}.Color ;;
+    sql: nvl(${TABLE}.Color,'Unknown') ;;
   }
 
   dimension_group: created {
@@ -152,11 +152,11 @@ view: apr_appraisal {
     sql: nvl(${TABLE}.CreatedUserId,0) ;;
   }
 
-  dimension: current_step {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.CurrentStep ;;
-  }
+  # dimension: current_step {
+  #   type: string
+  #   hidden: yes
+  #   sql: ${TABLE}.CurrentStep ;;
+  # }
 
   dimension: current_step_no {
     type: number
@@ -180,7 +180,7 @@ view: apr_appraisal {
   dimension: customer_contacted_notes {
     type: string
     hidden: yes
-    sql: ${TABLE}.CustomerContactedNotes ;;
+    sql: nvl(${TABLE}.CustomerContactedNotes, 'Unknown') ;;
   }
 
   dimension: customer_contacted_user_id {
@@ -584,23 +584,23 @@ view: apr_appraisal {
   }
 
   dimension: has_been_operated {
-    type: string
-    sql: ${TABLE}.HasBeenOperated ;;
+    type: yesno
+    sql: nvl2(${TABLE}.HasBeenOperated,0,1) = 1 ;;
   }
 
   dimension: has_damage {
-    type: string
-    sql: ${TABLE}.HasDamage ;;
+    type: yesno
+    sql: nvl2(${TABLE}.HasDamage,0,1) = 1 ;;
   }
 
   dimension: has_photos {
-    type: string
-    sql: ${TABLE}.HasPhotos ;;
+    type: yesno
+    sql: nvl2(${TABLE}.HasPhotos,0,1) = 1 ;;
   }
 
   dimension: have_outstanding_loan {
-    type: string
-    sql: ${TABLE}.HaveOutstandingLoan ;;
+    type: yesno
+    sql: nvl2(${TABLE}.HaveOutstandingLoan,0,1) = 1 ;;
   }
 
   dimension: internet_price {
@@ -609,23 +609,23 @@ view: apr_appraisal {
   }
 
   dimension: is_offer_lessthan_owe {
-    type: string
-    sql: ${TABLE}.IsOfferLessthanOwe ;;
+    type: yesno
+    sql: nvl2(${TABLE}.IsOfferLessthanOwe,0,1) = 1 ;;
   }
 
   dimension: is_photo_confirmed {
-    type: string
-    sql: ${TABLE}.IsPhotoConfirmed ;;
+    type: yesno
+    sql: nvl2(${TABLE}.IsPhotoConfirmed,0,1) = 1 ;;
   }
 
   dimension: is_photo_ready {
-    type: string
-    sql: ${TABLE}.IsPhotoReady ;;
+    type: yesno
+    sql: nvl2(${TABLE}.IsPhotoReady,0,1) = 1 ;;
   }
 
   dimension: is_photo_rejected {
-    type: string
-    sql: ${TABLE}.IsPhotoRejected ;;
+    type: yesno
+    sql: nvl2(${TABLE}.IsPhotoRejected,0,1) = 1 ;;
   }
 
   dimension: item_guid {
@@ -716,7 +716,7 @@ view: apr_appraisal {
 
   dimension: motorcycle_rating {
     type: string
-    sql: ${TABLE}.MotorcycleRating ;;
+    sql: nvl(${TABLE}.MotorcycleRating,'Unknown') ;;
   }
 
   dimension: nada_clean_value {
@@ -1068,9 +1068,9 @@ view: apr_appraisal {
           END ;;
   }
 
-  dimension: pickup_address_different {
-    type: string
-    sql: ${TABLE}.PickupAddressDifferent ;;
+  dimension: is_pickup_address_different {
+    type: yesno
+    sql: nvl2(${TABLE}.PickupAddressDifferent,0,1) = 1 ;;
   }
 
   dimension: pickup_city {
@@ -1085,10 +1085,10 @@ view: apr_appraisal {
     sql: ${TABLE}.PickupContact ;;
   }
 
-  dimension: pickup_contact_different {
-    type: string
+  dimension: is_pickup_contact_different {
+    type: yesno
     hidden:yes
-    sql: ${TABLE}.PickupContactDifferent ;;
+    sql: nvl2(${TABLE}.PickupContactDifferent,0,1) = 1 ;;
   }
 
   dimension: pickup_country {
@@ -1461,19 +1461,19 @@ view: apr_appraisal {
     sql: nvl(${TABLE}.TitleVerifiedUserId,0) ;;
   }
 
-  dimension: tmu {
-    type: string
-    sql: ${TABLE}.TMU ;;
+  dimension: is_tmu {
+    type: yesno
+    sql: nvl2(${TABLE}.TMU,0,1) = 1 ;;
   }
 
-  dimension: trade_in {
-    type: string
-    sql: ${TABLE}.TradeIn ;;
+  dimension: is_trade_in {
+    type: yesno
+    sql: nvl2(${TABLE}.TradeIn,0,1) = 1 ;;
   }
 
-  dimension: trike {
-    type: string
-    sql: ${TABLE}.Trike ;;
+  dimension: is_trike {
+    type: yesno
+    sql: nvl2(${TABLE}.Trike,0,1) = 1 ;;
   }
 
   dimension_group: updated {
