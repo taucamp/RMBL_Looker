@@ -38,7 +38,7 @@ view: adv_salesdetail {
 
 
 # Accessory Profit
- dimension: accessorprofit {
+ dimension: accessory_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -47,13 +47,13 @@ view: adv_salesdetail {
 
   dimension: has_accessory_profit {
     type: yesno
-    sql: ${accessorprofit} > 0;;
+    sql: ${accessory_profit} > 0;;
   }
 
 
 
 # Amount Finaned
-  dimension: amountfinanced {
+  dimension: amount_financed {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -62,7 +62,7 @@ view: adv_salesdetail {
 
   dimension: has_financing {
     type: yesno
-    sql: ${amountfinanced}<>0;;
+    sql: ${amount_financed}<>0;;
   }
 
   dimension: amount_financed_tier {
@@ -70,7 +70,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
-    sql: ${amountfinanced} ;;
+    sql: ${amount_financed} ;;
   }
 
 
@@ -205,7 +205,7 @@ view: adv_salesdetail {
 
 
 # Dealer Pack
-  dimension: dealerpack {
+  dimension: dealer_pack {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -214,7 +214,7 @@ view: adv_salesdetail {
 
   dimension: has_dealer_pack{
     type: yesno
-    sql: ${dealerpack} <> 0;;
+    sql: ${dealer_pack} <> 0;;
   }
 
   dimension: sales_channel{
@@ -269,7 +269,7 @@ view: adv_salesdetail {
 
 
 # LAH Profit
-  dimension: lahprofit {
+  dimension: lah_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -278,7 +278,7 @@ view: adv_salesdetail {
 
 
 # Net Profit
-  dimension: netprofit {
+  dimension: net_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -287,7 +287,7 @@ view: adv_salesdetail {
 
   dimension: has_net_profit {
     type: yesno
-    sql: ${netprofit}> 0;;
+    sql: ${net_profit}> 0;;
   }
 
   dimension: net_profit_tier {
@@ -295,12 +295,12 @@ view: adv_salesdetail {
     style: integer
     tiers: [-1000,-500,0,250,500,1000,2500]
     value_format_name: usd_0
-    sql: ${netprofit} ;;
+    sql: ${net_profit} ;;
   }
 
 
 # Non Taxable Accessories
-  dimension: nontaxableacc {
+  dimension: non_taxable_accessories {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -381,7 +381,7 @@ view: adv_salesdetail {
 
 
 # Sell Price
-  dimension: sellprice {
+  dimension: sell_price {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -393,7 +393,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
     value_format_name: usd_0
-    sql: ${sellprice};;
+    sql: ${sell_price};;
   }
 
 
@@ -411,13 +411,13 @@ view: adv_salesdetail {
   }
 
 # Stock Number
-  dimension: stocknumber {
+  dimension: stock_number {
     type: string
     sql: ${TABLE}.stocknumber ;;
   }
 
 # Total Sale
-  dimension: totalsale {
+  dimension: total_sale {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -429,11 +429,11 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
     value_format_name: usd_0
-    sql: ${totalsale} ;;
+    sql: ${total_sale} ;;
   }
 
 # Trade 1 ACV
-  dimension: trade1acv {
+  dimension: trade1_acv {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -443,7 +443,7 @@ view: adv_salesdetail {
 
 
 # Trade 1 Gross
-  dimension: trade1gross {
+  dimension: trade1_gross {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -452,12 +452,12 @@ view: adv_salesdetail {
 
   dimension: has_trade {
      type: yesno
-    sql: ${trade1gross} <> 0;;
+    sql: ${trade1_gross} <> 0;;
   }
 
 
 # Trade 1 Payoff
-  dimension: trade1payoff {
+  dimension: trade1_payoff {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -465,14 +465,14 @@ view: adv_salesdetail {
   }
 
 # Trade 1 Stock number
-  dimension: trade1stocknum {
+  dimension: trade1_stock_number {
     type: string
     sql: ${TABLE}.trade1stocknum ;;
   }
 
 
 # Trade 2 ACV
-  dimension: trade2acv {
+  dimension: trade2_acv {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -485,7 +485,7 @@ view: adv_salesdetail {
   }
 
 # Trade 2 Gross
-  dimension: trade2gross {
+  dimension: trade2_gross {
     hidden: yes
    type: number
     value_format_name: usd_0
@@ -493,7 +493,7 @@ view: adv_salesdetail {
   }
 
 # Trade 2 Payoff
-  dimension: trade2payoff {
+  dimension: trade2_payoff {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -501,7 +501,7 @@ view: adv_salesdetail {
   }
 
 # Trade 2 Stock Number
-  dimension: trade2stocknum {
+  dimension: trade2_stock_number {
     type: string
     sql: ${TABLE}.trade2stocknum ;;
   }
@@ -513,7 +513,7 @@ view: adv_salesdetail {
   }
 
 # Vehicle Cost
-  dimension: vehiclecost {
+  dimension: vehicle_cost {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -526,7 +526,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000,25000,30000,50000,75000,120000,150000]
     value_format_name: usd_0
-    sql: ${vehiclecost} ;;
+    sql: ${vehicle_cost} ;;
   }
 
 # Vehicle Profit
@@ -548,7 +548,7 @@ view: adv_salesdetail {
 
 
 # Vehicle Insurance
-  dimension: vehinsurance {
+  dimension: vehicle_insurance {
     hidden: yes
     type: number
     sql: f_sql_char_to_numeric(${TABLE}.vehinsurance) ;;
@@ -557,11 +557,11 @@ view: adv_salesdetail {
 # Has Vehicle Insurance
     dimension: has_vehicle_insurance {
       type: yesno
-      sql: ${vehinsurance} <> 0;;
+      sql: ${vehicle_insurance} <> 0;;
     }
 
 # Warranty Type
-  dimension: warrantyprofit {
+  dimension: warranty_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -571,14 +571,14 @@ view: adv_salesdetail {
 # Has Warranty
     dimension: has_warranty {
       type: yesno
-      sql: ${warrantyprofit} <> 0;;
+      sql: ${warranty_profit} <> 0;;
     }
 
 
 # Transaction Type
   dimension: transaction_type {
     type: string
-    sql: CASE WHEN ${cashsaleprice} = 0 AND ${trade1gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
+    sql: CASE WHEN ${cashsaleprice} = 0 AND ${trade1_gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
   }
 
 # UnwindDate
@@ -623,10 +623,10 @@ view: adv_salesdetail {
 #     sql: ${accessorprofit} ;;
 #   }
 #
-  measure: amount_financed {
+  measure: amount_financed_total {
     type: sum
     value_format_name: usd_0
-    sql: ${amountfinanced} ;;
+    sql: ${amount_financed} ;;
   }
 #
 #   measure: cash_deposit {
@@ -671,10 +671,10 @@ view: adv_salesdetail {
 #     sql: ${lahprofit} ;;
 #   }
 #
-  measure: net_profit {
+  measure: net_profit_total {
     type: sum
     value_format_name: usd_0
-    sql: ${netprofit} ;;
+    sql: ${net_profit} ;;
   }
 #
 #   measure: non_taxable_accessories {
@@ -689,10 +689,10 @@ view: adv_salesdetail {
 #     sql: ${reserveprofit} ;;
 #   }
 #
-  measure: sell_price {
+  measure: sell_price_total {
     type: sum
     value_format_name: usd_0
-    sql: ${sellprice};;
+    sql: ${sell_price};;
   }
 #
 #   measure: service_contract_cost {
@@ -701,10 +701,10 @@ view: adv_salesdetail {
 #     sql: ${servicecontractcost} ;;
 #   }
 
-  measure: total_sale {
+  measure: total_sale_amout {
     type: sum
     value_format_name: usd_0
-    sql: ${totalsale};;
+    sql: ${total_sale};;
   }
 
 #   measure: trade1_acv{
@@ -743,10 +743,10 @@ view: adv_salesdetail {
 #     sql: ${trade2payoff} ;;
 #   }
 #
-  measure: vehicle_cost {
+  measure: vehicle_cost_amount {
     type: sum
     value_format_name: usd_0
-    sql: ${vehiclecost};;
+    sql: ${vehicle_cost};;
   }
 
   measure: vehicle_profit{
@@ -755,16 +755,16 @@ view: adv_salesdetail {
     sql: ${vehicleprofit} ;;
   }
 #
-  measure: vehicle_insurance {
+  measure: vehicle_insurance_amount {
     type: sum
     value_format_name: usd_0
-    sql: ${vehinsurance} ;;
+    sql: ${vehicle_insurance} ;;
   }
 
-  measure: warranty_profit {
+  measure: warranty_profit_amount {
     type: sum
     value_format_name: usd_0
-    sql: ${warrantyprofit} ;;
+    sql: ${warranty_profit} ;;
   }
 
 

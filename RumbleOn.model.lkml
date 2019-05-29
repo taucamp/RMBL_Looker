@@ -292,7 +292,7 @@ explore: adv_salesdetail {
   join: adv_inventory {
     type: left_outer
     relationship: many_to_one
-    sql_on: ${adv_salesdetail.stocknumber} = ${adv_inventory.stock_number} ;;
+    sql_on: ${adv_salesdetail.stock_number} = ${adv_inventory.stock_number} ;;
   }
 }
 
