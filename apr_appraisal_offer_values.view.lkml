@@ -119,7 +119,7 @@ view: apr_appraisal_offer_values {
     sql: ${cash_offer_value}*1 ;;
     drill_fields:[appraisal_offer_values_drillthrough*]
     filters: {
-      field: offer_value_average
+      field: cash_offer_value
       value: "<>0"
     }
   }
