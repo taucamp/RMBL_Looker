@@ -139,6 +139,13 @@ view: adv_salesdetail {
     sql: ${TABLE}.closedate ;;
   }
 
+  dimension: has_closed {
+    type:  yesno
+    sql: nvl2(${close_date_date},1,0) ;;
+
+  }
+
+
   dimension_group: days_to_post_deal {
     type: duration
     intervals: [day, week]
@@ -276,6 +283,10 @@ view: adv_salesdetail {
     sql: f_sql_char_to_numeric(${TABLE}.lahprofit) ;;
   }
 
+  dimension: has_LAH_incentive {
+    type: yesno
+    sql: ${lah_profit} <> 0;;
+  }
 
 # Net Profit
   dimension: net_profit {
@@ -307,6 +318,10 @@ view: adv_salesdetail {
     sql: f_sql_char_to_numeric(${TABLE}.nontaxableacc) ;;
   }
 
+  dimension: has_non_taxable_accessories {
+    type: yesno
+    sql: ${non_taxable_accessories} <> 0;;
+  }
 
 # Opportunity number
   dimension: opportunity {
