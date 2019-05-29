@@ -76,7 +76,7 @@ view: adv_salesdetail {
 
 
 # Cash Deposit
-  dimension: cashdeposit {
+  dimension: cash_deposit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -85,7 +85,7 @@ view: adv_salesdetail {
 
   dimension: has_cash_deposit {
      type: yesno
-    sql: ${cashdeposit}<>0;;
+    sql: ${cash_deposit}<>0;;
   }
 
   dimension: cash_deposit_tier {
@@ -93,7 +93,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000]
     value_format_name: usd_0
-    sql: ${cashdeposit}::int ;;
+    sql: ${cash_deposit}::int ;;
   }
 
 
@@ -108,7 +108,7 @@ view: adv_salesdetail {
 
 
 # Cash Sale Price
-  dimension: cashsaleprice {
+  dimension: cash_sale_price {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -120,7 +120,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,5000,10000,15000,20000, 30000,40000,50000,75000,100000,150000,1000000]
     value_format_name: usd_0
-    sql: ${cashsaleprice} ;;
+    sql: ${cash_sale_price} ;;
   }
 
 
@@ -231,7 +231,7 @@ view: adv_salesdetail {
 
 
 # Financial Adds
-  dimension: finadds {
+  dimension: financial_adds {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -240,7 +240,7 @@ view: adv_salesdetail {
 
   dimension: has_financial_adds {
    type: yesno
-    sql: ${finadds} <> 0;;
+    sql: ${financial_adds} <> 0;;
   }
 
 
@@ -249,7 +249,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [0,250,500,1000,2500]
     value_format_name: decimal_0
-    sql: ${finadds} ;;
+    sql: ${financial_adds} ;;
   }
 
 
@@ -332,7 +332,7 @@ view: adv_salesdetail {
 
 
 # Reserve Profit
-  dimension: reserveprofit {
+  dimension: reserve_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -341,7 +341,7 @@ view: adv_salesdetail {
 
   dimension: has_reserve_profit {
     type: yesno
-    sql: ${reserveprofit} <> 0;;
+    sql: ${reserve_profit} <> 0;;
   }
 
 
@@ -413,7 +413,7 @@ view: adv_salesdetail {
 
 
 # Service Contracl Cost
-  dimension: servicecontractcost {
+  dimension: service_contract_cost {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -422,7 +422,7 @@ view: adv_salesdetail {
 
   dimension: has_service_contract {
     type: yesno
-    sql: ${servicecontractcost} <> 0;;
+    sql: ${service_contract_cost} <> 0;;
   }
 
 # Stock Number
@@ -593,7 +593,7 @@ view: adv_salesdetail {
 # Transaction Type
   dimension: transaction_type {
     type: string
-    sql: CASE WHEN ${cashsaleprice} = 0 AND ${trade1_gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
+    sql: CASE WHEN ${cash_sale_price} = 0 AND ${trade1_gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
   }
 
 # UnwindDate
@@ -633,12 +633,12 @@ view: adv_salesdetail {
   measure: accessory_profit_total {
     type: sum
     value_format_name: usd_0
-    sql: ${accessory_profit}profit} ;;
+    sql: ${accessory_profit} ;;
   }
 
   measure: accessory_profit_count {
     type: count
-    value_format_name: usd_0
+    value_format_name: decimal_0
     sql: ${accessory_profit} ;;
     filters: {
       field:  has_accessory_profit
@@ -664,6 +664,15 @@ view: adv_salesdetail {
     sql: ${amount_financed} ;;
   }
 
+  measure: amount_financed_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${amount_financed} ;;
+    filters: {
+      field:  has_financing
+      value: "1"
+    }
+  }
   measure: amount_financed_avg {
     type: average
     value_format_name: usd_0
@@ -676,12 +685,21 @@ view: adv_salesdetail {
 
 
 #   Cash Deposit
-  measure: cash_deposit {
+  measure: cash_deposit_total {
     type: sum
     value_format_name: usd_0
-    sql: ${cashdeposit} ;;
+    sql: ${cash_deposit} ;;
   }
 
+  measure: cash_deposit_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${cash_deposit} ;;
+    filters: {
+      field:  has_cash_deposit
+      value: "1"
+    }
+  }
   measure: cash_deposit_avg {
     type: average
     value_format_name: usd_0
@@ -695,10 +713,20 @@ view: adv_salesdetail {
 
 
 #   Cash Sale Proice
-  measure: cash_sale_price{
+  measure: cash_sale_price_total{
     type: sum
     value_format_name: usd_0
-    sql: ${cashsaleprice} ;;
+    sql: ${cash_sale_price} ;;
+  }
+
+  measure: cash_sale_price_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${cash_sale_price} ;;
+    filters: {
+      field:  cash_sale_price
+      value: "<>0"
+    }
   }
 
   measure: cash_sale_price_avg {
@@ -713,29 +741,97 @@ view: adv_salesdetail {
 
 
 # Commission Amount
-  measure: commission_amt {
+  measure: commission_total {
     type: sum
     value_format_name: usd_0
     sql: ${commission} ;;
   }
+
+  measure: commisson_count {
+    type: count
+    value_format_name: dec
+    sql: ${commission} ;;
+    filters: {
+      field:  commission_total
+      value: "<>0"
+    }
+  }
+
+  measure: commisson_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${commission} ;;
+    filters: {
+      field:  commission_total
+      value: "<>0"
+    }
+  }
+
+
 
 # Dealer Pack
   measure: dealer_pack_total {
     type: sum
     value_format_name: usd_0
     sql: ${dealer_pack} ;;
+
   }
+
+  measure: dealer_pack_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${dealer_pack} ;;
+    filters: {
+      field:  dealer_pack_total
+      value: "<>0"
+    }
+  }
+
+  measure: dealer_pack_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${dealer_pack} ;;
+    filters: {
+      field:  dealer_pack_total
+      value: "<>0"
+    }
+
+  }
+
+
 
 
 # Financial Adds
-  measure: financial_adds{
+  measure: financial_adds_total{
     type: sum
     value_format_name: usd_0
-    sql: ${finadds} ;;
+    sql: ${financial_adds} ;;
   }
 
+  measure: financial_adds_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${financial_adds} ;;
+    filters: {
+      field:  financial_adds
+      value: "<>0"
+    }
+  }
+
+  measure: financial_adds_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${financial_adds} ;;
+    filters: {
+      field:  financial_adds
+      value: "<>0"
+    }
+  }
+
+
+
 # Incentive Amount
-  measure: incentive_amt {
+  measure: incentive_total {
     type: sum
     value_format_name: usd_0
     sql: ${incentive};;
@@ -748,6 +844,28 @@ view: adv_salesdetail {
     sql: ${lah_profit} ;;
   }
 
+  measure: LAH_Profit_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${lah_profit} ;;
+    filters: {
+      field:  lah_profit
+      value: "<>0"
+    }
+  }
+
+  measure: LAH_Profit_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${lah_profit} ;;
+    filters: {
+      field:  lah_profit
+      value: "<>0"
+    }
+  }
+
+
+
 
 # Net Profit
   measure: net_profit_total {
@@ -755,6 +873,28 @@ view: adv_salesdetail {
     value_format_name: usd_0
     sql: ${net_profit} ;;
   }
+
+  measure: net_profit_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${net_profit} ;;
+    filters: {
+      field:  net_profit
+      value: "<>0"
+    }
+  }
+
+  measure: net_profit_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${net_profit} ;;
+    filters: {
+      field:  net_profit
+      value: "<>0"
+    }
+  }
+
+
 
 
 # Non Taxable Accessories
@@ -764,12 +904,54 @@ view: adv_salesdetail {
     sql: ${non_taxable_accessories} ;;
   }
 
+  measure: non_taxable_accessories_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${non_taxable_accessories} ;;
+    filters: {
+      field:  non_taxable_accessories
+      value: "<>0"
+    }
+  }
+
+  measure: non_taxable_accessorie_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${non_taxable_accessories} ;;
+    filters: {
+      field:  non_taxable_accessories
+      value: "<>0"
+    }
+  }
+
+
 # Reserve Profit
-  measure: reserve_profit {
+  measure: reserve_profit_total {
     type: sum
     value_format_name: usd_0
-    sql: ${reserveprofit} ;;
+    sql: ${reserve_profit} ;;
   }
+
+  measure: reserve_profit_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${reserve_profit} ;;
+    filters: {
+      field:  reserve_profit
+      value: "<>0"
+    }
+  }
+
+  measure: reserve_profit_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${reserve_profit} ;;
+    filters: {
+      field:  reserve_profit
+      value: "<>0"
+    }
+  }
+
 
 # Sell Price
   measure: sell_price_total {
@@ -778,11 +960,51 @@ view: adv_salesdetail {
     sql: ${sell_price};;
   }
 
+  measure: sell_price_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${sell_price} ;;
+    filters: {
+      field:  sell_price
+      value: "<>0"
+    }
+  }
+
+  measure: sell_price_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${sell_price} ;;
+    filters: {
+      field:  sell_price
+      value: "<>0"
+    }
+  }
+
 # Service Contract Cost
   measure: service_contract_cost_total {
     type: sum
     value_format_name: usd_0
-    sql: ${servicecontractcost} ;;
+    sql: ${service_contract_cost} ;;
+  }
+
+  measure: service_contract_cost_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${service_contract_cost} ;;
+    filters: {
+      field:  service_contract_cost
+      value: "<>0"
+    }
+  }
+
+  measure: service_contract_cost_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${service_contract_cost} ;;
+    filters: {
+      field:  service_contract_cost
+      value: "<>0"
+    }
   }
 
 # Total Sale
@@ -792,6 +1014,27 @@ view: adv_salesdetail {
     sql: ${total_sale};;
   }
 
+  measure: total_sale_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${total_sale} ;;
+    filters: {
+      field:  total_sale
+      value: "<>0"
+    }
+  }
+
+  measure: total_sale_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${total_sale} ;;
+    filters: {
+      field:  total_sale
+      value: "<>0"
+    }
+  }
+
+
 # Trade1 ACV
   measure: trade1_acv_total{
     type: sum
@@ -799,11 +1042,52 @@ view: adv_salesdetail {
     sql: ${trade1_acv} ;;
   }
 
+  measure: trade1_acv_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${trade1_acv} ;;
+    filters: {
+      field:  trade1_acv
+      value: "<>0"
+    }
+  }
+
+  measure: trade1_acv_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${trade1_acv} ;;
+    filters: {
+      field:  trade1_acv
+      value: "<>0"
+     }
+  }
+
+
 # Trade1 Gross Total
   measure: trade1_gross_total {
     type: sum
     value_format_name: usd_0
     sql: ${trade1_gross} ;;
+  }
+
+  measure: trade1_gross_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${trade1_gross} ;;
+    filters: {
+      field:  trade1_gross
+      value: "<>0"
+    }
+  }
+
+  measure: trade1_gross_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${trade1_gross} ;;
+    filters: {
+      field:  trade1_gross
+      value: "<>0"
+    }
   }
 
 # Trade1 Payoff
@@ -813,26 +1097,109 @@ view: adv_salesdetail {
     sql: ${trade1_payoff} ;;
   }
 
-# Trade 2 ACV
+  measure: trade1_payoff_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${trade1_payoff} ;;
+    filters: {
+      field:  trade1_payoff
+      value: "<>0"
+    }
+  }
+
+  measure: trade1_payoff_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${trade1_payoff} ;;
+    filters: {
+      field:  trade1_payoff
+      value: "<>0"
+    }
+  }
+
+
+# Trade2 ACV
   measure: trade2_acv_total{
     type: sum
     value_format_name: usd_0
     sql: ${trade2_acv} ;;
   }
 
-# Trade 2 Gross
+  measure: trade2_acv_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${trade2_acv} ;;
+    filters: {
+      field:  trade2_acv
+      value: "<>0"
+    }
+  }
+
+  measure: trade2_acv_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${trade2_acv} ;;
+    filters: {
+      field:  trade2_acv
+      value: "<>0"
+     }
+  }
+
+
+# trade2 Gross Total
   measure: trade2_gross_total {
     type: sum
     value_format_name: usd_0
     sql: ${trade2_gross} ;;
   }
 
-# Trade2 Payoff
+  measure: trade2_gross_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${trade2_gross} ;;
+    filters: {
+      field:  trade2_gross
+      value: "<>0"
+    }
+  }
+
+  measure: trade2_gross_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${trade2_gross} ;;
+    filters: {
+      field:  trade2_gross
+      value: "<>0"
+    }
+  }
+
+# trade2 Payoff
   measure: trade2_payoff_total {
     type: sum
     value_format_name: usd_0
     sql: ${trade2_payoff} ;;
   }
+
+  measure: trade2_payoff_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${trade2_payoff} ;;
+    filters: {
+      field:  trade2_payoff
+      value: "<>0"
+    }
+  }
+
+  measure: trade2_payoff_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${trade2_payoff} ;;
+    filters: {
+      field:  trade2_payoff
+      value: "<>0"
+    }
+  }
+
 
 # Vehicle Cost
   measure: vehicle_cost_amount {
@@ -866,7 +1233,7 @@ view: adv_salesdetail {
   measure: total_cash_sale_price {
     type: sum
     value_format_name: usd_0
-    sql: ${cashsaleprice} ;;
+    sql: ${cash_sale_price} ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
 
@@ -874,7 +1241,7 @@ view: adv_salesdetail {
   measure: total_cash_sale_price_distribution {
     type: sum
     value_format_name: usd_0
-    sql: ${cashsaleprice} ;;
+    sql: ${cash_sale_price} ;;
     filters: {
       field: transaction_type
       value: "DISTRIBUTION"
