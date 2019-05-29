@@ -219,7 +219,7 @@ view: adv_salesdetail {
 
   dimension: sales_channel{
     type: string
-    sql: nvl(f_sql_adv_sales_channel${TABLE}.dept),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_sales_channel(${TABLE}.dept),'UNKNOWN') ;;
   }
 
 
