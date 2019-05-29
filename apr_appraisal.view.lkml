@@ -4,6 +4,7 @@ view: apr_appraisal {
   dimension: appraisal_id {
     primary_key: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.AppraisalId ;;
   }
 
@@ -21,6 +22,7 @@ view: apr_appraisal {
 
   dimension: appraisal_offer_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.AppraisalOfferId ;;
   }
 
@@ -32,6 +34,7 @@ view: apr_appraisal {
 
   dimension: appraisal_status_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.AppraisalStatusId,0) ;;
   }
 
@@ -62,6 +65,7 @@ view: apr_appraisal {
 
   dimension: appraiser_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.AppraiserUserId,0) ;;
   }
 
@@ -87,6 +91,7 @@ view: apr_appraisal {
 
   dimension: assigned_to_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.AssignedToUserId,0) ;;
   }
 
@@ -143,6 +148,7 @@ view: apr_appraisal {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.CreatedUserId,0) ;;
   }
 
@@ -179,11 +185,13 @@ view: apr_appraisal {
 
   dimension: customer_contacted_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.CustomerContactedUserId,0) ;;
   }
 
   dimension: customer_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.CustomerId,0) ;;
   }
 
@@ -235,6 +243,7 @@ view: apr_appraisal {
 
   dimension: damage_description {
     type: string
+    hidden: yes
     sql: ${TABLE}.DamageDescription ;;
   }
 
@@ -260,6 +269,7 @@ view: apr_appraisal {
 
   dimension: dead_deal_user_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.DeadDealUserId ;;
   }
 
@@ -285,6 +295,7 @@ view: apr_appraisal {
 
   dimension: delivered_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DeliveredUserId,0) ;;
   }
 
@@ -310,6 +321,7 @@ view: apr_appraisal {
 
   dimension: destination_location_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DestinationLocationUserId,0) ;;
   }
 
@@ -329,6 +341,7 @@ view: apr_appraisal {
 
   dimension: destination_type_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.DestinationTypeId ;;
   }
 
@@ -340,6 +353,7 @@ view: apr_appraisal {
 
   dimension: destination_type_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DestinationTypeUserId,0) ;;
   }
 
@@ -373,6 +387,7 @@ view: apr_appraisal {
 
   dimension: document_signed_by {
     type: string
+    hidden: yes
     sql: ${TABLE}.DocumentSignedBy ;;
   }
 
@@ -412,11 +427,13 @@ view: apr_appraisal {
 
   dimension: documents_issue_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsIssueUserId,0) ;;
   }
 
   dimension: documents_returned_courier_type_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsReturnedCourierTypeId,0) ;;
   }
 
@@ -448,11 +465,13 @@ view: apr_appraisal {
 
   dimension: documents_returned_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsReturnedUserId,0 ;;
   }
 
   dimension: documents_sent_courier_type_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsSentCourierTypeId,0) ;;
   }
 
@@ -478,16 +497,19 @@ view: apr_appraisal {
 
   dimension: documents_sent_tracking_no {
     type: string
+    hidden: yes
     sql: ${TABLE}.DocumentsSentTrackingNo ;;
   }
 
   dimension: documents_sent_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsSentUserId,0) ;;
   }
 
   dimension: documents_specialist_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsSpecialistUserId,0) ;;
   }
 
@@ -513,6 +535,7 @@ view: apr_appraisal {
 
   dimension: documents_verified_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.DocumentsVerifiedUserId,0) ;;
   }
 
@@ -607,6 +630,7 @@ view: apr_appraisal {
 
   dimension: item_guid {
     type: string
+    hidden:yes
     sql: ${TABLE}.ItemGuid ;;
   }
 
@@ -627,11 +651,13 @@ view: apr_appraisal {
 
   dimension: listing_type_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.ListingTypeId,0) ;;
   }
 
   dimension: location_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.LocationId,0) ;;
   }
 
@@ -651,11 +677,13 @@ view: apr_appraisal {
 
   dimension: locked_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.LockedNotes ;;
   }
 
   dimension: locked_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.LockedUserId,0) ;;
   }
 
@@ -666,6 +694,7 @@ view: apr_appraisal {
 
   dimension: mechanical_condition_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.MechanicalConditionId,0) ;;
   }
 
@@ -716,11 +745,13 @@ view: apr_appraisal {
 
   dimension: overall_condition_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.OverallConditionId,0) ;;
   }
 
   dimension: owner2_address1 {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2Address1 ;;
   }
 
@@ -736,28 +767,33 @@ view: apr_appraisal {
 
   dimension: owner2_address2 {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2Address2 ;;
   }
 
   dimension: owner2_city {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2City ;;
     drill_fields: [owner2_zip, owner2_address]
   }
 
   dimension: owner2_country {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2Country ;;
     drill_fields: [owner2_state, owner2_city, owner2_zip, owner2_address]
   }
 
   dimension: owner2_email {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2Email ;;
   }
 
   dimension: owner2_home_phone {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2HomePhone ;;
   }
 
@@ -768,33 +804,39 @@ view: apr_appraisal {
 
   dimension: owner2_mobile {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2Mobile ;;
   }
 
   dimension: owner2_office_phone {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2OfficePhone ;;
   }
 
   dimension: owner2_state {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2State ;;
     drill_fields: [owner2_city, owner2_zip, owner2_address]
   }
 
   dimension: owner2_zip {
     type: string
+    hidden:yes
     sql: ${TABLE}.Owner2Zip ;;
     drill_fields: [owner2_address]
   }
 
   dimension: owner_address1 {
     type: string
+    hidden:yes
     sql: ${TABLE}.OwnerAddress1 ;;
   }
 
   dimension: owner_address2 {
     type: string
+    hidden:yes
     sql: ${TABLE}.OwnerAddress2 ;;
   }
 
@@ -827,21 +869,25 @@ view: apr_appraisal {
 
   dimension: owner_home_phone {
     type: string
+    hidden:yes
     sql: ${TABLE}.OwnerHomePhone ;;
   }
 
   dimension: owner_legal_name {
     type: string
+    hidden:yes
     sql: ${TABLE}.OwnerLegalName ;;
   }
 
   dimension: owner_mobile {
     type: string
+    hidden:yes
     sql: ${TABLE}.OwnerMobile ;;
   }
 
   dimension: owner_office_phone {
     type: string
+    hidden:yes
     sql: ${TABLE}.OwnerOfficePhone ;;
   }
 
@@ -892,31 +938,37 @@ view: apr_appraisal {
 
   dimension: payment_issue_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.PaymentIssueNotes ;;
   }
 
   dimension: payment_issue_type_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.PaymentIssueTypeId,0) ;;
   }
 
   dimension: payment_issue_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.PaymentIssueUserId,0) ;;
   }
 
   dimension: payment_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.PaymentNotes ;;
   }
 
   dimension: payment_type_id {
     type: number
+    hidden:yes
     sql: ${TABLE}.PaymentTypeId ;;
   }
 
   dimension: payment_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.PaymentUserId,0) ;;
   }
 
@@ -964,6 +1016,7 @@ view: apr_appraisal {
 
   dimension: physical_condition_id {
     type: number
+    hidden:yes
     sql: isnull(${TABLE}.PhysicalConditionId,0) ;;
   }
 
@@ -983,21 +1036,25 @@ view: apr_appraisal {
 
   dimension: picked_up_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickedUpNotes ;;
   }
 
   dimension: picked_up_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.PickedUpUserId,0) ;;
   }
 
   dimension: pickup_address1 {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupAddress1 ;;
   }
 
   dimension: pickup_address2 {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupAddress2 ;;
   }
 
@@ -1024,11 +1081,13 @@ view: apr_appraisal {
 
   dimension: pickup_contact {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupContact ;;
   }
 
   dimension: pickup_contact_different {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupContactDifferent ;;
   }
 
@@ -1040,21 +1099,25 @@ view: apr_appraisal {
 
   dimension: pickup_email {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupEmail ;;
   }
 
   dimension: pickup_home_phone {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupHomePhone ;;
   }
 
   dimension: pickup_mobile {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupMobile ;;
   }
 
   dimension: pickup_office_phone {
     type: string
+    hidden:yes
     sql: ${TABLE}.PickupOfficePhone ;;
   }
 
@@ -1072,11 +1135,13 @@ view: apr_appraisal {
 
   dimension: preferred_contact_method {
     type: string
+    hidden:yes
     sql: ${TABLE}.preferredcontactmethod ;;
   }
 
   dimension: promo_code {
     type: string
+    hidden:yes
     sql: ${TABLE}.PromoCode ;;
   }
 
@@ -1096,11 +1161,13 @@ view: apr_appraisal {
 
   dimension: receipt_confirmed_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.ReceiptConfirmedNotes ;;
   }
 
   dimension: receipt_confirmed_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.ReceiptConfirmedUserId,0) ;;
   }
 
@@ -1125,11 +1192,13 @@ view: apr_appraisal {
 
   dimension: save_adeal_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.SaveADealNotes ;;
   }
 
   dimension: save_adeal_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.SaveADealUserId,0) ;;
   }
 
@@ -1154,6 +1223,7 @@ view: apr_appraisal {
 
   dimension: service_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.ServiceNotes ;;
   }
 
@@ -1173,11 +1243,13 @@ view: apr_appraisal {
 
   dimension: shipping_booked_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.ShippingBookedNotes ;;
   }
 
   dimension: shipping_booked_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.ShippingBookedUserId,0) ;;
   }
 
@@ -1197,31 +1269,37 @@ view: apr_appraisal {
 
   dimension: shipping_issue_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.ShippingIssueNotes ;;
   }
 
   dimension: shipping_issue_type_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.ShippingIssueTypeId,0) ;;
   }
 
   dimension: shipping_issue_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.ShippingIssueUserId,0) ;;
   }
 
   dimension: source_type_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.SourceTypeId,0) ;;
   }
 
   dimension: sub_source1 {
     type: string
+    hidden:yes
     sql: ${TABLE}.SubSource1 ;;
   }
 
   dimension: sub_source2 {
     type: string
+    hidden:yes
     sql: ${TABLE}.SubSource2 ;;
   }
 
@@ -1246,11 +1324,13 @@ view: apr_appraisal {
 
   dimension: supervisor_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.SupervisorNotes ;;
   }
 
   dimension: supervisor_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.SupervisorUserId,0) ;;
   }
 
@@ -1275,6 +1355,7 @@ view: apr_appraisal {
 
   dimension: termination_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.TerminationNotes ;;
   }
 
@@ -1294,6 +1375,7 @@ view: apr_appraisal {
 
   dimension: tire_condition_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.TireConditionId,0) ;;
   }
 
@@ -1313,11 +1395,13 @@ view: apr_appraisal {
 
   dimension: title_in_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.TitleInNotes ;;
   }
 
   dimension: title_in_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.TitleInUserId,0) ;;
   }
 
@@ -1337,6 +1421,7 @@ view: apr_appraisal {
 
   dimension: title_issue_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.TitleIssueNotes ;;
   }
 
@@ -1366,11 +1451,13 @@ view: apr_appraisal {
 
   dimension: title_verified_notes {
     type: string
+    hidden:yes
     sql: ${TABLE}.TitleVerifiedNotes ;;
   }
 
   dimension: title_verified_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.TitleVerifiedUserId,0) ;;
   }
 
@@ -1405,6 +1492,7 @@ view: apr_appraisal {
 
   dimension: updated_user_id {
     type: number
+    hidden:yes
     sql: nvl(${TABLE}.UpdatedUserId,0) ;;
   }
 
