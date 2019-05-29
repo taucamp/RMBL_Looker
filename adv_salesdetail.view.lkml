@@ -545,7 +545,7 @@ view: adv_salesdetail {
   }
 
 # Vehicle Profit
-  dimension: vehicleprofit {
+  dimension: vehicle_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
@@ -558,7 +558,7 @@ view: adv_salesdetail {
     style: integer
     tiers: [-10000,-5000,-2000,-1000,0,1000,2000,5000,10000]
     value_format_name: usd_0
-    sql: ${vehicleprofit} ;;
+    sql: ${vehicle_profit} ;;
 }
 
 
@@ -1202,25 +1202,89 @@ view: adv_salesdetail {
 
 
 # Vehicle Cost
-  measure: vehicle_cost_amount {
+  measure: vehicle_cost_total {
     type: sum
     value_format_name: usd_0
     sql: ${vehicle_cost};;
   }
 
-# Vehicle Profit
-  measure: vehicle_profit{
-    type: sum
-    value_format_name: usd_0
-    sql: ${vehicleprofit} ;;
+  measure: vehicle_cost_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${vehicle_cost} ;;
+    filters: {
+      field:  vehicle_cost
+      value: "<>0"
+    }
   }
 
+  measure: vehicle_cost_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${vehicle_cost} ;;
+    filters: {
+      field:  vehicle_cost
+      value: "<>0"
+    }
+  }
+
+
+# Vehicle Profit
+  measure: vehicle_profit_total{
+    type: sum
+    value_format_name: usd_0
+    sql: ${vehicle_profit} ;;
+  }
+
+  measure: vehicle_profit_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${vehicle_profit} ;;
+    filters: {
+      field:  vehicle_profit
+      value: "<>0"
+    }
+  }
+
+  measure: vehicle_profit_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${vehicle_profit} ;;
+    filters: {
+      field:  vehicle_profit
+      value: "<>0"
+    }
+  }
+
+
+
 # Vehicle Insurance
-  measure: vehicle_insurance_amount {
+  measure: vehicle_insurance_total {
     type: sum
     value_format_name: usd_0
     sql: ${vehicle_insurance} ;;
   }
+
+  measure: vehicle_insurance_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${vehicle_insurance} ;;
+    filters: {
+      field:  vehicle_insurance
+      value: "<>0"
+    }
+  }
+
+  measure: vehicle_insurance_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${vehicle_insurance} ;;
+    filters: {
+      field:  vehicle_insurance
+      value: "<>0"
+    }
+  }
+
 
 # Warranty Profit
   measure: warranty_profit_amount {
@@ -1229,6 +1293,28 @@ view: adv_salesdetail {
     sql: ${warranty_profit} ;;
   }
 
+  measure: warranty_profit_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${warranty_profit} ;;
+    filters: {
+      field:  warranty_profit
+      value: "<>0"
+    }
+  }
+
+  measure: warranty_profit_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${warranty_profit} ;;
+    filters: {
+      field:  warranty_profit
+      value: "<>0"
+    }
+  }
+
+
+
 # Total Cash Sale Price
   measure: total_cash_sale_price {
     type: sum
@@ -1236,6 +1322,29 @@ view: adv_salesdetail {
     sql: ${cash_sale_price} ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
+
+  measure: total_cash_sale_count {
+    type: count
+    value_format_name: decimal_0
+    sql: ${cash_sale_price} ;;
+    filters: {
+      field:  cash_sale_price
+      value: "<>0"
+    }
+  }
+
+  measure: total_cash_sale_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${cash_sale_price} ;;
+    filters: {
+      field:  cash_sale_price
+      value: "<>0"
+    }
+  }
+
+
+
 
 # Cash Sales from Distribtion
   measure: total_cash_sale_price_distribution {
@@ -1248,10 +1357,9 @@ view: adv_salesdetail {
     }
   }
 
-  measure: ratio {
-    label: "Pct Cash Sales from Distribution"
+  measure: pct_cash_sales_from_distribution {
     type: number
-    value_format_name: percent_2
+    value_format_name: percent_1
     sql: ${total_cash_sale_price_distribution}*1.0 / nullif(${total_cash_sale_price},0) ;;
 
   }
@@ -1260,12 +1368,19 @@ view: adv_salesdetail {
   measure: total_vehicle_profit {
     type: sum
     value_format_name: usd_0
-    sql: ${vehicleprofit} ;;
+    sql: ${vehicle_profit} ;;
+    drill_fields: [deal_status,customer,total_cash_sale_price]
+  }
+
+  measure: total_vehicle_profit_pct {
+    type: sum
+    value_format_name: percent_1
+    sql: ${vehicle_profit}/nullif(${total_sale_amout},0) ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
 #
 # Pct of Suggested Retail
-  measure: pct_of_suggested_retail {
+  measure: sale_price_as_pct_of_suggested_retail {
     type: number
     value_format_name: percent_2
     sql: ${total_cash_sale_price}*1.0 / nullif(${adv_inventory.total_suggested_retail},0) ;;
