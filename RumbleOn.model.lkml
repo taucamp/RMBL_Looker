@@ -320,11 +320,12 @@ explore: apr_appraisal {
     sql_on: ${apr_appraisal_offer.offer_status_id} = ${apr_appraisal_status.appraisal_status_id} ;;
   }
 
-    join: apr_appraisal_offer_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer.offer_type_id} and ${apr_appraisal_offer_type.is_active} = 1  ;;
-  }
+#FIELD DOES NOT CURRENTLY EXISTIN IN THE WAREHOUSE
+#     join: apr_appraisal_offer_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_appraisal_offer_type.appraisal_offer_type_id} = ${apr_appraisal_offer.offer_type_id} and ${apr_appraisal_offer_type.is_active} = 1  ;;
+#   }
 
   join: apr_appraisal_offer_values {
     type: left_outer
@@ -339,12 +340,13 @@ explore: apr_appraisal {
     sql_on: ${apr_appraisal_status.appraisal_status_id} = ${apr_appraisal.appraisal_status_id} and ${apr_appraisal_status.is_active} = 1;;
   }
 
-# Appraisal Destination Type
-  join: apr_destination_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_destination_type.destination_type_id} = ${apr_appraisal.destination_type_id} and ${apr_destination_type.is_active} = 1 ;;
-  }
+#FIELD DOES NOT CURRENTLY EXISTIN IN THE WAREHOUSE
+# # Appraisal Destination Type
+#   join: apr_destination_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_destination_type.destination_type_id} = ${apr_appraisal.destination_type_id} and ${apr_destination_type.is_active} = 1 ;;
+#   }
 
 # Source of the Appraisal
   join: apr_source_type {
@@ -387,11 +389,12 @@ explore: apr_appraisal {
     sql_on: ${apr_physical_condition.physical_condition_id} = ${apr_appraisal.physical_condition_id}   and ${apr_physical_condition.is_active} = 1;;
   }
 
-  join: apr_shipping_issue_type {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${apr_shipping_issue_type.shipping_issue_type_id} = ${apr_appraisal.shipping_issue_type_id}   and ${apr_shipping_issue_type.is_active} = 1;;
-  }
+#FIELD DOES NOT CURRENTLY EXISTIN IN THE WAREHOUSE
+#   join: apr_shipping_issue_type {
+#     type: left_outer
+#     relationship: many_to_one
+#     sql_on: ${apr_shipping_issue_type.shipping_issue_type_id} = ${apr_appraisal.shipping_issue_type_id}   and ${apr_shipping_issue_type.is_active} = 1;;
+#   }
 
   join: apr_tire_condition {
     type: left_outer

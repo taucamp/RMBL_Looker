@@ -118,10 +118,10 @@ view: apr_appraisal_offer {
     sql: nvl(${TABLE}.OfferStatusId,0) ;;
   }
 
-  dimension: offer_type_id {
-    type: number
-    sql: nvl(${TABLE}.OfferTypeId,0) ;;
-  }
+#   dimension: offer_type_id {
+#     type: number
+#     sql: nvl(${TABLE}.OfferTypeId,0) ;;
+#   }
 
   dimension: offered_to_user_id {
     type: number
