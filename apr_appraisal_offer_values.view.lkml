@@ -26,8 +26,9 @@ view: apr_appraisal_offer_values {
   type: tier
   tiers: [0,2500,4000,6000,8000,10000,15000,20000,30000,40000,50000,75000,100000]
   style: relational
+  sql: ${cash_offer_value};;
   value_format_name: usd_0
-    sql: ${cash_offer_value}
+
   }
 
   dimension: consumer_buy_it_now {
@@ -65,8 +66,8 @@ view: apr_appraisal_offer_values {
     type: tier
     tiers: [0,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2]
     style: relational
-    value_format_name: "0.0\%"
     sql: ${percentage_of_nada_clean} ;;
+    value_format_name: "0.0\%"
   }
 
   dimension: reserve_estimated_margin {

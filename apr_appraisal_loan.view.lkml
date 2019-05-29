@@ -54,8 +54,8 @@ view: apr_appraisal_loan {
     type: tier
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
     style: relational
-    value_format_name: usd_0
     sql: ${loan_amount} ;;
+    value_format_name: usd_0
   }
 
 

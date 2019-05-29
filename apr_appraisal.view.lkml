@@ -47,8 +47,8 @@ view: apr_appraisal {
     type: tier
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
     style: relational
-    value_format_name: usd_0
     sql: ${appraised_amount} ;;
+    value_format_name: usd_0
   }
 
   dimension_group: appraised {
@@ -721,8 +721,8 @@ view: apr_appraisal {
     type: tier
     tiers: [0,5000,10000,15000,20000]
     style:  integer
-    sql: ${TABLE}.Mileage
-    value_format: decimal_0;;
+    sql: ${TABLE}.Mileage;;
+    value_format_name: decimal_0
   }
 
   dimension: minimum_bid {
