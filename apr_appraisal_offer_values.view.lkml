@@ -68,11 +68,292 @@ view: apr_appraisal_offer_values {
     value_format_name: decimal_0
   }
 
-  measure: total_offer_value {
+  measure: offer_value_total {
     type: sum
+    value_format_name: usd_0
     sql: ${cash_offer_value}*1 ;;
-    value_format_name: usd
+  }
 
+  measure: offer_value_average {
+    type: average
+    value_format_name: usd_0
+    sql: ${cash_offer_value}*1 ;;
+  }
+
+  measure: offer_value_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${cash_offer_value}*1 ;;
+  }
+
+  measure: offer_value_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${cash_offer_value}*1 ;;
+  }
+
+  measure: appraiser_auction_reserve_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.AppraiserAuctionReserve *1;;
+  }
+
+  measure: appraiser_auction_reserve_average {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.AppraiserAuctionReserve *1;;
+  }
+
+  measure: appraiser_auction_reserve_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.AppraiserAuctionReserve *1;;
+  }
+
+  measure: appraiser_auction_reserve_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.AppraiserAuctionReserve *1;;
+  }
+
+  measure: buy_it_now_est_margin_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.BuyItNowEstMargin *1;;
+  }
+
+  measure: buy_it_now_est_margin_average {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.BuyItNowEstMargin *1;;
+  }
+
+  measure: buy_it_now_est_margin_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.BuyItNowEstMargin *1;;
+  }
+
+  measure: buy_it_now_est_margin_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.BuyItNowEstMargin *1;;
+  }
+
+  measure: cash_offer_value_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.CashOfferValue *1;;
+  }
+
+  measure: cash_offer_value_average {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.CashOfferValue *1;;
+  }
+
+  measure: cash_offer_value_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.CashOfferValue *1;;
+  }
+
+  measure: cash_offer_value_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.CashOfferValue *1;;
+  }
+
+  measure: consumer_buy_it_now_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerBuyItNow *1;;
+  }
+
+  measure: consumer_buy_it_now_average {
+    type:average
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerBuyItNow *1;;
+  }
+
+  measure: consumer_buy_it_now_max {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerBuyItNow *1;;
+  }
+
+  measure: consumer_buy_it_now_min {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerBuyItNow *1;;
+  }
+
+  measure: consumer_minimum_bid_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerMinimumBid_total *1;;
+  }
+
+  measure: consumer_minimum_bid_average {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerMinimumBid_total *1;;
+
+  }
+  measure: consumer_minimum_bid_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerMinimumBid_total *1;;
+  }
+
+  measure: consumer_minimum_bid_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerMinimumBid_total *1;;
+  }
+
+  measure: consumer_reserve_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerReserve *1;;
+  }
+
+  measure: consumer_reserve_average {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerReserve *1;;
+  }
+
+  measure: consumer_reserve_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerReserve *1;;
+  }
+
+  measure: consumer_reserve_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.ConsumerReserve *1;;
+  }
+
+  measure: estimated_freight_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedFreight *1;;
+  }
+
+  measure: estimated_freight_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedFreight *1;;
+  }
+
+  measure: estimated_freight_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedFreight *1;;
+  }
+
+  measure: estimated_freight_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedFreight *1;;
+  }
+
+    measure: estimated_reconditioning_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedReconditioningv *1;;
+  }
+
+  measure: estimated_reconditioning_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedReconditioningv *1;;
+  }
+
+  measure: estimated_reconditioning_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedReconditioningv *1;;
+  }
+
+  measure: estimated_reconditioning_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.EstimatedReconditioningv *1;;
+  }
+
+  measure: percentage_of_nada_clean_total {
+    type: sum
+    value_format_name: percent_1
+    sql: ${TABLE}.PercentageOfNadaClean *1/100;;
+  }
+
+  measure: percentage_of_nada_clean_avg {
+    type: average
+    value_format_name: percent_1
+    sql: ${TABLE}.PercentageOfNadaClean *1/100;;
+  }
+
+  measure: percentage_of_nada_clean_max {
+    type: max
+    value_format_name: percent_1
+    sql: ${TABLE}.PercentageOfNadaClean *1/100;;
+  }
+
+  measure: percentage_of_nada_clean_min {
+    type: min
+    value_format_name: percent_1
+    sql: ${TABLE}.PercentageOfNadaClean *1/100;;
+  }
+
+  measure: reserve_estimated_margin_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.ReserveEstimatedMargin *1;;
+  }
+
+  measure: reserve_estimated_margin_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.ReserveEstimatedMargin *1;;
+  }
+
+  measure: reserve_estimated_margin_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.ReserveEstimatedMargin *1;;
+  }
+
+  measure: reserve_estimated_margin_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.ReserveEstimatedMargin *1;;
+  }
+
+  measure: supervisor_action_reserve_total {
+    type: sum
+    value_format_name: usd_0
+    sql: ${TABLE}.SupervisorActionReserve *1;;
+  }
+
+  measure: supervisor_action_reserve_avg {
+    type: average
+    value_format_name: usd_0
+    sql: ${TABLE}.SupervisorActionReserve *1;;
+  }
+
+  measure: supervisor_action_reserve_max {
+    type: max
+    value_format_name: usd_0
+    sql: ${TABLE}.SupervisorActionReserve *1;;
+  }
+
+  measure: supervisor_action_reserve_min {
+    type: min
+    value_format_name: usd_0
+    sql: ${TABLE}.SupervisorActionReserve *1;;
   }
 
 }

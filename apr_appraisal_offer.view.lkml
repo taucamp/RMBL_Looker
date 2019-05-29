@@ -3,27 +3,32 @@ view: apr_appraisal_offer {
 
   dimension: appraisal_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.AppraisalId ;;
   }
 
   dimension: appraisal_offer_id {
     primary_key: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.AppraisalOfferId ;;
   }
 
   dimension: appraiser_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.AppraiserUserId,0) ;;
   }
 
   dimension: book_data {
     type: string
+    hidden: yes
     sql: ${TABLE}.BookData ;;
   }
 
   dimension: campaign_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.CampaignId,0) ;;
   }
 
@@ -48,6 +53,7 @@ view: apr_appraisal_offer {
 
   dimension: created_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.CreatedUserId,0 ;;
   }
 
@@ -58,11 +64,13 @@ view: apr_appraisal_offer {
 
   dimension: is_active {
     type: string
+    hidden: yes
     sql: ${TABLE}.IsActive ;;
   }
 
   dimension: nadaclean {
     type: string
+    hidden: yes
     sql: ${TABLE}.NADAClean ;;
   }
 
@@ -96,6 +104,7 @@ view: apr_appraisal_offer {
 
   dimension: offer_price {
     type: number
+    hidden: yes
     sql: ${TABLE}.OfferPrice ;;
   }
 
@@ -115,6 +124,7 @@ view: apr_appraisal_offer {
 
   dimension: offer_status_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.OfferStatusId,0) ;;
   }
 
@@ -125,16 +135,19 @@ view: apr_appraisal_offer {
 
   dimension: offered_to_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.OfferedToUserId,0) ;;
   }
 
   dimension: purchase_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.PurchaseId,0) ;;
   }
 
   dimension: supervisor_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.SupervisorUserId,0) ;;
   }
 
@@ -154,6 +167,7 @@ view: apr_appraisal_offer {
 
   dimension: updated_user_id {
     type: number
+    hidden: yes
     sql: nvl(${TABLE}.UpdatedUserId,0) ;;
   }
 
@@ -161,4 +175,98 @@ view: apr_appraisal_offer {
     type: count
     drill_fields: []
   }
+
+  measure: consignment_price_total {
+    type:  sum
+    sql: ${consignment_price} ;;
+  }
+
+  measure: consignment_price_average {
+    type:  average
+    sql: ${consignment_price}*1;;
+      filters: {
+        field: consignment_price
+        value: "<>0"
+      }
+  }
+
+  measure: consignment_price_max {
+    type:  max
+    sql: ${consignment_price}*1;;
+    filters: {
+      field: consignment_price
+      value: "<>0"
+    }
+  }
+
+  measure: consignment_price_min {
+    type:  average
+    sql: ${consignment_price}*1;;
+    filters: {
+      field: consignment_price
+      value: "<>0"
+    }
+  }
+  measure: nadaclean_total {
+    type:  sum
+    sql: ${nadaclean}*1 ;;
+  }
+
+  measure: nadaclean_average {
+    type:  average
+    sql: ${nadaclean}*1;;
+    filters: {
+      field: nadaclean
+      value: "<>0"
+    }
+  }
+
+  measure: nadaclean_max {
+    type:  max
+    sql: ${nadaclean}*1;;
+    filters: {
+      field: nadaclean
+      value: "<>0"
+    }
+  }
+  measure: nadaclean_min {
+    type:  min
+    sql: ${nadaclean}*1;;
+    filters: {
+      field: nadaclean
+      value: "<>0"
+    }
+  }
+
+  measure: offer_price_total {
+    type:  sum
+    sql: ${offer_price}*1 ;;
+  }
+
+  measure: offer_price_average {
+    type:  average
+    sql: ${offer_price}*1;;
+    filters: {
+      field: offer_price
+      value: "<>0"
+    }
+  }
+
+  measure: offer_price_max {
+    type:  max
+    sql: ${offer_price}*1;;
+    filters: {
+      field: offer_price
+      value: "<>0"
+    }
+  }
+  measure: offer_price_min {
+    type:  min
+    sql: ${offer_price}*1;;
+    filters: {
+      field: offer_price
+      value: "<>0"
+    }
+  }
+
 }
