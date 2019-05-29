@@ -50,10 +50,28 @@ view: apr_appraisal_loan {
     sql: ${TABLE}.LoanAmount ;;
   }
 
+  dimension: loan_amount_bucket {
+    type: tier
+    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    style: relational
+    value_format_name: usd_0
+    sql: ${loan_amount} ;;
+  }
+
+
   dimension: payment_amount {
     type: number
     sql: ${TABLE}.PaymentAmount ;;
   }
+
+  dimension: payment_amount_bucket {
+    type: tier
+    tiers: [0,200,300,400,500,600,7500,1000]
+    style: relational
+    value_format_name: usd_0
+    sql: ${payment_amount} ;;
+  }
+
 
   dimension_group: payment {
     type: time

@@ -108,6 +108,14 @@ view: apr_appraisal_offer {
     sql: ${TABLE}.OfferPrice ;;
   }
 
+  dimension: offer_price_bucket {
+    type: tier
+    tiers: [0,2500,4000,6000,8000,10000,15000,20000,30000,40000,50000,75000,100000]
+    style: relational
+    value_format_name: usd_0
+    sql: ${offer_price} ;;
+  }
+
   dimension_group: offer_released {
     type: time
     timeframes: [

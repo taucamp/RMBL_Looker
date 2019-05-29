@@ -40,7 +40,15 @@ view: apr_appraisal {
 
   dimension: appraised_amount {
     type: number
-    sql: ${TABLE}.AppraisedAmount ;;
+    sql: nvl(${TABLE}.AppraisedAmount,0) ;;
+  }
+
+  dimension: appraised_amount_bucket {
+    type: tier
+    tiers: [0,10000,20000,30000,40000,50000,75000,100000]
+    style: relational
+    value_format_name: usd_0
+    sql: ${appraised_amount} ;;
   }
 
   dimension_group: appraised {
@@ -692,6 +700,12 @@ view: apr_appraisal {
     sql: ${TABLE}.Make ;;
   }
 
+  dimension: is_harley {
+    type: string
+    sql: f_sql_harley(${TABLE}.Make) ;;
+  }
+
+
   dimension: mechanical_condition_id {
     type: number
     hidden:yes
@@ -701,6 +715,14 @@ view: apr_appraisal {
   dimension: mileage {
     type: number
     sql: ${TABLE}.Mileage ;;
+  }
+
+  dimension: mileage_bucket {
+    type: tier
+    tiers: [0,5000,10000,15000,20000]
+    style:  integer
+    sql: ${TABLE}.Mileage
+    value_format: decimal_0;;
   }
 
   dimension: minimum_bid {
