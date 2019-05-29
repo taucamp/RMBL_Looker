@@ -507,7 +507,7 @@ view: adv_salesdetail {
   }
 
 # Deal Type
-  dimension: type {
+  dimension: deal_type {
     type: string
     sql: CASE ${TABLE}.type WHEN '1 RT' THEN 'RETAIL' WHEN '4 TR' THEN 'TRADE' WHEN '6 WH' THEN 'WHOLESALE' ELSE 'UNKNOWN' END;;
   }
