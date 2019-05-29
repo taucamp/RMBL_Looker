@@ -217,7 +217,7 @@ view: adv_salesdetail {
     sql: ${dealerpack} <> 0;;
   }
 
-  dimension: department{
+  dimension: sales_channel{
     type: string
     sql: nvl(f_sql_adv_sales_channel${TABLE}.dept),'UNKNOWN') ;;
   }
