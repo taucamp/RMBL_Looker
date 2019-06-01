@@ -1,4 +1,4 @@
-view: ads {
+view: mrktg_adwords_ads {
   sql_table_name: adwords.ads ;;
 
   # ----- Sets of fields for drilling ------

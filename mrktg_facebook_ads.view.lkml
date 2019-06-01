@@ -1,4 +1,4 @@
-view: facebookads {
+view: mrktg_facebook_ads {
   sql_table_name: public."facebook-ads" ;;
 
   # ----- Sets of fields for drilling ------

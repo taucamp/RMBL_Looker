@@ -1,4 +1,4 @@
-view: ad_performance_reports {
+view: mrktg_adwords_ad_performance_reports {
   sql_table_name: adwords.ad_performance_reports ;;
 
   set:adwords_drillthrough {

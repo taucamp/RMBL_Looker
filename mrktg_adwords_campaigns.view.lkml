@@ -1,4 +1,4 @@
-view: campaigns {
+view: mrktg_adwords_campaigns {
   sql_table_name: adwords.campaigns ;;
 
   dimension: id {

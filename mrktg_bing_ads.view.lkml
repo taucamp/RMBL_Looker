@@ -1,4 +1,4 @@
-view: bing_ads {
+view: mrktg_bing_ads {
   sql_table_name: public.bing_ads ;;
 
 # ----- Sets of fields for drilling ------

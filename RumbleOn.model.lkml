@@ -534,3 +534,9 @@ explore: org_user {
     sql_on: ${org_user_type.user_type_id} = ${org_user.user_type_id} ;;
   }
 }
+
+
+
+#Marketing information
+
+explore: mrktg_adwords_ad_performance_report  {}

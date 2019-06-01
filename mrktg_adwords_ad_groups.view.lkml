@@ -1,4 +1,4 @@
-view: ad_groups {
+view: mrktg_adwords_ad_groups {
   sql_table_name: adwords.ad_groups ;;
 
   dimension: id {
