@@ -56,7 +56,7 @@ view: adv_sales_adds {
     sql: nvl(${TABLE}.account,'Unknown') ;;
   }
 
-  dimension: add_type {
+  dimension: sales_add_type {
     type: string
     label: "Sales Add Type"
     description: "The Type of Sales Add - Accessory, Inventory, Fees"
