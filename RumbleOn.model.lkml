@@ -41,7 +41,7 @@ explore: Advent_GL_detail {
   }
 
   join: adv_users {
-    sql_on: ${adv_users.user} = @${Advent_GL_detail.user_who_entered};;
+    sql_on: ${adv_users.user} = ${Advent_GL_detail.user_who_entered};;
   }
 }
 
