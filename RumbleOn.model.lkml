@@ -539,4 +539,19 @@ explore: org_user {
 
 #Marketing information
 
-explore: mrktg_adwords_ad_performance_report  {}
+explore: mrktg_adwords_ad_performance_reports  {
+      join: mrktg_adwords_ads {
+        type: left_outer
+        sql_on: ${mrktg_adwords_ads.id} = ${mrktg_adwords_ad_performance_reports.ad_id} ;;
+      }
+
+      join: mrktg_adwords_ad_groups {
+        type: left_outer
+        sql_on: ${mrktg_adwords_ad_groups.id} = ${mrktg_adwords_ads.ad_group_id} ;;
+      }
+
+      join: mrktg_adwords_campaigns {
+        type: left_outer
+        sql_on: ${mrktg_adwords_campaigns.id} = ${mrktg_adwords_ad_groups.campaign_id} ;;
+  }
+}
