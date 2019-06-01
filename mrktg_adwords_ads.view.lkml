@@ -25,7 +25,7 @@ view: mrktg_adwords_ads {
 
   dimension: ad_group_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.ad_group_id ;;
   }
 

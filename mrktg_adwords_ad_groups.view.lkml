@@ -4,6 +4,7 @@ view: mrktg_adwords_ad_groups {
   dimension: id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.id ;;
   }
 
@@ -15,7 +16,7 @@ view: mrktg_adwords_ad_groups {
 
   dimension: campaign_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.campaign_id ;;
   }
 

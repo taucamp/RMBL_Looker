@@ -10,6 +10,7 @@ view: mrktg_adwords_campaigns {
 
   dimension: adwords_customer_id {
     type: string
+    hidden:  yes
     sql: ${TABLE}.adwords_customer_id ;;
   }
 
@@ -75,7 +76,7 @@ view: mrktg_adwords_campaigns {
     sql: ${TABLE}.start_date ;;
   }
 
-  dimension: status {
+  dimension: campaign_status {
     type: string
     sql: ${TABLE}.status ;;
   }
