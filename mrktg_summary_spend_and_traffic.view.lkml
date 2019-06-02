@@ -335,6 +335,17 @@ GROUP BY
     sql: ${TABLE}.monthly_users*1 ;;
   }
 
+  measure: cost_per_impression {
+    type: number
+    value_format_name: usd
+    sql: ${total_spend} / nullif(${total_impressions},0) ;;
 
+  }
+
+  measure: cost_per_click {
+     type: number
+    value_format_name: usd
+    sql: ${total_spend} / nullif(${total_clicks},0) ;;
+  }
 
 }
