@@ -1,6 +1,13 @@
 view: ref_dimdate {
   sql_table_name: public.ref_dimdate ;;
 
+
+
+  dimension: datekey {
+    type: date
+    primary_key: yes
+    sql: ${TABLE}.date ;;
+  }
   dimension_group: date {
     type: time
     timeframes: [
@@ -30,7 +37,7 @@ view: ref_dimdate {
     sql: ${TABLE}.date_time ;;
   }
 
-  dimension: datekey {
+  dimension: date_integer {
     type: number
     sql: ${TABLE}.datekey ;;
   }
