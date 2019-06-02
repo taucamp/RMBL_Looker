@@ -65,6 +65,7 @@ view: apr_appraisal {
   }
 
   dimension_group: appraised {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -123,6 +124,7 @@ view: apr_appraisal {
   }
 
   dimension_group: book {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -154,6 +156,7 @@ view: apr_appraisal {
   }
 
   dimension_group: created {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -185,6 +188,7 @@ view: apr_appraisal {
   }
 
   dimension_group: customer_contacted {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -223,6 +227,7 @@ view: apr_appraisal {
   }
 
   dimension_group: customer_notified {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -249,6 +254,7 @@ view: apr_appraisal {
   }
 
   dimension_group: customer_submitted {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -269,6 +275,7 @@ view: apr_appraisal {
   }
 
   dimension_group: dead_deal {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -295,6 +302,7 @@ view: apr_appraisal {
   }
 
   dimension_group: delivered {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -321,6 +329,7 @@ view: apr_appraisal {
   }
 
   dimension_group: destination_location {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -347,6 +356,7 @@ view: apr_appraisal {
   }
 
   dimension_group: destination_type {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -379,6 +389,7 @@ view: apr_appraisal {
   }
 
   dimension_group: doc_in {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -393,6 +404,7 @@ view: apr_appraisal {
   }
 
   dimension_group: doc_out {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -407,12 +419,14 @@ view: apr_appraisal {
   }
 
   dimension: document_signed_by {
+    group_label:"Dates"
     type: string
     hidden: yes
     sql: ${TABLE}.DocumentSignedBy ;;
   }
 
   dimension_group: document_upload {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -427,6 +441,7 @@ view: apr_appraisal {
   }
 
   dimension_group: documents_issue {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -459,6 +474,7 @@ view: apr_appraisal {
   }
 
   dimension_group: documents_returned {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -497,6 +513,7 @@ view: apr_appraisal {
   }
 
   dimension_group: documents_sent {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -535,6 +552,7 @@ view: apr_appraisal {
   }
 
   dimension_group: documents_verified {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -577,6 +595,7 @@ view: apr_appraisal {
   }
 
   dimension_group: first_contact {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -591,6 +610,7 @@ view: apr_appraisal {
   }
 
   dimension_group: follow_up_call {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -683,6 +703,7 @@ view: apr_appraisal {
   }
 
   dimension_group: locked {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -765,6 +786,7 @@ view: apr_appraisal {
   }
 
   dimension_group: opened {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -944,6 +966,7 @@ view: apr_appraisal {
   }
 
   dimension_group: payment {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -958,6 +981,7 @@ view: apr_appraisal {
   }
 
   dimension_group: payment_issue {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1008,6 +1032,7 @@ view: apr_appraisal {
   }
 
   dimension_group: photo_confirmed {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1022,6 +1047,7 @@ view: apr_appraisal {
   }
 
   dimension_group: photo_ready {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1036,6 +1062,7 @@ view: apr_appraisal {
   }
 
   dimension_group: photo_rejected {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1056,6 +1083,7 @@ view: apr_appraisal {
   }
 
   dimension_group: picked_up {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1181,6 +1209,7 @@ view: apr_appraisal {
   }
 
   dimension_group: receipt_confirmed {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1212,6 +1241,7 @@ view: apr_appraisal {
   }
 
   dimension_group: save_adeal {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1238,6 +1268,7 @@ view: apr_appraisal {
   }
 
   dimension_group: second_contact {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1263,6 +1294,7 @@ view: apr_appraisal {
   }
 
   dimension_group: shipping_booked {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1289,6 +1321,7 @@ view: apr_appraisal {
   }
 
   dimension_group: shipping_issue {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1344,6 +1377,7 @@ view: apr_appraisal {
   }
 
   dimension_group: supervisor_appraised {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1370,6 +1404,7 @@ view: apr_appraisal {
   }
 
   dimension_group: terminated {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1395,6 +1430,7 @@ view: apr_appraisal {
   }
 
   dimension_group: third_contact {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1415,6 +1451,7 @@ view: apr_appraisal {
   }
 
   dimension_group: title_in {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1441,6 +1478,7 @@ view: apr_appraisal {
   }
 
   dimension_group: title_issue {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1471,6 +1509,7 @@ view: apr_appraisal {
   }
 
   dimension_group: title_verified {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -1512,6 +1551,7 @@ view: apr_appraisal {
   }
 
   dimension_group: updated {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
