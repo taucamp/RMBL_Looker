@@ -1604,20 +1604,20 @@ view: apr_appraisal {
 
 
 # DURATION METRICS
-dimension_group: time_between_created_and_submitted{
+dimension_group: between_created_and_submitted{
   type: duration
   hidden: yes
   sql_start: ${created_raw}
-  sql_end: isnull(${customer_submitted_raw},${created_raw}),
+  sql_end: nvl(${customer_submitted_raw},${created_raw}),
   intervals:[day, hour, minute]
   ;;
 }
 
-  dimension_group: time_between_submitted_and_termination{
+  dimension_group: between_submitted_and_termination{
     type: duration
     hidden: yes
     sql_start: ${customer_submitted_raw}
-        sql_end:${terminated_raw}
+        sql_end:nvl(${customer_submitted_raw},${created_raw})
         intervals:[day, hour, minute]
         ;;
   }
