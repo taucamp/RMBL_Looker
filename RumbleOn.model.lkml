@@ -580,15 +580,15 @@ explore: mrktg_facebook_ads {
 
 }
 
-# explore: Marketing_top_level_weekly {
-#     from: ref_dimdate
-#     join: mrktg_summary_spend_and_traffic {
-#       type: left_outer
-#       sql_on:${Marketing_top_level_weekly.date_week} = ${mrkt_summary_spend_and_traffic.date_week};;
-#
-#   }
-# #   =${Marketing_top_level_weekly.date_date}
-# }
+explore: Marketing_top_level_weekly {
+    from: ref_dimdate
+    join: mrktg_summary_spend_and_traffic {
+      type: left_outer
+      sql_on:${Marketing_top_level_weekly.date_week} = ${mrktg_summary_spend_and_traffic.week_week};;
+
+  }
+#   =${Marketing_top_level_weekly.date_date}
+}
 
 # explore: ref_dimdate {
 #   join: Advent_GL_detail {
