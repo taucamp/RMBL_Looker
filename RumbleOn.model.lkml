@@ -573,9 +573,25 @@ explore: mrktg_adwords_ad_performance_reports  {
 
 explore: mrktg_bing_ads  {
 
-  }
+}
 
 
 explore: mrktg_facebook_ads {
 
 }
+
+# explore: Marketing_top_level {
+#     from: ref_dimdate
+#     join: mrktg_summary_spend_and_traffic {
+#       type: left_outer
+#       sql_on:${mrktg_summary_spend_and_traffic.month}=${ref_dimdate.date_month} and ${mrktg_summary_spend_and_traffic.week}=${ref_dimdate.date_week};;
+#
+# }
+#
+
+# explore: ref_dimdate {
+#   join: Advent_GL_detail {
+#     relationship: many_to_one
+#     sql_on: ${Advent_GL_detail.accounting_date_month}<=${ref_dimdate.date_month} ;;
+#   }
+# }

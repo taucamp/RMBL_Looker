@@ -167,7 +167,14 @@ GROUP BY
   }
 
   dimension_group: week {
-
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.week ;;
   }
 
