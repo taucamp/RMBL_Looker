@@ -276,63 +276,63 @@ GROUP BY
   measure: total_spend {
     type: sum
     value_format_name: usd_0
-    sql: ${TABLE}.spend ;;
+    sql: ${TABLE}.spend*1 ;;
   }
 
   measure: total_impressions {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.impressions ;;
+    sql: ${TABLE}.impressions*1 ;;
   }
   measure: total_clicks {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.clicks ;;
+    sql: ${TABLE}.clicks*1 ;;
   }
   measure: total_sessions {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.sessions ;;
+    sql: ${TABLE}.sessions*1 ;;
   }
   measure: total_pageviews {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.pageviews ;;
+    sql: ${TABLE}.pageviews*1 ;;
   }
   measure: total_bounces {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.bounces ;;
+    sql: ${TABLE}.bounces*1 ;;
   }
   measure: total_organic_searches {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.organic_searches ;;
+    sql: ${TABLE}.organic_searches*1 ;;
   }
   measure: total_time_on_page {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.time_on_page ;;
+    sql: ${TABLE}.time_on_page*1 ;;
   }
   measure: total_weekly_new_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.weekly_new_users ;;
+    sql: ${TABLE}.weekly_new_users*1 ;;
   }
   measure: total_weekly_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.weekly_users ;;
+    sql: ${TABLE}.weekly_users*1 ;;
   }
   measure: total_monthly_new_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.monthly_new_users ;;
+    sql: ${TABLE}.monthly_new_users*1 ;;
   }
   measure: total_monthly_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${TABLE}.monthly_users ;;
+    sql: ${TABLE}.monthly_users*1 ;;
   }
 
 
