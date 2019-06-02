@@ -72,7 +72,7 @@ view: mrktg_summary_spend_and_traffic {
     FROM
       bing_ads
     WHERE
-      ( bing_ads.timeperiod >= >= (( getdate ()) :: DATE - 90 ))
+      ( bing_ads.timeperiod::DATE  >= (( getdate ()) :: DATE - 90 ))
     GROUP BY
       1,
       bing_ads.accountname,
@@ -104,7 +104,7 @@ view: mrktg_summary_spend_and_traffic {
   FROM
     "facebook-ads"
   WHERE
-    ( "facebook-ads".date_start >= (( getdate ()) :: DATE - 90 ) )
+    ( "facebook-ads".date_start::DATE >= (( getdate ()) :: DATE - 90 ) )
   GROUP BY
     1,
     "facebook-ads".account_name,
