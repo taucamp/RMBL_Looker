@@ -315,22 +315,22 @@ GROUP BY
     sql: ${TABLE}.time_on_page*1 ;;
   }
   measure: total_weekly_new_users {
-    type: sum
+    type: average
     value_format_name: decimal_0
     sql: ${TABLE}.weekly_new_users*1 ;;
   }
   measure: total_weekly_users {
-    type: sum
+    type: average
     value_format_name: decimal_0
     sql: ${TABLE}.weekly_users*1 ;;
   }
   measure: total_monthly_new_users {
-    type: sum
+    type: average
     value_format_name: decimal_0
     sql: ${TABLE}.monthly_new_users*1 ;;
   }
   measure: total_monthly_users {
-    type: sum
+    type: average
     value_format_name: decimal_0
     sql: ${TABLE}.monthly_users*1 ;;
   }
