@@ -201,26 +201,26 @@ GROUP BY
 
   dimension: spend {
     type: number
-    hidden: yes
+#     hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.spend ;;
   }
 
   dimension: impressions {
     type: number
-    hidden: yes
+#     hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.impressions ;;
   }
   dimension: clicks {
     type: number
-    hidden: yes
+#     hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.clicks ;;
   }
   dimension: sessions {
     type: number
-    hidden: yes
+#     hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.sessions ;;
   }
