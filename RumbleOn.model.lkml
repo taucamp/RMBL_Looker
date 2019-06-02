@@ -4,7 +4,7 @@ include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 case_sensitive: no
-
+week_start_day: sunday
 
 # FINANCIAL RELATED EXPLORES
 
