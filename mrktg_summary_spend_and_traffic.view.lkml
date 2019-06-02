@@ -72,7 +72,7 @@ view: mrktg_summary_spend_and_traffic {
     FROM
       bing_ads
     WHERE
-      ( bing_ads.timeperiod >= '2019-05-01 00:00:00' :: TIMESTAMP WITHOUT TIME ZONE )
+      ( bing_ads.timeperiod >= >= (( getdate ()) :: DATE - 90 ))
     GROUP BY
       1,
       bing_ads.accountname,
@@ -104,7 +104,7 @@ view: mrktg_summary_spend_and_traffic {
   FROM
     "facebook-ads"
   WHERE
-    ( "facebook-ads".date_start >= '2019-05-01 00:00:00' :: TIMESTAMP WITHOUT TIME ZONE )
+    ( "facebook-ads".date_start >= (( getdate ()) :: DATE - 90 ) )
   GROUP BY
     1,
     "facebook-ads".account_name,
@@ -141,6 +141,7 @@ FROM
         f_sql_date_to_first_day_of_week (( rpt.DATE ) :: DATE ) = f_sql_yearweek_to_date ( gaw.yearweek ))))
     LEFT JOIN google_analytics_users_monthly gam ON ((
       f_sql_date_to_first_day_of_month (( rpt.DATE ) :: DATE ) = f_sql_yearmonth_to_date ( gam.yearmonth ))))
+    WHERE ( rpt.DATE ) :: DATE  >= (( getdate ()) :: DATE - 90 )
 GROUP BY
   f_sql_campaign_to_campaign_type ( rpt.campaign ),
   f_sql_date_to_first_day_of_week (( rpt.DATE ) :: DATE ),
