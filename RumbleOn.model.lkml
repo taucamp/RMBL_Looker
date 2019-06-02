@@ -569,3 +569,13 @@ explore: mrktg_adwords_ad_performance_reports  {
         relationship: many_to_one
   }
 }
+
+
+explore: mrktg_bing_ads  {
+
+  }
+
+
+explore: mrktg_facebook_ads {
+
+}
