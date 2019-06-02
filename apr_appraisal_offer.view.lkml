@@ -75,6 +75,7 @@ view: apr_appraisal_offer {
   }
 
   dimension_group: offer_accepted {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -89,6 +90,7 @@ view: apr_appraisal_offer {
   }
 
   dimension_group: offer_expired {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -117,6 +119,7 @@ view: apr_appraisal_offer {
   }
 
   dimension_group: offer_released {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
@@ -160,6 +163,7 @@ view: apr_appraisal_offer {
   }
 
   dimension_group: updated {
+    group_label:"Dates"
     type: time
     timeframes: [
       raw,
