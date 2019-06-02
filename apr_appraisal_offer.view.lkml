@@ -211,6 +211,62 @@ view: apr_appraisal_offer {
     sql: nvl(${TABLE}.UpdatedUserId,0) ;;
   }
 
+
+
+
+
+
+# DURATION METRICS
+  dimension_group: between_created_and_released {
+    type: duration
+    group_label:"Time"
+    intervals:[day, hour, minute]
+    sql_start: ${created_raw};;
+    sql_end: nvl(${offer_released_raw},${created_raw});;
+
+  }
+
+
+  dimension_group: between_created_and_accepted {
+    type: duration
+    group_label:"Time"
+    intervals:[day, hour, minute]
+    sql_start: ${created_raw};;
+    sql_end: nvl(${offer_accepted_raw},${created_raw});;
+
+  }
+
+  dimension_group: between_created_and_expired {
+    type: duration
+    group_label:"Time"
+    intervals:[day, hour, minute]
+    sql_start: ${created_raw};;
+    sql_end: nvl(${offer_expired_raw},${created_raw});;
+
+  }
+
+
+  dimension_group: between_released_and_accepted {
+    type: duration
+    group_label:"Time"
+    intervals:[day, hour, minute]
+    sql_start: ${offer_released_raw};;
+    sql_end: nvl(${offer_accepted_raw},${offer_released_raw});;
+
+  }
+
+  dimension_group: between_released_and_expired {
+    type: duration
+    group_label:"Time"
+    intervals:[day, hour, minute]
+    sql_start: ${offer_released_raw};;
+    sql_end: nvl(${offer_expired_raw},${offer_released_raw});;
+
+  }
+
+  # MEASURES
+
+
   measure: count {
     type: count
     drill_fields: []
