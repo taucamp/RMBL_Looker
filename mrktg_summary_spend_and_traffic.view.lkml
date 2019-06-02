@@ -201,26 +201,26 @@ GROUP BY
 
   dimension: spend {
     type: number
-#     hidden: yes
+    hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.spend ;;
   }
 
   dimension: impressions {
     type: number
-#     hidden: yes
+    hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.impressions ;;
   }
   dimension: clicks {
     type: number
-#     hidden: yes
+    hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.clicks ;;
   }
   dimension: sessions {
     type: number
-#     hidden: yes
+    hidden: yes
     value_format_name: decimal_0
     sql: ${TABLE}.sessions ;;
   }
@@ -276,63 +276,63 @@ GROUP BY
   measure: total_spend {
     type: sum
     value_format_name: usd_0
-    sql: ${spend} ;;
+    sql: ${TABLE}.spend ;;
   }
 
   measure: total_impressions {
     type: sum
     value_format_name: decimal_0
-    sql: ${impressions} ;;
+    sql: ${TABLE}.impressions ;;
   }
   measure: total_clicks {
     type: sum
     value_format_name: decimal_0
-    sql: ${clicks} ;;
+    sql: ${TABLE}.clicks ;;
   }
   measure: total_sessions {
     type: sum
     value_format_name: decimal_0
-    sql: ${sessions} ;;
+    sql: ${TABLE}.sessions ;;
   }
   measure: total_pageviews {
     type: sum
     value_format_name: decimal_0
-    sql: ${pageviews} ;;
+    sql: ${TABLE}.pageviews ;;
   }
   measure: total_bounces {
     type: sum
     value_format_name: decimal_0
-    sql: ${bounces} ;;
+    sql: ${TABLE}.bounces ;;
   }
   measure: total_organic_searches {
     type: sum
     value_format_name: decimal_0
-    sql: ${organic_searches} ;;
+    sql: ${TABLE}.organic_searches ;;
   }
   measure: total_time_on_page {
     type: sum
     value_format_name: decimal_0
-    sql: ${time_on_page} ;;
+    sql: ${TABLE}.time_on_page ;;
   }
   measure: total_weekly_new_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${weekly_new_users} ;;
+    sql: ${TABLE}.weekly_new_users ;;
   }
   measure: total_weekly_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${weekly_users} ;;
+    sql: ${TABLE}.weekly_users ;;
   }
   measure: total_monthly_new_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${monthly_new_users} ;;
+    sql: ${TABLE}.monthly_new_users ;;
   }
   measure: total_monthly_users {
     type: sum
     value_format_name: decimal_0
-    sql: ${monthly_users} ;;
+    sql: ${TABLE}.monthly_users ;;
   }
 
 
