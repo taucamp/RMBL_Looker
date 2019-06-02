@@ -9,6 +9,7 @@ view: acct_division {
 
   dimension: division_id {
     type: number
+    primary_key: yes
     hidden: yes
     sql: ${TABLE}.division_id ;;
   }
@@ -22,6 +23,11 @@ view: acct_division {
   dimension: division_rank {
     type: number
     sql: ${TABLE}.division_rank ;;
+  }
+
+  dimension: division_name_by_rank {
+    type: string
+    sql: convert(varchar,${division_rank})+'-'+${division_name} ;;
   }
 
 #   dimension_group: end {

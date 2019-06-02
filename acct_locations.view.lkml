@@ -1,6 +1,14 @@
 view: acct_locations {
   sql_table_name: tomtest.acct_locations ;;
 
+  dimension: location_id {
+    type: number
+    primary_key: yes
+    hidden: yes
+    sql: ${TABLE}.location_id ;;
+  }
+
+
 #   dimension_group: end {
 #     type: time
 #     hidden: yes
@@ -19,6 +27,7 @@ view: acct_locations {
 
   dimension: is_active {
     type: number
+    hidden: yes
     sql: ${TABLE}.is_active ;;
   }
 
@@ -28,11 +37,6 @@ view: acct_locations {
 #     sql: ${TABLE}.location_abbrev ;;
 #   }
 
-  dimension: location_id {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.location_id ;;
-  }
 
   dimension: location_name {
     type: string
@@ -45,6 +49,10 @@ view: acct_locations {
     sql: ${TABLE}.location_rank ;;
   }
 
+  dimension: location_name_by_rank {
+    type: string
+    sql: convert(varchar,${location_rank})+'-'+${location_name} ;;
+  }
 #   dimension_group: start {
 #     hidden: yes
 #     type: time

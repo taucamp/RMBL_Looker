@@ -33,16 +33,20 @@ explore: Advent_GL_detail {
 
   join: acct_division {
     sql_on: ${acct_division.division_id} = f_sql_adv_acct_to_division(${Advent_Chart_of_Accounts.account_number});;
-    required_joins: [mrktg_adwords_ads,mrktg_adwords_ad_groups]
+    required_joins: [Advent_Chart_of_Accounts]
     relationship: many_to_one
   }
 
   join: acct_locations {
     sql_on: ${acct_locations.location_id} = f_sql_adv_acct_to_location(${Advent_Chart_of_Accounts.account_number});;
+    required_joins: [Advent_Chart_of_Accounts]
+    relationship: many_to_one
   }
 
   join: acct_department {
     sql_on: ${acct_department.department_id} = f_sql_adv_acct_to_department(${Advent_Chart_of_Accounts.account_number});;
+    required_joins: [Advent_Chart_of_Accounts]
+    relationship: many_to_one
   }
 
   join: adv_users {
