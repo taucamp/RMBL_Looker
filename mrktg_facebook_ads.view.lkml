@@ -315,7 +315,7 @@ view: mrktg_facebook_ads {
 
   measure: cost_per_click {
     type: number
-    value_format_name: usd_2
+    value_format_name: usd
     sql: ${total_spend} / nullif(${total_clicks},0) ;;
     drill_fields: [facebook_ads_detail*]
   }
@@ -329,7 +329,7 @@ view: mrktg_facebook_ads {
 
   measure: cost_per_impression{
     type: number
-    value_format_name: usd_2
+    value_format_name: usd
     sql: ${total_spend} / nullif(${total_impressions},0) ;;
     drill_fields: [facebook_ads_detail*]
   }

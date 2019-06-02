@@ -338,7 +338,7 @@ view: mrktg_adwords_ad_performance_reports {
 
   measure: cost_per_click {
     type: number
-    value_format_name: usd_2
+    value_format_name: usd
     sql: ${total_spend} / nullif(${total_clicks},0) ;;
     drill_fields: [adwords_drillthrough*]
   }
@@ -352,7 +352,7 @@ view: mrktg_adwords_ad_performance_reports {
 
   measure: cost_per_impression {
     type: number
-    value_format_name: usd_2
+    value_format_name: usd
     sql: ${total_spend} / nullif(${total_impressions},0) ;;
     drill_fields: [adwords_drillthrough*]
   }
