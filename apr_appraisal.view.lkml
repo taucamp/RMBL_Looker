@@ -1601,10 +1601,41 @@ view: apr_appraisal {
 #     sql: ${TABLE}.WireToRoutingNo ;;
 #   }
 
+
+
+# DURATION METRICS
+dimension_group: time_between_created_and_submitted{
+  type: duration
+  hidden: yes
+  sql_start: ${created_raw}
+  sql_end:${customer_submitted_raw}
+  intervals:[day, hour, minute]
+  ;;
+}
+
+  dimension_group: time_between_submitted_and_termination{
+    type: duration
+    hidden: yes
+    sql_start: ${customer_submitted_raw}
+        sql_end:${terminated_raw}
+        intervals:[day, hour, minute]
+        ;;
+  }
+
+
+
+# MEASURES
+
   measure: count {
     type: count
     drill_fields:[appraisal_drillthrough*]
   }
+
+  measure: appraisals {
+    type: count
+    drill_fields:[appraisal_drillthrough*]
+  }
+
 
   measure: total_internet_price {
     type: sum
