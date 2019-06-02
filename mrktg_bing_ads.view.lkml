@@ -38,8 +38,8 @@ view: mrktg_bing_ads {
     type: time
     hidden: yes
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,
@@ -59,8 +59,8 @@ view: mrktg_bing_ads {
     type: time
     hidden: yes
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,
@@ -319,8 +319,8 @@ view: mrktg_bing_ads {
   dimension_group: ad_date {
     type: time
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,

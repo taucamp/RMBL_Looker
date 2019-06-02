@@ -158,8 +158,8 @@ view: mrktg_adwords_ad_performance_reports {
   dimension_group: ad_date {
     type: time
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,
@@ -173,8 +173,8 @@ view: mrktg_adwords_ad_performance_reports {
     type: time
     hidden: yes
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,
@@ -236,8 +236,8 @@ view: mrktg_adwords_ad_performance_reports {
     type: time
     hidden: yes
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,
@@ -258,8 +258,8 @@ view: mrktg_adwords_ad_performance_reports {
     type: time
     hidden: yes
     timeframes: [
-      raw,
-      time,
+#       raw,
+#       time,
       date,
       week,
       month,
