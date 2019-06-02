@@ -268,6 +268,11 @@ view: apr_appraisal {
     sql: ${TABLE}.CustomerSubmittedDate ;;
   }
 
+  dimension: is_submitted {
+    type: yesno
+    sql: nvl2(${TABLE}.CustomerSubmittedDate,0,1) = 1 ;;
+  }
+
   dimension: damage_description {
     type: string
     hidden: yes
@@ -1416,6 +1421,11 @@ view: apr_appraisal {
       year
     ]
     sql: ${TABLE}.TerminatedDate ;;
+  }
+
+  dimension: is_terminated {
+    type: yesno
+    sql: nvl2(${TABLE}.TerminatedDate,0,1) = 1 ;;
   }
 
   dimension: terminated_user_id {
