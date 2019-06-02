@@ -1,15 +1,17 @@
 view: acct_chart_of_accounts {
   sql_table_name: tomtest.chartofaccounts ;;
 
+  dimension: account_number {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.accountnumber ;;
+  }
+
   dimension: account {
     type: string
     sql: ${TABLE}.account ;;
   }
 
-  dimension: account_number {
-    type: string
-    sql: ${TABLE}.accountnumber ;;
-  }
 
 #   dimension: length {
 #     type: string
@@ -36,6 +38,12 @@ view: acct_chart_of_accounts {
     sql: ${TABLE}.majorgroup_rank ;;
   }
 
+  dimension: major_group_with_rank {
+    type: string
+    hidden:  yes
+    sql: convert(varchar,${major_group_rank})+'-'+${major_group} ;;
+  }
+
   dimension: minor_group {
     type: string
     order_by_field: minor_group_rank
@@ -48,6 +56,13 @@ view: acct_chart_of_accounts {
     hidden:  yes
     sql: ${TABLE}.minorgroup_rank ;;
   }
+
+  dimension: minor_group_with_rank {
+    type: string
+    hidden:  yes
+    sql: convert(varchar,${minor_group_rank})+'-'+${minor_group} ;;
+  }
+
 
   measure: count {
     type: count

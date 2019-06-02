@@ -3,6 +3,7 @@ connection: "redshift"
 include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
+case_sensitive: no
 
 
 # FINANCIAL RELATED EXPLORES
@@ -22,14 +23,18 @@ explore: Advent_GL_detail {
 
   join: Advent_Chart_of_Accounts {
     sql_on: ${Advent_Chart_of_Accounts.account_number}=${Advent_GL_detail.account} ;;
+
   }
 
   join: acct_chart_of_accounts {
     sql_on: ${acct_chart_of_accounts.account_number}=split_part(${Advent_Chart_of_Accounts.account_number},'.',1) ;;
+    required_joins: [Advent_Chart_of_Accounts]
   }
 
   join: acct_division {
     sql_on: ${acct_division.division_id} = f_sql_adv_acct_to_division(${Advent_Chart_of_Accounts.account_number});;
+    required_joins: [mrktg_adwords_ads,mrktg_adwords_ad_groups]
+    relationship: many_to_one
   }
 
   join: acct_locations {
