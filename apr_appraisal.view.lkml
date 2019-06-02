@@ -1608,7 +1608,7 @@ dimension_group: time_between_created_and_submitted{
   type: duration
   hidden: yes
   sql_start: ${created_raw}
-  sql_end: isnull(${customer_submitted_raw},${created_raw},
+  sql_end: isnull(${customer_submitted_raw},${created_raw}),
   intervals:[day, hour, minute]
   ;;
 }
