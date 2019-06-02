@@ -13,15 +13,15 @@ view: mrktg_summary_spend_and_traffic {
       )) AS spend,
     SUM ( adp.impressions ) AS impressions,
     SUM ( adp.clicks ) AS clicks,
-    NULL :: "unknown" AS sessions,
-    NULL :: "unknown" AS pageviews,
-    NULL :: "unknown" AS bounces,
-    NULL :: "unknown" AS organic_searches,
-    NULL :: "unknown" AS time_on_page,
-    NULL :: "unknown" AS weekly_new_users,
-    NULL :: "unknown" AS weekly_users,
-    NULL :: "unknown" AS monthly_new_users,
-    NULL :: "unknown" AS monthly_users
+    0 AS sessions,
+    0 AS pageviews,
+    0 AS bounces,
+    0 AS organic_searches,
+    0 AS time_on_page,
+    0 AS weekly_new_users,
+    0 AS weekly_users,
+    0 AS monthly_new_users,
+    0 AS monthly_users
     FROM
       (((
             adwords.ad_performance_reports adp
@@ -60,15 +60,15 @@ view: mrktg_summary_spend_and_traffic {
       SUM ( bing_ads.spend ) AS spend,
       SUM ( bing_ads.impressions ) AS impressions,
       SUM ( bing_ads.clicks ) AS clicks,
-      NULL :: "unknown" AS sessions,
-      NULL :: "unknown" AS pageviews,
-      NULL :: "unknown" AS bounces,
-      NULL :: "unknown" AS organic_searches,
-      NULL :: "unknown" AS time_on_page,
-      NULL :: "unknown" AS weekly_new_users,
-      NULL :: "unknown" AS weekly_users,
-      NULL :: "unknown" AS monthly_new_users,
-      NULL :: "unknown" AS monthly_users
+      0 AS sessions,
+    0 AS pageviews,
+    0 AS bounces,
+    0 AS organic_searches,
+    0 AS time_on_page,
+    0 AS weekly_new_users,
+    0 AS weekly_users,
+    0 AS monthly_new_users,
+    0 AS monthly_users
     FROM
       bing_ads
     WHERE
@@ -92,15 +92,15 @@ view: mrktg_summary_spend_and_traffic {
     SUM ( "facebook-ads".spend ) AS spend,
     SUM ( "facebook-ads".impressions ) AS impressions,
     SUM ( "facebook-ads".clicks ) AS clicks,
-    NULL :: "unknown" AS sessions,
-    NULL :: "unknown" AS pageviews,
-    NULL :: "unknown" AS bounces,
-    NULL :: "unknown" AS organic_searches,
-    NULL :: "unknown" AS time_on_page,
-    NULL :: "unknown" AS weekly_new_users,
-    NULL :: "unknown" AS weekly_users,
-    NULL :: "unknown" AS monthly_new_users,
-    NULL :: "unknown" AS monthly_users
+     0 AS sessions,
+    0 AS pageviews,
+    0 AS bounces,
+    0 AS organic_searches,
+    0 AS time_on_page,
+    0 AS weekly_new_users,
+    0 AS weekly_users,
+    0 AS monthly_new_users,
+    0 AS monthly_users
   FROM
     "facebook-ads"
   WHERE
@@ -122,9 +122,9 @@ SELECT
   'Unknown' AS acct_vehicle_type,
   f_sql_campaign_to_campaign_type (
   COALESCE ( rpt.campaign, 'Unknown' :: CHARACTER VARYING )) AS campaign_type,
-  NULL :: "unknown" AS spend,
-  NULL :: "unknown" AS impressions,
-  NULL :: "unknown" AS clicks,
+  0 AS spend,
+  0 AS impressions,
+  0 AS clicks,
   SUM ( rpt.sessions ) AS sessions,
   SUM ( rpt.pageviews ) AS pageviews,
   SUM ( rpt.bounces ) AS bounces,
