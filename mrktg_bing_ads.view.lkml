@@ -359,24 +359,38 @@ view: mrktg_bing_ads {
     drill_fields: [bing_ads_detail*]
   }
 
-  measure: spend_amount {
+  measure: total_spend {
     type: sum
     value_format_name: usd_0
     sql: ${spend} ;;
     drill_fields: [bing_ads_detail*]
   }
 
-  measure: clicks_amount {
+  measure: total_clicks {
     type: sum
     value_format_name: decimal_0
     sql: ${clicks} ;;
     drill_fields: [bing_ads_detail*]
   }
 
-  measure: impressions_amount {
+  measure: cost_per_click {
+    type: number
+    value_format_name: usd_2
+    sql: ${total_spend} / nullif(${total_clicks},0) ;;
+    drill_fields: [bing_ads_detail*]
+  }
+
+  measure: total_impressions {
     type: sum
     value_format_name: decimal_0
     sql: ${impressions} ;;
+    drill_fields: [bing_ads_detail*]
+  }
+
+  measure: cost_per_impression {
+    type: number
+    value_format_name: usd_2
+    sql: ${total_spend} / nullif(${total_impressions},0) ;;
     drill_fields: [bing_ads_detail*]
   }
 
