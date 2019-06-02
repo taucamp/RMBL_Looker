@@ -338,7 +338,7 @@ GROUP BY
   measure: cost_per_impression {
     type: number
     value_format_name: usd
-    sql: ${total_spend} / nullif(${total_impressions},0) ;;
+    sql: ${total_spend} / nullif(${total_impressions},0)*1000 ;;
 
   }
 
