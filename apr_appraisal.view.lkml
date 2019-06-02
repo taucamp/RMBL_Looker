@@ -270,7 +270,7 @@ view: apr_appraisal {
 
   dimension: is_submitted {
     type: yesno
-    sql: nvl2(${TABLE}.CustomerSubmittedDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.CustomerSubmittedDate,1,0) = 1 ;;
   }
 
   dimension: damage_description {
@@ -1425,7 +1425,7 @@ view: apr_appraisal {
 
   dimension: is_terminated {
     type: yesno
-    sql: nvl2(${TABLE}.TerminatedDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.TerminatedDate,1,0) = 1 ;;
   }
 
   dimension: terminated_user_id {

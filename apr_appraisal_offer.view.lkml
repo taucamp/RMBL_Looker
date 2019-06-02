@@ -54,7 +54,7 @@ view: apr_appraisal_offer {
 
   dimension: is_created {
     type: yesno
-    sql: nvl2(${TABLE}.CreatedDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.CreatedDate,1,0) = 1 ;;
   }
 
 
@@ -99,7 +99,7 @@ view: apr_appraisal_offer {
 
   dimension: is_accepted {
     type: yesno
-    sql: nvl2(${TABLE}.OfferAcceptedDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.OfferAcceptedDate,1,0) = 1 ;;
   }
 
   dimension_group: offer_expired {
@@ -119,7 +119,7 @@ view: apr_appraisal_offer {
 
   dimension: is_expired {
     type: yesno
-    sql: nvl2(${TABLE}.OfferExpiredDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.OfferExpiredDate,1,0) = 1 ;;
   }
 
   dimension: offer_price {
@@ -153,7 +153,7 @@ view: apr_appraisal_offer {
 
   dimension: is_released {
     type: yesno
-    sql: nvl2(${TABLE}.OfferReleasedDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.OfferReleasedDate,1,0) = 1 ;;
   }
 
   dimension: offer_status_id {
@@ -202,7 +202,7 @@ view: apr_appraisal_offer {
 
   dimension: is_updated {
     type: yesno
-    sql: nvl2(${TABLE}.UpdatedDate,0,1) = 1 ;;
+    sql: nvl2(${TABLE}.UpdatedDate,1,0) = 1 ;;
   }
 
   dimension: updated_user_id {
