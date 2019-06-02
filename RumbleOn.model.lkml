@@ -584,7 +584,7 @@ explore: Marketing_top_level_weekly {
     from: ref_dimdate
     join: mrktg_summary_spend_and_traffic {
       type: inner
-      sql_on:${Marketing_top_level_weekly.date_week} = ${mrktg_summary_spend_and_traffic.week_week};;
+      sql_on:${Marketing_top_level_weekly.datekey} = ${mrktg_summary_spend_and_traffic.week_week};;
 
   }
 #   =${Marketing_top_level_weekly.date_date}
