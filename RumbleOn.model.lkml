@@ -95,8 +95,10 @@ explore: Financials_LTD {
 
 explore: ref_dimdate {
   join: Advent_GL_detail {
-    relationship: many_to_one
+    type: inner
+    relationship: one_to_many
     sql_on: ${Advent_GL_detail.accounting_date_month}<=${ref_dimdate.date_month} ;;
+
   }
 }
 
@@ -585,7 +587,7 @@ explore: Marketing_top_level_weekly {
     join: mrktg_summary_spend_and_traffic {
       type: inner
       sql_on:${Marketing_top_level_weekly.datekey} = ${mrktg_summary_spend_and_traffic.week_week};;
-
+      relationship: one_to_many
   }
 #   =${Marketing_top_level_weekly.date_date}
 }
