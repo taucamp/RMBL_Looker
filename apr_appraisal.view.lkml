@@ -690,7 +690,7 @@ view: apr_appraisal {
     sql: nvl(${TABLE}.ItemTypeId,0) ;;
   }
 
-  dimension: item_year {
+  dimension: model_year {
     type: number
     sql: ${TABLE}.ItemYear ;;
   }
