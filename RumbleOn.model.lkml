@@ -316,18 +316,20 @@ explore: apr_appraisal {
                   AND ${apr_appraisal.appraisal_status_id} <> 1
                   AND ${apr_appraisal.customer_submitted_date} is not null ;;
 
+# Appraisal Offer and Offer Type as well Offer Type Status
+  always_join: [apr_appraisal_offer]
+  join: apr_appraisal_offer {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${apr_appraisal_offer.appraisal_id} = ${apr_appraisal.appraisal_id} and ${apr_appraisal_offer.is_active} = 1 ;;
+  }
+
   join: apr_appraisal_loan {
     type: left_outer
     relationship: one_to_one
     sql_on: ${apr_appraisal_loan.appraisal_id} = ${apr_appraisal.appraisal_id} ;;
   }
 
-# Appraisal Offer and Offer Type as well Offer Type Status
-  join: apr_appraisal_offer {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${apr_appraisal_offer.appraisal_id} = ${apr_appraisal.appraisal_id} and ${apr_appraisal_offer.is_active} = 1 ;;
-  }
 
   join: apr_appraisal_offer_status {
     type: left_outer

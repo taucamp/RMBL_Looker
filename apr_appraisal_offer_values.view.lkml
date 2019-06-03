@@ -124,6 +124,17 @@ view: apr_appraisal_offer_values {
     }
   }
 
+  measure: offer_value_median {
+    type: median
+    value_format_name: usd_0
+    sql: ${cash_offer_value}*1 ;;
+    drill_fields:[appraisal_offer_values_drillthrough*]
+    filters: {
+      field: cash_offer_value
+      value: "<>0"
+    }
+  }
+
   measure: offer_value_max {
     type: max
     value_format_name: usd_0
@@ -396,12 +407,12 @@ view: apr_appraisal_offer_values {
     drill_fields:[appraisal_offer_values_drillthrough*]
   }
 
-  measure: percentage_of_nada_clean_total {
-    type: sum
-    value_format_name: percent_1
-    sql: ${TABLE}.PercentageOfNadaClean *1/100;;
-    drill_fields:[appraisal_offer_values_drillthrough*]
-  }
+#   measure: percentage_of_nada_clean_total {
+#     type: sum
+#     value_format_name: percent_1
+#     sql: ${TABLE}.PercentageOfNadaClean *1/100;;
+#     drill_fields:[appraisal_offer_values_drillthrough*]
+#   }
 
   measure: percentage_of_nada_clean_avg {
     type: average
