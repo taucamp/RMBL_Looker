@@ -6,7 +6,8 @@ view: apr_appraisal_offer_values {
       estimated_freight,
       estimated_reconditioning,
       reserve_estimated_margin,
-      percentage_of_nada_clean
+      percentage_of_nada_clean,
+      percentage_of_nada_clean_avg
 
     ]
   }
