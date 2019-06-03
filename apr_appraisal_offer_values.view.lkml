@@ -80,7 +80,14 @@ view: apr_appraisal_offer_values {
     sql: ${TABLE}.PercentageOfNadaClean*1/100 ;;
   }
 
-  dimension: percentage_of_nada_clean_bucket {
+
+  dimension: Is_null_or_zero_percentage_of_nada_clean {
+    type: yesno
+    sql:nvl2(${TABLE}.PercentageOfNadaClean,0,1) = 1     ;;
+  }
+
+
+    dimension: percentage_of_nada_clean_bucket {
     type: tier
     tiers: [0,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2]
     style: relational
@@ -427,6 +434,10 @@ view: apr_appraisal_offer_values {
     filters: {
       field: percentage_of_nada_clean
       value: "<>0"
+    }
+    filters: {
+      field: Is_null_or_zero_percentage_of_nada_clean
+      value: "no"
     }
   }
 
