@@ -11,7 +11,7 @@ view: adv_salesdetail {
 
     select
         'Unwind' as Sale_or_Unwind,
-        saledate as Transaction_Date,
+        unwinddate as Transaction_Date,
         *
     from adv_r_salesdetail where unwinddate is not null
     ;;
@@ -171,7 +171,14 @@ view: adv_salesdetail {
     type: duration
     intervals: [day, week]
     sql_start: ${sale_date} ;;
-    sql_end: ${close_date_date} ;;
+    sql_end: nvl(${close_date_date}, ${sale_date}) ;;
+  }
+
+  dimension_group: days_to_unwind_deal {
+    type: duration
+    intervals: [day, week]
+    sql_start: ${sale_date} ;;
+    sql_end: nvl(${close_date_date},${sale_date}) ;;
   }
 
 
@@ -779,7 +786,7 @@ view: adv_salesdetail {
     value_format_name: dec
     sql: ${commission} ;;
     filters: {
-      field:  commission_total
+      field:  commission
       value: "<>0"
     }
   }
@@ -789,7 +796,7 @@ view: adv_salesdetail {
     value_format_name: usd_0
     sql: ${commission} ;;
     filters: {
-      field:  commission_total
+      field:  commission
       value: "<>0"
     }
   }
@@ -809,7 +816,7 @@ view: adv_salesdetail {
     value_format_name: decimal_0
     sql: ${dealer_pack} ;;
     filters: {
-      field:  dealer_pack_total
+      field:  dealer_pack
       value: "<>0"
     }
   }
@@ -819,7 +826,7 @@ view: adv_salesdetail {
     value_format_name: usd_0
     sql: ${dealer_pack} ;;
     filters: {
-      field:  dealer_pack_total
+      field:  dealer_pack
       value: "<>0"
     }
 
