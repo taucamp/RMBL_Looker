@@ -100,11 +100,26 @@ view: apr_appraisal_offer_values {
     sql: ${TABLE}.SupervisorActionReserve ;;
   }
 
+
+
+# MEASURES
+
   measure: count_of_offers {
     type: count
     value_format_name: decimal_0
     drill_fields:[appraisal_offer_values_drillthrough*]
   }
+
+  measure: count_of_offers_non_zero {
+    type: count
+    value_format_name: decimal_0
+    drill_fields:[appraisal_offer_values_drillthrough*]
+    filters: {
+      field: cash_offer_value
+      value: "<>0"
+    }
+  }
+
 
   measure: offer_value_total {
     type: sum
