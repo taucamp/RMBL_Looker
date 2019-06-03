@@ -312,6 +312,7 @@ explore: adv_salesdetail {
 # APPRAISAL DETAIL
 # full join against majority of information
 explore: apr_appraisal {
+  symmetric_aggregates: no
   sql_always_where:${apr_appraisal.user_id} is not null
                   AND ${apr_appraisal.appraisal_status_id} <> 1
                   AND ${apr_appraisal.customer_submitted_date} is not null ;;
