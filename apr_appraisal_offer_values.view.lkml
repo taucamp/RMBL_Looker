@@ -124,16 +124,6 @@ view: apr_appraisal_offer_values {
     }
   }
 
-  measure: offer_value_median {
-    type: median
-    value_format_name: usd_0
-    sql: ${cash_offer_value}*1 ;;
-    drill_fields:[appraisal_offer_values_drillthrough*]
-    filters: {
-      field: cash_offer_value
-      value: "<>0"
-    }
-  }
 
   measure: offer_value_max {
     type: max
