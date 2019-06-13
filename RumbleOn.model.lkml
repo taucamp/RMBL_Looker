@@ -115,6 +115,11 @@ explore: Inventory {
     sql_on: ${Inventory.stock_number} = ${inv_item.advent_stock_number} and ${Inventory.vin} = ${inv_item.vin} and ${inv_item.is_active} = 1;;
   }
 
+  join: apr_item_type {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${inv_item.item_type_id} = ${apr_item_type.item_type_id} and ${apr_item_type.is_active} = 1;;
+  }
   join: inv_item_status {
     type: left_outer
     relationship: many_to_one
