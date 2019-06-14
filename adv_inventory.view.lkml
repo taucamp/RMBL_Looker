@@ -194,16 +194,16 @@ view: adv_inventory {
     sql: f_sql_inventory_origin(${TABLE}.orig);;
   }
 
-#   dimension: payoff_to {
-#     type: string
-#     sql: ${Table}.payoff_to;;
-#   }
-#
-#
-#   dimension: received_from {
-#     type: string
-#     sql: ${received_from};;
-#   }
+  dimension: payoff_to {
+    type: string
+    sql: ${TABLE}."payoff to";;
+  }
+
+
+  dimension: received_from {
+    type: string
+    sql: ${TABLE}."received_from";;
+  }
 
 
   dimension_group: date_received {

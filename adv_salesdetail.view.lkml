@@ -373,21 +373,21 @@ view: adv_salesdetail {
   }
 
 
-# Run Time
-  dimension_group: runtime {
-    hidden: yes
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.runtime ;;
-  }
+# # Run Time
+#   dimension_group: runtime {
+#     hidden: yes
+#     type: time
+#     timeframes: [
+#       raw,
+#       time,
+#       date,
+#       week,
+#       month,
+#       quarter,
+#       year
+#     ]
+#     sql: ${TABLE}.runtime ;;
+#   }
 
 # Sale Date
   dimension_group: sale {

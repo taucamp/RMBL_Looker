@@ -5,7 +5,7 @@ view: adv_sales_adds {
   set: Sales_Adds {
     fields: [
       deal_number,
-      add_type,
+      sales_add_type,
       sales_add_item_code,
       item_description,
       cost,

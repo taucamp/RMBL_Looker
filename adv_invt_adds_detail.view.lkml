@@ -127,6 +127,11 @@ view: adv_invt_adds_detail {
     sql: ${TABLE}."stock number" ;;
   }
 
+  dimension: store_name {
+    type: string
+    sql: ${TABLE}."store name" ;;
+  }
+
   dimension: vin {
     type: string
     sql: ${TABLE}.vin ;;
