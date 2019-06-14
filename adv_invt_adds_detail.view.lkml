@@ -127,9 +127,9 @@ view: adv_invt_adds_detail {
     sql: ${TABLE}."stock number" ;;
   }
 
-  dimension: store_name {
+  dimension: dealer {
     type: string
-    sql: ${TABLE}."store name" ;;
+    sql: nvl(f_sql_adv_dealername${TABLE}."store name"),'UNKNOWN') ;;
   }
 
   dimension: vin {

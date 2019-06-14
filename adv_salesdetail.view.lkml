@@ -219,9 +219,9 @@ view: adv_salesdetail {
 
 
 # Dealer Name
-  dimension: dealer_name {
+  dimension: dealer {
     type: string
-    sql: f_sql_adv_dealername(${TABLE}.dealername) ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),"UNKNOWN") ;;
   }
 
 

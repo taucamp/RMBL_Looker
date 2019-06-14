@@ -79,11 +79,11 @@ view: adv_sales_adds {
     sql: ${TABLE}.cost ;;
   }
 
-  dimension: dealer_name {
+  dimension: dealer {
     type: number
 #     label:
     description: "The Employee who created the Sales Add"
-    sql: f_sql_adv_dealername(${TABLE}.store) ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),"UNKNOWN") ;;
   }
 
   dimension: employee_who_created {
