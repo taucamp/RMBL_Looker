@@ -32,19 +32,19 @@ explore: Advent_GL_detail {
   }
 
   join: acct_division {
-    sql_on: ${acct_division.division_id} = f_sql_adv_acct_to_division(${Advent_Chart_of_Accounts.account_number});;
+    sql_on: ${acct_division.division_id} = ${Advent_GL_detail.gl_account_division_id};;
     required_joins: [Advent_Chart_of_Accounts]
     relationship: many_to_one
   }
 
   join: acct_locations {
-    sql_on: ${acct_locations.location_id} = f_sql_adv_acct_to_location(${Advent_Chart_of_Accounts.account_number});;
+    sql_on: ${acct_locations.location_id} = ${Advent_GL_detail.gl_account_location_id};;
     required_joins: [Advent_Chart_of_Accounts]
     relationship: many_to_one
   }
 
   join: acct_department {
-    sql_on: ${acct_department.department_id} = f_sql_adv_acct_to_department(${Advent_Chart_of_Accounts.account_number});;
+    sql_on: ${acct_department.department_id} = ${Advent_GL_detail.gl_account_department_id};;
     required_joins: [Advent_Chart_of_Accounts]
     relationship: many_to_one
   }
@@ -109,6 +109,12 @@ explore: ref_dimdate {
 
 explore: Inventory {
   from: adv_inventory
+
+
+
+
+
+
   join: inv_item {
     type: left_outer
     relationship: many_to_one
