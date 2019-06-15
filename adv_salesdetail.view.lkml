@@ -20,7 +20,7 @@ view: adv_salesdetail {
   dimension: deal_id {
     primary_key: yes
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}."deal number" ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}."deal number" ;;
   }
 
   dimension: id {
