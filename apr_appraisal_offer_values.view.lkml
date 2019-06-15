@@ -93,7 +93,7 @@ view: apr_appraisal_offer_values {
     tiers: [0,0.5,0.6,0.7,0.8,0.9,1,1.1,1.2]
     style: relational
     sql: ${percentage_of_nada_clean} ;;
-    value_format_name: "0.0\%"
+    value_format_name: percent_1
   }
 
   dimension: reserve_estimated_margin {

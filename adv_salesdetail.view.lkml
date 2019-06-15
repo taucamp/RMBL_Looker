@@ -673,7 +673,6 @@ view: adv_salesdetail {
   measure: accessory_profit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${accessory_profit} ;;
     filters: {
       field:  has_accessory_profit
       value: "1"
@@ -701,7 +700,6 @@ view: adv_salesdetail {
   measure: amount_financed_count {
     type: count
     value_format_name: decimal_0
-    sql: ${amount_financed} ;;
     filters: {
       field:  has_financing
       value: "1"
@@ -728,7 +726,6 @@ view: adv_salesdetail {
   measure: cash_deposit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${cash_deposit} ;;
     filters: {
       field:  has_cash_deposit
       value: "1"
@@ -756,7 +753,6 @@ view: adv_salesdetail {
   measure: cash_sale_price_count {
     type: count
     value_format_name: decimal_0
-    sql: ${cash_sale_price} ;;
     filters: {
       field:  cash_sale_price
       value: "<>0"
@@ -783,8 +779,7 @@ view: adv_salesdetail {
 
   measure: commisson_count {
     type: count
-    value_format_name: dec
-    sql: ${commission} ;;
+    value_format_name: decimal_0
     filters: {
       field:  commission
       value: "<>0"
@@ -814,7 +809,6 @@ view: adv_salesdetail {
   measure: dealer_pack_count {
     type: count
     value_format_name: decimal_0
-    sql: ${dealer_pack} ;;
     filters: {
       field:  dealer_pack
       value: "<>0"
@@ -845,7 +839,6 @@ view: adv_salesdetail {
   measure: financial_adds_count {
     type: count
     value_format_name: decimal_0
-    sql: ${financial_adds} ;;
     filters: {
       field:  financial_adds
       value: "<>0"
@@ -881,7 +874,6 @@ view: adv_salesdetail {
   measure: LAH_Profit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${lah_profit} ;;
     filters: {
       field:  lah_profit
       value: "<>0"
@@ -911,7 +903,6 @@ view: adv_salesdetail {
   measure: net_profit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${net_profit} ;;
     filters: {
       field:  net_profit
       value: "<>0"
@@ -941,7 +932,6 @@ view: adv_salesdetail {
   measure: non_taxable_accessories_count {
     type: count
     value_format_name: decimal_0
-    sql: ${non_taxable_accessories} ;;
     filters: {
       field:  non_taxable_accessories
       value: "<>0"
@@ -969,7 +959,6 @@ view: adv_salesdetail {
   measure: reserve_profit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${reserve_profit} ;;
     filters: {
       field:  reserve_profit
       value: "<>0"
@@ -997,7 +986,6 @@ view: adv_salesdetail {
   measure: sell_price_count {
     type: count
     value_format_name: decimal_0
-    sql: ${sell_price} ;;
     filters: {
       field:  sell_price
       value: "<>0"
@@ -1024,7 +1012,6 @@ view: adv_salesdetail {
   measure: service_contract_cost_count {
     type: count
     value_format_name: decimal_0
-    sql: ${service_contract_cost} ;;
     filters: {
       field:  service_contract_cost
       value: "<>0"
@@ -1051,7 +1038,6 @@ view: adv_salesdetail {
   measure: total_sale_count {
     type: count
     value_format_name: decimal_0
-    sql: ${total_sale} ;;
     filters: {
       field:  total_sale
       value: "<>0"
@@ -1079,7 +1065,6 @@ view: adv_salesdetail {
   measure: trade1_acv_count {
     type: count
     value_format_name: decimal_0
-    sql: ${trade1_acv} ;;
     filters: {
       field:  trade1_acv
       value: "<>0"
@@ -1107,7 +1092,6 @@ view: adv_salesdetail {
   measure: trade1_gross_count {
     type: count
     value_format_name: decimal_0
-    sql: ${trade1_gross} ;;
     filters: {
       field:  trade1_gross
       value: "<>0"
@@ -1134,7 +1118,6 @@ view: adv_salesdetail {
   measure: trade1_payoff_count {
     type: count
     value_format_name: decimal_0
-    sql: ${trade1_payoff} ;;
     filters: {
       field:  trade1_payoff
       value: "<>0"
@@ -1162,7 +1145,6 @@ view: adv_salesdetail {
   measure: trade2_acv_count {
     type: count
     value_format_name: decimal_0
-    sql: ${trade2_acv} ;;
     filters: {
       field:  trade2_acv
       value: "<>0"
@@ -1190,7 +1172,6 @@ view: adv_salesdetail {
   measure: trade2_gross_count {
     type: count
     value_format_name: decimal_0
-    sql: ${trade2_gross} ;;
     filters: {
       field:  trade2_gross
       value: "<>0"
@@ -1217,7 +1198,6 @@ view: adv_salesdetail {
   measure: trade2_payoff_count {
     type: count
     value_format_name: decimal_0
-    sql: ${trade2_payoff} ;;
     filters: {
       field:  trade2_payoff
       value: "<>0"
@@ -1245,7 +1225,6 @@ view: adv_salesdetail {
   measure: vehicle_cost_count {
     type: count
     value_format_name: decimal_0
-    sql: ${vehicle_cost} ;;
     filters: {
       field:  vehicle_cost
       value: "<>0"
@@ -1273,7 +1252,6 @@ view: adv_salesdetail {
   measure: vehicle_profit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${vehicle_profit} ;;
     filters: {
       field:  vehicle_profit
       value: "<>0"
@@ -1302,7 +1280,6 @@ view: adv_salesdetail {
   measure: vehicle_insurance_count {
     type: count
     value_format_name: decimal_0
-    sql: ${vehicle_insurance} ;;
     filters: {
       field:  vehicle_insurance
       value: "<>0"
@@ -1330,7 +1307,6 @@ view: adv_salesdetail {
   measure: warranty_profit_count {
     type: count
     value_format_name: decimal_0
-    sql: ${warranty_profit} ;;
     filters: {
       field:  warranty_profit
       value: "<>0"
@@ -1360,7 +1336,6 @@ view: adv_salesdetail {
   measure: total_cash_sale_count {
     type: count
     value_format_name: decimal_0
-    sql: ${cash_sale_price} ;;
     filters: {
       field:  cash_sale_price
       value: "<>0"
