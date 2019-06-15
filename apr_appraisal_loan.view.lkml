@@ -66,7 +66,7 @@ view: apr_appraisal_loan {
 
   dimension: payment_amount_bucket {
     type: tier
-    tiers: [0,200,300,400,500,600,7500,1000]
+    tiers: [0,200,300,400,500,600,7500,10000]
     style: relational
     value_format_name: usd_0
     sql: ${payment_amount} ;;

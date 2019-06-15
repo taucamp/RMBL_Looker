@@ -1042,7 +1042,7 @@ view: adv_salesdetail {
   }
 
 # Total Sale
-  measure: total_sale_amout {
+  measure: total_sale_amount {
     type: sum
     value_format_name: usd_0
     sql: ${total_sale};;
@@ -1409,7 +1409,7 @@ view: adv_salesdetail {
   measure: total_vehicle_profit_pct {
     type: sum
     value_format_name: percent_1
-    sql: ${vehicle_profit}/nullif(${total_sale_amout},0) ;;
+    sql: ${vehicle_profit}/nullif(${total_sale},0) ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
 #
