@@ -654,13 +654,13 @@ view: adv_salesdetail {
 
   measure: count_transactions {
     type: count
-    drill_fields: [id, dealer_name]
+    drill_fields: [id, dealer]
   }
 
   measure: count_net_transactions {
     type: sum
     sql:  1   * case when ${Sale_or_Unwind} = 'Sale' then 1 else nvl2(${unwind_date},-1,1) end ;;
-    drill_fields: [id, dealer_name]
+    drill_fields: [id, dealer]
   }
 
 # Accessory Profit
