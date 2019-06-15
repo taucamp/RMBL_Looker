@@ -644,7 +644,7 @@ view: adv_salesdetail {
 # UnwindDate
   dimension: Is_an_unwind {
     type: yesno
-    sql: nvl2(${TABLE}.unwinddate,0,1) = 1;;
+    sql: nvl2(${TABLE}.unwinddate,1,0) = 1;;
   }
 
 
