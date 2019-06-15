@@ -83,7 +83,7 @@ view: adv_sales_adds {
     type: number
 #     label:
     description: "The Employee who created the Sales Add"
-    sql: nvl(f_sql_adv_dealername(${TABLE}.store),"UNKNOWN") ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN') ;;
   }
 
   dimension: employee_who_created {
