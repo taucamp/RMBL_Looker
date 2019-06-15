@@ -22,9 +22,16 @@ view: adv_inventory {
     ]
   }
 
-    dimension: id {
+  dimension: stock_number_id {
     primary_key: yes
     type: string
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}.stocknum ;;
+  }
+
+
+    dimension: id {
+    type: string
+    hidden:yes
     sql: ${TABLE}.id ;;
   }
 
@@ -138,9 +145,19 @@ view: adv_inventory {
     sql: ${TABLE}.gl_account ;;
   }
 
-  dimension: gl_account_location {
+  dimension: gl_account_department_id {
     type: string
-    sql: right(left(${gl_account},7)2) ;;
+    sql: f_sql_adv_acct_to_department(${gl_account}) ;;
+  }
+
+  dimension: gl_account_division_id {
+    type: string
+    sql: f_sql_adv_acct_to_division(${gl_account}) ;;
+  }
+
+  dimension: gl_account_location_id {
+    type: string
+    sql: f_sql_adv_acct_to_location(${gl_account}) ;;
   }
 
 

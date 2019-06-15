@@ -21,6 +21,13 @@ view: adv_sales_adds {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: deal_id {
+    type: string
+    hidden: yes
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}."deal number" ;;
+  }
+
+
   dimension_group: __senttime {
     hidden:yes
     type: time
@@ -51,7 +58,7 @@ view: adv_sales_adds {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: account {
+  dimension: payment_account {
     type: string
     sql: nvl(${TABLE}.account,'Unknown') ;;
   }

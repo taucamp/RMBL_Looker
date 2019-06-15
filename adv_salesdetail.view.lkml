@@ -17,9 +17,15 @@ view: adv_salesdetail {
     ;;
 }
 
-  dimension: id {
+  dimension: deal_id {
     primary_key: yes
     type: string
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}."deal number" ;;
+  }
+
+  dimension: id {
+    type: string
+    hidden:yes
     sql: ${TABLE}.id ;;
   }
 
@@ -459,6 +465,13 @@ view: adv_salesdetail {
     sql: ${TABLE}.stocknumber ;;
   }
 
+# Stock Number_id
+  dimension: stock_number_id {
+    type: string
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.stocknumber ;;
+  }
+
+
 # Total Sale
   dimension: total_sale {
     hidden: yes
@@ -513,6 +526,11 @@ view: adv_salesdetail {
     sql: ${TABLE}.trade1stocknum ;;
   }
 
+# Trade1_Stock Number_id
+  dimension: trade1_stock_number_id {
+    type: string
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.trade1stocknum ;;
+  }
 
 # Trade 2 ACV
   dimension: trade2_acv {
@@ -547,6 +565,12 @@ view: adv_salesdetail {
   dimension: trade2_stock_number {
     type: string
     sql: ${TABLE}.trade2stocknum ;;
+  }
+
+# Trade2_Stock Number_id
+  dimension: trade2_stock_number_id {
+    type: string
+    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.trade2stocknum ;;
   }
 
 # Deal Type

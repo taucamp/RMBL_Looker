@@ -62,6 +62,24 @@ set: GL_Drillthrough {
     sql: ${TABLE}.accountnumber ;;
   }
 
+  dimension: gl_account_department_id {
+    type: string
+    sql: f_sql_adv_acct_to_department(${account}) ;;
+  }
+
+  dimension: gl_account_division_id {
+    type: string
+    sql: f_sql_adv_acct_to_division(${account}) ;;
+  }
+
+  dimension: gl_account_location_id {
+    type: string
+    sql: f_sql_adv_acct_to_location(${account}) ;;
+  }
+
+
+
+
   dimension_group: accounting_date {
     type: time
     label:"Accounting Date"

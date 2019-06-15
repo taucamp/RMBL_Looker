@@ -1,10 +1,16 @@
 view: adv_invt_adds_detail {
   sql_table_name: public.adv_invt_adds_detail ;;
 
+
   dimension: id {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
+  }
+
+  dimension: stock_number_id {
+    type: string
+    sql: nvl(f_sql_adv_dealername${TABLE}."store name"),'UNKNOWN')||'-'||${TABLE}."stock number" ;;
   }
 
   dimension_group: __senttime {
