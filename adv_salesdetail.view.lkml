@@ -468,7 +468,7 @@ view: adv_salesdetail {
 # Stock Number_id
   dimension: stock_number_id {
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.stocknumber ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}.stocknumber ;;
   }
 
 
