@@ -109,11 +109,20 @@ view: adv_inventory {
     sql:  nvl(f_sql_char_to_numeric(${TABLE}."blue book"),0) ;;
   }
 
-  dimension: dealer {
+  dimension: advent_dealership {
     type: string
     sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') ;;
   }
 
+  dimension: Is_active_advent_dealership {
+    type: yesno
+    sql: case when nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') in ('Wholesale','RumbleOn') then 1 else 0 end ;;
+  }
+
+  dimension: dealer {
+    type: string
+    sql: nvl(f_sql_adv_inventory_dealership(${TABLE}.gl_account),'UNKNOWN') ;;
+  }
   dimension: transit {
     type: string
     sql: ${TABLE}.equipment1 ;;
@@ -169,7 +178,12 @@ view: adv_inventory {
 
   dimension: inventory_status {
     type: string
-    sql: f_sql_inventory_status(${TABLE}.invtstatuscode) ;;
+    sql: f_sql_inventory_user_status(${TABLE}.invtstatuscode) ;;
+  }
+
+  dimension: is_available_for_sale {
+    type: yesno
+    sql: case when f_sql_inventory_user_status(${TABLE}.invtstatuscode) in 'Pending','Curent' then 1 else 0 end;;
   }
 
   dimension: inventory_status_group {
