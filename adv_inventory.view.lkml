@@ -27,6 +27,7 @@ view: adv_inventory {
   dimension: stock_number_id {
     primary_key: yes
     type: string
+    hidden:yes
     sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}.stocknum ;;
   }
 
@@ -71,11 +72,13 @@ view: adv_inventory {
     sql: ${TABLE}.appraisalid ;;
   }
   dimension: color {
+    group_label: "Vehicle Detail"
     type: string
     sql: ${TABLE}.color1 ;;
   }
 
   dimension: color2 {
+    group_label: "Vehicle Detail"
     type: string
     sql: ${TABLE}.color2 ;;
   }
@@ -114,18 +117,21 @@ view: adv_inventory {
 
   dimension: advent_dealership {
     description: "The Advent dealership - in June 2019 we consolidated the Wholesale and AutoSport inventory into the Wholesale dealership"
+    group_label: "Dealership Info"
     type: string
     sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') ;;
   }
 
   dimension: Is_active_advent_dealership {
     description: "Used to eliminate the old AutoSport data that was from the initial use of Advent - in June 2019 we consolidated the Wholesale and AutoSport inventory into the Wholesale dealership"
+    group_label: "Dealership Info"
     type: yesno
     sql: case when nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') in ('Wholesale','RumbleOn') then 1 else 0 end ;;
   }
 
   dimension: rumbleon_dealer {
     description: "Identifier for RumbleOn, Wholesale or AutoSport based on the GL Account"
+    group_label: "Dealership Info"
     type: string
     sql: nvl(f_sql_adv_inventory_dealership(${TABLE}."gl account"),'UNKNOWN') ;;
   }
@@ -155,30 +161,35 @@ view: adv_inventory {
 
   dimension: floorplan_info {
     description: "Value from the Equipment 3 field"
+    group_label: "Flooring Info"
     type: string
     sql: ${TABLE}.equipment3 ;;
   }
 
 
   dimension: gl_account {
+    group_label: "GL Related Items"
     type: string
     sql: ${TABLE}."gl account" ;;
   }
 
   dimension: gl_account_department_id {
     description: "Department based on parsing the GL Account"
+    group_label: "GL Related Items"
     type: string
     sql: f_sql_adv_acct_to_department(${gl_account}) ;;
   }
 
   dimension: gl_account_division_id {
     description: "Division based on parsing the GL Account"
+    group_label: "GL Related Items"
     type: string
     sql: f_sql_adv_acct_to_division(${gl_account}) ;;
   }
 
   dimension: gl_account_location_id {
     description: "Location based on parsing the GL Account"
+    group_label: "GL Related Items"
     type: string
     sql: f_sql_adv_acct_to_location(${gl_account}) ;;
   }
@@ -210,17 +221,20 @@ view: adv_inventory {
   }
 
   dimension: make {
+    group_label: "Vehicle Detail"
     type: string
     sql: ${TABLE}.make ;;
   }
 
   dimension: mileage {
+    group_label: "Vehicle Detail"
     type: number
     value_format_name: id
     sql: ${TABLE}.mileage ;;
   }
 
   dimension: mileage_bucket {
+    group_label: "Vehicle Detail"
     type: tier
     tiers: [0,5000,10000,15000,20000]
     style: integer
@@ -229,6 +243,7 @@ view: adv_inventory {
   }
 
   dimension: model {
+    group_label: "Vehicle Detail"
     type: string
     sql: ${TABLE}.model ;;
   }
@@ -251,8 +266,6 @@ view: adv_inventory {
 
 
   dimension_group: date_received {
-    group_label:"Dates"
-    group_item_label:"Inventory Received"
     type: time
     timeframes: [
       date,
@@ -266,7 +279,7 @@ view: adv_inventory {
     sql: nvl(${TABLE}.recdate,'2000-01-01') ;;
   }
 
-  dimension_group: days_in_inventory {
+  dimension_group: in_inventory {
     type: duration
     intervals: [day]
     sql_start: ${TABLE}.recdate ;;
@@ -278,12 +291,10 @@ view: adv_inventory {
     tiers: [0,15,30,45,60]
     style: integer
     value_format_name: decimal_0
-    sql: ${days_days_in_inventory} ;;
+    sql: ${days_in_inventory} ;;
   }
 
   dimension_group: date_rs_status {
-    group_label:"Dates"
-    group_item_label:"RS Status Change"
     type: time
     timeframes: [
       time,
@@ -298,9 +309,13 @@ view: adv_inventory {
     sql:${TABLE}.rsstatus ;;
   }
 
+  dimension: has_been_rsd {
+    type: yesno
+    sql: case when ${TABLE}.rsstatus IS NOT NULL then 1 else 0 end ;;
+  }
+
+
   dimension_group: date_advent_runtime {
-    group_label:"Dates"
-    group_item_label:"Warehouse Runtime "
     type: time
     timeframes: [
       time,
@@ -359,6 +374,7 @@ view: adv_inventory {
 
   dimension: type {
     description: "Based on the Advent code - should just be New or Used"
+    group_label: "Vehicle Detail"
     type: string
     hidden: yes
     sql: UPPER(${TABLE}.type);;
@@ -366,23 +382,27 @@ view: adv_inventory {
 
   dimension: vehicle_type {
     description: "Based on the Advent code - will be Car, Truck or Powersport"
+    group_label: "Vehicle Detail"
     type: string
     sql: nvl(f_sql_adv_inventory_vehicle_type(${TABLE}."veh type"),'UNKNOWN') ;;
   }
 
   dimension: vin {
     type: string
+    group_label: "Vehicle Detail"
     sql: ${TABLE}.vin ;;
   }
 
   dimension: model_year {
+    group_label: "Vehicle Detail"
     type: number
     value_format_name: id
     sql: ${TABLE}.year ;;
   }
 
   dimension: model_year_bucket {
-  type: tier
+    group_label: "Vehicle Detail"
+    type: tier
     tiers: [0,2000,2005,2010,2015,2017,2020]
     style: integer
     value_format_name: id
@@ -390,22 +410,26 @@ view: adv_inventory {
   }
 
   dimension: is_floorable_mileage {
+    group_label: "Flooring Info"
     type: yesno
     sql:${mileage} < 150000 ;;
   }
 
   dimension: is_floorable_model_year {
+    group_label: "Flooring Info"
     type: yesno
     sql: ${model_year} > date_part(year,getdate())-10 ;;
   }
 
   dimension: is_floorable_status {
     description: "Only considered floorable if not sold"
+    group_label: "Flooring Info"
     type: yesno
     sql:${status} in ('Pending','Current') ;;
   }
 
   dimension: is_floorable {
+    group_label: "Flooring Info"
     type: yesno
     sql:${is_floorable_mileage} and  ${is_floorable_model_year} and ${is_floorable_status}  ;;
   }
@@ -448,7 +472,7 @@ view: adv_inventory {
   measure: average_days_in_inventory {
     type:average
     value_format_name: decimal_0
-    sql:${days_days_in_inventory};;
+    sql:${days_in_inventory};;
   }
 
   measure: total_blue_book {
