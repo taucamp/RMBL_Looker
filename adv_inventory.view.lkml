@@ -178,12 +178,12 @@ view: adv_inventory {
 
   dimension: inventory_status {
     type: string
-    sql: f_sql_inventory_user_status(${TABLE}.invtstatuscode) ;;
+    sql: f_sql_adv_inventory_user_status(${TABLE}.invtstatuscode) ;;
   }
 
   dimension: is_available_for_sale {
     type: yesno
-    sql: case when f_sql_inventory_user_status(${TABLE}.invtstatuscode) in ('Pending','Curent') then 1 else 0 end;;
+    sql: case when f_sql_adv_inventory_user_status(${TABLE}.invtstatuscode) in ('Pending','Curent') then 1 else 0 end;;
   }
 
   dimension: inventory_status_group {
