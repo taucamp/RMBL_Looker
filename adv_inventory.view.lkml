@@ -305,7 +305,7 @@ view: adv_inventory {
 
   dimension: is_available_for_sale {
     type: yesno
-    sql: case when status in ('Pending','Curent') then 1 else 0 end;;
+    sql: case when status in ('Pending','Current') then 1 else 0 end;;
   }
 
   dimension: stock_number {
