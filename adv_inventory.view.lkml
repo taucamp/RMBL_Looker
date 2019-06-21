@@ -2,8 +2,11 @@ view: adv_inventory {
   sql_table_name: public.adv_r_invtdetail ;;
 
   set: Inventory_Drillthrough {
-    fields: [inventory_status,
-      inventory_status_group,
+    fields: [status,
+      is_available_for_sale,
+      inventory_user_status_group,
+      inventory_user_status,
+      is_floorable,
       stock_number,
       location,
       vin,
@@ -12,7 +15,6 @@ view: adv_inventory {
       model,
       mileage,
       date_received_date,
-      sold_status,
       stock_number,
       suggested_retail,
       cost
@@ -64,6 +66,7 @@ view: adv_inventory {
 #   }
 
   dimension: appraisal_id {
+    description:"The Employee ID of the Buyer"
     type: string
     sql: ${TABLE}.appraisalid ;;
   }
@@ -110,40 +113,48 @@ view: adv_inventory {
   }
 
   dimension: advent_dealership {
+    description: "The Advent dealership - in June 2019 we consolidated the Wholesale and AutoSport inventory into the Wholesale dealership"
     type: string
     sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') ;;
   }
 
   dimension: Is_active_advent_dealership {
+    description: "Used to eliminate the old AutoSport data that was from the initial use of Advent - in June 2019 we consolidated the Wholesale and AutoSport inventory into the Wholesale dealership"
     type: yesno
     sql: case when nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') in ('Wholesale','RumbleOn') then 1 else 0 end ;;
   }
 
-  dimension: dealer {
+  dimension: rumbleon_dealer {
+    description: "Identifier for RumbleOn, Wholesale or AutoSport based on the GL Account"
     type: string
-    sql: nvl(f_sql_adv_inventory_dealership(${TABLE}.gl_account),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_inventory_dealership(${TABLE}."gl account"),'UNKNOWN') ;;
   }
+
   dimension: transit {
     type: string
     sql: ${TABLE}.equipment1 ;;
   }
 
     dimension: title_info {
+    description: "Title info as updated in Equipment 2 field"
     type: string
     sql: ${TABLE}.equipment2 ;;
   }
 
   dimension: title_state {
+    description: "Title info as updated in Equipment 2 field"
     type: string
     sql: f_sql_parse_inv_equipment2_state(${TABLE}.equipment2) ;;
   }
 
   dimension: title_date_received {
+    description: "Title info as updated in Equipment 2 field"
     type: string
     sql: f_sql_parse_inv_equipment2_date(${TABLE}.equipment2) ;;
   }
 
   dimension: floorplan_info {
+    description: "Value from the Equipment 3 field"
     type: string
     sql: ${TABLE}.equipment3 ;;
   }
@@ -151,43 +162,49 @@ view: adv_inventory {
 
   dimension: gl_account {
     type: string
-    sql: ${TABLE}.gl_account ;;
+    sql: ${TABLE}."gl account" ;;
   }
 
   dimension: gl_account_department_id {
+    description: "Department based on parsing the GL Account"
     type: string
     sql: f_sql_adv_acct_to_department(${gl_account}) ;;
   }
 
   dimension: gl_account_division_id {
+    description: "Division based on parsing the GL Account"
     type: string
     sql: f_sql_adv_acct_to_division(${gl_account}) ;;
   }
 
   dimension: gl_account_location_id {
+    description: "Location based on parsing the GL Account"
     type: string
     sql: f_sql_adv_acct_to_location(${gl_account}) ;;
   }
 
 
-  dimension: grade {
-    type: string
-    sql: ${TABLE}.grade ;;
-  }
+  # dimension: grade {
+  #   type: string
+  #   sql: ${TABLE}.grade ;;
+  # }
 
 
   dimension: inventory_user_status {
+    description:"This is the Inventory Status controlled and updated by RumbleOn"
     type: string
     sql: f_sql_adv_inventory_user_status(${TABLE}.invtstatuscode) ;;
   }
 
 
   dimension: inventory_user_status_group {
+    description:"This is a grouping the Inventory Status controlled and updated by RumbleOn"
     type: string
     sql: f_sql_adv_inventory_user_status_group(${TABLE}.invtstatuscode) ;;
   }
 
   dimension: location {
+    description:"This current location of the Unit as maintained by RumbleOn"
     type: string
     sql: ${TABLE}.location ;;
   }
@@ -234,9 +251,10 @@ view: adv_inventory {
 
 
   dimension_group: date_received {
+    group_label:"Dates"
+    group_item_label:"Inventory Received"
     type: time
     timeframes: [
-      raw,
       date,
       day_of_week,
       week,
@@ -264,9 +282,10 @@ view: adv_inventory {
   }
 
   dimension_group: date_rs_status {
+    group_label:"Dates"
+    group_item_label:"RS Status Change"
     type: time
     timeframes: [
-      raw,
       time,
       date,
       day_of_week,
@@ -280,15 +299,12 @@ view: adv_inventory {
   }
 
   dimension_group: date_advent_runtime {
+    group_label:"Dates"
+    group_item_label:"Warehouse Runtime "
     type: time
     timeframes: [
-      raw,
       time,
-      date,
-      week,
-      month,
-      quarter,
-      year
+      date
     ]
     sql: ${TABLE}."run time" ;;
   }
@@ -299,11 +315,13 @@ view: adv_inventory {
   }
 
   dimension: status {
+    description: "This is the Advent System Status - can only be one of Pending, Current, Sold and Closed.  Pending is Available for Sale but not in GL, Current is Available for Sale and in GL, Sold is Not Available for Sale but Sale not in GL, and Closed is Deal has posted"
     type: string
     sql: ${TABLE}.status ;;
   }
 
   dimension: is_available_for_sale {
+    description: "Based on the Advent Status code, not the Inventory Status Code that RumbleOn controls "
     type: yesno
     sql: case when status in ('Pending','Current') then 1 else 0 end;;
   }
@@ -340,11 +358,14 @@ view: adv_inventory {
   }
 
   dimension: type {
+    description: "Based on the Advent code - should just be New or Used"
     type: string
+    hidden: yes
     sql: UPPER(${TABLE}.type);;
   }
 
   dimension: vehicle_type {
+    description: "Based on the Advent code - will be Car, Truck or Powersport"
     type: string
     sql: nvl(f_sql_adv_inventory_vehicle_type(${TABLE}."veh type"),'UNKNOWN') ;;
   }
@@ -379,8 +400,9 @@ view: adv_inventory {
   }
 
   dimension: is_floorable_status {
+    description: "Only considered floorable if not sold"
     type: yesno
-    sql:${sold_status} = 'Current' ;;
+    sql:${status} in ('Pending','Current') ;;
   }
 
   dimension: is_floorable {
