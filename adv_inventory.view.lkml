@@ -176,19 +176,15 @@ view: adv_inventory {
   }
 
 
-  dimension: inventory_status {
+  dimension: inventory_user_status {
     type: string
     sql: f_sql_adv_inventory_user_status(${TABLE}.invtstatuscode) ;;
   }
 
-  dimension: is_available_for_sale {
-    type: yesno
-    sql: case when f_sql_adv_inventory_user_status(${TABLE}.invtstatuscode) in ('Pending','Curent') then 1 else 0 end;;
-  }
 
-  dimension: inventory_status_group {
+  dimension: inventory_user_status_group {
     type: string
-    sql: f_sql_inventory_status_group(${TABLE}.invtstatuscode) ;;
+    sql: f_sql_adv_inventory_user_status_group(${TABLE}.invtstatuscode) ;;
   }
 
   dimension: location {
@@ -302,9 +298,14 @@ view: adv_inventory {
     sql: ${TABLE}.ship ;;
   }
 
-  dimension: sold_status {
+  dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: is_available_for_sale {
+    type: yesno
+    sql: case when status in ('Pending','Curent') then 1 else 0 end;;
   }
 
   dimension: stock_number {
