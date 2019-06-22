@@ -20,7 +20,7 @@ view: adv_salesdetail {
   dimension: deal_id {
     primary_key: yes
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}."deal number" ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}."deal number"||'-'||${TABLE}.Sale_or_Unwind ;;
   }
 
   dimension: id {
@@ -579,6 +579,21 @@ view: adv_salesdetail {
     sql: CASE ${TABLE}.type WHEN '1 RT' THEN 'RETAIL' WHEN '4 TR' THEN 'TRADE' WHEN '6 WH' THEN 'WHOLESALE' ELSE 'UNKNOWN' END;;
   }
 
+# Transaction_Date
+  dimension_group: transaction_date {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.transaction_date ;;
+  }
+
 # Vehicle Cost
   dimension: vehicle_cost {
     hidden: yes
@@ -645,7 +660,11 @@ view: adv_salesdetail {
 # Transaction Type
   dimension: transaction_type {
     type: string
-    sql: CASE WHEN ${cash_sale_price} = 0 AND ${trade1_gross} > 0 THEN 'ACQUISITION' ELSE 'DISTRIBUTION' END ;;
+    sql: CASE
+          WHEN ${cash_sale_price} > 0 AND ${trade1_gross} = 0 AND ${trade2_gross} = 0  THEN 'SALE ONLY'
+          WHEN ${cash_sale_price} > 0 AND ${trade1_gross} > 0 OR ${trade2_gross} > 0 THEN 'SALE WITH TRADE'
+          WHEN ${cash_sale_price} = 0 AND ${trade1_gross} > 0 OR ${trade2_gross} > 0 THEN 'ACQUISITION ONLY'
+          ELSE 'UNKNOWN' END ;;
   }
 
 # UnwindDate
@@ -668,7 +687,7 @@ view: adv_salesdetail {
 # UnwindDate
   dimension: Is_an_unwind {
     type: yesno
-    sql: nvl2(${TABLE}.unwinddate,1,0) = 1;;
+    sql: nvl2(${TABLE}.unwinddate,0,1) = 1;;
   }
 
 
@@ -1386,7 +1405,11 @@ view: adv_salesdetail {
     sql: ${cash_sale_price} ;;
     filters: {
       field: transaction_type
-      value: "DISTRIBUTION"
+      value: "SALE ONLY"
+    }
+    filters: {
+      field: transaction_type
+      value: "SALE WITH TRADE"
     }
   }
 
