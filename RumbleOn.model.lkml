@@ -163,6 +163,8 @@ explore: Inventory {
   }
 
 
+
+
   join: org_location {
     type: left_outer
     relationship: many_to_one

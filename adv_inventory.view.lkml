@@ -248,7 +248,7 @@ view: adv_inventory {
     sql: ${TABLE}.model ;;
   }
 
-  dimension: inventory_source {
+  dimension: inventory_origin {
     type: string
     sql: f_sql_inventory_origin(${TABLE}.orig);;
   }
