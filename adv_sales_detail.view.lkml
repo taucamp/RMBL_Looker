@@ -4,16 +4,23 @@ view: adv_salesdetail {
     select
       'Sale' as Sale_or_Unwind,
       saledate as Transaction_Date,
-      *
+        1 as Transaction_Count,
+*
+
     from adv_sales_detail
 
     union
 
     select
-        'Unwind' as Sale_or_Unwind,
-        unwinddate as Transaction_Date,
-        *
-    from adv_sales_detail where unwinddate is not null
+      'Unwind' as Sale_or_Unwind,
+      a.unwinddate as Transaction_Date,
+      -1 as Transaction_Count,
+b.*
+
+
+  from adv_sales_unwinds a
+    join adv_sales_detail b on a.dealername = b.dealername and a.dealnum = b.dealnum
+
     ;;
 }
 
