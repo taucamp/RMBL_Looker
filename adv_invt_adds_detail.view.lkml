@@ -1,5 +1,5 @@
-view: adv_invt_adds_detail {
-  sql_table_name: public.adv_invt_adds_detail ;;
+view: adv_invt_adds {
+  sql_table_name: public.adv_invt_adds ;;
 
 
   dimension: id {

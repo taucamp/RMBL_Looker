@@ -1,5 +1,5 @@
-view: adv_schedule_accts {
-  sql_table_name: public.adv_schedule_accts ;;
+view: adv_gl_schedule_accts {
+  sql_table_name: public.adv_gl_schedule_accts ;;
 
   dimension: account_number {
     type: string

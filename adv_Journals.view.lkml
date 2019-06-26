@@ -1,5 +1,5 @@
-view: adv_journals {
-  sql_table_name: public.adv_journals ;;
+view: adv_gl_journals {
+  sql_table_name: public.adv_gl_journals ;;
 
   dimension: journal_name {
     type: string

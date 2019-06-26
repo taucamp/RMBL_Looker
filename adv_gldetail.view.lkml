@@ -1,5 +1,5 @@
 view: Advent_GL_detail {
-  sql_table_name: public.adv_gldetail ;;
+  sql_table_name: public.adv_gl_detail ;;
 
 set: GL_Drillthrough {
   fields: [

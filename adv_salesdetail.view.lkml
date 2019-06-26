@@ -5,7 +5,7 @@ view: adv_salesdetail {
       'Sale' as Sale_or_Unwind,
       saledate as Transaction_Date,
       *
-    from adv_r_salesdetail
+    from adv_sales_detail
 
     union
 
@@ -13,7 +13,7 @@ view: adv_salesdetail {
         'Unwind' as Sale_or_Unwind,
         unwinddate as Transaction_Date,
         *
-    from adv_r_salesdetail where unwinddate is not null
+    from adv_sales_detail where unwinddate is not null
     ;;
 }
 

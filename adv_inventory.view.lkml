@@ -1,5 +1,5 @@
 view: adv_inventory {
-  sql_table_name: public.adv_r_invtdetail ;;
+  sql_table_name: public.adv_invt_detail ;;
 
   set: Inventory_Drillthrough {
     fields: [status,

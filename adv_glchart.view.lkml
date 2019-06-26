@@ -1,5 +1,5 @@
 view: Advent_Chart_of_Accounts {
-  sql_table_name: public.adv_glchart ;;
+  sql_table_name: public.adv_gl_chart ;;
 
   dimension: id {
     primary_key: yes

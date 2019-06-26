@@ -30,8 +30,8 @@ view: adv_gl_financial_summary_pdt {
 --   SUM(CASE WHEN date_part(y,Advent_GL_detail.accounting_date::date) = date_part(y,a.lastdayofmonth) AND  last_day(Advent_GL_detail.accounting_date::date) <= a.lastdayofmonth::date THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) * financials_multiplier as "ytd_amount_fin"
 FROM
   (select distinct lastdayofmonth from ref_dimdate where firstdayofmonth1 > '2017-12-31') a
-JOIN public.adv_gldetail  AS Advent_GL_detail ON a.lastdayofmonth::date = last_day(Advent_GL_detail.accounting_date::date)
-LEFT JOIN public.adv_glchart  AS Advent_Chart_of_Accounts ON Advent_Chart_of_Accounts.accountnumber=Advent_GL_detail.accountnumber
+JOIN public.adv_gl_detail  AS Advent_GL_detail ON a.lastdayofmonth::date = last_day(Advent_GL_detail.accounting_date::date)
+LEFT JOIN public.adv_gl_chart  AS Advent_Chart_of_Accounts ON Advent_Chart_of_Accounts.accountnumber=Advent_GL_detail.accountnumber
 LEFT JOIN tomtest.chartofaccounts  AS acct_chart_of_accounts ON acct_chart_of_accounts.accountnumber=split_part(Advent_Chart_of_Accounts.accountnumber,'.',1)
 LEFT JOIN tomtest.acct_division as Div on f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) = div.division_id
 LEFT JOIN tomtest.acct_locations as Loc on f_sql_adv_acct_to_location(Advent_GL_detail.accountnumber) = loc.location_id

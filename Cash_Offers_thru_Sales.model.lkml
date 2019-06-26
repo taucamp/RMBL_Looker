@@ -15,7 +15,7 @@ explore: adv_inventory {}
 
 explore: adv_salesdetail {
   # access_filter: {
-    # field:adv_r_invtdetail.region;
+    # field:adv_invt_detail.region;
     # user_attribut:regions
   # }
   join: adv_inventory {

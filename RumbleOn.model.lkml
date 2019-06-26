@@ -10,7 +10,7 @@ week_start_day: sunday
 
 datagroup: financial_datagroup {
 #   sql_trigger: SELECT DATE_PART('hour', GETDATE()) ;;
-sql_trigger: SELECT max("__updatetime") FROM adv_gldetail ;;
+sql_trigger: SELECT max("__updatetime") FROM adv_gl_detail ;;
 max_cache_age: "24 hours"
 }
 
@@ -66,12 +66,12 @@ explore: Schedules {
     sql_on: ${Advent_Chart_of_Accounts.account_number}=${Schedules.account} ;;
   }
 
-  join: adv_schedule_accts {
-    sql_on: ${Schedules.account}=${adv_schedule_accts.account_number} ;;
+  join: adv_gl_schedule_accts {
+    sql_on: ${Schedules.account}=${adv_gl_schedule_accts.account_number} ;;
   }
 
-  join: adv_schedules {
-    sql_on: ${adv_schedule_accts.schedulenum}=${adv_schedules.schedulenum} ;;
+  join: adv_gl_schedules {
+    sql_on: ${adv_gl_schedule_accts.schedulenum}=${adv_gl_schedules.schedulenum} ;;
   }
 }
 

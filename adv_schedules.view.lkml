@@ -1,5 +1,5 @@
-view: adv_schedules {
-  sql_table_name: public.adv_schedules ;;
+view: adv_gl_schedules {
+  sql_table_name: public.adv_gl_schedules ;;
 
   dimension_group: enddate {
     type: time

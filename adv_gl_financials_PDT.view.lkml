@@ -53,8 +53,8 @@ view: adv_gl_financials_pdt {
 
 FROM
   (select distinct lastdayofmonth from ref_dimdate where firstdayofmonth1 between '2018-01-01' and  (dateadd('month',1,date_trunc('month',getdate()::date))-1)::date ) a
-JOIN public.adv_gldetail  AS Advent_GL_detail ON a.lastdayofmonth::date >= last_day(Advent_GL_detail.accounting_date::date)
-LEFT JOIN public.adv_glchart  AS Advent_Chart_of_Accounts ON Advent_Chart_of_Accounts.accountnumber=Advent_GL_detail.accountnumber
+JOIN public.adv_gl_detail  AS Advent_GL_detail ON a.lastdayofmonth::date >= last_day(Advent_GL_detail.accounting_date::date)
+LEFT JOIN public.adv_gl_chart  AS Advent_Chart_of_Accounts ON Advent_Chart_of_Accounts.accountnumber=Advent_GL_detail.accountnumber
 LEFT JOIN tomtest.chartofaccounts  AS acct_chart_of_accounts ON acct_chart_of_accounts.accountnumber=split_part(Advent_Chart_of_Accounts.accountnumber,'.',1)
 LEFT JOIN tomtest.acct_division as Div on f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) = div.division_id
 LEFT JOIN tomtest.acct_locations as Loc on f_sql_adv_acct_to_location(Advent_GL_detail.accountnumber) = loc.location_id
