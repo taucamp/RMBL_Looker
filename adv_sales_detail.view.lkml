@@ -609,6 +609,16 @@ b.*
     sql: f_sql_char_to_numeric(${TABLE}.vehiclecost) * case when ${Sale_or_Unwind} = 'Sale' then 1 else nvl2(${unwind_date},-1,1) end ;;
   }
 
+#   # Sales Margin Tier
+#   dimension: sales_margin_tier {
+#     type: tier
+#     style: integer
+#     tiers: [-10000,-5000,-2000,-1000,0,1000,2000,5000,10000]
+#     value_format_name: usd_0
+#     sql: ${sales_margin} ;;
+#   }
+#
+
   # Vehicle Profit
   dimension: vehicle_cost_tier {
     type: tier
@@ -709,7 +719,7 @@ b.*
 
   measure: count_net_transactions {
     type: sum
-    sql:  1   * case when ${Sale_or_Unwind} = 'Sale' then 1 else nvl2(${unwind_date},-1,1) end ;;
+    sql:  1   * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
     drill_fields: [id, dealer]
   }
 
@@ -1441,6 +1451,7 @@ b.*
     sql: ${vehicle_profit}/nullif(${total_sale},0) ;;
     drill_fields: [deal_status,customer,total_cash_sale_price]
   }
+
 #
 # Pct of Suggested Retail
   measure: sale_price_as_pct_of_suggested_retail {
@@ -1448,5 +1459,24 @@ b.*
     value_format_name: percent_2
     sql: ${total_cash_sale_price}*1.0 / nullif(${adv_inventory.total_suggested_retail},0) ;;
    }
+
+#
+# Sales Margin
+  measure: sales_margin {
+    type: number
+    description: "This is Cash Sales Price less Vehicle Cost - there are no other Cost included in this"
+    value_format_name: percent_2
+    sql: ${total_cash_sale_price}*1.0 - ${vehicle_cost}*1 ;;
+  }
+
+# # Sales Margin
+#   dimension: sales_margin_tier {
+#     description: "This is Cash Sales Price less Vehicle Cost - there are no other Cost included in this"
+#     type: tier
+#     style: integer
+#     tiers: [-1000,-500,-250,0,250,500,1000,2500]
+#     value_format_name: decimal_0
+#     sql: ${total_cash_sale_price}*1.0 - ${vehicle_cost}*1 ;;
+#   }
 
 }
