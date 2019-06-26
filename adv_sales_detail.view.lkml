@@ -609,17 +609,17 @@ b.*
     sql: f_sql_char_to_numeric(${TABLE}.vehiclecost) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
-#   # Sales Margin Tier
-#   dimension: sales_margin_tier {
-#     type: tier
-#     style: integer
-#     tiers: [-10000,-5000,-2000,-1000,0,1000,2000,5000,10000]
-#     value_format_name: usd_0
-#     sql: ${sales_margin} ;;
-#   }
-#
+  # Sales Margin Tier
+  dimension: sales_margin_tier {
+    type: tier
+    style: integer
+    tiers: [-10000,-5000,-2000,-1000,0,1000,2000,5000,10000]
+    value_format_name: usd_0
+    sql: ${cash_sale_price} - ${vehicle_cost} ;;
+  }
 
-  # Vehicle Profit
+
+  # Vehicle Cost Tier
   dimension: vehicle_cost_tier {
     type: tier
     style: integer
@@ -735,7 +735,7 @@ b.*
     value_format_name: decimal_0
     filters: {
       field:  has_accessory_profit
-      value: "1"
+      value: "Yes"
     }
   }
 
@@ -745,7 +745,7 @@ b.*
     sql: ${accessory_profit} ;;
       filters: {
         field:  has_accessory_profit
-        value: "1"
+        value: "Yes"
       }
   }
 
@@ -762,7 +762,7 @@ b.*
     value_format_name: decimal_0
     filters: {
       field:  has_financing
-      value: "1"
+      value: "Yes"
     }
   }
   measure: amount_financed_avg {
@@ -771,7 +771,7 @@ b.*
     sql: ${amount_financed} ;;
     filters: {
       field:  has_financing
-      value: "1"
+      value: "Yes"
     }
   }
 
@@ -788,7 +788,7 @@ b.*
     value_format_name: decimal_0
     filters: {
       field:  has_cash_deposit
-      value: "1"
+      value: "Yes"
     }
   }
   measure: cash_deposit_avg {
@@ -797,7 +797,7 @@ b.*
     sql: ${cash_deposit} ;;
     filters: {
       field:  has_cash_deposit
-      value: "1"
+      value: "Yes"
     }
   }
 
@@ -1461,12 +1461,13 @@ b.*
    }
 
 #
+
 # Sales Margin
   measure: sales_margin {
     type: number
     description: "This is Cash Sales Price less Vehicle Cost - there are no other Cost included in this"
-    value_format_name: percent_2
-    sql: ${total_cash_sale_price}*1.0 - ${vehicle_cost}*1 ;;
+    value_format_name: usd_0
+    sql: ${total_cash_sale_price} - ${vehicle_cost_total} ;;
   }
 
 # # Sales Margin
