@@ -38,14 +38,14 @@ view: wells_transactions {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: nvl${TABLE}."1 day flt amt"),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."1 day flt amt"),0) ;;
   }
 
   dimension: 2_day_flt_amt {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: nvl(${TABLE}."2+ day flt amt"),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."2+ day flt amt"),0) ;;
   }
 
   dimension_group: __senttime {
@@ -129,7 +129,7 @@ view: wells_transactions {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: nvl(${TABLE}."credit amt"),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."credit amt"),0) ;;
   }
 
   dimension: customer_ref_no {
@@ -142,7 +142,7 @@ view: wells_transactions {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: nvl(${TABLE}."debit amt"),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."debit amt"),0) ;;
   }
 
   dimension: description {
