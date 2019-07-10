@@ -107,7 +107,7 @@ view: adv_inventory {
 
   dimension: cost {
     type: number
-    sql: f_sql_char_to_numeric(${TABLE}.cost) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.cost),0) ;;
   }
 
    dimension: cost_bucket {
@@ -319,7 +319,25 @@ view: adv_inventory {
     sql: nvl(${TABLE}.received_date,'2000-01-01') ;;
   }
 
+
+  dimension: aged {
+    description: "Based on Inventory Aged directly from AdventReport"
+    type: number
+    sql: ${TABLE}.aged ;;
+  }
+
+  dimension: aged_bucket {
+    description: "Based on Inventory Aged directly from AdventReport"
+    type: tier
+    tiers: [0,15,30,45,60]
+    style: integer
+    value_format_name: decimal_0
+    sql: ${aged} ;;
+  }
+
+
   dimension_group: in_inventory {
+    description: "This is how long in Inventory calculated based on Received Date and the RS Date"
     type: duration
     intervals: [day]
     sql_start: ${TABLE}.received_date ;;
@@ -327,6 +345,7 @@ view: adv_inventory {
   }
 
   dimension: days_in_inventory_bucket {
+    description: "Based on Received Date vs Current Cate or  RS Date"
     type: tier
     tiers: [0,15,30,45,60]
     style: integer
