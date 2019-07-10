@@ -144,19 +144,19 @@ view: adv_inventory {
     dimension: title_info {
     description: "Title info as updated in Equipment 2 field"
     type: string
-    sql: ${TABLE}.equipment2 ;;
+    sql: ${TABLE}.title_info ;;
   }
 
   dimension: title_state {
     description: "Title info as updated in Equipment 2 field"
     type: string
-    sql: f_sql_parse_inv_equipment2_state(${TABLE}.equipment2) ;;
+    sql: f_sql_parse_inv_equipment2_state(${TABLE}.title_info) ;;
   }
 
   dimension: title_date_received {
     description: "Title info as updated in Equipment 2 field"
     type: string
-    sql: f_sql_parse_inv_equipment2_date(${TABLE}.equipment2) ;;
+    sql: f_sql_parse_inv_equipment2_date(${TABLE}.title_info) ;;
   }
 
   dimension: floorplan_info {
