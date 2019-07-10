@@ -173,6 +173,17 @@ view: wells_transactions {
     sql: ${TABLE}."tran status" ;;
   }
 
+  dimension: transaction_amount {
+    type: string
+    sql: ${credit_amt} - ${debit_amt}  ;;
+  }
+
+  dimension: inflow_or_outflow {
+    type: string
+    sql: case when ${debit_amt} > 0 then 'Outflow' else 'Inflow' end ;;
+  }
+
+
   dimension: unique_id {
     hidden:yes
     type: string
@@ -203,6 +214,13 @@ view: wells_transactions {
   measure: count {
     type: count
     drill_fields: [id]
+  }
+
+  measure: transaction_total {
+    type: sum
+    value_format_name: usd
+    sql: ${transaction_amount} ;;
+
   }
 
   measure: debits_total {
