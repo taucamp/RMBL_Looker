@@ -611,6 +611,10 @@ explore: wells_balances {
 }
 
 
+explore: wells_transactions {
+
+}
+
 explore: Marketing_top_level_weekly {
     from: ref_dimdate
     join: mrktg_summary_spend_and_traffic {
