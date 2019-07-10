@@ -28,7 +28,7 @@ view: adv_inventory {
     primary_key: yes
     type: string
     hidden:yes
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}.stocknum ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}.stocknum ;;
   }
 
 
@@ -66,10 +66,10 @@ view: adv_inventory {
 #     sql: ${TABLE}.__updatetime ;;
 #   }
 
-  dimension: appraisal_id {
+  dimension: buyer_id {
     description:"The Employee ID of the Buyer"
     type: string
-    sql: ${TABLE}.appraisalid ;;
+    sql: ${TABLE}.buyer_id ;;
   }
   dimension: color {
     group_label: "Vehicle Detail"
@@ -99,41 +99,41 @@ view: adv_inventory {
  dimension: blue_book {
     type: number
     value_format_name: usd_0
-    sql:  nvl(f_sql_char_to_numeric(${TABLE}."blue book"),0);;
+    sql:  nvl(f_sql_char_to_numeric(${TABLE}.blue_book),0);;
   }
 
   dimension: has_blue_book {
     type: yesno
     value_format_name: usd_0
-    sql:  ${TABLE}."blue book" IS NOT NULL;;
+    sql:  ${TABLE}.blue_book IS NOT NULL;;
   }
   dimension: blue_book_tier {
     type: tier
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
     style: relational
     value_format_name: usd_0
-    sql:  nvl(f_sql_char_to_numeric(${TABLE}."blue book"),0) ;;
+    sql:  nvl(f_sql_char_to_numeric(${TABLE}.blue_book),0) ;;
   }
 
   dimension: advent_dealership {
     description: "The Advent dealership - in June 2019 we consolidated the Wholesale and AutoSport inventory into the Wholesale dealership"
     group_label: "Dealership Info"
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN') ;;
   }
 
   dimension: Is_active_advent_dealership {
     description: "Used to eliminate the old AutoSport data that was from the initial use of Advent - in June 2019 we consolidated the Wholesale and AutoSport inventory into the Wholesale dealership"
     group_label: "Dealership Info"
     type: yesno
-    sql: case when nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') in ('Wholesale','RumbleOn') then 1 else 0 end ;;
+    sql: case when nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN') in ('Wholesale, Inc.','RumbleOn') then 1 else 0 end ;;
   }
 
   dimension: rumbleon_dealer {
     description: "Identifier for RumbleOn, Wholesale or AutoSport based on the GL Account"
     group_label: "Dealership Info"
     type: string
-    sql: nvl(f_sql_adv_inventory_dealership(${TABLE}."gl account"),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_inventory_dealership(${TABLE}.gl_account_number),'UNKNOWN') ;;
   }
 
   dimension: transit {
@@ -170,7 +170,7 @@ view: adv_inventory {
   dimension: gl_account {
     group_label: "GL Related Items"
     type: string
-    sql: ${TABLE}."gl account" ;;
+    sql: ${TABLE}.gl_account_number ;;
   }
 
   dimension: gl_account_department_id {
