@@ -602,6 +602,12 @@ explore: mrktg_facebook_ads {
 
 }
 
+explore: nextgear {
+
+}
+
+
+
 explore: Marketing_top_level_weekly {
     from: ref_dimdate
     join: mrktg_summary_spend_and_traffic {
