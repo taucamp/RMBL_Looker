@@ -75,6 +75,7 @@ view: adv_inventory {
   dimension: acv {
     hidden:yes
     type: number
+    value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.acv),0) ;;
   }
 
@@ -107,6 +108,7 @@ view: adv_inventory {
 
   dimension: cost {
     type: number
+    value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.cost),0) ;;
   }
 
@@ -278,6 +280,7 @@ view: adv_inventory {
   dimension: msrp {
     group_label: "Vehicle Detail"
     type: number
+    value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.msrp),0) ;;
   }
 
@@ -323,6 +326,7 @@ view: adv_inventory {
   dimension: aged {
     description: "Based on Inventory Aged directly from AdventReport"
     type: number
+    value_format_name: id
     sql: ${TABLE}.aged ;;
   }
 
@@ -499,7 +503,6 @@ view: adv_inventory {
   }
 
 
-
     measure: count {
     type: count
     value_format_name: decimal_0
@@ -511,6 +514,13 @@ view: adv_inventory {
     type: sum
     value_format_name: usd_0
     sql: ${cost} ;;
+  }
+
+  measure: total_suggested_msrp {
+    description:"Total Suggested Retail Price"
+    type: sum
+    value_format_name: usd_0
+    sql: ${msrp} ;;
   }
 
 
@@ -533,7 +543,13 @@ view: adv_inventory {
     sql:${model_year};;
   }
 
-  measure: average_days_in_inventory {
+  measure: average_advent_days_in_inventory {
+    type:average
+    value_format_name: decimal_0
+    sql:${days_in_inventory};;
+  }
+
+  measure: average_calculated_days_in_inventory {
     type:average
     value_format_name: decimal_0
     sql:${days_in_inventory};;
