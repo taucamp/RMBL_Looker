@@ -15,8 +15,8 @@ view: wells_transactions {
       description,
       descriptive_text_1,
       descriptive_text_2,
-      debit_amt,
-      credit_amt
+      debit_outflow_amt,
+      credit_inflow_amt
     ]
   }
 
