@@ -1,4 +1,4 @@
-view: nxtgr_currentbalance {
+view: nextgear {
   sql_table_name: public.nxtgr_currentbalance ;;
 
   dimension: id {
