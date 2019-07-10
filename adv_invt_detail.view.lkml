@@ -28,7 +28,7 @@ view: adv_inventory {
     primary_key: yes
     type: string
     hidden:yes
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}.stocknum ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}.stock_number ;;
   }
 
 
@@ -66,11 +66,33 @@ view: adv_inventory {
 #     sql: ${TABLE}.__updatetime ;;
 #   }
 
-  dimension: buyer_id {
+  dimension: accounting_source {
+    description:"Type of Party from whom Acquire"
+    type: string
+    sql: ${TABLE}.accounting_source ;;
+  }
+
+  dimension: acv {
+    hidden:yes
+    type: number
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.acv),0) ;;
+  }
+
+
+
+ dimension: vehicle_buyer_id {
     description:"The Employee ID of the Buyer"
     type: string
     sql: ${TABLE}.buyer_id ;;
   }
+
+  dimension: vehicle_buyer {
+    description:"The Employee ID of the Buyer"
+    type: string
+    sql: ${TABLE}.buyer_name ;;
+  }
+
+
   dimension: color {
     group_label: "Vehicle Detail"
     type: string
@@ -166,7 +188,6 @@ view: adv_inventory {
     sql: ${TABLE}.equipment3 ;;
   }
 
-
   dimension: gl_account {
     group_label: "GL Related Items"
     type: string
@@ -204,20 +225,20 @@ view: adv_inventory {
   dimension: inventory_user_status {
     description:"This is the Inventory Status controlled and updated by RumbleOn"
     type: string
-    sql: f_sql_adv_inventory_user_status(${TABLE}.invtstatuscode) ;;
+    sql: f_sql_adv_inventory_user_status(${TABLE}.invt_users_status_code) ;;
   }
 
 
   dimension: inventory_user_status_group {
     description:"This is a grouping the Inventory Status controlled and updated by RumbleOn"
     type: string
-    sql: f_sql_adv_inventory_user_status_group(${TABLE}.invtstatuscode) ;;
+    sql: f_sql_adv_inventory_user_status_group(${TABLE}.invt_users_status_code) ;;
   }
 
   dimension: location {
     description:"This current location of the Unit as maintained by RumbleOn"
     type: string
-    sql: ${TABLE}.location ;;
+    sql: ${TABLE}.current_location ;;
   }
 
   dimension: make {
@@ -242,26 +263,45 @@ view: adv_inventory {
     sql: ${mileage} ;;
   }
 
+  dimension: mfg_equipment {
+    group_label: "Vehicle Detail"
+    type: string
+    sql: ${TABLE}.mfg_equipment ;;
+  }
+
   dimension: model {
     group_label: "Vehicle Detail"
     type: string
     sql: ${TABLE}.model ;;
   }
 
+  dimension: msrp {
+    group_label: "Vehicle Detail"
+    type: number
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.msrp),0) ;;
+  }
+
+
   dimension: inventory_origin {
     type: string
-    sql: f_sql_inventory_origin(${TABLE}.orig);;
+    sql: f_sql_inventory_origin(${TABLE}.vehicle_origin_code);;
   }
+
+  dimension: original_destiniation {
+    type: string
+    sql: ${TABLE}.original_destiniation;;
+  }
+
 
   dimension: payoff_to {
     type: string
-    sql: ${TABLE}."payoff to";;
+    sql: ${TABLE}.payoff_to;;
   }
 
 
   dimension: received_from {
     type: string
-    sql: ${TABLE}."received_from";;
+    sql: ${TABLE}.received_from;;
   }
 
 
@@ -276,14 +316,14 @@ view: adv_inventory {
       quarter,
       year
     ]
-    sql: nvl(${TABLE}.recdate,'2000-01-01') ;;
+    sql: nvl(${TABLE}.received_date,'2000-01-01') ;;
   }
 
   dimension_group: in_inventory {
     type: duration
     intervals: [day]
-    sql_start: ${TABLE}.recdate ;;
-    sql_end: case when status ilike 'sold' then rsstatus else getdate() end;;
+    sql_start: ${TABLE}.received_date ;;
+    sql_end: case when status ilike 'sold' then rs_status else getdate() end;;
   }
 
   dimension: days_in_inventory_bucket {
@@ -306,12 +346,12 @@ view: adv_inventory {
       quarter,
       year
     ]
-    sql:${TABLE}.rsstatus ;;
+    sql:${TABLE}.rs_status ;;
   }
 
   dimension: has_been_rsd {
     type: yesno
-    sql: case when ${TABLE}.rsstatus IS NOT NULL then 1 else 0 end ;;
+    sql: case when ${TABLE}.rs_status IS NOT NULL then 1 else 0 end ;;
   }
 
 
@@ -321,7 +361,7 @@ view: adv_inventory {
       time,
       date
     ]
-    sql: ${TABLE}."run time" ;;
+    sql: ${TABLE}.run_time ;;
   }
 
   dimension: ship {
@@ -329,10 +369,15 @@ view: adv_inventory {
     sql: ${TABLE}.ship ;;
   }
 
+  dimension: sold_deal_number {
+    type: string
+    sql: ${TABLE}.sold_deal_number ;;
+  }
+
   dimension: status {
     description: "This is the Advent System Status - can only be one of Pending, Current, Sold and Closed.  Pending is Available for Sale but not in GL, Current is Available for Sale and in GL, Sold is Not Available for Sale but Sale not in GL, and Closed is Deal has posted"
     type: string
-    sql: ${TABLE}.status ;;
+    sql: ${TABLE}.inventory_status ;;
   }
 
   dimension: is_available_for_sale {
@@ -343,13 +388,13 @@ view: adv_inventory {
 
   dimension: stock_number {
     type: string
-    sql: ${TABLE}.stocknum ;;
+    sql: ${TABLE}.stock_number ;;
   }
 
    dimension: suggested_retail {
     type:number
     value_format_name: usd_0
-    sql: nvl(f_sql_char_to_numeric(${TABLE}.suggretail),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.suggested_retail),0) ;;
   }
 
   dimension: suggested_retail_tiers {
@@ -357,34 +402,34 @@ view: adv_inventory {
     tiers: [0,5000,15000,20000,25000,35000,50600]
     style: relational
     value_format_name: usd_0
-    sql: nvl(f_sql_char_to_numeric(${TABLE}.suggretail),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}.suggested_retail),0) ;;
   }
 
 
 
-  dimension: tradelinkeddeal {
+  dimension: originating_deal_number  {
     type: number
-    sql: ${TABLE}.tradelinkeddeal ;;
+    sql: ${TABLE}.originating_deal_number ;;
   }
 
-  dimension: has_trade_linked_deal {
+  dimension: has_originating_deal_number {
     type: yesno
-    sql: ${tradelinkeddeal} IS NOT NULL ;;
+    sql: ${originating_deal_number} IS NOT NULL ;;
   }
 
-  dimension: type {
+  dimension: new_or_used {
     description: "Based on the Advent code - should just be New or Used"
     group_label: "Vehicle Detail"
     type: string
     hidden: yes
-    sql: UPPER(${TABLE}.type);;
+    sql: UPPER(${TABLE}.new_or_used);;
   }
 
   dimension: vehicle_type {
     description: "Based on the Advent code - will be Car, Truck or Powersport"
     group_label: "Vehicle Detail"
     type: string
-    sql: nvl(f_sql_adv_inventory_vehicle_type(${TABLE}."veh type"),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_inventory_vehicle_type(${TABLE}.vehicle_type),'UNKNOWN') ;;
   }
 
   dimension: vin {
