@@ -125,11 +125,11 @@ view: wells_transactions {
     sql: ${TABLE}."bank reference" ;;
   }
 
-  dimension: credit_amt {
+  dimension: credit_inflow_amt {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: nvl(f_sql_char_to_numeric(${TABLE}."credit amt"),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."credit amt"),0::numeric)::numeric ;;
   }
 
   dimension: customer_ref_no {
@@ -138,11 +138,11 @@ view: wells_transactions {
     sql: ${TABLE}."customer ref no" ;;
   }
 
-  dimension: debit_amt {
+  dimension: debit_outflow_amt {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: nvl(f_sql_char_to_numeric(${TABLE}."debit amt"),0) ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."debit amt"),0::numeric)::numeric ;;
   }
 
   dimension: description {
@@ -174,13 +174,14 @@ view: wells_transactions {
   }
 
   dimension: transaction_amount {
-    type: string
-    sql: ${credit_amt} - ${debit_amt}  ;;
+    type: number
+    value_format_name: usd
+    sql: nvl((${credit_inflow_amt} - ${debit_outflow_amt}),0.00)  ;;
   }
 
   dimension: inflow_or_outflow {
     type: string
-    sql: case when ${debit_amt} > 0 then 'Outflow' else 'Inflow' end ;;
+    sql: case when ${debit_outflow_amt} > 0 then 'Outflow' else 'Inflow' end ;;
   }
 
 
@@ -189,6 +190,13 @@ view: wells_transactions {
     type: string
     sql: ${TABLE}."unique id" ;;
   }
+
+  dimension: is_zba {
+    type: yesno
+    sql: case when ${TABLE}."tran desc" ilike 'zba%' or ${TABLE}."tran desc" ilike '%zba%' then TRUE else FALSE end   ;;
+  }
+
+
 
   dimension_group: value {
     type: time
@@ -223,17 +231,17 @@ view: wells_transactions {
 
   }
 
-  measure: debits_total {
+  measure: debits_outflow_total {
     type: sum
     value_format_name: usd
-    sql: ${debit_amt} ;;
+    sql: ${debit_outflow_amt} ;;
 
   }
 
-  measure: credits_total {
+  measure: credits_inflow_total {
     type: sum
     value_format_name: usd
-    sql: ${credit_amt} ;;
+    sql: ${credit_inflow_amt} ;;
 
   }
 
