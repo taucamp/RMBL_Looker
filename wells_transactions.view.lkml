@@ -1,6 +1,26 @@
 view: wells_transactions {
   sql_table_name: public.wells_transactions ;;
 
+
+
+  set: Wells_Balances {
+    fields: [
+      account_name,
+      account_number,
+      bai_type_code,
+      transaction_type,
+      transaction_status,
+      bank_reference,
+      customer_ref_no,
+      description,
+      descriptive_text_1,
+      descriptive_text_2,
+      debit_amt,
+      credit_amt
+    ]
+  }
+
+
   dimension: id {
     primary_key: yes
     type: string
@@ -8,18 +28,24 @@ view: wells_transactions {
   }
 
   dimension: 0_day_flt_amt {
-    type: string
-    sql: ${TABLE}."0 day flt amt" ;;
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."0 day flt amt"),0) ;;
   }
 
   dimension: 1_day_flt_amt {
-    type: string
-    sql: ${TABLE}."1 day flt amt" ;;
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: nvl${TABLE}."1 day flt amt"),0) ;;
   }
 
   dimension: 2_day_flt_amt {
-    type: string
-    sql: ${TABLE}."2+ day flt amt" ;;
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: nvl(${TABLE}."2+ day flt amt"),0) ;;
   }
 
   dimension_group: __senttime {
@@ -55,88 +81,165 @@ view: wells_transactions {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: acct_name {
+  dimension: account_name {
     type: string
     sql: ${TABLE}."acct name" ;;
   }
 
-  dimension: acct_no {
+  dimension: account_number {
     type: number
     sql: ${TABLE}."acct no" ;;
   }
 
-  dimension: asof_date {
-    type: string
-    sql: ${TABLE}."as-of date" ;;
+  dimension_group: transaction_as_of {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: TO_DATE(${TABLE}."as-of date",'YYYY-MM-DD') ;;
   }
 
+
+
   dimension: asoftime {
+    hidden:yes
     type: string
     sql: ${TABLE}."as-of-time" ;;
   }
 
   dimension: bai_type_code {
+    hidden:no
     type: number
     sql: ${TABLE}."bai type code" ;;
   }
 
   dimension: bank_reference {
+    hidden:yes
     type: string
     sql: ${TABLE}."bank reference" ;;
   }
 
   dimension: credit_amt {
-    type: string
-    sql: ${TABLE}."credit amt" ;;
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: nvl(${TABLE}."credit amt"),0) ;;
   }
 
   dimension: customer_ref_no {
+    hidden:yes
     type: string
     sql: ${TABLE}."customer ref no" ;;
   }
 
   dimension: debit_amt {
-    type: string
-    sql: ${TABLE}."debit amt" ;;
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: nvl(${TABLE}."debit amt"),0) ;;
   }
 
   dimension: description {
+    hidden:yes
     type: string
     sql: ${TABLE}.description ;;
   }
 
   dimension: descriptive_text_1 {
+    hidden:yes
     type: string
     sql: ${TABLE}."descriptive text 1" ;;
   }
 
   dimension: descriptive_text_2 {
+    hidden:yes
     type: string
     sql: ${TABLE}."descriptive text 2" ;;
   }
 
-  dimension: tran_desc {
+  dimension: transaction_type {
     type: string
     sql: ${TABLE}."tran desc" ;;
   }
 
-  dimension: tran_status {
+  dimension: transaction_status {
     type: string
     sql: ${TABLE}."tran status" ;;
   }
 
   dimension: unique_id {
+    hidden:yes
     type: string
     sql: ${TABLE}."unique id" ;;
   }
 
-  dimension: value_date {
-    type: string
-    sql: ${TABLE}."value date" ;;
+  dimension_group: value {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: TO_DATE(${TABLE}."value date",'YYYY-MM-DD') ;;
   }
+
+
+#####################
+#####################
+# MEASURES
+#####################
+#####################
 
   measure: count {
     type: count
-    drill_fields: [id, acct_name]
+    drill_fields: [id]
   }
+
+  measure: debits_total {
+    type: sum
+    value_format_name: usd
+    sql: ${debit_amt} ;;
+
+  }
+
+  measure: credits_total {
+    type: sum
+    value_format_name: usd
+    sql: ${credit_amt} ;;
+
+  }
+
+  measure: 0_day_float_total {
+    type: sum
+    value_format_name: usd
+    sql: ${0_day_flt_amt} ;;
+
+  }
+
+  measure: 1_day_float_total {
+    type: sum
+    value_format_name: usd
+    sql: ${1_day_flt_amt} ;;
+
+  }
+
+  measure: 2_day_float_total {
+    type: sum
+    value_format_name: usd
+    sql: ${2_day_flt_amt} ;;
+
+  }
+
+
+
 }

@@ -1,6 +1,16 @@
 view: wells_balances {
   sql_table_name: public.wells_balances ;;
 
+
+  set: Wells_Balances {
+    fields: [
+      account_name,
+      account_number,
+      closing_ledger_balance,
+      average_closing_ledger_balance
+    ]
+  }
+
   dimension: id {
     primary_key: yes
     type: string
@@ -8,13 +18,17 @@ view: wells_balances {
   }
 
   dimension: 1_day_flt_amt {
-    type: string
-    sql: ${TABLE}."1 day flt amt" ;;
+    hidden: yes
+    type: number
+    value_format_name: usd
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."1 day flt amt"),0) ;;
   }
 
   dimension: 2_day_flt_amt {
-    type: string
-    sql: ${TABLE}."2+ day flt amt" ;;
+    hidden: yes
+type: number
+value_format_name: usd
+sql: nvl(f_sql_char_to_numeric(${TABLE}."2+ day flt amt"),0) ;;
   }
 
   dimension_group: __senttime {
@@ -92,49 +106,49 @@ view: wells_balances {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."closing col bal") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."closing col bal"),0) ;;
   }
 
   dimension: closing_ledger_bal {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."closing ledger bal") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."closing ledger bal"),0) ;;
   }
 
   dimension: mtd_avg_closing_ledger_bal {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."mtd avg closing ledger bal") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."mtd avg closing ledger bal"),0) ;;
   }
 
   dimension: mtd_avg_col_bal {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."mtd avg col bal") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."mtd avg col bal"),0) ;;
   }
 
   dimension: opening_available_bal {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."opening avl bal") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."opening avl bal"),0) ;;
   }
 
   dimension: total_float {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."total flt") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."total flt"),0) ;;
   }
 
   dimension: credit_amount {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."ttl credit amt") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."ttl credit amt"),0) ;;
   }
 
   dimension: credit_items {
@@ -148,7 +162,7 @@ view: wells_balances {
     hidden: yes
     type: number
     value_format_name: usd
-    sql: f_sql_char_to_numeric(${TABLE}."ttl debit amt") ;;
+    sql: nvl(f_sql_char_to_numeric(${TABLE}."ttl debit amt"),0) ;;
   }
 
   dimension: debit_items {
@@ -164,16 +178,16 @@ view: wells_balances {
   }
 
   measure: closing_ledger_balance {
-    type: number
+    type: sum
     value_format_name: usd
-    sql: (${TABLE}.closing_ledger_bal);;
+    sql: ${closing_ledger_bal};;
     drill_fields: [id, account_name]
   }
 
   measure: average_closing_ledger_balance {
     type: number
     value_format_name: usd
-    sql: AVG(${TABLE}.closing_ledger_bal);;
+    sql: AVG(${closing_ledger_bal});;
     drill_fields: [id, account_name]
   }
 
