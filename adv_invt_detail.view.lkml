@@ -259,7 +259,7 @@ view: adv_inventory {
   dimension: mileage_bucket {
     group_label: "Vehicle Detail"
     type: tier
-    tiers: [0,5000,10000,15000,20000]
+    tiers: [0,10000,25000,50000,75000,100000,150000]
     style: integer
     value_format_name: decimal_0
     sql: ${mileage} ;;
