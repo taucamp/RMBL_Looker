@@ -2,6 +2,10 @@ connection: "redshift"
 
 include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+include: "//app-marketing-facebook-ads-adapter/*.view"
+include: "//app-marketing-facebook-ads/*.view"
+include: "//app-marketing-facebook-ads/*.dashboard"
+
 
 case_sensitive: no
 week_start_day: sunday
@@ -614,6 +618,8 @@ explore: wells_balances {
 explore: wells_transactions {
 
 }
+
+
 
 explore: Marketing_top_level_weekly {
     from: ref_dimdate
