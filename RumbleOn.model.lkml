@@ -2,9 +2,11 @@ connection: "redshift"
 
 include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
-include: "//app-marketing-facebook-ads-adapter/*.view"
-include: "//app-marketing-facebook-ads/*.view"
-include: "//app-marketing-facebook-ads/*.dashboard"
+
+#### THE BELOW WERE FROM A TEST RE: ADDING A BLOCK
+# include: "//app-marketing-facebook-ads-adapter/*.view"
+# include: "//app-marketing-facebook-ads/*.view"
+# include: "//app-marketing-facebook-ads/*.dashboard"
 
 
 case_sensitive: no
@@ -19,7 +21,9 @@ max_cache_age: "24 hours"
 }
 
 
-explore: facebook_ads_config {}
+
+#### THE BELOW WERE FROM A TEST RE: ADDING A BLOCK
+# explore: facebook_ads_config {}
 
 
 
