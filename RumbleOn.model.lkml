@@ -19,6 +19,10 @@ max_cache_age: "24 hours"
 }
 
 
+explore: facebook_ads_config {}
+
+
+
 explore: Advent_GL_detail {
   group_label: "Financials / Accounting"
   label: "General Ledger Detail"
