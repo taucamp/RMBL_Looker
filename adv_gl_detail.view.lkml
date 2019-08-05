@@ -5,7 +5,7 @@ set: GL_Drillthrough {
   fields: [
     accounting_date_date,
     journal,
-    account,
+    account_number,
     comment,
     control_number,
     document_info,
@@ -55,7 +55,7 @@ set: GL_Drillthrough {
     sql: ${TABLE}.__updatetime ;;
   }
 
-  dimension: account {
+  dimension: account_number {
     type: string
     label: "GL Account"
     description: "GL Account"
@@ -64,17 +64,17 @@ set: GL_Drillthrough {
 
   dimension: gl_account_department_id {
     type: string
-    sql: f_sql_adv_acct_to_department(${account}) ;;
+    sql: f_sql_adv_acct_to_department(${account_number}) ;;
   }
 
   dimension: gl_account_division_id {
     type: string
-    sql: f_sql_adv_acct_to_division(${account}) ;;
+    sql: f_sql_adv_acct_to_division(${account_number}) ;;
   }
 
   dimension: gl_account_location_id {
     type: string
-    sql: f_sql_adv_acct_to_location(${account}) ;;
+    sql: f_sql_adv_acct_to_location(${account_number}) ;;
   }
 
 
@@ -170,6 +170,12 @@ set: GL_Drillthrough {
     sql:f_sql_unknown_for_blank(${TABLE}."status" );;
   }
 
+  dimension: transaction_number {
+    type: string
+    sql:(${TABLE}."transaction_number" );;
+  }
+
+
   dimension: user_who_entered {
     type: string
     sql: f_sql_unknown_for_blank(${TABLE}."user" );;
@@ -213,7 +219,7 @@ set: GL_Drillthrough {
   measure: reporting_amount {
     type: sum
     value_format_name:usd_0
-    sql: case when left(${account},4) >= '2000' then -1 else 1 end * ${amount} ;;
+    sql: case when left(${account_number},4) >= '2000' then -1 else 1 end * ${amount} ;;
     drill_fields: [GL_Drillthrough*]
   }
 
