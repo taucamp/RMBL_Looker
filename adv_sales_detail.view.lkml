@@ -3,7 +3,7 @@ view: adv_salesdetail {
     sql:
     select
       'Sale' as Sale_or_Unwind,
-      saledate as Transaction_Date,
+      sale_date as Transaction_Date,
         1 as Transaction_Count,
 *
 
@@ -13,13 +13,13 @@ view: adv_salesdetail {
 
     select
       'Unwind' as Sale_or_Unwind,
-      a.unwinddate as Transaction_Date,
+      a.unwind_date as Transaction_Date,
       -1 as Transaction_Count,
 b.*
 
 
   from adv_sales_unwinds a
-    join adv_sales_detail b on a.dealername = b.dealername and a.dealnum = b.dealnum
+    join adv_sales_detail b on a.dealer = b.dealer and a.deal_number = b.deal_number
 
     ;;
 }
@@ -27,7 +27,7 @@ b.*
   dimension: deal_id {
     primary_key: yes
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}."deal number"||'-'||${TABLE}.Sale_or_Unwind ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}."deal_number"||'-'||${TABLE}.Sale_or_Unwind ;;
   }
 
   dimension: id {
@@ -76,7 +76,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.accessorprofit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.accessor_profit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_accessory_profit {
@@ -91,7 +91,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.amountfinanced) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.amount_financed) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_financing {
@@ -108,13 +108,25 @@ b.*
   }
 
 
+# Buyer
+dimension: Buyer_id {
+    type: string
+    sql: ${TABLE}.buyer_id;;
+  }
+
+# Buyer Name
+  dimension: Buyer_name {
+    type: string
+    sql: ${TABLE}.buyer_name;;
+  }
+
 
 # Cash Deposit
   dimension: cash_deposit {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.cashdeposit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.cash_deposit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_cash_deposit {
@@ -136,7 +148,7 @@ b.*
   dimension: cash_or_financed {
     hidden: yes
     type: string
-    sql: CASE WHEN ${TABLE}.cashfinanced  'C' THEN 'CASH' WHEN 'F' THEN 'FINANCED' ELSE 'UNKNOWN' END;;
+    sql: CASE WHEN ${TABLE}.cash_financed  'C' THEN 'CASH' WHEN 'F' THEN 'FINANCED' ELSE 'UNKNOWN' END;;
   }
 
 
@@ -146,7 +158,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.cashsaleprice) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.cash_sale_price) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: cash_sale_price_tier {
@@ -170,7 +182,7 @@ b.*
       quarter,
       year
     ]
-    sql: ${TABLE}.closedate ;;
+    sql: ${TABLE}.close_date ;;
   }
 
   dimension: has_closed {
@@ -178,6 +190,27 @@ b.*
     sql: nvl2(${close_date_date},1,0) ;;
 
   }
+
+
+
+# Days in Inventory
+  dimension: days_in_inventory {
+    hidden: yes
+    type: number
+    value_format_name: usd_0
+    sql: ${TABLE}.days_in_inventory  ;;
+  }
+
+  dimension: days_in_inventory_tier {
+    type: tier
+    style: integer
+    tiers: [0,15,30,45,60,75,999]
+    value_format_name: decimal_0
+    sql: abs(${days_in_inventory}) ;;
+  }
+
+
+
 
 
   dimension_group: days_to_post_deal {
@@ -200,7 +233,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.commission) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.commission_amount) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_commission {
@@ -213,42 +246,42 @@ b.*
 # Control Number
   dimension: control_num {
     type: number
-    sql: ${TABLE}.ctrlnum ;;
+    sql: ${TABLE}.control_number ;;
   }
 
 
 # Customer
   dimension: customer {
     type: string
-    sql: ${TABLE}.customer ;;
+    sql: ${TABLE}.customer_name ;;
   }
 
 
 # Customer Number
   dimension: customer_num {
     type: string
-    sql: ${TABLE}.customernum ;;
+    sql: ${TABLE}.customer_number ;;
   }
 
 
 # Dealer Name
   dimension: dealer {
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN') ;;
   }
 
 
 # Deal Number
   dimension: deal_number {
     type: number
-    sql: ${TABLE}.dealnum ;;
+    sql: ${TABLE}.deal_number ;;
   }
 
 
 # Deal Status
   dimension: deal_status {
     type: string
-    sql: CASE WHEN ${TABLE}.dealstatus ilike 'CLSD' THEN 'CLOSED' ELSE  ${TABLE}.dealstatus END ;;
+    sql: CASE WHEN ${TABLE}.deal_status ilike 'CLSD' THEN 'CLOSED' ELSE  ${TABLE}.deal_status END ;;
   }
 
 
@@ -257,7 +290,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.dlrpack) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.dealer_pack) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_dealer_pack{
@@ -267,7 +300,7 @@ b.*
 
   dimension: sales_channel{
     type: string
-    sql: nvl(f_sql_adv_sales_channel(${TABLE}.dept),'UNKNOWN') ;;
+    sql: nvl(f_sql_adv_sales_channel(${TABLE}.sales_channel),'UNKNOWN') ;;
   }
 
 
@@ -276,7 +309,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.finadds) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.financial_adds) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_financial_adds {
@@ -307,7 +340,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.incentive) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.incentive_amount) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_incentive {
@@ -321,7 +354,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.lahprofit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.lah_profit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_LAH_incentive {
@@ -329,12 +362,29 @@ b.*
     sql: ${lah_profit} <> 0;;
   }
 
+
+  #Mileage
+  dimension: mileage {
+    type: number
+    sql: ${TABLE}.mileage;;
+  }
+
+  dimension: mileage_tier {
+    type: tier
+    style: integer
+    tiers: [0,5000,10000,20000,30000,40000,50000,75000,100000]
+    value_format_name: usd_0
+    sql: abs(${mileage}) ;;
+  }
+
+
+
 # Net Profit
   dimension: net_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql:f_sql_char_to_numeric(${TABLE}.netprofit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql:f_sql_char_to_numeric(${TABLE}.net_profit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_net_profit {
@@ -356,7 +406,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.nontaxableacc) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.non_taxable_accessory) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_non_taxable_accessories {
@@ -368,7 +418,7 @@ b.*
   dimension: opportunity {
     hidden: yes
     type: number
-    sql: ${TABLE}.opportunity ;;
+    sql: ${TABLE}.opportunity_id ;;
   }
 
 
@@ -377,7 +427,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.reserveprofit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.reserve_profit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_reserve_profit {
@@ -399,7 +449,7 @@ b.*
 #       quarter,
 #       year
 #     ]
-#     sql: ${TABLE}.runtime ;;
+#     sql: ${TABLE}.run_time ;;
 #   }
 
 # Sale Date
@@ -415,24 +465,41 @@ b.*
       quarter,
       year
     ]
-    sql: ${TABLE}.saledate ;;
+    sql: ${TABLE}.sale_date ;;
   }
 
 
 #SalespersonID
 
-  dimension: salesperson_id {
+  dimension: salespersons2_id {
     hidden: yes
     type: number
-    sql: ${TABLE}.salespersonid ;;
+    sql: ${TABLE}.salesperson2_id ;;
   }
 
   #Salesperson
-  dimension: Salesperson {
+  dimension: Salesperson2 {
     type: string
     value_format_name: usd_0
-    sql: nvl(${TABLE}.salesperson1fullnameid,'Unknown');;
+    sql: nvl(${TABLE}.salesperson2_fullname,'Unknown');;
     }
+
+
+
+  dimension: salesperson3_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.salesperson3_id ;;
+  }
+
+  #Salesperson
+  dimension: Salesperson3 {
+    type: string
+    value_format_name: usd_0
+    sql: nvl(${TABLE}.salesperson3_fullname,'Unknown');;
+  }
+
+
 
 
 
@@ -441,7 +508,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.sellprice) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.sell_price) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: sell_price_tier {
@@ -458,7 +525,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.servicecontractcost)  * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.service_contract_cost)  * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_service_contract {
@@ -469,13 +536,13 @@ b.*
 # Stock Number
   dimension: stock_number {
     type: string
-    sql: ${TABLE}.stocknumber ;;
+    sql: ${TABLE}.stock_number ;;
   }
 
 # Stock Number_id
   dimension: stock_number_id {
     type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.dealername),'UNKNOWN')||'-'||${TABLE}.stocknumber ;;
+    sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}.stock_number ;;
   }
 
 
@@ -484,7 +551,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.totalsale) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.total_sale) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: total_sale_tier {
@@ -500,7 +567,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: ${TABLE}.trade1acv * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: ${TABLE}.trade1_acv * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
 
@@ -510,7 +577,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.trade1gross) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade1_gross) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_trade {
@@ -524,32 +591,32 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.trade1payoff) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade1_payoff) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
 # Trade 1 Stock number
   dimension: trade1_stock_number {
     type: string
-    sql: ${TABLE}.trade1stocknum ;;
+    sql: ${TABLE}.trade1_stock_number ;;
   }
 
-# Trade1_Stock Number_id
-  dimension: trade1_stock_number_id {
-    type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.trade1stocknum ;;
-  }
+# # Trade1_Stock Number_id
+#   dimension: trade1_stock_number_id {
+#     type: string
+#     sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.trade1stocknum ;;
+#   }
 
 # Trade 2 ACV
   dimension: trade2_acv {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.trade2acv) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade2_acv) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   dimension: has_trades_multiple{
     type: yesno
-    sql:  ${TABLE}.trade1gross  <> 0  AND ${TABLE}.trade2gross  <> 0 ;;
+    sql:  ${TABLE}.trade1gross  <> 0  AND ${TABLE}.trade2_gross  <> 0 ;;
   }
 
 # Trade 2 Gross
@@ -557,7 +624,7 @@ b.*
     hidden: yes
    type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.trade2gross) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade2_gross) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
 # Trade 2 Payoff
@@ -565,28 +632,28 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.trade2payoff) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.trade2_payoff) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
 # Trade 2 Stock Number
   dimension: trade2_stock_number {
     type: string
-    sql: ${TABLE}.trade2stocknum ;;
+    sql: ${TABLE}.trade2_stock_number ;;
   }
 
-# Trade2_Stock Number_id
-  dimension: trade2_stock_number_id {
-    type: string
-    sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.trade2stocknum ;;
-  }
+# # Trade2_Stock Number_id
+#   dimension: trade2_stock_number_id {
+#     type: string
+#     sql: nvl(f_sql_adv_dealername(${TABLE}.store),'UNKNOWN')||'-'||${TABLE}.trade2stocknum ;;
+#   }
 
 # Deal Type
   dimension: deal_type {
     type: string
-    sql: CASE ${TABLE}.type WHEN '1 RT' THEN 'RETAIL' WHEN '4 TR' THEN 'TRADE' WHEN '6 WH' THEN 'WHOLESALE' ELSE 'UNKNOWN' END;;
+    sql: CASE ${TABLE}.sale_type WHEN '1 RT' THEN 'RETAIL' WHEN '4 TR' THEN 'TRADE' WHEN '6 WH' THEN 'WHOLESALE' ELSE 'UNKNOWN' END;;
   }
 
-# Transaction_Date
+# # Transaction_Date
   dimension_group: transaction_date {
     type: time
     timeframes: [
@@ -606,7 +673,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.vehiclecost) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.vehicle_cost) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
   # Sales Margin Tier
@@ -628,12 +695,19 @@ b.*
     sql: abs(${vehicle_cost}) ;;
   }
 
+# Vehicle Description
+  dimension: vehicle_description {
+    type: string
+    sql: ${TABLE}.vehicles_description ;;
+  }
+
+
 # Vehicle Profit
   dimension: vehicle_profit {
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.vehicleprofit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.vehicle_profit) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
  # Vehicle Profit Tier
@@ -650,7 +724,7 @@ b.*
   dimension: vehicle_insurance {
     hidden: yes
     type: number
-    sql: f_sql_char_to_numeric(${TABLE}.vehinsurance) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.vehicle_insurance) * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
 # Has Vehicle Insurance
@@ -664,7 +738,7 @@ b.*
     hidden: yes
     type: number
     value_format_name: usd_0
-    sql: f_sql_char_to_numeric(${TABLE}.warrantyprofit)  * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
+    sql: f_sql_char_to_numeric(${TABLE}.warranty_profit)  * case when ${Sale_or_Unwind} = 'Sale' then 1 else -1 end ;;
   }
 
 # Has Warranty
@@ -697,7 +771,7 @@ b.*
       quarter,
       year
     ]
-    sql: ${TABLE}.unwinddate ;;
+    sql: ${TABLE}.unwind_date ;;
   }
 
 
@@ -707,6 +781,18 @@ b.*
     sql: ${TABLE}.Sale_or_Unwind = 'Unwind';;
   }
 
+# VIN
+  dimension: VIN {
+    type: string
+    sql: ${TABLE}.vin ;;
+  }
+
+
+# VIN Last 8
+  dimension: VIN_last8 {
+    type: string
+    sql: ${TABLE}.vin_last8 ;;
+  }
 
 # MEASURES
 # MEASURES
