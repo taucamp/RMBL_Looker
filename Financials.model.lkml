@@ -12,7 +12,7 @@ datagroup: financial_datagroup {
 
 explore: Advent_GL_detail {
     join: Advent_Chart_of_Accounts {
-      sql_on: ${Advent_Chart_of_Accounts.account_number}=${Advent_GL_detail.account} ;;
+      sql_on: ${Advent_Chart_of_Accounts.account_number}=${Advent_GL_detail.account_number} ;;
     }
 
   join: acct_chart_of_accounts {
@@ -41,15 +41,15 @@ explore: Schedules {
   label: "Schedules"
   from: Advent_GL_detail
   join: Advent_Chart_of_Accounts {
-    sql_on: ${Advent_Chart_of_Accounts.account_number}=${Schedules.account} ;;
+    sql_on: ${Advent_Chart_of_Accounts.account_number}=${Schedules.account_number} ;;
   }
 
   join: adv_gl_schedule_accts {
-    sql_on: ${Schedules.account}=${adv_gl_schedule_accts.account_number} ;;
+    sql_on: ${Schedules.account_number}=${adv_gl_schedule_accts.account_number} ;;
   }
 
   join: adv_gl_schedules {
-    sql_on: ${adv_gl_schedule_accts.schedulenum}=${adv_gl_schedules.schedulenum} ;;
+    sql_on: ${adv_gl_schedule_accts.schedule_number}=${adv_gl_schedules.schedule_number} ;;
   }
 }
 

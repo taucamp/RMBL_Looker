@@ -3,18 +3,18 @@ view: adv_gl_schedule_accts {
 
   dimension: account_number {
     type: string
-    sql: ${TABLE}.accountnum ;;
+    sql: ${TABLE}.account_number ;;
   }
 
 
-  dimension: isactive {
+  dimension: is_active {
     type: number
     sql: ${TABLE}.isactive ;;
   }
 
-  dimension: schedulenum {
+  dimension: schedule_number {
     type: number
-    sql: ${TABLE}.schedulenum ;;
+    sql: ${TABLE}.schedule_number ;;
   }
 
 

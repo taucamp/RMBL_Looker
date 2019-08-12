@@ -3,12 +3,12 @@ view: adv_gl_journals {
 
   dimension: journal_name {
     type: string
-    sql: ${TABLE}.journalname ;;
+    sql: ${TABLE}.journal_name ;;
   }
 
   dimension: journal_number {
     type: string
-    sql: ${TABLE}.journalnumber ;;
+    sql: ${TABLE}.journal_number ;;
   }
 
   measure: count {

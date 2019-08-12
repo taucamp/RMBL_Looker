@@ -1,7 +1,7 @@
 view: adv_gl_schedules {
   sql_table_name: public.adv_gl_schedules ;;
 
-  dimension_group: enddate {
+  dimension_group: end {
     type: time
     timeframes: [
       raw,
@@ -16,22 +16,22 @@ view: adv_gl_schedules {
     sql: ${TABLE}.enddate ;;
   }
 
-  dimension: isactive {
+  dimension: is_active {
     type: number
     sql: ${TABLE}.isactive ;;
   }
 
-  dimension: schedulenum {
+  dimension: schedule_number {
     type: number
-    sql: ${TABLE}.schedulenum ;;
+    sql: ${TABLE}.schedule_number ;;
   }
 
-  dimension: scheduletitle {
+  dimension: schedule_title {
     type: string
-    sql: ${TABLE}.scheduletitle ;;
+    sql: ${TABLE}.schedule_title ;;
   }
 
-  dimension_group: startdate {
+  dimension_group: start {
     type: time
     timeframes: [
       raw,
