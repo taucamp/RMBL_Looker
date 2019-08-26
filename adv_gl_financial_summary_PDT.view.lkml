@@ -24,6 +24,8 @@ view: adv_gl_financial_summary_pdt {
   date_part(y,a.lastdayofmonth) as "accounting_year",
   a.lastdayofmonth as "accounting_month",
    is_bal_sheet_acct,
+  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth and Advent_GL_detail.amount >= 0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "period_debit_amount",
+  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth and Advent_GL_detail.amount < 0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "period_credit_amount",
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "period_amount",
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * financials_multiplier as "period_amount_fin"
 --  SUM(CASE WHEN Advent_GL_detail.accounting_date::date between date_trunc('year',a.lastdayofmonth::date)::date  and a.lastdayofmonth::date THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "ytd_amount"
