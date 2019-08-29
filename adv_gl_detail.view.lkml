@@ -1,5 +1,5 @@
  view: Advent_GL_detail {
-  sql_table_name: public.adv_gl_detail ;;
+  sql_table_name: public.vw_adv_gl_detail_all_records ;;
 
 set: GL_Drillthrough {
   fields: [
