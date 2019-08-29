@@ -650,7 +650,14 @@ dimension: Buyer_id {
 # Deal Type
   dimension: deal_type {
     type: string
-    sql: CASE ${TABLE}.sale_type WHEN '1 RT' THEN 'RETAIL' WHEN '4 TR' THEN 'TRADE' WHEN '6 WH' THEN 'WHOLESALE' ELSE 'UNKNOWN' END;;
+    sql: CASE LEFT(${TABLE}.sale_type,1) WHEN '1' THEN 'RETAIL'
+      WHEN '2' THEN 'LEASE'
+      WHEN '3' THEN 'FLEET'
+      WHEN '4' THEN 'STREET PURCHASE'
+      WHEN '5' THEN 'DELIVERY'
+      WHEN '6' THEN 'WHOLESALE'
+      WHEN '7' THEN 'OTHER'
+      ELSE 'UNKNOWN' END;;
   }
 
 # # Transaction_Date
