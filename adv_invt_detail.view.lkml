@@ -546,7 +546,7 @@ view: adv_inventory {
   measure: average_advent_days_in_inventory {
     type:average
     value_format_name: decimal_0
-    sql:${days_in_inventory};;
+    sql:${aged};;
   }
 
   measure: average_calculated_days_in_inventory {
