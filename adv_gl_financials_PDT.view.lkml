@@ -6,6 +6,8 @@ view: adv_gl_financials_pdt {
   nvl(acct_chart_of_accounts.majorgroup,'Unknown') AS "major_group",
   nvl(acct_chart_of_accounts.minorgroup_rank,99)  AS "minor_group_rank",
   nvl(acct_chart_of_accounts.minorgroup,'Unknown') AS "minor_group",
+  nvl(acct_chart_of_accounts.detailgroup_rank,'Unknown') AS detail_group_rank,
+  nvl(acct_chart_of_accounts.detailgroup,'Unknown') AS detail_group,
   Advent_GL_detail.accountnumber,
   Advent_Chart_of_Accounts.accounttitle,
   f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) as "division",
@@ -60,7 +62,7 @@ LEFT JOIN tomtest.acct_division as Div on f_sql_adv_acct_to_division(Advent_GL_d
 LEFT JOIN tomtest.acct_locations as Loc on f_sql_adv_acct_to_location(Advent_GL_detail.accountnumber) = loc.location_id
 LEFT JOIN tomtest.acct_department as Dept on f_sql_adv_acct_to_department(Advent_GL_detail.accountnumber) = dept.department_id
 
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
 
 UNION ALL
 
@@ -70,6 +72,8 @@ SELECT
   nvl(acct_chart_of_accounts.majorgroup,'Unknown') AS "major_group",
   nvl(acct_chart_of_accounts.minorgroup_rank,99)  AS "minor_group_rank",
   nvl(acct_chart_of_accounts.minorgroup,'Unknown') AS "minor_group",
+  nvl(acct_chart_of_accounts.detailgroup_rank,'Unknown') AS detail_group_rank,
+  nvl(acct_chart_of_accounts.detailgroup,'Unknown') AS detail_group,
   Advent_GL_detail.accountnumber,
   Advent_Chart_of_Accounts.accounttitle,
   f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) as "division",
@@ -124,7 +128,7 @@ LEFT JOIN tomtest.acct_division as Div on f_sql_adv_acct_to_division(Advent_GL_d
 LEFT JOIN tomtest.acct_locations as Loc on f_sql_adv_acct_to_location(Advent_GL_detail.accountnumber) = loc.location_id
 LEFT JOIN tomtest.acct_department as Dept on f_sql_adv_acct_to_department(Advent_GL_detail.accountnumber) = dept.department_id
 
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
 
 
 
@@ -160,7 +164,19 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
       sql: ${TABLE}.minor_group_rank ;;
     }
 
-    dimension: full_account_number {
+  dimension: detail_group {
+    type: string
+    sql: ${TABLE}.detail_group ;;
+    order_by_field: detail_group_rank_pdt
+  }
+
+  dimension: detail_group_rank_pdt {
+    hidden: no
+    type: number
+    sql: ${TABLE}.detail_group_rank ;;
+  }
+
+  dimension: full_account_number {
       type: string
       sql: ${TABLE}.accountnumber ;;
     }

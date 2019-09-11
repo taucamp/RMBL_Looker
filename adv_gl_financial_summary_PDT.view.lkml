@@ -6,6 +6,8 @@ view: adv_gl_financial_summary_pdt {
   acct_chart_of_accounts.majorgroup AS "major_group",
   acct_chart_of_accounts.minorgroup_rank  AS "minor_group_rank",
   acct_chart_of_accounts.minorgroup AS "minor_group",
+  acct_chart_of_accounts.detailgroup_rank AS detail_group_rank,
+  acct_chart_of_accounts.detailgroup AS detail_group,
   Advent_GL_detail.accountnumber,
   Advent_Chart_of_Accounts.accounttitle,
   f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) as "division",
@@ -41,7 +43,7 @@ LEFT JOIN tomtest.acct_department as Dept on f_sql_adv_acct_to_department(Advent
 
 -- WHERE (document_info <> 'AUTOMATIC BALFWD' and control <> 'NOT APPLICABLE')
 -- WHERE red_dimdate.firstdayofmonth1 > '2017-12-31'
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 
 UNION ALL
 
@@ -50,6 +52,8 @@ SELECT
   acct_chart_of_accounts.majorgroup AS "major_group",
   acct_chart_of_accounts.minorgroup_rank  AS "minor_group_rank",
   acct_chart_of_accounts.minorgroup AS "minor_group",
+  acct_chart_of_accounts.detailgroup_rank AS detail_group_rank,
+  acct_chart_of_accounts.detailgroup AS detail_group,
   Advent_GL_detail.accountnumber,
   Advent_Chart_of_Accounts.accounttitle,
   f_sql_adv_acct_to_division(Advent_GL_detail.accountnumber) as "division",
@@ -85,7 +89,7 @@ LEFT JOIN tomtest.acct_department as Dept on f_sql_adv_acct_to_department(Advent
 
 -- WHERE (document_info <> 'AUTOMATIC BALFWD' and control <> 'NOT APPLICABLE')
 -- WHERE red_dimdate.firstdayofmonth1 > '2017-12-31'
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 
 
     ;;
@@ -120,6 +124,22 @@ GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22
     type: number
     sql: ${TABLE}.minor_group_rank ;;
   }
+
+  dimension: detail_group {
+    type: string
+    sql: ${TABLE}.detail_group ;;
+    order_by_field: detail_group_rank_pdt
+
+  }
+
+  dimension: detail_group_rank_pdt {
+    hidden: no
+    type: number
+    sql: ${TABLE}.detail_group_rank ;;
+  }
+
+
+
 
   dimension: full_account_number {
     type: string
