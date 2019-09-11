@@ -63,6 +63,26 @@ view: acct_chart_of_accounts {
     sql: convert(varchar,${minor_group_rank})+'-'+${minor_group} ;;
   }
 
+  dimension: detail_group {
+    type: string
+    order_by_field: detail_group_rank
+    sql: ${TABLE}.detailgroup;;
+    drill_fields:[account_number]
+  }
+
+  dimension: detail_group_rank {
+    type: number
+    hidden:  yes
+    sql: ${TABLE}.detailgroup_rank ;;
+  }
+
+  dimension: detail_group_with_rank {
+    type: string
+    hidden:  yes
+    sql: convert(varchar,${detail_group_rank})+'-'+${detail_group} ;;
+  }
+
+
 
   measure: count {
     type: count
