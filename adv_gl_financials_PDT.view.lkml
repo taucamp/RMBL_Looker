@@ -32,26 +32,26 @@ view: adv_gl_financials_pdt {
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_month_amount",
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.amount >0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_month_debit",
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.amount <=0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_month_credit",
-  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_month_financials_amount",
+  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_month_financials_amount",
 
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_qtr_amount",
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.amount >0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_qtr_debit",
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.amount <=0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_qtr_credit_",
-  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_qtr_financials_amount",
+  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_qtr_financials_amount",
 
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_year_amount",
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.amount >0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_year_debit",
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.amount <=0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_year_credit",
-  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_year_financials_amount",
+  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_year_financials_amount",
 
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.accounting_date::date < getdate()::date THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_MTD_amount",
-  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.accounting_date::date < getdate()::date   THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_MTD_financials_amount",
+  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.accounting_date::date < getdate()::date   THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_MTD_financials_amount",
 
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_QTD_amount",
-  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_QTD_financials_amount",
+  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_QTD_financials_amount",
 
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_YTD_amount",
-  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_YTD_financials_amount"
+  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_YTD_financials_amount"
 
 FROM
   (select distinct lastdayofmonth from ref_dimdate where firstdayofmonth1 between '2018-01-01' and  (dateadd('month',1,date_trunc('month',getdate()::date))-1)::date ) a
@@ -98,26 +98,26 @@ SELECT
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_month_amount",
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.amount >0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_month_debit",
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.amount <=0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_month_credit",
-  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_month_financials_amount",
+  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_month_financials_amount",
 
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_qtr_amount",
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.amount >0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_qtr_debit",
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.amount <=0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_qtr_credit_",
-  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_qtr_financials_amount",
+  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_qtr_financials_amount",
 
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_year_amount",
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.amount >0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_year_debit",
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.amount <=0 THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_year_credit",
-  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_year_financials_amount",
+  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_year_financials_amount",
 
   SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.accounting_date::date < getdate()::date THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_MTD_amount",
-  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.accounting_date::date < getdate()::date   THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_MTD_financials_amount",
+  SUM(CASE WHEN last_day(Advent_GL_detail.accounting_date::date) = a.lastdayofmonth AND Advent_GL_detail.accounting_date::date < getdate()::date   THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_MTD_financials_amount",
 
   SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_QTD_amount",
-  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_QTD_financials_amount",
+  SUM(CASE WHEN date_trunc('quarter',Advent_GL_detail.accounting_date)::date  = date_trunc('quarter',a.lastdayofmonth)::date AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_QTD_financials_amount",
 
   SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END)::decimal(19,2) as "current_YTD_amount",
-  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,0) as "current_YTD_financials_amount"
+  SUM(CASE WHEN extract(y from Advent_GL_detail.accounting_date::date) = extract(y from a.lastdayofmonth) AND Advent_GL_detail.accounting_date::date < getdate()::date  THEN Advent_GL_detail.amount*1 ELSE 0 END )::decimal(19,2) * nvl(financials_multiplier,1) as "current_YTD_financials_amount"
 
 FROM
   (select distinct lastdayofmonth from ref_dimdate where firstdayofmonth1 between '2018-01-01' and  (dateadd('month',1,date_trunc('month',getdate()::date))-1)::date ) a
