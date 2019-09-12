@@ -1,6 +1,6 @@
 view: adv_gl_financials_pdt {
 
-  derived_table: {
+  derived_table: {persist_for: "24 hours"
     sql: SELECT
   nvl(acct_chart_of_accounts.majorgroup_rank,99)  AS "major_group_rank",
   nvl(acct_chart_of_accounts.majorgroup,'Unknown') AS "major_group",
@@ -22,7 +22,7 @@ view: adv_gl_financials_pdt {
   nvl(acct_chart_of_accounts.accountnumber,'9999')  AS "account",
   nvl(acct_chart_of_accounts.account,'Unknown')  AS "account_name",
   nvl(typical_balance,'Unknown') as typical_balance,
-  nvl(financials_multiplier,0) as financials_multiplier,
+  nvl(financials_multiplier,1) as financials_multiplier,
   date_part(y,a.lastdayofmonth) as "accounting_year",
   extract(quarter from a.lastdayofmonth) as "qtr_of_year",
   extract(month from a.lastdayofmonth) as "month_of_year",
@@ -88,7 +88,7 @@ SELECT
   nvl(acct_chart_of_accounts.accountnumber,'9999')  AS "account",
   nvl(acct_chart_of_accounts.account,'Unknown')  AS "account_name",
   nvl(typical_balance,'Unknown') as typical_balance,
-  nvl(financials_multiplier,0) as financials_multiplier,
+  nvl(financials_multiplier,1) as financials_multiplier,
   date_part(y,a.lastdayofmonth) as "accounting_year",
   extract(quarter from a.lastdayofmonth) as "qtr_of_year",
   extract(month from a.lastdayofmonth) as "month_of_year",
