@@ -27,14 +27,14 @@ view: adv_inventory {
   dimension: stock_number_id {
     primary_key: yes
     type: string
-    hidden:yes
+    hidden:no
     sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}.stock_number ;;
   }
 
 
     dimension: id {
     type: string
-    hidden:yes
+    hidden:no
     sql: ${TABLE}.id ;;
   }
 
@@ -73,7 +73,7 @@ view: adv_inventory {
   }
 
   dimension: acv {
-    hidden:yes
+    hidden:no
     type: number
     value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.acv),0) ;;
@@ -444,7 +444,7 @@ view: adv_inventory {
     description: "Based on the Advent code - should just be New or Used"
     group_label: "Vehicle Detail"
     type: string
-    hidden: yes
+    hidden: no
     sql: UPPER(${TABLE}.new_or_used);;
   }
 
