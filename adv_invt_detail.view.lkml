@@ -27,14 +27,14 @@ view: adv_inventory {
   dimension: stock_number_id {
     primary_key: yes
     type: string
-    hidden:no
+    hidden:yes
     sql: nvl(f_sql_adv_dealername(${TABLE}.dealer),'UNKNOWN')||'-'||${TABLE}.stock_number ;;
   }
 
 
-    dimension: id {
+  dimension: id {
     type: string
-    hidden:no
+    hidden:yes
     sql: ${TABLE}.id ;;
   }
 
@@ -73,7 +73,7 @@ view: adv_inventory {
   }
 
   dimension: acv {
-    hidden:no
+    hidden:yes
     type: number
     value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.acv),0) ;;
@@ -81,7 +81,7 @@ view: adv_inventory {
 
 
 
- dimension: vehicle_buyer_id {
+  dimension: vehicle_buyer_id {
     description:"The Employee ID of the Buyer"
     type: string
     sql: ${TABLE}.buyer_id ;;
@@ -112,7 +112,7 @@ view: adv_inventory {
     sql: nvl(f_sql_char_to_numeric(${TABLE}.cost),0) ;;
   }
 
-   dimension: cost_bucket {
+  dimension: cost_bucket {
     type: tier
     tiers: [0,10000,20000,30000,40000,50000,75000,100000]
     style: relational
@@ -120,7 +120,7 @@ view: adv_inventory {
     sql: ${cost} ;;
   }
 
- dimension: blue_book {
+  dimension: blue_book {
     type: number
     value_format_name: usd_0
     sql:  nvl(f_sql_char_to_numeric(${TABLE}.blue_book),0);;
@@ -165,7 +165,7 @@ view: adv_inventory {
     sql: ${TABLE}.equipment1 ;;
   }
 
-    dimension: title_info {
+  dimension: title_info {
     description: "Title info as updated in Equipment 2 field"
     type: string
     sql: ${TABLE}.title_info ;;
@@ -414,7 +414,7 @@ view: adv_inventory {
     sql: ${TABLE}.stock_number ;;
   }
 
-   dimension: suggested_retail {
+  dimension: suggested_retail {
     type:number
     value_format_name: usd_0
     sql: nvl(f_sql_char_to_numeric(${TABLE}.suggested_retail),0) ;;
@@ -444,7 +444,7 @@ view: adv_inventory {
     description: "Based on the Advent code - should just be New or Used"
     group_label: "Vehicle Detail"
     type: string
-    hidden: no
+    hidden: yes
     sql: UPPER(${TABLE}.new_or_used);;
   }
 
@@ -503,7 +503,7 @@ view: adv_inventory {
   }
 
 
-    measure: count {
+  measure: count {
     type: count
     value_format_name: decimal_0
     drill_fields: [Inventory_Drillthrough*]
@@ -529,7 +529,7 @@ view: adv_inventory {
     type: sum
     value_format_name: usd_0
     sql: ${suggested_retail} ;;
-   }
+  }
 
   measure: average_mileage {
     type: average
