@@ -25,6 +25,7 @@ CASE
     WHEN SD.sale_type LIKE'4 TR%' THEN
     'Trade' ELSE'Other'
   END AS sale_type,
+  SD.Sales_channel,
   SD.customer_number,
   SD.customer_name,
   SD.sale_date::date,
