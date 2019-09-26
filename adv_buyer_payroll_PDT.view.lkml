@@ -31,7 +31,11 @@ CASE
   SD.sale_date::date,
   f_sql_date_to_datekey(SD.sale_date::date) as sale_datekey,
   SD.days_in_inventory,
-  SD.buyer_name,
+  case when sd.sales_channel ilike 'DIRECT TO CO%' and inv.vehicle_type <> 'Other'
+      then nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
+      else SD.buyer_name
+      end
+      as buyer_name,
   'Unknown' AS BuyerType,
   INV.vin,
   SD.close_date::date,
@@ -79,7 +83,10 @@ FROM
   LEFT JOIN adv_invt_veh_origin ORG
     ON INV.dealer = ORG.dealer
     AND INV.vehicle_origin_code = ORG.code
-  LEFT JOIN adv_sales_unwinds ASU
+  LEFT JOIN rumble_invitem p2
+    ON SD.stock_number = p2.adventstocknumber
+    AND p2.isactive = 1
+    LEFT JOIN adv_sales_unwinds ASU
     ON SD.DEALER = ASU.dealer
     AND SD.deal_number = ASU.deal_number
   LEFT JOIN unfunded UNF
