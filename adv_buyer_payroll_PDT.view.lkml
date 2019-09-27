@@ -72,7 +72,9 @@ CASE
     GL.document_info,
     GL.entry_timestamp,
     USR.user_name,
-    GL.amount * CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END AS GL_Amount
+    (GL.amount
+      + (CASE WHEN SD.sale_date::date < '2019-09-17' AND (LEFT(SD.customer_name,7) = 'MANHEIM' or LEFT(SD.customer_name,7) = 'OVE-MAN') THEN 100 ELSE 0 END))
+      * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount
 
 
 FROM
