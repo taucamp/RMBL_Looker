@@ -2,7 +2,7 @@ view: adv_buyer_payroll_pdt {
 
   derived_table: {persist_for: "4 hours"
     sql:
-        WITH  unfunded AS
+       WITH  unfunded AS
 (SELECT gl.control, sum(gl.amount)::numeric as Excess_AR
   FROM adv_gl_detail gl
   JOIN ref_buyer_payplan_accounts BPA ON GL.accountnumber = BPA.accountnumber
@@ -61,6 +61,8 @@ CASE
       when 'Pending AR' then 8
       else 99
       end as payroll_category_rank,
+    nvl(br.buyer_participation_rate,0.00) as participation_rate,
+    nvl(ba.buyer_add_back,0) as buyer_add_back,
     GL.accounting_date::date,
     f_sql_date_to_datekey(GL.accounting_date::date) as accounting_datekey,
     GL.accountnumber,
@@ -88,7 +90,23 @@ FROM
   LEFT JOIN rumble_invitem p2
     ON SD.stock_number = p2.adventstocknumber
     AND p2.isactive = 1
-    LEFT JOIN adv_sales_unwinds ASU
+
+  --Added 20190929
+  LEFT JOIN ref_buyer_participation_rate br
+    ON  CASE  WHEN sd.sales_channel ILIKE 'DIRECT TO CO%' AND inv.vehicle_type <> 'Other'
+              THEN nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
+              ELSE SD.buyer_name
+              END = br.Employee_name
+      AND SD.sale_date::date BETWEEN br.date_start and br.date_end
+--  --Added 20190929
+  LEFT JOIN ref_buyer_addback ba
+    ON  CASE  WHEN sd.sales_channel ILIKE 'DIRECT TO CO%' AND inv.vehicle_type <> 'Other'
+              THEN nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
+              ELSE SD.buyer_name
+            END = ba.Employee_name
+        AND SD.sale_date::date BETWEEN ba.date_start and ba.date_end
+
+  LEFT JOIN adv_sales_unwinds ASU
     ON SD.DEALER = ASU.dealer
     AND SD.deal_number = ASU.deal_number
   LEFT JOIN unfunded UNF
