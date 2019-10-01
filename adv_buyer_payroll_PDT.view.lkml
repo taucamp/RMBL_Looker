@@ -74,7 +74,7 @@ CASE
     GL.document_info,
     GL.entry_timestamp,
     USR.user_name,
-    (GL.amount * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount
+  (GL.amount * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount
 
 
 FROM
