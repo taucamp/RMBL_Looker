@@ -73,7 +73,7 @@ CASE
     GL.document_number,
     GL.document_info,
     GL.entry_timestamp,
-    USR.user_name,
+    USR.user_full_name as user_name,
   GL.amount * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount
 
 
@@ -118,10 +118,12 @@ FROM
     ON GL.accountnumber = BPA.accountnumber
   JOIN adv_gl_chart cht
     ON GL.accountnumber = CHT.accountnumber
-  LEFT JOIN adv_users USR
-    ON USR.dealer_guid = '229958da-f658-480f-a306-1cd642cae628'
-    AND GL.user::decimal = USR.user_id::decimal
-
+  LEFT JOIN adv_users_tom USR
+--     ON USR.dealer_guid = '229958da-f658-480f-a306-1cd642cae628'
+--     AND GL.user::decimal = USR.user_id::decimal
+-- adv_users_tom usr
+    ON usr.dealer = 'WHOLESALE, INC'
+    AND gl.user::decimal = usr.user_id::decimal
 
 WHERE
   SD.SALE_DATE >= '2019-07-01'
