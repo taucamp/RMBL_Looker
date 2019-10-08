@@ -154,7 +154,7 @@ ORDER BY
 
                 ;;
 
-      datagroup_trigger: buyer_payroll
+      datagroup_trigger: financial_datagroup
       distribution_style: all
 
     }
