@@ -2,7 +2,7 @@ view: adv_buyer_payroll_pdt {
 
   derived_table: {persist_for: "4 hours"
     sql:
-         WITH  unfunded AS
+          WITH  unfunded AS
 (SELECT gl.control, sum(gl.amount)::numeric as Excess_AR
   FROM adv_gl_detail gl
   JOIN ref_buyer_payplan_accounts BPA ON GL.accountnumber = BPA.accountnumber
@@ -32,13 +32,20 @@ CASE
   SD.sale_date::date,
   f_sql_date_to_datekey(SD.sale_date::date) as sale_datekey,
   SD.days_in_inventory,
+
   case when sd.sales_channel ilike 'DIRECT TO CO%' and inv.vehicle_type <> 'Other'
       then nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
       else SD.buyer_name
       end
       as buyer_name,
   'Unknown' AS BuyerType,
-  INV.vin,
+  SD.buyer_id as sales_person1_id,
+  SD.buyer_name as sales_person1_name,
+  SD.salesperson2_id as sales_person2_id,
+  SD.salesperson2_fullname as sales_person2_name,
+  SD.salesperson3_id as sales_person3_id,
+  SD.salesperson3_fullname as sales_person3_name,
+INV.vin,
   SD.close_date::date,
   f_sql_date_to_datekey(SD.close_date::date) as deal_close_datekey,
   nvl(org.description,'Unknown') AS vehicle_origin,
