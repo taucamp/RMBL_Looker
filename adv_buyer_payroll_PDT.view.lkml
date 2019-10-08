@@ -2,7 +2,7 @@ view: adv_buyer_payroll_pdt {
 
   derived_table: {persist_for: "4 hours"
     sql:
-       WITH  unfunded AS
+         WITH  unfunded AS
 (SELECT gl.control, sum(gl.amount)::numeric as Excess_AR
   FROM adv_gl_detail gl
   JOIN ref_buyer_payplan_accounts BPA ON GL.accountnumber = BPA.accountnumber
@@ -25,7 +25,8 @@ CASE
     WHEN SD.sale_type LIKE'4 TR%' THEN
     'Trade' ELSE'Other'
   END AS sale_type,
-  SD.Sales_channel,
+  SD.Sales_channel as Sales_channel_orig,
+  f_sql_adv_sales_channel(SD.sales_channel) as sales_channel,
   SD.customer_number,
   SD.customer_name,
   SD.sale_date::date,
@@ -48,7 +49,12 @@ CASE
   ASU.unwind_date,
     f_sql_date_to_datekey(ASU.unwind_date::date) as Unwind_datekey,
     nvl(Excess_AR,0::numeric) as Excess_AR,
+    case when f_sql_char_to_numeric(cash_sale_price)/100 - trunc(f_sql_char_to_numeric(cash_sale_price)/100) = .69
+        then 'no_commission_paid'
+        else 'Commission_payable'
+        end as blow_out_priced,
     nvl(DS.fee::numeric,0::numeric) as Dealer_Sales_Fee,
+    1 as Pay_plan_number,
     BPA.payroll_category,
     case BPA.Payroll_Category
       when 'Revenue' then 1
