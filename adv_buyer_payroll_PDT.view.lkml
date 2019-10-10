@@ -34,7 +34,7 @@ CASE
   SD.days_in_inventory,
 
   case when sd.sales_channel ilike 'DIRECT TO CO%' and inv.vehicle_type <> 'Other'
-      then nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
+      then nvl(P2.pickupcontact, INV.buyer_name, SD.buyer_name)
       else SD.buyer_name
       end
       as buyer_name,
@@ -87,11 +87,17 @@ INV.vin,
     GL.document_info,
     GL.entry_timestamp,
     USR.user_full_name as user_name,
-  GL.amount * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount
+  GL.amount * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount,
+  sd.buyer_name as Sales_Detail_Salesperson1,
+  sd.salesperson2_fullname as Sales_Detail_Salesperson2,
+  sd.salesperson3_fullname as Sales_Detail_Salesperson,
+  INV.buyer_name as Inventory_buyer_name,
+  P2.pickupcontact as p2_pickupcontract
+
 
 
 FROM
-  adv_sales_detail SD
+   adv_sales_detail SD
   LEFT JOIN adv_invt_detail INV
     ON SD.dealer = INV.dealer
     AND SD.stock_number = INV.stock_number
