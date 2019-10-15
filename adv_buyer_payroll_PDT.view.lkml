@@ -2,20 +2,31 @@ view: adv_buyer_payroll_pdt {
 
   derived_table: {persist_for: "4 hours"
     sql:
-          WITH  unfunded AS
+           WITH  unfunded AS
 (SELECT gl.control, sum(gl.amount)::numeric as Excess_AR
   FROM adv_gl_detail gl
   JOIN ref_buyer_payplan_accounts BPA ON GL.accountnumber = BPA.accountnumber
   WHERE BPA.payroll_category = 'Pending AR'
   GROUP BY 1
   HAVING SUM(amount) > 1000
-)
+),
+
+  dupes as (SELECT
+      vin_last8,
+      COUNT(vin_last8)
+      FROM adv_sales_detail
+      GROUP BY vin_last8
+      HAVING COUNT(vin_last8) > 1
+      )
+
+
 
 SELECT
    CASE WHEN SD.deal_status ilike 'CLSD' THEN 'CLOSED' ELSE  SD.deal_status end as deal_status,
   SD.dealer,
   SD.deal_number,
   SD.stock_number,
+  CASE WHEN dupes.vin_last8 IS NULL THEN 'No' ELSE 'Yes' END AS LAST8_ON_MULTIPLE_DEALS,
 CASE
 
     WHEN SD.sale_type LIKE'6 WH%' THEN
@@ -98,6 +109,8 @@ INV.vin,
 
 FROM
    adv_sales_detail SD
+  LEFT JOIN dupes
+    ON SD.vin_last8 = DUPES.vin_last8
   LEFT JOIN adv_invt_detail INV
     ON SD.dealer = INV.dealer
     AND SD.stock_number = INV.stock_number
