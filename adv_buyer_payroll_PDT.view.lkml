@@ -174,9 +174,12 @@ ORDER BY
 
                 ;;
 
-      # datagroup_trigger: buyer_payroll_datagroup
-      sql_trigger_value:  SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60)) ;;
-      distribution_style: all
+    datagroup_trigger: financial_datagroup
+    distribution_style: all
+
+    # datagroup_trigger: buyer_payroll_datagroup
+      # sql_trigger_value:  SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60)) ;;
+      # distribution_style: all
 
     }
 
