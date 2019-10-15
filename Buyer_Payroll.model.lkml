@@ -8,8 +8,14 @@ include: "*.view.lkml"                       # include all views in this project
 #
 datagroup: buyer_payroll_datagroup {
 #   sql_trigger: SELECT DATE_PART('hour', GETDATE()) ;;
-  sql_trigger: SELECT max("__updatetime") FROM adv_gl_detail ;;
-  max_cache_age: "24 hours"
+
+  sql_trigger: CASE
+    WHEN [current time is in between time 0600 and 1000] THEN 1
+    WHEN [current time is in between time 1000 and 1400] THEN 2
+    WHEN [current time is in between time 1400 and 1800] THEN 3
+    ELSE 4
+  END ;;
+#   max_cache_age: "4 hours"
 }
 
 explore: adv_buyer_payroll_pdt {}
