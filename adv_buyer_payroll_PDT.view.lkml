@@ -173,7 +173,7 @@ ORDER BY
 
                 ;;
 
-      datagroup_trigger: financial_datagroup
+      datagroup_trigger: buyer_payroll_datagroup
       distribution_style: all
 
     }
