@@ -1,6 +1,6 @@
 view: adv_buyer_payroll_pdt {
 
-  derived_table: {persist_for: "4 hours"
+  derived_table: {persist_for: "8 hours"
     sql:
            WITH  unfunded AS
 (SELECT gl.control, sum(gl.amount)::numeric as Excess_AR
@@ -173,7 +173,8 @@ ORDER BY
 
                 ;;
 
-      datagroup_trigger: buyer_payroll_datagroup
+      # datagroup_trigger: buyer_payroll_datagroup
+      sql_trigger_value:  SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60)) ;;
       distribution_style: all
 
     }
