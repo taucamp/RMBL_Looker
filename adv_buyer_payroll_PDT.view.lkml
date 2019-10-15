@@ -1,6 +1,7 @@
 view: adv_buyer_payroll_pdt {
 
-  derived_table: {persist_for: "8 hours"
+  derived_table: {
+    # persist_for: "8 hours"
     sql:
            WITH  unfunded AS
 (SELECT gl.control, sum(gl.amount)::numeric as Excess_AR
