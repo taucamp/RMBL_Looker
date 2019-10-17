@@ -27,7 +27,7 @@ set: GL_Drillthrough {
 
   dimension_group: __senttime {
     type: time
-    hidden: yes
+    hidden: no
     timeframes: [
       raw,
       time,
