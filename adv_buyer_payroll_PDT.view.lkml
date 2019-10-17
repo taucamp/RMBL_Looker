@@ -47,7 +47,7 @@ CASE
 
   case when sd.sales_channel ilike 'DIRECT TO CO%' and inv.vehicle_type <> 'Other'
       then nvl(P2.pickupcontact, INV.buyer_name, SD.buyer_name)
-      else SD.buyer_name
+      else INV.buyer_name
       end
       as buyer_name,
   'Unknown' AS BuyerType,
