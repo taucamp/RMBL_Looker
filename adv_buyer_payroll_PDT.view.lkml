@@ -159,7 +159,7 @@ FROM
     AND gl.user::decimal = usr.user_id::decimal
 
 WHERE
-  SD.SALE_DATE >= '2019-07-01'
+  SD.SALE_DATE > '2019-06-30'
   AND LEFT ( SD.SALE_TYPE, 1 ) <> '4'
   AND INV.VEHICLE_TYPE <> 'Other'
 
