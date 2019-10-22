@@ -62,6 +62,9 @@ explore: Financials_LTD {
   from: adv_gl_financials_pdt
 }
 
+explore: Buyer_Payroll {
+  from: adv_buyer_payroll_pdt
+}
 
 explore: ref_dimdate {
     join: Advent_GL_detail {
