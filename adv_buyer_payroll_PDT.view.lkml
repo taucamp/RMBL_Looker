@@ -45,11 +45,12 @@ CASE
   f_sql_date_to_datekey(SD.sale_date::date) as sale_datekey,
   SD.days_in_inventory,
 
-  case when sd.sales_channel ilike 'DIRECT TO CO%' and inv.vehicle_type <> 'Other'
-      then nvl(P2.pickupcontact, INV.buyer_name, SD.buyer_name)
-      else INV.buyer_name
+  case when INV.buyer_name is not null and trim(INV.buyer_name) <> '' then 'Inventory_buyer'
+       when P2.pickupcontact is not null and trim(P2.pickupcontact) <> '' then 'Carvis_buyer'
+      else 'Unknown'
       end
-      as buyer_name,
+      as Buyer_data_source,
+  nvl(INV.buyer_name, P2.pickupcontact,'Unknown') as buyer_name,
   'Unknown' AS BuyerType,
   SD.buyer_id as sales_person1_id,
   SD.buyer_name as sales_person1_name,
