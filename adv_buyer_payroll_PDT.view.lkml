@@ -29,7 +29,6 @@ SELECT
   SD.stock_number,
   CASE WHEN dupes.vin_last8 IS NULL THEN 'No' ELSE 'Yes' END AS LAST8_ON_MULTIPLE_DEALS,
 CASE
-
     WHEN SD.sale_type LIKE'6 WH%' THEN
     'Wholesale'
     WHEN SD.sale_type LIKE'1 RT%' THEN
@@ -45,23 +44,39 @@ CASE
   f_sql_date_to_datekey(SD.sale_date::date) as sale_datekey,
   SD.days_in_inventory,
 
-  case when INV.buyer_name is not null and trim(INV.buyer_name) <> '' then 'Inventory_buyer'
+  case when sd.buyer_id is not null then 'Inventory_buyer'
        when P2.pickupcontact is not null and trim(P2.pickupcontact) <> '' then 'Carvis_buyer'
       else 'Unknown'
       end
       as Buyer_data_source,
-  nvl(INV.buyer_name, P2.pickupcontact,'Unknown') as buyer_name,
+  /*
+  commented out on 2019-10-31 - replaced with Buyer name from Users table as opposed to Advent Table
+  -nvl(INV.buyer_name, P2.pickupcontact,'Unknown') as buyer_name,
+  */
+  nvl(buyid.user_full_name, P2.pickupcontact,'Unknown') as buyer_name,
   'Unknown' AS BuyerType,
   SD.buyer_id as sales_person1_id,
-  SD.buyer_name as sales_person1_name,
+
+  /* Commented out and add following line 2019-10-31 tp change source of full name */
+  --SD.buyer_name as sales_person1_name,
+  nvl(sp1id.user_full_name,'Unknown') as sales_person1_name,
+
   SD.salesperson2_id as sales_person2_id,
-  SD.salesperson2_fullname as sales_person2_name,
+  /* Commented out and add following line 2019-10-31 tp change source of full name */
+  nvl(sp2id.user_full_name,'Unknown') as sales_person2_name,
+
+
   SD.salesperson3_id as sales_person3_id,
-  SD.salesperson3_fullname as sales_person3_name,
+  /* Commented out and add following line 2019-10-31 tp change source of full name */
+  nvl(sp3id.user_full_name,'Unknown') as sales_person3_name,
+
 INV.vin,
   SD.close_date::date,
   f_sql_date_to_datekey(SD.close_date::date) as deal_close_datekey,
   nvl(org.description,'Unknown') AS vehicle_origin,
+
+  /* Added line below on 2019-10-31' */
+  NVL(inv.vehicle_type,'Uknown') AS vehicle_type,
   INV.YEAR as model_year,
   INV.make,
   INV.model,
@@ -103,36 +118,61 @@ INV.vin,
   GL.amount * (CASE WHEN  BPA.Payroll_Category = 'Revenue' THEN -1 ELSE 1 END) AS GL_Amount,
   sd.buyer_name as Sales_Detail_Salesperson1,
   sd.salesperson2_fullname as Sales_Detail_Salesperson2,
-  sd.salesperson3_fullname as Sales_Detail_Salesperson,
-  INV.buyer_name as Inventory_buyer_name,
-  P2.pickupcontact as p2_pickupcontract
-
+  sd.salesperson3_fullname as Sales_Detail_Salesperson3,
+  inv.buyer_id as Inventory_buyer_id,
+  INV.buyer_name as Inventory_buyer_name_invalid,
+  P2.pickupcontact as p2_pickupcontact
 
 
 FROM
    adv_sales_detail SD
   LEFT JOIN dupes
     ON SD.vin_last8 = DUPES.vin_last8
+
   LEFT JOIN adv_invt_detail INV
     ON SD.dealer = INV.dealer
     AND SD.stock_number = INV.stock_number
+  /* Added line below on 2019-10-31' */
+  LEFT JOIN adv_users_tom buyid
+    ON buyid.dealer = 'WHOLESALE, INC'
+    AND inv.buyer_id::Decimal = buyid.user_id::decimal
+
   LEFT JOIN adv_invt_veh_origin ORG
     ON INV.dealer = ORG.dealer
     AND INV.vehicle_origin_code = ORG.code
-  LEFT JOIN rumble_invitem p2
+
+LEFT JOIN rumble_invitem p2
     ON SD.stock_number = p2.adventstocknumber
     AND p2.isactive = 1
 
+
+
+/* Added line below on 2019-10-31' */
+  LEFT JOIN adv_users_tom sp1id
+    ON sp1id.dealer = 'WHOLESALE, INC'
+    AND sd.buyer_id::Decimal = sp1id.user_id::decimal
+
+/* Added line below on 2019-10-31' */
+  LEFT JOIN adv_users_tom sp2id
+    ON sp2id.dealer = 'WHOLESALE, INC'
+    AND sd.salesperson2_id::Decimal = sp2id.user_id::decimal
+
+/* Added line below on 2019-10-31' */
+  LEFT JOIN adv_users_tom sp3id
+    ON sp3id.dealer = 'WHOLESALE, INC'
+    AND sd.salesperson3_id::Decimal = sp3id.user_id::decimal
+
+
   --Added 20190929
-  LEFT JOIN ref_buyer_participation_rate br
-    ON  CASE  WHEN sd.sales_channel ILIKE 'DIRECT TO CO%' AND inv.vehicle_type <> 'Other'
+ LEFT JOIN ref_buyer_participation_rate br
+    ON  CASE  WHEN sd.sales_channel ILIKE 'DIRECT TO CO%' AND NVL(inv.vehicle_type,'Uknown') <> 'Other'
               THEN nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
               ELSE SD.buyer_name
               END = br.Employee_name
       AND SD.sale_date::date BETWEEN br.date_start and br.date_end
 --  --Added 20190929
   LEFT JOIN ref_buyer_addback ba
-    ON  CASE  WHEN sd.sales_channel ILIKE 'DIRECT TO CO%' AND inv.vehicle_type <> 'Other'
+    ON  CASE  WHEN sd.sales_channel ILIKE 'DIRECT TO CO%' AND NVL(inv.vehicle_type,'Uknown') <> 'Other'
               THEN nvl(P2.buyername, INV.buyer_name, SD.buyer_name)
               ELSE SD.buyer_name
             END = ba.Employee_name
@@ -148,7 +188,7 @@ FROM
     AND (SD.sale_date::date between DS.date_sold::date - 10 AND DS.date_sold::date + 10)
   LEFT JOIN adv_gl_detail GL
     ON GL.control = SD.vin_last8
-  JOIN ref_buyer_payplan_accounts BPA
+ JOIN ref_buyer_payplan_accounts BPA
     ON GL.accountnumber = BPA.accountnumber
   JOIN adv_gl_chart cht
     ON GL.accountnumber = CHT.accountnumber
@@ -161,8 +201,8 @@ FROM
 
 WHERE
   SD.SALE_DATE > '2019-06-30'
-  AND LEFT ( SD.SALE_TYPE, 1 ) <> '4'
-  AND INV.VEHICLE_TYPE <> 'Other'
+  AND LEFT (SD.SALE_TYPE, 1 ) <> '4'
+  AND NVL(inv.vehicle_type,'Uknown') <> 'Other'
 
 
 ORDER BY
