@@ -186,7 +186,7 @@ LEFT JOIN rumble_invitem p2
   LEFT JOIN wholesale_dealer_sales DS
     ON SD.VIN_last8 = f_sql_adv_inventory_vin_last8(DS.VIN)
     AND (SD.sale_date::date between DS.date_sold::date - 10 AND DS.date_sold::date + 10)
-  LEFT JOIN adv_gl_detail GL
+  LEFT JOIN vw_adv_gl_detail_2019_2020 GL
     ON GL.control = SD.vin_last8
  JOIN ref_buyer_payplan_accounts BPA
     ON GL.accountnumber = BPA.accountnumber
