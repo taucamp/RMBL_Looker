@@ -215,6 +215,7 @@ ORDER BY
 
                 ;;
 
+    publish_as_db_view: yes
     datagroup_trigger: financial_datagroup
     distribution_style: all
 

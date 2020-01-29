@@ -1,6 +1,7 @@
 view: adv_gl_financial_summary_pdt {
 
-  derived_table: {persist_for: "24 hours"
+  derived_table: {
+#     persist_for: "24 hours"
     sql: SELECT
   nvl(acct_chart_of_accounts.majorgroup_rank,99)  AS "major_group_rank",
   nvl(acct_chart_of_accounts.majorgroup,'Unkown') AS "major_group",

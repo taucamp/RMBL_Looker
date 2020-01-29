@@ -4,7 +4,8 @@ include: "*.view"                       # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 datagroup: financial_datagroup {
-  sql_trigger: SELECT DATE_PART('hour', GETDATE()) ;;
+  sql_trigger: SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60));;
+  # sql_trigger: SELECT DATE_PART('hour', GETDATE()) ;;
   # sql_trigger: SELECT max("__updatetime") FROM adv_gl_detail ;;
   max_cache_age: "24 hours"
 }
