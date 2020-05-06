@@ -121,7 +121,9 @@ INV.vin,
   sd.salesperson3_fullname as Sales_Detail_Salesperson3,
   inv.buyer_id as Inventory_buyer_id,
   INV.buyer_name as Inventory_buyer_name_invalid,
-  P2.pickupcontact as p2_pickupcontact
+  P2.pickupcontact as p2_pickupcontact,
+  INV.received_date,
+  p2.inventorydate
 
 
 FROM
